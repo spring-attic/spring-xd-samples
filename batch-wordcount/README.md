@@ -5,9 +5,11 @@ This is the [*Spring Batch* word-count sample](https://github.com/SpringSource/s
 
 ## Bulding
 
+Build the sample simply by executing:
+
 	$ mvn clean assembly:assembly
 
-You will see 2 directories that were created under `target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/`:
+As a result, you will see 2 directories that were created under `target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/`:
 
 * copy-contents-to-modules-job
 * copy-contents-to-lib
@@ -21,10 +23,10 @@ Inside the *copy-contents-to-modules-job* directory, verify the settings in **wo
 		<prop key="hd.fs">hdfs://localhost:8020</prop>
 	</util:properties>
 
-Please verify particularly the 2 properties:
+Please verify particularly the following 2 properties:
 
-* local.data.file
-* hd.fs
+* local.data.file - Points to the location of the file whose words ought to be counted
+* hd.fs - The [Hadoop NameNode](http://wiki.apache.org/hadoop/NameNode) to use 
 
 As an example, the data file `nietzsche-chapter-1.txt` is provided. Please change property `local.data.file`, so that its value points to the absolute location of `nietzsche-chapter-1.txt`.
 
