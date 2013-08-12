@@ -16,7 +16,7 @@
 	<util:properties id="myProperties" >
 		<prop key="wordcount.input.path">/count/in/</prop>
 		<prop key="wordcount.output.path">/count/out/</prop>
-		<prop key="local.data.file">/path/to/nietzsche-chapter-1.txt</prop>
+		<prop key="local.data.file">/tmp/nietzsche-chapter-1.txt</prop>
 		<prop key="hd.fs">hdfs://localhost:8020</prop>
 	</util:properties>
 

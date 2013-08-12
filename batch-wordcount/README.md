@@ -16,31 +16,39 @@ Build the sample simply by executing:
 
 	$ mvn clean assembly:assembly
 
-As a result, you will see 2 directories that were created under `target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/`:
+As a result, you will see the following files and directories created under `target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/`:
 
-* copy-contents-to-modules-job
-* copy-contents-to-lib
+----
+|-- batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin
+|   |-- lib
+|   |   `-- hadoop-examples-1.1.2.jar
+|   |-- modules
+|   |   `-- job
+|   |       `-- wordcount-context.xml
+|   `-- nietzsche-chapter-1.txt
+----
 
-Inside the *copy-contents-to-modules-job* directory, verify the settings in **wordcount-context.xml**. All relevant properties are defined at:
+the modules/job directory defines the location of the file to import, HDFS directories to use as well as the name node location.  You can verify the settings inside wordcount-context.xml.  All relevant properties are defined in the util:property element:
 
 	<util:properties id="myProperties" >
 		<prop key="wordcount.input.path">/count/in/</prop>
 		<prop key="wordcount.output.path">/count/out/</prop>
-		<prop key="local.data.file">data/nietzsche-chapter-1.txt</prop>
+		<prop key="local.data.file">/tmp/nietzsche-chapter-1.txt</prop>
 		<prop key="hd.fs">hdfs://localhost:8020</prop>
 	</util:properties>
 
-Please verify particularly the following 2 properties:
+Please verify particularly the following property:
 
-* local.data.file - Points to the location of the file whose words ought to be counted
 * hd.fs - The [Hadoop NameNode](http://wiki.apache.org/hadoop/NameNode) to use. The setting should be fine, but the port may be different between Hadoop versions (e.g. port 9000 is common also)
-
-As an example, we will use the data file `nietzsche-chapter-1.txt` that you will find in directory `target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/`. Please change the property `local.data.file`, so that its value points to the **absolute** location of `nietzsche-chapter-1.txt`.
 
 ## Running the Sample
 
-1. Copy the **wordcount-context.xml** file to your *Spring XD* home directory under `modules/job`.
-2. From directory `copy-contents-to-lib` copy the dependency `hadoop-examples-1.1.2.jar` to the `lib/` directory inside your *Spring XD* home directory.
+In the batch-wordcount directory
+
+	$ cp target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/modules/job/* $XD_HOME/modules/job
+	$ cp target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/lib/* $XD_HOME/lib
+
+	$ cp target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/nietzsche-chapter-1.txt /tmp
 
 Now your Sample is ready to be executed. Start your *Spring XD* admin server (If it was already running, you must restart it):
 

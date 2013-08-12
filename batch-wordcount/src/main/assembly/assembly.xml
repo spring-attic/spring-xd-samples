@@ -9,9 +9,9 @@
 	<fileSets>
 		<fileSet>
 			<directory>${project.basedir}/src/main/resources</directory>
-			<outputDirectory>/copy-contents-to-modules-job</outputDirectory>
+			<outputDirectory>/modules/job</outputDirectory>
 			<includes>
-				<include>**/wordcount-context.xml</include>
+				<include>**/wordcount.xml</include>
 			</includes>
 		</fileSet>
 		<fileSet>
@@ -24,7 +24,7 @@
 	</fileSets>
 	<dependencySets>
 		<dependencySet>
-			<outputDirectory>/copy-contents-to-lib</outputDirectory>
+			<outputDirectory>/lib</outputDirectory>
 			<useProjectArtifact>false</useProjectArtifact>
 			<scope>runtime</scope>
 		</dependencySet>
