@@ -1,6 +1,5 @@
-/.gradle/
+.gradle/
 build
-target
 /.idea/
 /out/
 *.ipr
