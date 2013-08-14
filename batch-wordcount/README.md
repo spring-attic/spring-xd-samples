@@ -18,7 +18,7 @@ Build the sample simply by executing:
 
 As a result, you will see the following files and directories created under `target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/`:
 
-----
+```
 |-- batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin
 |   |-- lib
 |   |   `-- hadoop-examples-1.1.2.jar
@@ -26,7 +26,7 @@ As a result, you will see the following files and directories created under `tar
 |   |   `-- job
 |   |       `-- wordcount-context.xml
 |   `-- nietzsche-chapter-1.txt
-----
+```
 
 the modules/job directory defines the location of the file to import, HDFS directories to use as well as the name node location.  You can verify the settings inside wordcount-context.xml.  All relevant properties are defined in the util:property element:
 
