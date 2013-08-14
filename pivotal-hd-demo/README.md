@@ -52,12 +52,12 @@ tab-delimited format with one line per row. For this demo we will be querying th
 line per hash tag, so data will be de-normalized since tweets with multiple hash tags will have additional rows. 
 The easiest way to do this reformatting is is to provide a transformer script.We have written one in Groovy that can 
 be viewed or downloaded here: 
-[tweets-delim.groovy](https://raw.github.com/SpringSource/spring-xd-samples/pivotal-hd-demo/master/modules/processor/scripts/tweets-delim.groovy)
+[tweets-delim.groovy](https://raw.github.com/SpringSource/spring-xd-samples/master/pivotal-hd-demo/modules/processor/scripts/tweets-delim.groovy)
 
 To use this script in our XD stream we need to copy it to the Spring XD `modules/processor/scripts` directory. We can do that 
 by opening another command prompt and entering the following commwnd:
 
-    wget -O /home/gpadmin/spring-xd-1.0.0.M2/xd/modules/processor/scripts/tweets-delim.groovy https://raw.github.com/SpringSource/spring-xd-samples/pivotal-hd-demo/master/modules/processor/scripts/tweets-delim.groovy 
+    wget -O /home/gpadmin/spring-xd-1.0.0.M2/xd/modules/processor/scripts/tweets-delim.groovy https://raw.github.com/SpringSource/spring-xd-samples/master/pivotal-hd-demo/modules/processor/scripts/tweets-delim.groovy 
 
 We also need to modify the connection properties for HDFS which are specified in `config/hadoop.properties`. We can edit that file using this command:
 
