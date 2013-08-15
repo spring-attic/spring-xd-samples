@@ -11,7 +11,7 @@
 	<url>http://www.springframework.org/spring-batch/archetypes/simple-cli-archetype</url>
 	<description>
 		<![CDATA[
-      This project is a minimal command line batch sample from Spring Batch.  
+      This project is a minimal command line batch sample from Spring Batch.
     ]]>
 	</description>
 	<properties>
@@ -38,7 +38,7 @@
 					<version>1.0.1</version>
 				</dependency>
 			</dependencies>
-		</profile>	 
+		</profile>
 	</profiles>
 
 	<dependencies>
@@ -117,7 +117,7 @@
 	</dependencies>
 
 	<build>
-		 
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -127,7 +127,7 @@
 					<target>1.5</target>
 				</configuration>
 			</plugin>
-			 
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -142,7 +142,7 @@
 					</arguments>
 				</configuration>
 			</plugin>
-		 
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -157,6 +157,15 @@
 					</archive>
 				</configuration>
 			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/main/assembly/assembly.xml</descriptor>
+					</descriptors>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -169,5 +178,5 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
- 
+
 </project>
