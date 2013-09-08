@@ -11,14 +11,7 @@
 			<directory>${project.basedir}/src/main/resources</directory>
 			<outputDirectory>/modules/job</outputDirectory>
 			<includes>
-				<include>**/wordcount.xml</include>
-			</includes>
-		</fileSet>
-		<fileSet>
-			<directory>${project.basedir}/src/main/resources/data</directory>
-			<outputDirectory>/</outputDirectory>
-			<includes>
-				<include>**/nietzsche-chapter-1.txt</include>
+				<include>**/hashtagcount.xml</include>
 			</includes>
 		</fileSet>
 	</fileSets>
