@@ -30,9 +30,6 @@
 	</bean>
 
 	<batch:job id="job">
-<!-- 		<batch:step id="import" next="wordcount">
-			<batch:tasklet ref="scriptTasklet"/>
-		</batch:step> -->
 		<batch:step id="wordcount">
 			<batch:tasklet ref="wordcount-tasklet" />
 		</batch:step>
@@ -43,26 +40,10 @@
 	<hadoop:job id="wordcountJob"
 		input-path="${wordcount.input.path}"
 		output-path="${wordcount.output.path}"
-		mapper="org.apache.hadoop.examples.WordCount.TokenizerMapper"
-		reducer="org.apache.hadoop.examples.WordCount.IntSumReducer"
+		mapper="org.springframework.xd.examples.hadoop.HashtagCount$TokenizerMapper"
+		reducer="org.springframework.xd.examples.hadoop.HashtagCount$LongSumReducer"
 		scope="step" />
 	<hadoop:script-tasklet id="scriptTasklet" script-ref="hdfsScript" scope="step"/>
-
-<!-- 	<hadoop:script id="hdfsScript" language="groovy">
-		<hadoop:property name="localSourceFile" value="${local.data.file}"/>
-		<hadoop:property name="hdfsInputDir" value="${wordcount.input.path}"/>
-		<hadoop:property name="hdfsOutputDir" value="${wordcount.output.path}"/>
-			//requires three variables, localSourceFile and hdfsInputDir, hdfsOutputDir
-			// use the shell (made available under variable fsh)
-			if (!fsh.test(hdfsInputDir)) {
-				fsh.mkdir(hdfsInputDir);
-				fsh.copyFromLocal(localSourceFile, hdfsInputDir);
-				fsh.chmod(700, hdfsInputDir)
-			}
-			if (fsh.test(hdfsOutputDir)) {
-				fsh.rmr(hdfsOutputDir)
-			}
-	</hadoop:script> -->
 
 </beans>
 
