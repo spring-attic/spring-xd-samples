@@ -14,9 +14,8 @@
 	<context:property-placeholder properties-ref="myProperties" />
 
 	<util:properties id="myProperties" >
-		<prop key="wordcount.input.path">/hashtagcount/in/</prop>
-		<prop key="wordcount.output.path">/hashtagcount/out/</prop>
-<!-- 		<prop key="local.data.file">/tmp/nietzsche-chapter-1.txt</prop> -->
+		<prop key="tweets.input.path">/xd/tweets/</prop>
+		<prop key="tweets.output.path">/xd/output/</prop>
 		<prop key="hd.fs">hdfs://localhost:8020</prop>
 	</util:properties>
 
@@ -30,20 +29,32 @@
 	</bean>
 
 	<batch:job id="job">
-		<batch:step id="wordcount">
-			<batch:tasklet ref="wordcount-tasklet" />
+		<batch:step id="setup" next="hashtagcount">
+			<batch:tasklet ref="scriptTasklet"/>
+		</batch:step>
+		<batch:step id="hashtagcount">
+			<batch:tasklet ref="hashtagcount-tasklet" />
 		</batch:step>
 	</batch:job>
 
-	<hadoop:job-tasklet id="wordcount-tasklet" job-ref="wordcountJob"/>
+	<hadoop:job-tasklet id="hashtagcount-tasklet" job-ref="hashtagcountJob"/>
 
-	<hadoop:job id="wordcountJob"
-		input-path="${wordcount.input.path}"
-		output-path="${wordcount.output.path}"
+	<hadoop:job id="hashtagcountJob"
+		input-path="${tweets.input.path}"
+		output-path="${tweets.output.path}"
+		libs="file:${XD_HOME}/lib/batch-hashtag-count-1.0.0.BUILD-SNAPSHOT.jar"
 		mapper="org.springframework.xd.examples.hadoop.HashtagCount$TokenizerMapper"
 		reducer="org.springframework.xd.examples.hadoop.HashtagCount$LongSumReducer"
 		scope="step" />
+
 	<hadoop:script-tasklet id="scriptTasklet" script-ref="hdfsScript" scope="step"/>
 
+	<hadoop:script id="hdfsScript" language="groovy">
+		<hadoop:property name="hdfsOutputDir" value="${tweets.output.path}"/>
+			// use the shell (made available under variable fsh)
+			if (fsh.test(hdfsOutputDir)) {
+				fsh.rmr(hdfsOutputDir)
+			}
+	</hadoop:script>
 </beans>
 
