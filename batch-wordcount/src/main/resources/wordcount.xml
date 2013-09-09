@@ -29,7 +29,7 @@
 		<property name="proxyTargetClass" value="true"/>
 	</bean>
 
-	<batch:job id="wordcountBatchJob">
+	<batch:job id="job">
 		<batch:step id="import" next="wordcount">
 			<batch:tasklet ref="scriptTasklet"/>
 		</batch:step>
