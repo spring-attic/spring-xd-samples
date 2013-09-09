@@ -36,7 +36,7 @@
 		<property name="resource" value="file:/tmp/sample1out.txt" />
 		<property name="lineAggregator" ref="lineAggregator" />
 	</bean>
-	<batch:job id="test">
+	<batch:job id="job">
 		<batch:step id="step1">
 			<batch:tasklet>
 				<batch:chunk reader="itemReader" writer="itemWriter"
