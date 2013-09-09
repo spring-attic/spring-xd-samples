@@ -40,7 +40,7 @@ Now execute the batch job by creating a stream that will trigger the job.
 
 You should see a message:
 
-Created new stream 'myBatchJobStream'
+	Created new stream 'myBatchJobStream'
 
 ## Verify the result
 The simple_example batch job reads the contents /tmp/sample.txt and outputs its result to /tmp/sample1out.txt.
