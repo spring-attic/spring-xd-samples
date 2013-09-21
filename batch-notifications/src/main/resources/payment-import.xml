@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config/>
+
+	<bean class="org.springframework.batch.integration.samples.payments.config.CommonConfig"/>
+
+	<batch:job id="job">
+		<batch:step id="loadPayments">
+			<batch:tasklet>
+				<batch:chunk reader="itemReader" writer="itemWriter" commit-interval="8" retry-limit="1">
+					<batch:retryable-exception-classes>
+						<batch:include class="org.springframework.batch.item.file.FlatFileParseException"/>
+					</batch:retryable-exception-classes>
+					<batch:listeners>
+						<batch:listener ref="xdItemListener"/>
+						<batch:listener ref="xdChunkListener"/>
+						<batch:listener ref="xdSkipListener"/>
+					</batch:listeners>
+				</batch:chunk>
+			</batch:tasklet>
+			<batch:listeners>
+				<batch:listener ref="xdStepExecutionListener"/>
+			</batch:listeners>
+		</batch:step>
+		<batch:listeners>
+			<batch:listener ref="xdJobExecutionListener"/>
+		</batch:listeners>
+	</batch:job>
+
+	<bean id="itemWriter" class="org.springframework.batch.integration.samples.payments.PaymentWriter">
+		<constructor-arg name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<bean id="itemReader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+		<property name="resource" value="file:///#{jobParameters['input.file.name']}" />
+		<property name="linesToSkip" value="1"/>
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer">
+					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="names" value="source,destination,amount,date" />
+					</bean>
+				</property>
+				<property name="fieldSetMapper">
+					<bean class="org.springframework.batch.integration.samples.payments.PaymentFieldSetMapper" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+</beans>
