@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+
+body {
+  font: 12px sans-serif;
+  text-rendering: optimizelegibility;
+}
+
+.arc path {
+    stroke: #fff;
+}
+
+.aggbar {
+  margin-left: 10px;
+  font: 10px sans-serif;
+  shape-rendering: crispEdges;
+}
+
+.aggbar rect {
+  stroke: white;
+  fill: steelblue;
+}
+
+.aggbar text.bar {
+  fill: white;
+}
+
+</style>
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span5">
+      <div class="row-fluid">
+        <div class="span12">
+          <p id="piemenu"><b>Field Value Counter (Pie): </b><br><select></select></p>
+          <p id="pie"></p>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span12">
+          <div id="barmenu"><b>Aggregate Counter: </b><br><select></select> </div>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span12">
+          <p id="bar"></p>
+        </div>
+      </div>
+    </div>
+    <div class="span7">
+      <p id="bubblemenu"><b>Field Value Counter (Bubble): </b><br><select></select></p>
+      <p id="bubbles"></p>
+    </div>
+</div>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/d3.v3.min.js"></script>
+<script src="js/fvc.js"></script>
+<script src="js/aggcount.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+  var baseUrl = "http://localhost:8080/metrics";
+
+  var barchart = aggregateCountBarChart()
+        .width(450)
+        .height(500);
+
+  var piechart = fvcPieChart()
+         .width(350)
+         .height(350)
+         .r(150);
+
+  var bubblechart = fvcBubbleChart()
+         .diameter(700);
+
+  var piemenu = d3.select("#piemenu select");
+
+  var barmenu = d3.select("#barmenu select")
+      .on("change", function() {
+        d3.select("#bar").select("svg").remove();
+        redraw();
+      });
+
+  var bubblemenu = d3.select("#bubblemenu select");
+
+  function redraw() {
+    var fvc = piemenu.property("value");
+    if (fvc) {
+      d3.json(baseUrl + "/field-value-counters/" + fvc)
+      .get(function(error, json) {
+        if (error) return console.warn(error);
+        var data = d3.entries(json.counts);
+        data.sort(function(a,b) { return b.value - a.value; });
+        d3.select("#pie")
+            .datum(data)
+            .call(piechart);
+      });
+    }
+    fvc = bubblemenu.property("value");
+    if (fvc) {
+      d3.json(baseUrl + "/field-value-counters/" + fvc)
+      .get(function(error, json) {
+        if (error) return console.warn(error);
+        var data = d3.entries(json.counts);
+        data.sort(function(a,b) { return b.value - a.value; });
+        data.splice(500);
+        d3.select("#bubbles")
+            .datum(data)
+            .call(bubblechart);
+      });
+    }
+    var bar = barmenu.property("value");
+    if (bar) {
+      d3.json(baseUrl + "/aggregate-counters/" + bar + "?resolution=minute")
+      .get(function(error, json) {
+        if (error) return console.warn(error);
+        var data = d3.entries(json.counts);
+        while (data.length > 0 && data[0].value == 0) {
+          data.shift();
+        }
+
+        d3.select("#bar")
+            .datum(data)
+            .call(barchart);
+      });
+    }
+  }
+
+  function setMenuOptions(menu, metricType) {
+    d3.json(baseUrl + "/" + metricType)
+        .get(function(error, json) {
+            if (error) return console.warn(error);
+            var metrics = json.content.map(function(d) {
+              return d.name;
+            });
+            menu.selectAll("option")
+                .data(metrics.sort().reverse())
+                .enter().append("option")
+                .text(function(d) { return d; });
+    });
+  }
+
+  setMenuOptions(piemenu, "field-value-counters");
+  setMenuOptions(bubblemenu, "field-value-counters");
+  setMenuOptions(barmenu, "aggregate-counters");
+
+  redraw.call();
+  setInterval(redraw, 2000);
+</script>
+</body>
+</html>
+
