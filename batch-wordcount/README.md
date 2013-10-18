@@ -62,6 +62,10 @@ You will now create a new Batch Job Stream using the *Spring XD Shell*:
 
 	xd:>job create --name wordCountJob --definition "wordcount"
 
+and launch it using
+
+  xd:>job launch wordCountJob
+
 You should see a message:
 
 	Successfully created and deployed job 'wordCountJob'

@@ -11,7 +11,7 @@ In order for the sample to run you will need to have installed:
 
 ## Building
 
-Build the sample simply by executing:
+
 
 	$ mvn clean assembly:assembly
 
@@ -44,6 +44,10 @@ Now start the *Spring XD Shell* in a separate window:
 You will now create a new Batch Job Stream using the *Spring XD Shell*:
 
 	xd:>job create --name helloSpringXD --definition "myjob"
+
+and launch it using the command:
+
+	xd:>job launch helloSpringXD 
 
 You should see a message:
 
