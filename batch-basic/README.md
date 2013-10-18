@@ -10,7 +10,7 @@ This example batch job will read a csv file, replace the commas with spaces and 
 In order for the sample to run you will need to have installed:
 
 * Spring XD ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Getting-Started))
-   
+
 ## Running the Sample
 
 In the batch-simple directory
@@ -29,6 +29,10 @@ Now start the *Spring XD Shell* in a separate window:
 You will now create a new Batch Job Stream using the *Spring XD Shell*:
 
         xd:>job create --name myBatchJob --definition "simple_example"
+
+and launch it using the command:
+
+        xd:>job launch myBatchJob
 
 You should see a message:
 
