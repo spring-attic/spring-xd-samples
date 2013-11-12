@@ -46,11 +46,19 @@ Now start the *Spring XD Shell* in a separate window:
 
 You will now create a new Batch Job Stream using the *Spring XD Shell*:
 
-	xd:>job create --name helloSpringXD --definition "myjob"
+	xd:>job create --name helloSpringXD --definition "myjob" --deploy false
 
-and launch it using the command:
+The UI located on the machine where xd-singlenode is running, will show you the jobs that can be deployed.  The UI is located at http://localhost:9393/admin-ui
+
+Alternatively, you can deploy it using the command line
+
+	xd:>job deploy helloSpringXD
+
+And then launch the job
 
 	xd:>job launch helloSpringXD
+
+
 
 You should see a message:
 
