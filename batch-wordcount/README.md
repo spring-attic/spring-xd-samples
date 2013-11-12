@@ -14,7 +14,9 @@ In order for the sample to run you will need to have installed:
 
 Build the sample simply by executing:
 
-	$ mvn clean assembly:assembly
+	$ mvn clean assembly:assembly -P hadoop20
+
+The profile is set to compile against Apache 2.0.6-alpha.
 
 As a result, you will see the following files and directories created under `target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/`:
 
@@ -60,9 +62,15 @@ Now start the *Spring XD Shell* in a separate window:
 
 You will now create a new Batch Job Stream using the *Spring XD Shell*:
 
-	xd:>job create --name wordCountJob --definition "wordcount"
+	xd:>job create --name wordCountJob --definition "wordcount" --deploy false
 
-and launch it using
+The UI located on the machine where xd-singlenode is running, will show you the jobs that can be deployed.  The UI is located at http://localhost:9393/admin-ui
+
+Alternatively, you can deploy it using the command line
+
+  xd:>job deploy wordCountJob
+
+And then launch the job
 
   xd:>job launch wordCountJob
 
