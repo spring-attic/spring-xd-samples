@@ -28,10 +28,13 @@ As a result, you will see the following files and directories created under `tar
 
 ## Running the Sample
 
-In the `batch-simple` directory
+In the `batch-simple` directory run the shell script copy-files.sh.  
 
-	$ cp target/springxd-batch-simple-1.0.0.BUILD-SNAPSHOT-bin/modules/job/* $XD_HOME/modules/job
-	$ cp target/springxd-batch-simple-1.0.0.BUILD-SNAPSHOT-bin/lib/* $XD_HOME/lib
+  
+	$ ./copy-files.sh
+
+
+This will move the build artifacts into the modules/job and lib directories to the right locations under $XD_HOME
 
 Now your Sample is ready to be executed. Start your *Spring XD* admin server (If it was already running, you must restart it):
 
