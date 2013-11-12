@@ -14,16 +14,21 @@ In order for the sample to run you will need to have installed:
 
 Build the sample simply by executing:
 
-	$ mvn clean assembly:assembly -P hadoop20
+	$ mvn clean assembly:assembly
 
-The profile is set to compile against Apache 2.0.6-alpha.
+This builds against the default Hadoop version wich is Apache Hadoop 1.2.1. 
+
+> If you would like to build against Apache Hadoop 2.0.6-alpha you can use the provided profile "hadoop20":
+>````
+>	$ mvn clean assembly:assembly -P hadoop20
+>````
 
 As a result, you will see the following files and directories created under `target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/`:
 
 ```
 |-- batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin
 |   |-- lib
-|   |   `-- hadoop-examples-1.1.2.jar
+|   |   `-- hadoop-examples-1.2.1.jar
 |   |-- modules
 |   |   `-- job
 |   |       `-- wordcount-context.xml
