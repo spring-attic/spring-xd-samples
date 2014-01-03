@@ -40,7 +40,6 @@ the modules/job directory defines the location of the file to import, HDFS direc
 	<util:properties id="myProperties" >
 		<prop key="wordcount.input.path">/count/in/</prop>
 		<prop key="wordcount.output.path">/count/out/</prop>
-		<prop key="local.data.file">/tmp/nietzsche-chapter-1.txt</prop>
 		<prop key="hd.fs">hdfs://localhost:8020</prop>
 	</util:properties>
 
@@ -82,6 +81,12 @@ And then launch the job
 You should see a message:
 
 	Successfully created and deployed job 'wordCountJob'
+
+Now we create a stream that polls a local directory and forwards it to the created job:
+
+	stream create --name wordCountFiles --definition "file --ref=true > :job:wordCountJob"
+
+This will create a directory in your system's temp directory, e.g. `/tmp/xd/input/wordCountFiles/`. If you now drop text files into the *wordCountFiles* directory, the file will be picked up, copied to HDFS and its words counted.
 
 ## Verify the result
 

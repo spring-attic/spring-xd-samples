@@ -16,7 +16,6 @@
 	<util:properties id="myProperties" >
 		<prop key="wordcount.input.path">/count/in/</prop>
 		<prop key="wordcount.output.path">/count/out/</prop>
-		<prop key="local.data.file">/tmp/nietzsche-chapter-1.txt</prop>
 		<prop key="hd.fs">hdfs://localhost:8020</prop>
 	</util:properties>
 
@@ -48,8 +47,8 @@
 		scope="step" />
 	<hadoop:script-tasklet id="scriptTasklet" script-ref="hdfsScript" scope="step"/>
 
-	<hadoop:script id="hdfsScript" language="groovy">
-		<hadoop:property name="localSourceFile" value="${local.data.file}"/>
+	<hadoop:script id="hdfsScript" language="groovy" scope="step"><!-- file:///#{jobParameters['input.file.name']} -->
+		<hadoop:property name="localSourceFile" value="${resources:file:///#{jobParameters['absoluteFilePath']}}"/>
 		<hadoop:property name="hdfsInputDir" value="${wordcount.input.path}"/>
 		<hadoop:property name="hdfsOutputDir" value="${wordcount.output.path}"/>
 			//requires three variables, localSourceFile and hdfsInputDir, hdfsOutputDir
