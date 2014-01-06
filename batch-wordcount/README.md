@@ -16,11 +16,12 @@ Build the sample simply by executing:
 
 	$ mvn clean assembly:assembly
 
-This builds against the default Hadoop version wich is Apache Hadoop 1.2.1. 
+By default this builds against Apache Hadoop 1.2.1. 
 
-> If you would like to build against Apache Hadoop 2.0.6-alpha you can use the provided profile "hadoop20":
 >````
->	$ mvn clean assembly:assembly -P hadoop20
+> If you would like to build against Apache Hadoop 2.2 you can use the provided profile "hadoop22":
+>````
+>	$ mvn clean assembly:assembly -P hadoop22
 >````
 
 As a result, you will see the following files and directories created under `target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/`:
@@ -35,7 +36,9 @@ As a result, you will see the following files and directories created under `tar
 |   `-- nietzsche-chapter-1.txt
 ```
 
-the modules/job directory defines the location of the file to import, HDFS directories to use as well as the name node location.  You can verify the settings inside wordcount-context.xml.  All relevant properties are defined in the util:property element:
+In the case of hadoop 2.2, the `hadoop-examples-2.2.0.jar` will be under the lib directory.
+
+the wordcount-context.xml defines the location of the file to import, HDFS directories to use as well as the name node location.  You can verify the settings under in util:property element:
 
 	<util:properties id="myProperties" >
 		<prop key="wordcount.input.path">/count/in/</prop>
@@ -49,14 +52,13 @@ Please verify particularly the following property:
 
 ## Running the Sample
 
-In the batch-wordcount directory
+In the batch-wordcount directory copy the result of the build to the XD installation using the script.  Your XD_HOME environment variable needs to be set to the install directory of XD
 
-	$ cp target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/modules/job/* $XD_HOME/modules/job
-	$ cp target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/lib/* $XD_HOME/lib
+	$ ./copy-files.sh
 
-	$ cp target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/nietzsche-chapter-1.txt /tmp
+Note that the `nietzsche-chatper-1.txt` file is copied to the /tmp directory.
 
-Now your Sample is ready to be executed. Start your *Spring XD* admin server (If it was already running, you must restart it):
+The wordcount sample is ready to be executed. For ease of use, start up the single node version of Spring XD that combines the admin and container nodes into one process.  If it was already running, you must restart it.  
 
 	xd/bin>$ ./xd-singlenode
 
@@ -64,7 +66,15 @@ Now start the *Spring XD Shell* in a separate window:
 
 	shell/bin>$ ./xd-shell
 
-You will now create a new Batch Job Stream using the *Spring XD Shell*:
+
+>````
+> If you would like to run against Apache Hadoop 2.2 pass in the command line option `--hadoopDistro hadoop22`
+>````
+>	xd/bin>$ ./xd-singlenode --hadoopDistro hadoop22
+>	xd/bin>$ ./xd-shell --hadoopDistro hadoop22
+>````
+
+You will now create, but not deploy, a new Batch Job Stream using the *Spring XD Shell*:
 
 	xd:>job create --name wordCountJob --definition "wordcount" --deploy false
 
@@ -72,21 +82,15 @@ The UI located on the machine where xd-singlenode is running, will show you the 
 
 Alternatively, you can deploy it using the command line
 
-  xd:>job deploy wordCountJob
+  xd:>job deploy --name wordCountJob
 
-And then launch the job
+We will now create a stream that polls a local directory for files.  By default the name of the directory is named after the name of the stream, so in this case the directory will be `/tmp/xd/input/wordCountFiles`.  If the directory does not exist, it will be created.  You can override the default directory using the `--dir` option.  
 
-  xd:>job launch wordCountJob
+	stream create --name wordCountFiles --definition "file --ref=true > queue:job:wordCountJob"
 
-You should see a message:
+If you now drop text files into the  `/tmp/xd/input/wordCountFiles/` directory, the file will be picked up, copied to HDFS and its words counted. You can move the supplied .txt file there via
 
-	Successfully created and deployed job 'wordCountJob'
-
-Now we create a stream that polls a local directory and forwards it to the created job:
-
-	stream create --name wordCountFiles --definition "file --ref=true > :job:wordCountJob"
-
-This will create a directory in your system's temp directory, e.g. `/tmp/xd/input/wordCountFiles/`. If you now drop text files into the *wordCountFiles* directory, the file will be picked up, copied to HDFS and its words counted.
+  	$ cp /tmp/nietzsche-chatper-1.txt /tmp/xd/input/wordCountFiles
 
 ## Verify the result
 

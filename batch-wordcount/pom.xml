@@ -21,9 +21,9 @@
 
 	<profiles>
 			<profile>
-					<id>hadoop20</id>
+					<id>hadoop22</id>
 					<properties>
-							<hadoop.version>2.0.6-alpha</hadoop.version>
+							<hadoop.version>2.2.0</hadoop.version>
 							<hadoop.examples>hadoop-mapreduce-examples</hadoop.examples>
 							<hadoop.exclude>hadoop-hdfs</hadoop.exclude>
 							<mapreduce.framework>yarn</mapreduce.framework>
