@@ -7,9 +7,6 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<util:list id="accepted-content-types">
-		<value>application/x-java-object;type=org.springframework.xd.tuple.DefaultTuple</value>
-	</util:list>
 	<int:channel id="input"/>
 	<int:channel id="output"/>
 	<int:transformer input-channel="input" output-channel="output">
