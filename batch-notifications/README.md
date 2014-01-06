@@ -46,8 +46,8 @@ Now start the *Spring XD Shell* in a separate window:
 In this example, the job is driven by a stream rather than being launched using a separate command. A job instance is launched by posting http data to it.
 
 	xd:> job create --name payment --definition "payment-import" --makeUnique false 
-	xd:> stream create --name paymenthttp --definition "http > job:payment"
-	xd:> stream create --name paymenttap --definition ":payment-notifications > log"
+	xd:> stream create --name paymenthttp --definition "http > queue:job:payment"
+	xd:> stream create --name paymenttap --definition "queue:payment-notifications > log"
 	
 We also create a separate stream sends notifications from the job to the log. This lets us know when the job completes, along with status information.
 
