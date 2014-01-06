@@ -18,11 +18,11 @@ The page is a simple dashboard divided in half. The right hand side will show a 
 
 To provide some data for the output, start the XD server and then execute the following commands in the XD shell. Note that we're using `twitterstream` as a source which assumes the XD server `twitter.properties` config file is correctly populated with valid keys.
 
-    xd:> stream create tweets --definition "twitterstream | log" --deploy=false
+    xd:> stream create tweets --definition "twitterstream | log" --deploy false
 
-    xd:> stream create tweetlang  --definition "tap:tweets | field-value-counter --fieldName=lang"
+    xd:> stream create tweetlang  --definition "tap:stream:tweets | field-value-counter --fieldName=lang"
 
-    xd:> stream create tweetcount --definition "tap:tweets > aggregatecounter"
+    xd:> stream create tweetcount --definition "tap:stream:tweets > aggregatecounter"
 
     xd:> stream deploy tweets
 
@@ -30,6 +30,6 @@ Reloading the dashboard page should then show the populated menus.
 
 You can also add another field value counter, to record twitter hashtags in the stream
 
-   xd:> stream create tagcount --definition "tap:tweets > field-value-counter --fieldName=entities.hashtags.text --counterName=hashtags"
+   xd:> stream create tagcount --definition "tap:stream:tweets > field-value-counter --fieldName=entities.hashtags.text --counterName=hashtags"
 
 Reload the page again and this should also appear in the field value counter menus. It's best displayed as a bubble chart.
