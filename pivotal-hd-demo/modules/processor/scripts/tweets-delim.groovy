@@ -5,7 +5,7 @@ def jsonPayload = slurper.parseText(payload)
 def fromUser = jsonPayload?.fromUser
 def hashTags = jsonPayload?.entities?.hashTags
 def followers = jsonPayload?.user?.followersCount
-def createdAt = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ssZZ").format(jsonPayload?.createdAt)
+def createdAt = jsonPayload?.createdAt
 def languageCode = jsonPayload?.languageCode
 def retweetCount = jsonPayload?.retweetCount
 def retweet = jsonPayload?.retweet
@@ -23,4 +23,3 @@ if (hashTags == null || hashTags.size() == 0) {
 }
 
 return result
-
