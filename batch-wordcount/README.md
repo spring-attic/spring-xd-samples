@@ -16,7 +16,7 @@ Build the sample simply by executing:
 
 	$ mvn clean assembly:assembly
 
-By default this builds against Apache Hadoop 1.2.1. 
+By default this builds against Apache Hadoop 1.2.1.
 
 >````
 > If you would like to build against Apache Hadoop 2.2 you can use the provided profile "hadoop22":
@@ -58,7 +58,7 @@ In the batch-wordcount directory copy the result of the build to the XD installa
 
 Note that the `nietzsche-chapter-1.txt` file is copied to the /tmp directory.
 
-The wordcount sample is ready to be executed. For ease of use, start up the single node version of Spring XD that combines the admin and container nodes into one process.  If it was already running, you must restart it.  
+The wordcount sample is ready to be executed. For ease of use, start up the single node version of Spring XD that combines the admin and container nodes into one process.  If it was already running, you must restart it.
 
 	xd/bin>$ ./xd-singlenode
 
@@ -80,27 +80,27 @@ You will now create, but not deploy, a new Batch Job Stream using the *Spring XD
 
 The UI located on the machine where xd-singlenode is running, will show you the jobs that can be deployed.  The UI is located at http://localhost:9393/admin-ui
 
-Alternatively, you can deploy it using the command line
+Alternatively, you can deploy it using the shell command:
 
-  xd:>job deploy --name wordCountJob
+	xd:>job deploy --name wordCountJob
 
-We will now create a stream that polls a local directory for files.  By default the name of the directory is named after the name of the stream, so in this case the directory will be `/tmp/xd/input/wordCountFiles`.  If the directory does not exist, it will be created.  You can override the default directory using the `--dir` option.  
+We will now create a stream that polls a local directory for files.  By default the name of the directory is named after the name of the stream, so in this case the directory will be `/tmp/xd/input/wordCountFiles`.  If the directory does not exist, it will be created.  You can override the default directory using the `--dir` option.
 
 	stream create --name wordCountFiles --definition "file --ref=true > queue:job:wordCountJob"
 
 If you now drop text files into the  `/tmp/xd/input/wordCountFiles/` directory, the file will be picked up, copied to HDFS and its words counted. You can move the supplied .txt file there via
 
-  	$ cp /tmp/nietzsche-chapter-1.txt /tmp/xd/input/wordCountFiles
+	$ cp /tmp/nietzsche-chapter-1.txt /tmp/xd/input/wordCountFiles
 
 ## Verify the result
 
 First specify the Hadoop NameNode for the Spring XD Shell:
 
 	xd:>hadoop config fs --namenode hdfs://localhost:8020
-	
+
 We will now take a look at the root of the *HDFS* filesystem:
-	
-	xd:>hadoop fs ls /
+
+	xd:>hadoop fs -ls /
 
 You should see output like the following:
 
