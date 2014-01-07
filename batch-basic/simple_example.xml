@@ -15,21 +15,20 @@
 		<property name="lineMapper" ref="lineMapper" />
 	</bean>
 
-    <bean id="lineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
-        <property name="lineTokenizer" ref="lineTokenizer" />
-        <property name="fieldSetMapper" ref="fieldSetMapper" />
-    </bean>
+	<bean id="lineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+			<property name="lineTokenizer" ref="lineTokenizer" />
+			<property name="fieldSetMapper" ref="fieldSetMapper" />
+	</bean>
 
-    <bean id="lineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
-        <constructor-arg value="," />
-    </bean>
+	<bean id="lineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+			<constructor-arg value="," />
+	</bean>
 
-    <bean id="fieldSetMapper" class="org.springframework.batch.item.file.mapping.PassThroughFieldSetMapper" />
+	<bean id="fieldSetMapper" class="org.springframework.batch.item.file.mapping.PassThroughFieldSetMapper" />
 
-    <bean id="lineAggregator" class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
-        <property name="delimiter" value=" "/>
-    </bean>
-
+	<bean id="lineAggregator" class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
+			<property name="delimiter" value=" "/>
+	</bean>
 
 	<!-- Set up our writer, and it's properties -->
 	<bean id="itemWriter" class="org.springframework.batch.item.file.FlatFileItemWriter">
