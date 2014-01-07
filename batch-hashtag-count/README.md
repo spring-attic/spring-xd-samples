@@ -24,14 +24,14 @@ As a result, you will see the following files and directories created under `tar
 |   |   `-- hadoop-examples-1.1.2.jar
 |   |-- modules
 |   |   `-- job
-|   |       `-- hashtagcount.xml.xml
+|   |       `-- hashtagcount.xml
 ```
 
 the modules/job directory defines the location of the file to import, HDFS directories to use as well as the name node location.  You can verify the settings inside hashtagcount.xml.  All relevant properties are defined in the util:property element:
 
 	<util:properties id="myProperties" >
-		<prop key="wordcount.input.path">/xd/tweets/</prop>
-		<prop key="wordcount.output.path">/hashtagcount/out/</prop>
+		<prop key="tweets.input.path">/xd/tweets/</prop>
+		<prop key="tweets.output.path">/hashtagcount/out/</prop>
 		<prop key="hd.fs">hdfs://localhost:8020</prop>
 	</util:properties>
 
@@ -41,7 +41,7 @@ Please verify particularly the following property:
 
 ## Running the Sample
 
-In the batch-wordcount directory
+In the batch-directory
 
 	$ cp target/batch-hashtag-count-1.0.0.BUILD-SNAPSHOT-bin/modules/job/* $XD_HOME/modules/job
 	$ cp target/batch-hashtag-count-1.0.0.BUILD-SNAPSHOT-bin/lib/* $XD_HOME/lib
@@ -89,7 +89,7 @@ You should see output like the following:
 	drwxr-xr-x   - hillert supergroup          0 2013-08-09 11:31 /user
 	drwxr-xr-x   - hillert supergroup          0 2013-08-08 10:53 /xd
 
-As we declared the property `wordcount.output.path` in **hashtagcount.xml** to be `/hashtagcount/out/`, let's have a look at the respective directory:
+As we declared the property `tweets.output.path` in **hashtagcount.xml** to be `/hashtagcount/out/`, let's have a look at the respective directory:
 
 	xd:>hadoop fs ls /hashtagcount/out
 	Found 2 items
