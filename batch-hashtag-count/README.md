@@ -27,10 +27,10 @@ As a result, you will see the following files and directories created under `tar
 |   |       `-- hashtagcount.xml.xml
 ```
 
-the modules/job directory defines the location of the file to import, HDFS directories to use as well as the name node location.  You can verify the settings inside wordcount-context.xml.  All relevant properties are defined in the util:property element:
+the modules/job directory defines the location of the file to import, HDFS directories to use as well as the name node location.  You can verify the settings inside hashtagcount.xml.  All relevant properties are defined in the util:property element:
 
 	<util:properties id="myProperties" >
-		<prop key="wordcount.input.path">/hashtagcount/in/</prop>
+		<prop key="wordcount.input.path">/xd/tweets/</prop>
 		<prop key="wordcount.output.path">/hashtagcount/out/</prop>
 		<prop key="hd.fs">hdfs://localhost:8020</prop>
 	</util:properties>
@@ -76,17 +76,16 @@ You should see a message:
 
 First specify the Hadoop NameNode for the Spring XD Shell:
 
-	xd:>hadoop config fs --namenode hdfs://localhost:8020
+	xd:>hadoop config -fs --namenode hdfs://localhost:8020
 	
 We will now take a look at the root of the *HDFS* filesystem:
 	
-	xd:>hadoop fs ls /
+	xd:>hadoop fs -ls /
 
 You should see output like the following:
 
 	Found 4 items
-	drwxr-xr-x   - hillert supergroup          0 2013-08-06 22:35 /Users
-	drwxr-xr-x   - hillert supergroup          0 2013-08-12 11:01 /count
+	drwxr-xr-x   - hillert supergroup          0 2013-08-12 11:01 /hashtagcount
 	drwxr-xr-x   - hillert supergroup          0 2013-08-09 11:31 /user
 	drwxr-xr-x   - hillert supergroup          0 2013-08-08 10:53 /xd
 
@@ -99,7 +98,7 @@ As we declared the property `wordcount.output.path` in **hashtagcount.xml** to b
 
 Finally, executing:
 
-	xd:>hadoop fs cat /hashtagcount/out/part-r-00000
+	xd:>hadoop fs -cat /hashtagcount/out/part-r-00000
 
 should yield a long list of hashtags, indicating the number of occurrences within the provided input snapshot of Twitter data.
 
