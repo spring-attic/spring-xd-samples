@@ -32,13 +32,13 @@ As a result, you will see the following files and directories created under `tar
 |   |   `-- hadoop-examples-1.2.1.jar
 |   |-- modules
 |   |   `-- job
-|   |       `-- wordcount-context.xml
+|   |       `-- wordcount.xml
 |   `-- nietzsche-chapter-1.txt
 ```
 
 In the case of hadoop 2.2, the `hadoop-examples-2.2.0.jar` will be under the lib directory.
 
-the wordcount-context.xml defines the location of the file to import, HDFS directories to use as well as the name node location.  You can verify the settings under in util:property element:
+the wordcount.xml defines the location of the file to import, HDFS directories to use as well as the name node location.  You can verify the settings under in util:property element:
 
 	<util:properties id="myProperties" >
 		<prop key="wordcount.input.path">/count/in/</prop>
@@ -110,7 +110,7 @@ You should see output like the following:
 	drwxr-xr-x   - hillert supergroup          0 2013-08-09 11:31 /user
 	drwxr-xr-x   - hillert supergroup          0 2013-08-08 10:53 /xd
 
-As we declared the property `wordcount.output.path` in **wordcount-context.xml** to be `/count/out/`, let's have a look at the respective directory:
+As we declared the property `wordcount.output.path` in **wordcount.xml** to be `/count/out/`, let's have a look at the respective directory:
 
 	xd:>hadoop fs ls /count/out
 	Found 2 items
