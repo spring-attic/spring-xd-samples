@@ -56,7 +56,7 @@ In the batch-wordcount directory copy the result of the build to the XD installa
 
 	$ ./copy-files.sh
 
-Note that the `nietzsche-chatper-1.txt` file is copied to the /tmp directory.
+Note that the `nietzsche-chapter-1.txt` file is copied to the /tmp directory.
 
 The wordcount sample is ready to be executed. For ease of use, start up the single node version of Spring XD that combines the admin and container nodes into one process.  If it was already running, you must restart it.  
 
@@ -90,7 +90,7 @@ We will now create a stream that polls a local directory for files.  By default 
 
 If you now drop text files into the  `/tmp/xd/input/wordCountFiles/` directory, the file will be picked up, copied to HDFS and its words counted. You can move the supplied .txt file there via
 
-  	$ cp /tmp/nietzsche-chatper-1.txt /tmp/xd/input/wordCountFiles
+  	$ cp /tmp/nietzsche-chapter-1.txt /tmp/xd/input/wordCountFiles
 
 ## Verify the result
 
