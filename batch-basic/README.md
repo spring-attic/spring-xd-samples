@@ -42,10 +42,10 @@ You should see a message:
 ## Verify the result
 The simple_example batch job reads the contents /tmp/sample.txt and outputs its result to /tmp/sample1out.txt.
 
-So lets look at the contents sample.txt (input) file:
+So lets look at the contents /tmp/sample.txt (input) file:
 
          h,e,l,l,o, ,w,o,r,l,d
 
-The sample1out.txt (output) file will look like:
+The /tmp/sample1out.txt (output) file will look like:
 
          h e l l o   w o r l d
