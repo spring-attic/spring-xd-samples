@@ -1,7 +1,7 @@
 Spring XD Simple Batch Sample
 =============================
 
-This is the quintessential *Hello World* example for *Spring XD*. It consists of only one [Tasklet](http://static.springsource.org/spring-batch/apidocs/org/springframework/batch/core/step/tasklet/Tasklet.html) which prints out `Hello Spring XD!`.
+In this *Hello World* example for *Spring XD* you will create a minimal code-based Job.  This Job does no processing, only printing out `Hello Spring XD!` as well as any Job parameters that were passed into the Job so as to focus only on the mechanics of the compiliation and copying of artifacts into the Spring XD installation directory.
 
 ## Requirements
 
@@ -9,9 +9,11 @@ In order for the sample to run you will need to have installed:
 
 * Spring XD ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Getting-Started))
 
+## Code Tour
+
+The processing actions that are part of a Step in a batch Job are pluggable.  The plug-in point for a Step is known as a [Tasklet](http://static.springsource.org/spring-batch/apidocs/org/springframework/batch/core/step/tasklet/Tasklet.html).  In this example we create a tasklet by implementing the Tasklet interface.  Take a look at the [source code](https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/java/org/springframework/springxd/samples/batch/HelloSpringXDTasklet.java) as well as its incorporation into a (Job definition)[https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/resources/myjob.xml) inside an XML file.  Note that the XML file must contain a single Job whole id is `job`.
+
 ## Building
-
-
 
 	$ mvn clean assembly:assembly
 
@@ -107,4 +109,6 @@ You can also experiment with Job parameters:
 	Parameter name: random; isIdentifying: true; type: STRING; value: 0.06893349621991496
 	12:04:18,384  INFO http-nio-9393-exec-5 support.SimpleJobLauncher:135 - Job: [FlowJob: [name=helloSpringXD.job]] completed with the following parameters: [{secondParam=123456, myStringParameter=foobar, random=0.06893349621991496}] and the following status: [COMPLETED]
 
+## Job Repository
+In this example the state of the Job execution is stored in an HSQLDB database embedded inside the single node server.  Please refer to the Spring XD documentation if you would like to store this data in another database.
 
