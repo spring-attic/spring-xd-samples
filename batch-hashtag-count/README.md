@@ -80,7 +80,7 @@ First specify the Hadoop NameNode for the Spring XD Shell:
 	
 We will now take a look at the root of the *HDFS* filesystem:
 	
-	xd:>hadoop fs -ls /
+	xd:>hadoop fs ls /
 
 You should see output like the following:
 
