@@ -3,6 +3,8 @@ analytics-dashboard
 
 Standalone project which shows how you can use the D3 Javascript library to create visualizations for Spring XD counters.
 
+<img src="dashboard.png" style="width:400px;"/>
+
 Running the App
 ===============
 
