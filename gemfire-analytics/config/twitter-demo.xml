@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:gfe="http://www.springframework.org/schema/gemfire"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/gemfire http://www.springframework.org/schema/gemfire/spring-gemfire.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="org.springframework.xd.demo.gemfire.function"/>	
+	<gfe:annotation-driven />
+	<gfe:cache/>
+	<gfe:partitioned-region id="hashtags">
+		<gfe:cache-listener>
+			<bean class="org.springframework.xd.gemfire.LoggingCacheListener">
+				<constructor-arg name="level" value="INFO" />
+			</bean>
+		</gfe:cache-listener>
+		<gfe:entry-ttl timeout="900"/>
+	</gfe:partitioned-region>
+
+	<gfe:cache-server port="40404" />
+</beans>
