@@ -28,7 +28,9 @@ As a result, you will see the following files and directories created under `tar
 
 ## Running the Sample
 
-In the batch-wordcount directory
+**IMPORTANT**: Please ensure that you have defined the `$XD_HOME` environment variable, pointing to the correct *Spring XD* home directory.
+
+In the `batch-notifications` directory
 
 	$ cp target/batch-notifications-1.0.0.BUILD-SNAPSHOT-bin/modules/job/* $XD_HOME/modules/job
 	$ cp target/batch-notifications-1.0.0.BUILD-SNAPSHOT-bin/lib/* $XD_HOME/lib
@@ -47,13 +49,13 @@ In this example, the job is driven by a stream rather than being launched using 
 
 	xd:> job create --name payment --definition "payment-import" --makeUnique false 
 	xd:> stream create --name paymenthttp --definition "http > queue:job:payment"
-	xd:> stream create --name paymenttap --definition "queue:payment-notifications > log"
+	xd:> stream create --name paymenttap --definition "queue:job:payment-notifications > log"
 	
 We also create a separate stream sends notifications from the job to the log. This lets us know when the job completes, along with status information.
 
 ## Execute the process
 
-	xd:> http post --data "{"input.file.name":"/path/to/payment.txt"}"
+	xd:> http post --data "{"input.file.name":"/path/to/payment.input"}"
 
 The payment file is located under `/src/main/resources/data/paymentImport/payment.input`
 	
@@ -64,7 +66,7 @@ You will see 27 payments being imported. The notifications are printed to the co
 	JobInstanceAlreadyCompleteException:
 	A job instance already exists and is complete for parameters={input.file.name=/path/to/payment.txt}.  If you want to run this job again, change the parameters.
 
-If you would leave off the parameter `--makeUnique=false` you could run the job over and over again.
+If you would leave off the parameter `--makeUnique=false` when creating a job, you could run the job over and over again. Alternatively, could also just change the name of the input file, which constitutes a change in the submitted parameters.
 
 ## Trigger error behavior and retry
 
