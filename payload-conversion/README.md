@@ -15,7 +15,7 @@ To run this sample, deploy the module to an XD installation:
   
 Next, start the XD container and the XD admin process, either single-node, or distributed. And start the XD shell. Create a stream
 
-     xd>create stream test "http | myTupleProcessor --inputType=application/x-xd-tuple | file"
+     xd>stream create test "http | myTupleProcessor --inputType=application/x-xd-tuple | file"
      
 Post some JSON content to the stream's http source
      
