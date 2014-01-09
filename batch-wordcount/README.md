@@ -36,7 +36,7 @@ As a result, you will see the following files and directories created under `tar
 |   `-- nietzsche-chapter-1.txt
 ```
 
-In the case of hadoop 2.2, the `hadoop-examples-2.2.0.jar` will be under the lib directory.
+In the case of hadoop 2.2, the `hadoop-mapreduce-examples-2.2.0.jar` will be under the lib directory.
 
 the wordcount.xml defines the location of the file to import, HDFS directories to use as well as the name node location.  You can verify the settings under in util:property element:
 
