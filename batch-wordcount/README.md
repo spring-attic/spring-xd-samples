@@ -90,7 +90,7 @@ We will now create a stream that polls a local directory for files.  By default 
 
 If you now drop text files into the  `/tmp/xd/input/wordCountFiles/` directory, the file will be picked up, copied to HDFS and its words counted. You can move the supplied .txt file there via
 
-	$ cp /tmp/nietzsche-chapter-1.txt /tmp/xd/input/wordCountFiles
+	xd:>! cp /tmp/nietzsche-chapter-1.txt /tmp/xd/input/wordCountFiles
 
 ## Verify the result
 
