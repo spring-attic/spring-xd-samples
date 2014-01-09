@@ -15,17 +15,17 @@ To run this sample, deploy the module to an XD installation:
   
 Next, start the XD container and the XD admin process, either single-node, or distributed. And start the XD shell. Create a stream
 
-     xd>stream create test --definition "http | myTupleProcessor --inputType=application/x-xd-tuple | file"
+     xd:>stream create test --definition "http | myTupleProcessor --inputType=application/x-xd-tuple | file"
      
 Post some JSON content to the stream's http source
      
-     xd>http post --target http://localhost:9000 --data "{"symbol":"VMW","price":75}"     
+     xd:>http post --target http://localhost:9000 --data "{"symbol":"VMW","price":75}"     
      
 You should see the Tuple rendered as JSON:
 	
-	 >cat /tmp/xd/output/test.out
+     xd:>! cat /tmp/xd/output/test.out
      
-    {"id":"719f5276-22d2-434d-87dc-39a23a978077","timestamp":1376387174881,"symbol":"VMW","price":"75"}
+     {"id":"719f5276-22d2-434d-87dc-39a23a978077","timestamp":1376387174881,"symbol":"VMW","price":"75"}
     
 What's Happening Under Hood
 ----
