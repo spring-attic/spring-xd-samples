@@ -11,7 +11,7 @@ To run this sample, deploy the module to an XD installation:
 
      $cp modules/processor/myTupleProcessor.xml $XD_HOME/modules/processor
      $./gradlew jar
-     $cp build/libs/payload-conversion.jar $XD_HOME/xd/lib
+     $cp build/libs/payload-conversion.jar $XD_HOME/lib
   
 Next, start the XD container and the XD admin process, either single-node, or distributed. And start the XD shell. Create a stream
 
