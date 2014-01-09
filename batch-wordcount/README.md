@@ -68,12 +68,13 @@ Now start the *Spring XD Shell* in a separate window:
 
 
 >````
-> If you would like to run against Apache Hadoop 2.2 pass in the command line option '--hadoopDistro hadoop22'
+> If you would like to run against Apache Hadoop 2.2 pass in the command line option "--hadoopDistro hadoop22"
 >
+>````
 >    xd/bin>$ ./xd-singlenode --hadoopDistro hadoop22
 >
 >    xd/bin>$ ./xd-shell --hadoopDistro hadoop22
->
+>````
 
 You will now create, but not deploy, a new Batch Job Stream using the *Spring XD Shell*:
 
