@@ -24,7 +24,7 @@ ext {
 	junitVersion = '4.11'
 	springVersion = '3.2.2.RELEASE'
 	springIntegrationVersion = '3.0.0.M2'
-	springXdVersion ='1.0.0.BUILD-SNAPSHOT'
+	springXdVersion ='1.0.0.M5'
 	slf4jVersion = '1.7.5'
 	log4jVersion = '1.2.17'
 }
