@@ -85,7 +85,7 @@ in hdfs by entering the following command in the Spring XDshell:
 
     xd:> hadoop fs ls /xd/tweets
 
-if the `tweets-0.txt` file has 0 size it just means that our rollover limit has not been reached yet.
+if the `tweets-0.txt.tmp` file has 0 size it just means that our rollover limit has not been reached yet.
 
 We can stop the stream to flush all the data using:
 
