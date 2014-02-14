@@ -109,6 +109,10 @@ You can also experiment with Job parameters:
 	Parameter name: random; isIdentifying: true; type: STRING; value: 0.06893349621991496
 	12:04:18,384  INFO http-nio-9393-exec-5 support.SimpleJobLauncher:135 - Job: [FlowJob: [name=helloSpringXD.job]] completed with the following parameters: [{secondParam=123456, myStringParameter=foobar, random=0.06893349621991496}] and the following status: [COMPLETED]
 
+## Throwing Exceptions
+
+You can trigger an exception by providing a parameter named `throwError` with a String value of `true`.
+
 ## Job Repository
 In this example the state of the Job execution is stored in an HSQLDB database embedded inside the single node server.  Please refer to the Spring XD documentation if you would like to store this data in another database.
 

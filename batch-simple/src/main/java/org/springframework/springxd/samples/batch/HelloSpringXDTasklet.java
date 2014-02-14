@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 the original author or authors.
+ * Copyright 2013-2014 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package org.springframework.springxd.samples.batch;
 
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.batch.core.JobParameter;
 import org.springframework.batch.core.JobParameters;
@@ -26,8 +27,6 @@ import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 
-
-
 /**
  *
  * @author Gunnar Hillert
@@ -35,12 +34,13 @@ import org.springframework.batch.repeat.RepeatStatus;
  */
 public class HelloSpringXDTasklet implements Tasklet {
 
+	private volatile AtomicInteger counter = new AtomicInteger(0);
+
 	/**
 	 *
 	 */
 	public HelloSpringXDTasklet() {
 		super();
-
 	}
 
 	public RepeatStatus execute(StepContribution contribution,
@@ -65,6 +65,18 @@ public class HelloSpringXDTasklet implements Tasklet {
 						jobParameterEntry.getValue().getValue()));
 			}
 
+			if (jobParameters.getString("throwError") != null
+					&& Boolean.TRUE.toString().equalsIgnoreCase(jobParameters.getString("throwError"))) {
+
+				if (this.counter.compareAndSet(3, 0)) {
+					System.out.println("Counter reset to 0. Execution will succeed.");
+				}
+				else {
+					this.counter.incrementAndGet();
+					throw new IllegalStateException("Exception triggered by user.");
+				}
+
+			}
 		}
 		return RepeatStatus.FINISHED;
 	}
