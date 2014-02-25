@@ -22,7 +22,7 @@ To provide some data for the output, start the XD server and then execute the fo
 
     xd:> stream create tweets --definition "twitterstream | log" --deploy false
 
-    xd:> stream create tweetlang  --definition "tap:stream:tweets | field-value-counter --fieldName=lang"
+    xd:> stream create tweetlang  --definition "tap:stream:tweets > field-value-counter --fieldName=lang"
 
     xd:> stream create tweetcount --definition "tap:stream:tweets > aggregatecounter"
 
