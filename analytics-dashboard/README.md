@@ -32,6 +32,6 @@ Reloading the dashboard page should then show the populated menus.
 
 You can also add another field value counter, to record twitter hashtags in the stream
 
-    xd:> stream create tagcount --definition "tap:stream:tweets > field-value-counter --fieldName=entities.hashtags.text --counterName=hashtags"
+    xd:> stream create tagcount --definition "tap:stream:tweets > field-value-counter --fieldName=entities.hashtags.text --name=hashtags"
 
 Reload the page again and this should also appear in the field value counter menus. It's best displayed as a bubble chart.
