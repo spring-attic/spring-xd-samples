@@ -1,0 +1,161 @@
+PMML Analytic
+==
+
+This sample project demonstrates the use of the analytic-pmml module named *pmml1*. When deployed to an XD container, it implements and evaluates a PMML model by applying a classification algorithm to an input of the Tuple data type. This code may be customized to do more interesting things as long as it returns a Tuple as a result. 
+
+This sample also illustrates XD's built in PMML support. This module may be linked to a source that produces any JSON string.
+
+Prerequisites
+* Build the project https://github.com/spring-projects/spring-xd-modules/tree/master/analytics-ml-pmml
+* Copy that projects artifact `spring-xd-analytics-ml-pmml.jar` file to folder `${XD_HOME}/modules/processors/analytic-pmml/lib`
+
+Running the example
+---
+Save the following PMML code as a file with the name iris-flower-classification-naive-bayes-1.pmml.xml to the XD_HOME/modules/processors/analytic-pmml/ folder.
+```xml
+<PMML version="4.1" xmlns="http://www.dmg.org/PMML-4_1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_1 http://www.dmg.org/v4-1/pmml-4-1.xsd">
+<Header copyright="Copyright (c) 2014 tom" description="NaiveBayes Model">
+ <Extension name="user" value="tom" extender="Rattle/PMML"/>
+ <Application name="Rattle/PMML" version="1.4"/>
+ <Timestamp>2014-04-02 13:22:15</Timestamp>
+</Header>
+<DataDictionary numberOfFields="6">
+ <DataField name="Species" optype="categorical" dataType="string">
+  <Value value="setosa"/>
+  <Value value="versicolor"/>
+  <Value value="virginica"/>
+ </DataField>
+ <DataField name="Sepal.Length" optype="continuous" dataType="double"/>
+ <DataField name="Sepal.Width" optype="continuous" dataType="double"/>
+ <DataField name="Petal.Length" optype="continuous" dataType="double"/>
+ <DataField name="Petal.Width" optype="continuous" dataType="double"/>
+ <DataField name="DiscretePlaceHolder" optype="categorical" dataType="string">
+  <Value value="pseudoValue"/>
+ </DataField>
+</DataDictionary>
+<NaiveBayesModel modelName="iris-flower-classifier;42" functionName="classification" threshold="0.001">
+ <MiningSchema>
+  <MiningField name="Species" usageType="predicted"/>
+  <MiningField name="Sepal.Length" usageType="active"/>
+  <MiningField name="Sepal.Width" usageType="active"/>
+  <MiningField name="Petal.Length" usageType="active"/>
+  <MiningField name="Petal.Width" usageType="active"/>
+  <MiningField name="DiscretePlaceHolder" usageType="active" missingValueReplacement="pseudoValue"/>
+ </MiningSchema>
+ <Output>
+  <OutputField name="Predicted_Species" feature="predictedValue"/>
+  <OutputField name="Probability_setosa" optype="continuous" dataType="double" feature="probability" value="setosa"/>
+  <OutputField name="Probability_versicolor" optype="continuous" dataType="double" feature="probability" value="versicolor"/>
+  <OutputField name="Probability_virginica" optype="continuous" dataType="double" feature="probability" value="virginica"/>
+ </Output>
+ <BayesInputs>
+  <Extension>
+   <BayesInput fieldName="Sepal.Length">
+    <TargetValueStats>
+     <TargetValueStat value="setosa">
+      <GaussianDistribution mean="5.006" variance="0.124248979591837"/>
+     </TargetValueStat>
+     <TargetValueStat value="versicolor">
+      <GaussianDistribution mean="5.8953488372093" variance="0.283311184939092"/>
+     </TargetValueStat>
+     <TargetValueStat value="virginica">
+      <GaussianDistribution mean="6.58163265306122" variance="0.410697278911565"/>
+     </TargetValueStat>
+    </TargetValueStats>
+   </BayesInput>
+  </Extension>
+  <Extension>
+   <BayesInput fieldName="Sepal.Width">
+    <TargetValueStats>
+     <TargetValueStat value="setosa">
+      <GaussianDistribution mean="3.428" variance="0.143689795918367"/>
+     </TargetValueStat>
+     <TargetValueStat value="versicolor">
+      <GaussianDistribution mean="2.76279069767442" variance="0.0966777408637874"/>
+     </TargetValueStat>
+     <TargetValueStat value="virginica">
+      <GaussianDistribution mean="2.97142857142857" variance="0.105833333333333"/>
+     </TargetValueStat>
+    </TargetValueStats>
+   </BayesInput>
+  </Extension>
+  <Extension>
+   <BayesInput fieldName="Petal.Length">
+    <TargetValueStats>
+     <TargetValueStat value="setosa">
+      <GaussianDistribution mean="1.462" variance="0.0301591836734694"/>
+     </TargetValueStat>
+     <TargetValueStat value="versicolor">
+      <GaussianDistribution mean="4.21627906976744" variance="0.236633444075305"/>
+     </TargetValueStat>
+     <TargetValueStat value="virginica">
+      <GaussianDistribution mean="5.55510204081633" variance="0.310442176870748"/>
+     </TargetValueStat>
+    </TargetValueStats>
+   </BayesInput>
+  </Extension>
+  <Extension>
+   <BayesInput fieldName="Petal.Width">
+    <TargetValueStats>
+     <TargetValueStat value="setosa">
+      <GaussianDistribution mean="0.246" variance="0.0111061224489796"/>
+     </TargetValueStat>
+     <TargetValueStat value="versicolor">
+      <GaussianDistribution mean="1.30697674418605" variance="0.042093023255814"/>
+     </TargetValueStat>
+     <TargetValueStat value="virginica">
+      <GaussianDistribution mean="2.02448979591837" variance="0.0768877551020408"/>
+     </TargetValueStat>
+    </TargetValueStats>
+   </BayesInput>
+  </Extension>
+  <BayesInput fieldName="DiscretePlaceHolder">
+   <PairCounts value="pseudoValue">
+    <TargetValueCounts>
+     <TargetValueCount value="setosa" count="50"/>
+     <TargetValueCount value="versicolor" count="43"/>
+     <TargetValueCount value="virginica" count="49"/>
+    </TargetValueCounts>
+   </PairCounts>
+  </BayesInput>
+ </BayesInputs>
+ <BayesOutput fieldName="Species">
+  <TargetValueCounts>
+   <TargetValueCount value="setosa" count="50"/>
+   <TargetValueCount value="versicolor" count="43"/>
+   <TargetValueCount value="virginica" count="49"/>
+  </TargetValueCounts>
+ </BayesOutput>
+</NaiveBayesModel>
+</PMML>
+```
+
+Next, start the XD container and the XD admin process, either single-node, or distributed. And start the XD shell. Create a stream
+```
+     xd:>stream create --name pmml1 --definition "http --outputType=application/x-xd-tuple | analytic-pmml --modelName=iris-flower-classification-naive-bayes-1 --location=/Users/tom/Documents/dev/repos/thomasdarimont/tmp/iris-flower-classification-naive-bayes-1.pmml.xml --inputFieldMapping='sepalLength:Sepal.Length,sepalWidth:Sepal.Width,petalLength:Petal.Length,petalWidth:Petal.Width' --outputFieldMapping='Predicted_Species:predictedSpecies' | log"
+```
+Post some JSON content to the stream's http source
+``` 
+     xd:>http post --target http://localhost:9000 --contentType application/json --data "{ \"sepalLength\": 6.4, \"sepalWidth\": 3.2, \"petalLength\":4.5, \"petalWidth\":1.5 }"
+```  
+You should see the Tuple rendered as JSON in the XD Server console log:
+```
+23:23:53,153  WARN pool-9-thread-4 logger.pmml1:150 -
+   {
+     "id":"1722ec00-baad-11e3-b988-005056c00008"
+   , "timestamp":1396473833152
+   , "sepalLength":"6.4"
+   , "sepalWidth":"3.2"
+   , "petalLength":"4.5"
+   , "petalWidth":"1.5"
+   , "predictedSpecies":"versicolor"
+   }
+``` 
+What's Happening Under Hood
+----
+
+The built in analytic-pmml processor will load the given PMML model definition. When an tuple is posted to the stream source it will be used as the input for the
+evaluation of the analytical model *iris-flower-classification-naive-bayes-1* contained in the configured PMML document. The result of this evaluation is a new
+tuple with a new field *predictedSpecies* that was created from the *analytic-pmml* processor by applying a classifier that uses the naiveBayes algorithm.
+
+More information about analytical model evaluation can be found here: MODEL URL
