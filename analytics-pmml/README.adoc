@@ -1,17 +1,18 @@
 = PMML Analytic
 
 
-This sample project demonstrates the use of the analytic-pmml module named *pmml1*. When deployed to an XD container, it implements and evaluates a PMML model by applying a classification algorithm to an input of the Tuple data type. This code may be customized to do more interesting things as long as it returns a Tuple as a result. 
+This sample project demonstrates the use of the analytic-pmml module that can be found https://github.com/spring-projects/spring-xd-modules/tree/master/analytics-ml-pmml[here]. When deployed to an XD container, it implements and evaluates a PMML model by applying a classification algorithm to an input of the Tuple data type. This code may be customized to do more interesting things as long as it returns a Tuple as a result. 
 
 This sample also illustrates XD's built in PMML support. This module may be linked to a source that produces any JSON string.
 
 Prerequisites
 
-* Build the project https://github.com/spring-projects/spring-xd-modules/tree/master/analytics-ml-pmml
-* Copy that projects artifact `spring-xd-analytics-ml-pmml.jar` file to folder `${XD_HOME}/modules/processors/analytic-pmml/lib`
+* Build the https://github.com/spring-projects/spring-xd-modules/tree/master/analytics-ml-pmml[analytic-pmml project] as explained in its README
+* Make sure to install the module, again as explained in the aforementioned README
 
 == Running the example
-Save the following PMML code as a file with the name iris-flower-classification-naive-bayes-1.pmml.xml to the XD_HOME/modules/processors/analytic-pmml/ folder.
+Save the following PMML code as a file with the name link::iris-flower-classification-naive-bayes-1.pmml.xml[] as a file somewhere on your hard drive (we'll assume `/data/iris-flower-classification-naive-bayes-1.pmml.xml`).
+
 ```xml
 <PMML version="4.1" xmlns="http://www.dmg.org/PMML-4_1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_1 http://www.dmg.org/v4-1/pmml-4-1.xsd">
 <Header copyright="Copyright (c) 2014 tom" description="NaiveBayes Model">
@@ -132,13 +133,13 @@ Save the following PMML code as a file with the name iris-flower-classification-
 
 Next, start the XD container and the XD admin process, either single-node, or distributed. And start the XD shell. Create a stream
 ```
-     xd:>stream create --name pmml1 --definition "http --outputType=application/x-xd-tuple | analytic-pmml --modelName=iris-flower-classification-naive-bayes-1 --location=/Users/tom/Documents/dev/repos/thomasdarimont/tmp/iris-flower-classification-naive-bayes-1.pmml.xml --inputFieldMapping='sepalLength:Sepal.Length,sepalWidth:Sepal.Width,petalLength:Petal.Length,petalWidth:Petal.Width' --outputFieldMapping='Predicted_Species:predictedSpecies' | log"
+     xd:>stream create --name pmml1 --definition "http --outputType=application/x-xd-tuple | analytic-pmml --modelName=iris-flower-classification-naive-bayes-1 --location=/data/iris-flower-classification-naive-bayes-1.pmml.xml --inputFieldMapping='sepalLength:Sepal.Length,sepalWidth:Sepal.Width,petalLength:Petal.Length,petalWidth:Petal.Width' --outputFieldMapping='Predicted_Species:predictedSpecies' | log"
 ```
 Post some JSON content to the stream's http source
 ``` 
      xd:>http post --target http://localhost:9000 --contentType application/json --data "{ \"sepalLength\": 6.4, \"sepalWidth\": 3.2, \"petalLength\":4.5, \"petalWidth\":1.5 }"
 ```  
-You should see the Tuple rendered as JSON in the XD Server console log:
+You should see the Tuple rendered as JSON in the XD Server console log. Notice the `predictedSpecies` that was not present in what you submitted:
 ```
 23:23:53,153  WARN pool-9-thread-4 logger.pmml1:150 -
    {
