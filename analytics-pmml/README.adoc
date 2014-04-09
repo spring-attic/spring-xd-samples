@@ -159,4 +159,4 @@ The built in analytic-pmml processor will load the given PMML model definition a
 evaluation of the analytical model *iris-flower-classifier-1* contained in the configured PMML document. The result of this evaluation is a new
 tuple with a new field *predictedSpecies* that was created from the *analytic-pmml* processor by applying a classifier that uses the naiveBayes algorithm.
 
-More information about analytical model evaluation can be found here: MODEL URL
+More information about analytical model evaluation can be found in the https://github.com/spring-projects/spring-xd/wiki/Analytics#introduction[Analytics] section of the technical documentation of Spring XD.
