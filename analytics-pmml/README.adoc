@@ -34,7 +34,7 @@ Save the following PMML code as a file with the name link:iris-flower-classifica
   <Value value="pseudoValue"/>
  </DataField>
 </DataDictionary>
-<NaiveBayesModel modelName="iris-flower-classifier;42" functionName="classification" threshold="0.001">
+<NaiveBayesModel modelName="iris-flower-classifier-1" functionName="classification" threshold="0.001">
  <MiningSchema>
   <MiningField name="Species" usageType="predicted"/>
   <MiningField name="Sepal.Length" usageType="active"/>
@@ -133,7 +133,7 @@ Save the following PMML code as a file with the name link:iris-flower-classifica
 
 Next, start the XD container and the XD admin process, either single-node, or distributed. And start the XD shell. Create a stream
 ```
-     xd:>stream create --name pmml1 --definition "http --outputType=application/x-xd-tuple | analytic-pmml --modelName=iris-flower-classification-naive-bayes-1 --location=/data/iris-flower-classification-naive-bayes-1.pmml.xml --inputFieldMapping='sepalLength:Sepal.Length,sepalWidth:Sepal.Width,petalLength:Petal.Length,petalWidth:Petal.Width' --outputFieldMapping='Predicted_Species:predictedSpecies' | log"
+     xd:>stream create --name pmml1 --definition "http --outputType=application/x-xd-tuple | analytic-pmml --modelName=iris-flower-classifier-1 --location=/data/iris-flower-classification-naive-bayes-1.pmml.xml --inputFieldMapping='sepalLength:Sepal.Length,sepalWidth:Sepal.Width,petalLength:Petal.Length,petalWidth:Petal.Width' --outputFieldMapping='Predicted_Species:predictedSpecies' | log"
 ```
 Post some JSON content to the stream's http source
 ``` 
@@ -155,8 +155,8 @@ You should see the Tuple rendered as JSON in the XD Server console log. Notice t
 == What's Happening Under Hood
 
 
-The built in analytic-pmml processor will load the given PMML model definition. When an tuple is posted to the stream source it will be used as the input for the
-evaluation of the analytical model *iris-flower-classification-naive-bayes-1* contained in the configured PMML document. The result of this evaluation is a new
+The built in analytic-pmml processor will load the given PMML model definition and create an internal object represenration that can be evaluated quickly. When an tuple is posted to the stream source it will be used as the input for the
+evaluation of the analytical model *iris-flower-classifier-1* contained in the configured PMML document. The result of this evaluation is a new
 tuple with a new field *predictedSpecies* that was created from the *analytic-pmml* processor by applying a classifier that uses the naiveBayes algorithm.
 
 More information about analytical model evaluation can be found here: MODEL URL
