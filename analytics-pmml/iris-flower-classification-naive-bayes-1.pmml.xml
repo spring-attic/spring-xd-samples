@@ -18,7 +18,7 @@
   <Value value="pseudoValue"/>
  </DataField>
 </DataDictionary>
-<NaiveBayesModel modelName="iris-flower-classifier;42" functionName="classification" threshold="0.001">
+<NaiveBayesModel modelName="iris-flower-classifier-1" functionName="classification" threshold="0.001">
  <MiningSchema>
   <MiningField name="Species" usageType="predicted"/>
   <MiningField name="Sepal.Length" usageType="active"/>
