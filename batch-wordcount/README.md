@@ -60,11 +60,11 @@ Note that the `nietzsche-chapter-1.txt` file is copied to the /tmp directory.
 
 The wordcount sample is ready to be executed. For ease of use, start up the single node version of Spring XD that combines the admin and container nodes into one process.  If it was already running, you must restart it.
 
-	xd/bin>$ ./xd-singlenode
+	xd/bin>$ ./xd-singlenode --hadoopDistro hadoop12
 
 Now start the *Spring XD Shell* in a separate window:
 
-	shell/bin>$ ./xd-shell
+	shell/bin>$ ./xd-shell --hadoopDistro hadoop12
 
 
 >````
@@ -88,11 +88,16 @@ Alternatively, you can deploy it using the shell command:
 
 We will now create a stream that polls a local directory for files.  By default the name of the directory is named after the name of the stream, so in this case the directory will be `/tmp/xd/input/wordCountFiles`.  If the directory does not exist, it will be created.  You can override the default directory using the `--dir` option.
 
-	stream create --name wordCountFiles --definition "file --ref=true > queue:job:wordCountJob"
+	stream create --name wordCountFiles --definition "file --ref=true > queue:job:wordCountJob"  --deploy 
 
 If you now drop text files into the  `/tmp/xd/input/wordCountFiles/` directory, the file will be picked up, copied to HDFS and its words counted. You can move the supplied .txt file there via
 
 	xd:>! cp /tmp/nietzsche-chapter-1.txt /tmp/xd/input/wordCountFiles
+
+>````
+> If you have an empty /count/in directory on the hdfs, remove it before copying files to /tmp/xd/input/wordCountFiles
+>
+>````
 
 ## Verify the result
 
