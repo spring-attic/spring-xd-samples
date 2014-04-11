@@ -96,7 +96,6 @@ If you now drop text files into the  `/tmp/xd/input/wordCountFiles/` directory, 
 
 >````
 > If you have an empty /count/in directory on the hdfs, remove it before copying files to /tmp/xd/input/wordCountFiles
->
 >````
 
 ## Verify the result
