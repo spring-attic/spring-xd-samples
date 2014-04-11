@@ -26,9 +26,9 @@ Now start the *Spring XD Shell* in a separate window:
 
         shell/bin>$ ./xd-shell
 
-You will now create a new Batch Job Stream using the *Spring XD Shell*:
+You will now create a new Batch Job Stream using the *Spring XD Shell* (and deploy it immediately):
 
-        xd:>job create --name myBatchJob --definition "simple_example"
+        xd:>job create --name myBatchJob --definition "simple_example" --deploy
 
 and launch it using the command:
 
