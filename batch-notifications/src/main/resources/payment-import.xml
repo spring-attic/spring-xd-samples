@@ -20,20 +20,9 @@
 					<batch:retryable-exception-classes>
 						<batch:include class="org.springframework.batch.item.file.FlatFileParseException"/>
 					</batch:retryable-exception-classes>
-					<batch:listeners>
-						<batch:listener ref="xdItemListener"/>
-						<batch:listener ref="xdChunkListener"/>
-						<batch:listener ref="xdSkipListener"/>
-					</batch:listeners>
 				</batch:chunk>
 			</batch:tasklet>
-			<batch:listeners>
-				<batch:listener ref="xdStepExecutionListener"/>
-			</batch:listeners>
 		</batch:step>
-		<batch:listeners>
-			<batch:listener ref="xdJobExecutionListener"/>
-		</batch:listeners>
 	</batch:job>
 
 	<bean id="itemWriter" class="org.springframework.batch.integration.samples.payments.PaymentWriter">
