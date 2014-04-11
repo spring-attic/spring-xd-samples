@@ -47,7 +47,7 @@ Now start the *Spring XD Shell* in a separate window:
 
 In this example, the job is driven by a stream rather than being launched using a separate command. A job instance is launched by posting http data to it.
 
-	xd:> job create --name payment --definition "payment-import" --makeUnique false --deploy 
+	xd:> job create --name payment --definition "payment-import --makeUnique=false" --deploy 
 	xd:> stream create --name paymenthttp --definition "http > queue:job:payment" --deploy
 	xd:> stream create --name paymenttap --definition "tap:job:payment > log" --deploy
 	
@@ -55,7 +55,7 @@ We also create a separate stream sends notifications from the job to the log. Th
 
 ## Execute the process
 
-	xd:> http post --data "{"input.file.name":"/path/to/payment.input"}"
+	xd:> http post --data {"input.file.name":"/path/to/payment.input"}
 
 The payment file is located under `/src/main/resources/data/paymentImport/payment.input`
 	
@@ -82,11 +82,11 @@ Let try to import a payment file that contains an error. E.g.:
 
 Executed the process with:
 
-	xd:> http post --data "{"input.file.name":"/path/to/payment_with_error.txt"}"
+	xd:> http post --data {"input.file.name":"/path/to/payment_with_error.txt"}
 
 The import will fail but all the payment records up to erroneous row have been imported successfully. Now lets fix that row save the file and execute again:
 
-	xd:> http post --data "{"input.file.name":"/path/to/payment_with_error.txt"}"
+	xd:> http post --data {"input.file.name":"/path/to/payment_with_error.txt"}
 	
 This time the import will continue with the previously erroneous row and continues with the successful import of the rest of the file.
 
