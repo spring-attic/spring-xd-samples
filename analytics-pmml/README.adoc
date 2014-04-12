@@ -133,7 +133,7 @@ Save the following PMML code as a file with the name link:iris-flower-classifica
 
 Next, start the XD container and the XD admin process, either single-node, or distributed. And start the XD shell. Create a stream
 ```
-     xd:>stream create --name pmml1 --definition "http --outputType=application/x-xd-tuple | analytic-pmml --modelName=iris-flower-classifier-1 --location=/data/iris-flower-classification-naive-bayes-1.pmml.xml --inputFieldMapping='sepalLength:Sepal.Length,sepalWidth:Sepal.Width,petalLength:Petal.Length,petalWidth:Petal.Width' --outputFieldMapping='Predicted_Species:predictedSpecies' | log"
+     xd:>stream create --name pmml1 --definition "http --outputType=application/x-xd-tuple | analytic-pmml --modelName=iris-flower-classifier-1 --location=/data/iris-flower-classification-naive-bayes-1.pmml.xml --inputFieldMapping='sepalLength:Sepal.Length,sepalWidth:Sepal.Width,petalLength:Petal.Length,petalWidth:Petal.Width' --outputFieldMapping='Predicted_Species:predictedSpecies' | log" --deploy
 ```
 Post some JSON content to the stream's http source
 ``` 
