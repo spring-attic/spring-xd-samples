@@ -56,13 +56,13 @@ Now start the *Spring XD Shell* in a separate window:
 
 ## Collect Twitter Data
 
-	$ stream create --name tweets --definition "twitterstream | hdfs --rollover=10000000"
+	$ stream create --name tweets --definition "twitterstream | hdfs --rollover=10000000" --deploy
 
 ## Create the Batch Job
 
 You will now create a new Batch Job Stream using the *Spring XD Shell*:
 
-	xd:>job create --name hashtagCountJob --definition "hashtagcount"
+	xd:>job create --name hashtagCountJob --definition "hashtagcount" --deploy
 
 Launch the job using:
 
