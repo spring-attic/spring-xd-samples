@@ -76,9 +76,9 @@ Now start the *Spring XD Shell* in a separate window:
 >    xd/bin>$ ./xd-shell --hadoopDistro hadoop22
 >````
 
-You will now create, but not deploy, a new Batch Job Stream using the *Spring XD Shell*:
+You will now create a new Batch Job Stream using the *Spring XD Shell*:
 
-	xd:>job create --name wordCountJob --definition "wordcount" --deploy false
+	xd:>job create --name wordCountJob --definition "wordcount"
 
 The UI located on the machine where xd-singlenode is running, will show you the jobs that can be deployed.  The UI is located at http://localhost:9393/admin-ui
 
