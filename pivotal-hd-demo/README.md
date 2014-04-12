@@ -72,9 +72,9 @@ Last config task is to add your Twitter consumerKey and consumerSecret to `confi
     
 See the [Spring XD docs](https://github.com/spring-projects/spring-xd/wiki/Sources#wiki-twittersearch) for more details.
 
-We are now ready to create the stream, so we switch back to the Spring XD shell:
+We are now ready to create and deploy the stream, so we switch back to the Spring XD shell:
 
-    xd:> stream create --name tweets --definition "twittersearch --query='hadoop' --outputType=application/json | transform --script=tweets-delim.groovy | hdfs --rollover=10000"
+    xd:> stream create --name tweets --definition "twittersearch --query='hadoop' --outputType=application/json | transform --script=tweets-delim.groovy | hdfs --rollover=10000" --deploy
 
 We should see the stream get created in the Spring XD admin window. From the shell we can list the streams using:
 
@@ -159,9 +159,9 @@ Last config task is to add our Twitter consumerKey and consumerSecret to `config
     
 See the [Spring XD docs](https://github.com/spring-projects/spring-xd/wiki/Sources#wiki-twittersearch) for more details.
 
-We are now ready to create the stream, so we switch back to the Spring XD shell:
+We are now ready to create and deploy the stream, so we switch back to the Spring XD shell:
 
-    xd:> stream create --name jdbc_tweets --definition "twittersearch --query='hadoop' --outputType=application/json | jdbc --columns='id, from_user, created_at, text, language_code, retweet_count, retweet'"
+    xd:> stream create --name jdbc_tweets --definition "twittersearch --query='hadoop' --outputType=application/json | jdbc --columns='id, from_user, created_at, text, language_code, retweet_count, retweet'" --deploy
 
 We should see the stream get created in the Spring XD admin window. From the shell we can list the streams using:
 
