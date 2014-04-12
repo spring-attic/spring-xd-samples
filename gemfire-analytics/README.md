@@ -78,23 +78,24 @@ Running the example requires
 * Create a feed
 	* Create a mock twitter feed
 
-			$xd> stream create tweets --definition "tail --name=$FILE --fromEnd=false | randomDelay --max=200 | log" --deploy false 
+			$xd> stream create tweets --definition "tail --name=$FILE --fromEnd=false | randomDelay --max=200 | log"
 			
      where _$FILE_ is the absolute path of gemfire-analitics/data/javatweets.out in this case.
 
 		
     *	Create a real twitter feed. Here we are using *twittersearch* to filter for tweets containing hashtags of interest. Feel free to experiment with the search string. This ensures we will capture tweets that actually have hashtags as the full twitter stream contains many tweets with no hashtags.  Note the inputType parameter on the log sink. The *twittersearch* source emits Spring Social Tweet objects by default. This is what we want for the tap. Setting *inputType=application/json on the log renders these objects as JSON to be human-readable, but the demo will work fine without this setting.
 	
-			xd:> stream create tweets --definition "twittersearch --query='#spring+OR+#java+OR+#groovy+OR+#grails+OR+#javascipt+OR+#s12gx' | log --inputType=application/json" --deploy false
+			xd:> stream create tweets --definition "twittersearch --query='#spring+OR+#java+OR+#groovy+OR+#grails+OR+#javascipt+OR+#s12gx' | log --inputType=application/json"
 			
 	NOTE: you can also try using *twitterstream* for this example, There is no guarantee that tweets will contain any hashtags but it should work. The *twitterstream* source emits native JSON from twitter instead of Tweet objects.
 
 * Set up a gemfire tap on the tweets stream. The tap uses a a custom groovy script to transform the full Tweet object to a simple *TweetSummary* type, used to extract only the relavant information. The TweetSummary is cached using the unique twitter id as a cache key, given as a SpEL expression. 
 
-		xd:>stream create hashtags --definition "tap:stream:tweets  > transform --script=tweetSummary.groovy | gemfire-server --keyExpression=payload['id']"
+		xd:>stream create hashtags --definition "tap:stream:tweets  > transform --script=tweetSummary.groovy | gemfire-server --keyExpression=payload['id']" --deploy
 	
 * Now that the tap is ready, start the feed
-	   xd:>stream deploy tweets 
+
+		xd:>stream deploy tweets 
 
 NOTE: See the [XD Documentation](https://github.com/spring-projects/spring-xd/wiki/Sources#wiki-twittersearch) re. twitter authorization requirements
 
