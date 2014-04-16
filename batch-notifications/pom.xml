@@ -13,9 +13,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.integration.version>2.2.4.RELEASE</spring.integration.version>
-		<spring.version>3.2.4.RELEASE</spring.version>
-		<spring.batch.version>2.2.1.RELEASE</spring.batch.version>
+		<spring.integration.version>4.0.0.M4</spring.integration.version>
+		<spring.version>4.0.3.RELEASE</spring.version>
+		<spring.batch.version>3.0.0.M3</spring.batch.version>
 	</properties>
 
 	<repositories>

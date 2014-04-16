@@ -1,9 +1,7 @@
 Spring XD Batch Simple Sample
 =================================
 
-The purpose of this sample is to show how to deploy a simple batch process in Spring XD, without having to compile any code or install
-any jars.  
-This example batch job will read a csv file, replace the commas with spaces and output the result to another file.
+The purpose of this sample is to show how to deploy a simple batch process in Spring XD, without having to compile any code or install any jars. This example batch job will read a csv file, replace the commas with spaces and output the result to another file.
 
 ## Requirements
 
@@ -38,14 +36,14 @@ You should see a message:
 
         Successfully created and deployed job 'myBatchJob'
 
-
 ## Verify the result
-The simple_example batch job reads the contents /tmp/sample.txt and outputs its result to /tmp/sample1out.txt.
 
-So lets look at the contents /tmp/sample.txt (input) file:
+The simple_example batch job reads the contents `/tmp/sample.txt` and outputs its result to `/tmp/sample1out.txt`.
+
+So lets look at the contents `/tmp/sample.txt` (input) file:
 
          h,e,l,l,o, ,w,o,r,l,d
 
-The /tmp/sample1out.txt (output) file will look like:
+The `/tmp/sample1out.txt` (output) file will look like:
 
          h e l l o   w o r l d

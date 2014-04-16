@@ -52,13 +52,13 @@ Please verify particularly the following property:
 
 ## Running the Sample
 
-In the batch-wordcount directory copy the result of the build to the XD installation using the script.  Your XD_HOME environment variable needs to be set to the install directory of XD
+In the `batch-wordcount` directory copy the result of the build to the XD installation using the script. Your `XD_HOME` environment variable needs to be set to the install directory of XD
 
 	$ ./copy-files.sh
 
 Note that the `nietzsche-chapter-1.txt` file is copied to the /tmp directory.
 
-The wordcount sample is ready to be executed. For ease of use, start up the single node version of Spring XD that combines the admin and container nodes into one process.  If it was already running, you must restart it.
+The wordcount sample is ready to be executed. For ease of use, start up the single node version of Spring XD that combines the admin and container nodes into one process. If it was already running, you must restart it.
 
 	xd/bin>$ ./xd-singlenode --hadoopDistro hadoop12
 

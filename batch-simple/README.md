@@ -1,7 +1,7 @@
 Spring XD Simple Batch Sample
 =============================
 
-In this *Hello World* example for *Spring XD* you will create a minimal code-based Job.  This Job does no processing, only printing out `Hello Spring XD!` as well as any Job parameters that were passed into the Job so as to focus only on the mechanics of the compiliation and copying of artifacts into the Spring XD installation directory.
+In this *Hello World* example for *Spring XD* you will create a minimal code-based Job. This Job does no processing, only printing out `Hello Spring XD!` as well as any Job parameters that were passed into the Job so as to focus only on the mechanics of the compiliation and copying of artifacts into the Spring XD installation directory.
 
 ## Requirements
 
@@ -36,7 +36,6 @@ In the `batch-simple` directory run the shell script copy-files.sh.
 
   
 	$ ./copy-files.sh
-
 
 This will move the build artifacts into the `modules/job` and `lib` directories to the right locations under *$XD_HOME*.
 
@@ -114,5 +113,6 @@ You can also experiment with Job parameters:
 You can trigger an exception by providing a parameter named `throwError` with a String value of `true`.
 
 ## Job Repository
-In this example the state of the Job execution is stored in an HSQLDB database embedded inside the single node server.  Please refer to the Spring XD documentation if you would like to store this data in another database.
+
+In this example the state of the Job execution is stored in an HSQLDB database embedded inside the single node server. Please refer to the Spring XD documentation if you would like to store this data in another database.
 

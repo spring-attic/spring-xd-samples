@@ -27,7 +27,7 @@ As a result, you will see the following files and directories created under `tar
 |   |       `-- hashtagcount.xml
 ```
 
-the modules/job directory defines the location of the file to import, HDFS directories to use as well as the name node location.  You can verify the settings inside hashtagcount.xml.  All relevant properties are defined in the util:property element:
+the modules/job directory defines the location of the file to import, HDFS directories to use as well as the name node location.  You can verify the settings inside `hashtagcount.xml`.  All relevant properties are defined in the `util:property` element:
 
 	<util:properties id="myProperties" >
 		<prop key="tweets.input.path">/xd/tweets/</prop>
