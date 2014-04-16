@@ -26,7 +26,9 @@ Then point your browser at [http://localhost:9889/dashboard.html](http://localho
 
 The page is a simple dashboard divided in half. The right hand side will show a field value counter as a bubble chart. The left is divided into two panels, one which will show a field value counter as a pie chart, and one below it for an aggregate counter bar chart. The menus are populated by querying the Spring XD admin server, which is expected to also be running on localhost. Most likely, the menus will be empty initially, unless your admin server already contains some counters.
 
-To provide some data for the output, start the XD server and then execute the following commands in the XD shell. Note that we're using `twitterstream` as a source which assumes the twitterstream module configuration  `$XD_MODULE_CONFIG/source/twitterstream.properties` is correctly populated with valid keys.
+To provide some data for the output, start the XD server and then execute the following commands in the XD shell. 
+
+NOTE: that we're using `twitterstream` as a source which assumes the twitterstream module configuration  `$XD_MODULE_CONFIG/source/twitterstream/twitterstream.properties` is correctly populated with valid keys.
 
     xd:> stream create tweets --definition "twitterstream | log" --deploy false
 
