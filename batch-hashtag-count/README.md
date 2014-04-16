@@ -89,16 +89,16 @@ You should see output like the following:
 	drwxr-xr-x   - hillert supergroup          0 2013-08-09 11:31 /user
 	drwxr-xr-x   - hillert supergroup          0 2013-08-08 10:53 /xd
 
-As we declared the property `tweets.output.path` in **hashtagcount.xml** to be `/hashtagcount/out/`, let's have a look at the respective directory:
+As we declared the property `tweets.output.path` in **hashtagcount.xml** to be `/hashtagcount/output/`, let's have a look at the respective directory:
 
-	xd:>hadoop fs ls /hashtagcount/out
+	xd:>hadoop fs ls /hashtagcount/output
 	Found 2 items
-	-rw-r--r--   3 hillert supergroup          0 2013-08-10 00:07 /hashtagcount/out/_SUCCESS
-	-rw-r--r--   3 hillert supergroup      31752 2013-08-10 00:07 /hashtagcount/out/part-r-00000
+	-rw-r--r--   3 hillert supergroup          0 2013-08-10 00:07 /hashtagcount/output/_SUCCESS
+	-rw-r--r--   3 hillert supergroup      31752 2013-08-10 00:07 /hashtagcount/output/part-r-00000
 
 Finally, executing:
 
-	xd:>hadoop fs -cat /hashtagcount/out/part-r-00000
+	xd:>hadoop fs -cat /hashtagcount/output/part-r-00000
 
 should yield a long list of hashtags, indicating the number of occurrences within the provided input snapshot of Twitter data.
 

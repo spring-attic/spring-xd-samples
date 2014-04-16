@@ -103,29 +103,30 @@ We have started the twitter feed and should be populating the cache. Entry creat
 
 The hasshtag-ananlyzer.jar is also copied to GemFire's classpath since [HashTagAnalyzerFunction](https://github.com/dturanski/SpringOne2013/blob/master/gemfire-demo/hashtag-analyzer/src/main/java/org/springframework/xd/demo/gemfire/function/HashTagAnalyzerFunction.java) is configured as a GemFire remote function and will run in the cache server process when invoked. Additionally, the function references _TweetSummary_ so that must be on GemFire's classpath as well.
 	
-* Start the hashtag REST service by running [Application](https://github.com/dturanski/SpringOne2013/blob/master/gemfire-demo/hashtag-rest/src/main/java/org/springframework/xd/demo/gemfire/Application.java) in the _hashtag-rest_ project:
+* Start the hashtag REST service by running [Application](https://github.com/dturanski/SpringOne2013/blob/master/gemfire-demo/hashtag-rest/src/main/java/org/springframework/xd/demo/gemfire/Application.java) in the _hashtag-rest_ project
 
-	* Build an executable jar:
- 		
- 			$ ./gradlew build
- 	* Run it
- 			
- 			$ java -jar hashtag-rest/build/libs/hashtag-rest.jar 	
- 	* Alternately, you can run this application in Eclipse or Idea. (NOTE: I had to fix the classpath by setting the run configuration classpath to only include exported entries. Then select the following exported jars from hashtag-analyzer properties: spring-data-gemfire, gemfire, spring-data-commons, spring-tx )
- 
- 			$ ./gradlew eclipse
-	    
+* Build an executable jar:
 
-The REST service was built with [Spring Boot](http://projects.spring.io/spring-boot/) and runs by default on localhost:8080. 
+		$ ./gradlew build
+
+* Run it:
+
+		$ java -Dserver.port=8080 -jar hashtag-rest/build/libs/hashtag-rest.jar
+
+* Alternately, you can run this application in Eclipse or Idea. (NOTE: I had to fix the classpath by setting the run configuration classpath to only include exported entries. Then select the following exported jars from hashtag-analyzer properties: spring-data-gemfire, gemfire, spring-data-commons, spring-tx )
+
+		$ ./gradlew eclipse
+
+The REST service was built with [Spring Boot](http://projects.spring.io/spring-boot/) and runs on localhost:8080. 
 
 * Start the service and point your browser to [http://localhost:8080/hashtagcounts/java](http://localhost:8080/hashtagcounts) This will list all hashtags captured in the feed.
 
 * Invoke the associated hashtags analysis. Open the browser to 
 [http://localhost:8080/associatedhashtags/java](http://localhost:8080/associatedhashtags/java)  where _java_ is the value of a path variable containing the target hashtag. This will invoke the remote funciton and return the results as JSON (No eye candy implemented yet). You should see something like:
 
-	{"jobs":12,"appengine":12,"job":11,"php":4,"soudev":4,"sql":4,"js":4,"html5":3,"jobboard":	3,"css":3,"opdrachten":3,"ios":3,"desarrolladores":3,"braziljs":3,"javascript":3,"j2se":	2,"desktop":2,"programadores":2,"hibernate":2,"asp":2,"development":2,"computers":	2,"programming":2,"c":2,"framework":2,"developer":2,"contratando":2,"jetty":2,"nuevoleￃﾳn":	2,"vacatures":2,"xml":2,"logic":2,"cs":2,"mￃﾩxico":2,"android":2,"engineering":	2,"windowsazure":	2,"monterrey":2,"game":2,"html":2,"shell":1,"feinabarcelona":1,"caffeine":	1,"j2ee":1,"cafￃﾩ":	1,"stringstextinputoutputi":1,"lambda":1,"brew":1,"batiktulis":1,"songket":	1,"servlets":1,"bag":	1,"like":1,"like4like":1,"startup":1,"7u40":1,"karawitan":	1,"gesformexico":1,"rijobs":1,"net":	1,"spring":1,"javajob":1,"crafts":1,"vacantes":	1,"telecommunications":1,"giftfromjogja":	1,"pictofme":1,"cupofjoe":1,"java8":1,"bali":	1,"consulting":1,"morningmud":1,"littforsinket":	1,"traditional":1,"web":1,"developers":1,"istimewa":1,"testing":1,"kansas":1,"ca":1,"struts":	1,"love":1,"python":1,"automotive":1,"software":1,"sofwaredeveloper":1,"javaee":1,"processing":	1,"fields":1,"organigrama":1,"espresso":1,"coffee":1,"class":1,"likeaboss":1,"picture":	1,"empleo":1,"rest":1,"reflection":1,"sublimetext":1,"ipad":1,"rh":1,"routine":1,"bcnjobs":	1,"vmware":1,"oracle":1,"scala":1,"programador":1,"network":1,"eclipse":1,"ejb":1,"creativeblog":	1,"cappuccino":1,"sumatra":1,"latte":1,"develop":1,"anny":1,"sketch":1,"engineer":1,"instrument":	1,"iphone":1,"database":1,"employeeit":1,"estructurastablasconsusrelaciones":1,"group":	1,"engineers":1,"energy":1}
+		{"jobs":12,"appengine":12,"job":11,"php":4,"soudev":4,"sql":4,"js":4,"html5":3,"jobboard":	3,"css":3,"opdrachten":3,"ios":3,"desarrolladores":3,"braziljs":3,"javascript":3,"j2se":	2,"desktop":2,"programadores":2,"hibernate":2,"asp":2,"development":2,"computers":	2,"programming":2,"c":2,"framework":2,"developer":2,"contratando":2,"jetty":2,"nuevoleￃﾳn":	2,"vacatures":2,"xml":2,"logic":2,"cs":2,"mￃﾩxico":2,"android":2,"engineering":	2,"windowsazure":	2,"monterrey":2,"game":2,"html":2,"shell":1,"feinabarcelona":1,"caffeine":	1,"j2ee":1,"cafￃﾩ":	1,"stringstextinputoutputi":1,"lambda":1,"brew":1,"batiktulis":1,"songket":	1,"servlets":1,"bag":	1,"like":1,"like4like":1,"startup":1,"7u40":1,"karawitan":	1,"gesformexico":1,"rijobs":1,"net":	1,"spring":1,"javajob":1,"crafts":1,"vacantes":	1,"telecommunications":1,"giftfromjogja":	1,"pictofme":1,"cupofjoe":1,"java8":1,"bali":	1,"consulting":1,"morningmud":1,"littforsinket":	1,"traditional":1,"web":1,"developers":1,"istimewa":1,"testing":1,"kansas":1,"ca":1,"struts":	1,"love":1,"python":1,"automotive":1,"software":1,"sofwaredeveloper":1,"javaee":1,"processing":	1,"fields":1,"organigrama":1,"espresso":1,"coffee":1,"class":1,"likeaboss":1,"picture":	1,"empleo":1,"rest":1,"reflection":1,"sublimetext":1,"ipad":1,"rh":1,"routine":1,"bcnjobs":	1,"vmware":1,"oracle":1,"scala":1,"programador":1,"network":1,"eclipse":1,"ejb":1,"creativeblog":	1,"cappuccino":1,"sumatra":1,"latte":1,"develop":1,"anny":1,"sketch":1,"engineer":1,"instrument":	1,"iphone":1,"database":1,"employeeit":1,"estructurastablasconsusrelaciones":1,"group":	1,"engineers":1,"energy":1}
 	
-The REST API also includes 
+The REST API also includes
 
 [http://localhost:8080/watchhashtag/{target}](http://localhost:8080/watchhashtag/java) which 
 illustrates the use of GemFire's Continuous Query capability. This is implemented for long polling using Spring MVC's asynchronous support. The initial invocation for a new target hash tag will return the the current result set and create a continuous query so subsequent invocations will return any new tweets matching the target.
