@@ -1,6 +1,6 @@
 # Demo using Spring XD with Pivotal HD
 
-_(Using Pivotal HD 1.1.0 and Spring XD 1.0.0.M5)_
+_(Using Pivotal HD 1.1.0 and Spring XD 1.0.0.M6)_
 
 ## Preparing the VM
 
@@ -9,20 +9,33 @@ _(Using Pivotal HD 1.1.0 and Spring XD 1.0.0.M5)_
 Instructions for downloading and starting the VM: 
 http://pivotalhd.cfapps.io/getting-started/pivotalhd-vm.html
 
-### Step 2: Download Spring XD 1.0 M5 release
+### Step 2: Download Spring XD 1.0 M6 release
 
-From the Pivotal HD VM download Spring XD 1.0 M5 release using this link: 
-http://repo.spring.io/simple/libs-milestone-local/org/springframework/xd/spring-xd/1.0.0.M5/spring-xd-1.0.0.M5-dist.zip
+From the Pivotal HD VM download Spring XD 1.0 M6 release using this link: 
+http://repo.spring.io/simple/libs-milestone-local/org/springframework/xd/spring-xd/1.0.0.M6/spring-xd-1.0.0.M6-dist.zip
 
-### Step 3: Unzip and start Spring XD 1.0 M5 release
+### Step 3: Unzip, configure and start Spring XD 1.0 M6 release
 
-Unzip the `spring-xd-1.0.0.M5.zip` file into the home directory of the gpadmin user. This should create 
-a `/home/gpadmin/spring-xd-1.0.0.M5` directory.
+Unzip the `spring-xd-1.0.0.M6.zip` file into the home directory of the gpadmin user. This should create 
+a `/home/gpadmin/spring-xd-1.0.0.M6` directory.
+
+We need to modify the connection properties for HDFS which are specified in `config/servers.yml`. We can edit that file using this command:
+
+    gedit /home/gpadmin/spring-xd-1.0.0.M6/xd/config/servers.yml
+
+Find the Hadoop properties and uncomment that section and change the content to the following:
+
+```
+---
+# Hadoop properties
+spring:
+  hadoop:
+   fsUri: hdfs://pivhdsne:8020
+```
 
 Open a command prompt and enter the following commands:
 
-    export XD_HOME=/home/gpadmin/spring-xd-1.0.0.M5/xd
-    cd $XD_HOME
+    cd /home/gpadmin/spring-xd-1.0.0.M6/xd
     ./bin/xd-singlenode --hadoopDistro phd1
 
 We need to specify the hadoop distro as phd1 since we are running against Pivotal HD.
@@ -31,7 +44,7 @@ We need to specify the hadoop distro as phd1 since we are running against Pivota
 
 Open another command prompt and enter the following command:
 
-    /home/gpadmin/spring-xd-1.0.0.M5/shell/bin/xd-shell --hadoopDistro phd1
+    /home/gpadmin/spring-xd-1.0.0.M6/shell/bin/xd-shell --hadoopDistro phd1
     
 Once the shell starts up we need to need to set the hdfs configuration so we can run Hadoop fs commands from the shell:
 
@@ -47,30 +60,28 @@ Once the shell starts up we need to need to set the hdfs configuration so we can
 In order to query the Twitter data with an HAWQ external table we need to provide the Twitter data in a 
 tab-delimited format with one line per row. For this demo we will be querying the hash tags so we will create one 
 line per hash tag, so data will be de-normalized since tweets with multiple hash tags will have additional rows. 
-The easiest way to do this reformatting is is to provide a transformer script.We have written one in Groovy that can 
+The easiest way to do this reformatting is is to provide a transformer script. We have written one in Groovy that can 
 be viewed or downloaded here: 
 [tweets-delim.groovy](https://raw.github.com/spring-projects/spring-xd-samples/master/pivotal-hd-demo/modules/processor/scripts/tweets-delim.groovy)
 
 To use this script in our XD stream we need to copy it to the Spring XD `modules/processor/scripts` directory. We can do that 
 by opening another command prompt and entering the following commwnd:
 
-    wget -O /home/gpadmin/spring-xd-1.0.0.M5/xd/modules/processor/scripts/tweets-delim.groovy https://raw.github.com/spring-projects/spring-xd-samples/master/pivotal-hd-demo/modules/processor/scripts/tweets-delim.groovy 
+    wget -O /home/gpadmin/spring-xd-1.0.0.M6/xd/modules/processor/scripts/tweets-delim.groovy https://raw.github.com/spring-projects/spring-xd-samples/master/pivotal-hd-demo/modules/processor/scripts/tweets-delim.groovy --no-check-certificate
 
-We also need to modify the connection properties for HDFS which are specified in `config/hadoop.properties`. We can edit that file using this command:
+Last config task is to add your Twitter consumerKey and consumerSecret to `config/mdules/source/twittersearch/twittersearch.properties`. We can create that file using these command:
 
-    gedit /home/gpadmin/spring-xd-1.0.0.M5/xd/config/hadoop.properties
-
-Then change the content of the file to the following:
-
-```
-fs.defaultFS=hdfs://pivhdsne:8020
-```
-
-Last config task is to add your Twitter consumerKey and consumerSecret to `config/twitter.properties`. We can edit that file using this command:
-
-    gedit /home/gpadmin/spring-xd-1.0.0.M5/xd/config/twitter.properties
+    mkdir -p /home/gpadmin/spring-xd-1.0.0.M6/xd/config/modules/source/twittersearch
+    gedit /home/gpadmin/spring-xd-1.0.0.M6/xd/config/modules/source/twittersearch/twittersearch.properties
     
-See the [Spring XD docs](https://github.com/spring-projects/spring-xd/wiki/Sources#wiki-twittersearch) for more details.
+Add yout consumer key and secret to this file:
+
+```
+consumerKey={your-key}
+consumerSecret={your-secret}
+```
+
+See the [Spring XD docs](https://github.com/spring-projects/spring-xd/wiki/Sources#wiki-twitter-search) for more details.
 
 We are now ready to create and deploy the stream, so we switch back to the Spring XD shell:
 
@@ -87,9 +98,9 @@ in hdfs by entering the following command in the Spring XDshell:
 
 if the `tweets-0.txt.tmp` file has 0 size it just means that our rollover limit has not been reached yet.
 
-We can stop the stream to flush all the data using:
+We can stop and remove the stream to flush all the data using:
 
-    xd:> stream undeploy --name tweets
+    xd:> stream destroy --name tweets
     
 Now we can look at the content in the file in hdfs using:
 
@@ -128,19 +139,18 @@ We can also run the following query to get the hash tags that were used most oft
 For this demo we will be querying Twitter for tweets matching our query and then storing some of the fields in a table in
 HAWQ. We will insert one row per tweet using the Spring XD JDBC sink.
 
-We need to modify the connection properties for JDBC which are specified in `config/jdbc.properties`. We can edit that file 
+We need to modify the connection properties for JDBC which are specified in `config/modules/sink/jdbc/jdbc.properties`. We can edit that file 
 using this command:
 
-    gedit /home/gpadmin/spring-xd-1.0.0.M5/xd/config/jdbc.properties
+    gedit /home/gpadmin/spring-xd-1.0.0.M6/xd/config/modules/sink/jdbc/jdbc.properties
 
 Then change the content of the file to the following:
 
 ```
-driverClass=org.postgresql.Driver
+driverClassName=org.postgresql.Driver
 url=jdbc:postgresql:gpadmin
 username=gpadmin
 password=
-initializeDatabase=false
 ```
 
 Next step is to create the table in HAWQ. We open up a new command window and enter `psql` to start a PostgreSQL client 
@@ -153,9 +163,17 @@ shell. We are automatically logged in as gpadmin. Create the table using the fol
 We don't do any conversion of the incoming data so we need to limit the datatypes used to ones that don't require an explicit cast based on the data 
 available in the JSON document we get back from the Twitter search.
 
-Last config task is to add our Twitter consumerKey and consumerSecret to `config/twitter.properties`. We can edit that file using this command:
+If you didn't do this as part of Demo 1, then the last config task is to add your Twitter consumerKey and consumerSecret to `config/mdules/source/twittersearch/twittersearch.properties`. We can create that file using these command:
 
-    gedit /home/gpadmin/spring-xd-1.0.0.M5/xd/config/twitter.properties
+    mkdir -p /home/gpadmin/spring-xd-1.0.0.M6/xd/config/modules/source/twittersearch
+    gedit /home/gpadmin/spring-xd-1.0.0.M6/xd/config/modules/source/twittersearch/twittersearch.properties
+    
+Add yout consumer key and secret to this file:
+
+```
+consumerKey={your-key}
+consumerSecret={your-secret}
+```
     
 See the [Spring XD docs](https://github.com/spring-projects/spring-xd/wiki/Sources#wiki-twittersearch) for more details.
 
@@ -174,7 +192,7 @@ the table:
 
     select * from jdbc_tweets;
      
-We can stop the stream from the Spring XD Shell using:
+We can stop and remove the stream from the Spring XD Shell using:
 
-    xd:> stream undeploy --name jdbc_tweets
+    xd:> stream destroy --name jdbc_tweets
 
