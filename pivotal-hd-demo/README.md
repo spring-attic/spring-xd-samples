@@ -168,7 +168,7 @@ If you didn't do this as part of Demo 1, then the last config task is to add you
     mkdir -p /home/gpadmin/spring-xd-1.0.0.M6/xd/config/modules/source/twittersearch
     gedit /home/gpadmin/spring-xd-1.0.0.M6/xd/config/modules/source/twittersearch/twittersearch.properties
     
-Add yout consumer key and secret to this file:
+Add your consumer key and secret to this file:
 
 ```
 consumerKey={your-key}
