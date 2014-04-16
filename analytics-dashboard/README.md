@@ -28,8 +28,9 @@ The page is a simple dashboard divided in half. The right hand side will show a 
 
 To provide some data for the output, start the XD server and then execute the following commands in the XD shell. 
 
-NOTE: that we're using `twitterstream` as a source which assumes the twitterstream module configuration  `$XD_MODULE_CONFIG/source/twitterstream/twitterstream.properties` is correctly populated with valid keys.
-
+[NOTE]
+We're using `twitterstream` as a source which assumes the twitterstream module configuration  `$XD_MODULE_CONFIG/source/twitterstream/twitterstream.properties` is correctly populated with valid keys.
+[]
     xd:> stream create tweets --definition "twitterstream | log" --deploy false
 
     xd:> stream create tweetlang  --definition "tap:stream:tweets > field-value-counter --fieldName=lang"
