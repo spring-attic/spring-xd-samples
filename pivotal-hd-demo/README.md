@@ -69,7 +69,7 @@ by opening another command prompt and entering the following commwnd:
 
     wget -O /home/gpadmin/spring-xd-1.0.0.M6/xd/modules/processor/scripts/tweets-delim.groovy https://raw.github.com/spring-projects/spring-xd-samples/master/pivotal-hd-demo/modules/processor/scripts/tweets-delim.groovy --no-check-certificate
 
-Last config task is to add your Twitter consumerKey and consumerSecret to `config/mdules/source/twittersearch/twittersearch.properties`. We can create that file using these command:
+Last config task is to add your Twitter consumerKey and consumerSecret to `config/mdules/source/twittersearch/twittersearch.properties`. We can create that file using these commands:
 
     mkdir -p /home/gpadmin/spring-xd-1.0.0.M6/xd/config/modules/source/twittersearch
     gedit /home/gpadmin/spring-xd-1.0.0.M6/xd/config/modules/source/twittersearch/twittersearch.properties
@@ -163,7 +163,7 @@ shell. We are automatically logged in as gpadmin. Create the table using the fol
 We don't do any conversion of the incoming data so we need to limit the datatypes used to ones that don't require an explicit cast based on the data 
 available in the JSON document we get back from the Twitter search.
 
-If you didn't do this as part of Demo 1, then the last config task is to add your Twitter consumerKey and consumerSecret to `config/mdules/source/twittersearch/twittersearch.properties`. We can create that file using these command:
+If you didn't do this as part of Demo 1, then the last config task is to add your Twitter consumerKey and consumerSecret to `config/mdules/source/twittersearch/twittersearch.properties`. We can create that file using these commands:
 
     mkdir -p /home/gpadmin/spring-xd-1.0.0.M6/xd/config/modules/source/twittersearch
     gedit /home/gpadmin/spring-xd-1.0.0.M6/xd/config/modules/source/twittersearch/twittersearch.properties
