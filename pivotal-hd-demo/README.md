@@ -175,7 +175,7 @@ consumerKey={your-key}
 consumerSecret={your-secret}
 ```
     
-See the [Spring XD docs](https://github.com/spring-projects/spring-xd/wiki/Sources#wiki-twittersearch) for more details.
+See the [Spring XD docs](https://github.com/spring-projects/spring-xd/wiki/Sources#wiki-twitter-search) for more details.
 
 We are now ready to create and deploy the stream, so we switch back to the Spring XD shell:
 
