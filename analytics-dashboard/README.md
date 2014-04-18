@@ -35,7 +35,7 @@ NOTE: We're using `twitterstream` as a source which assumes the twitterstream mo
 
     xd:> stream create tweetlang  --definition "tap:stream:tweets > field-value-counter --fieldName=lang"
 
-    xd:> stream create tweetcount --definition "tap:stream:tweets > aggregatecounter"
+    xd:> stream create tweetcount --definition "tap:stream:tweets > aggregate-counter"
 
     xd:> stream deploy tweets
 
