@@ -31,11 +31,11 @@ To provide some data for the output, start the XD server and then execute the fo
 
 NOTE: We're using `twitterstream` as a source which assumes the twitterstream module configuration  `$XD_MODULE_CONFIG_LOCATION/source/twitterstream/twitterstream.properties` is correctly populated with valid keys.
 
-    xd:> stream create tweets --definition "twitterstream | log" --deploy false
+    xd:> stream create tweets --definition "twitterstream | log"
 
-    xd:> stream create tweetlang  --definition "tap:stream:tweets > field-value-counter --fieldName=lang"
+    xd:> stream create tweetlang  --definition "tap:stream:tweets > field-value-counter --fieldName=lang" --deploy
 
-    xd:> stream create tweetcount --definition "tap:stream:tweets > aggregate-counter"
+    xd:> stream create tweetcount --definition "tap:stream:tweets > aggregate-counter" --deploy
 
     xd:> stream deploy tweets
 
@@ -43,6 +43,6 @@ Reloading the dashboard page should then show the populated menus.
 
 You can also add another field value counter, to record twitter hashtags in the stream
 
-    xd:> stream create tagcount --definition "tap:stream:tweets > field-value-counter --fieldName=entities.hashtags.text --name=hashtags"
+    xd:> stream create tagcount --definition "tap:stream:tweets > field-value-counter --fieldName=entities.hashtags.text --name=hashtags" --deploy
 
 Reload the page again and this should also appear in the field value counter menus. It's best displayed as a bubble chart.
