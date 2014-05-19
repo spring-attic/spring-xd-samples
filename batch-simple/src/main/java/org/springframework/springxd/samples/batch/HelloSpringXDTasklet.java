@@ -25,6 +25,7 @@ import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
+import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.repeat.RepeatStatus;
 
 /**
@@ -46,7 +47,8 @@ public class HelloSpringXDTasklet implements Tasklet {
 	public RepeatStatus execute(StepContribution contribution,
 			ChunkContext chunkContext) throws Exception {
 
-		JobParameters jobParameters = chunkContext.getStepContext().getStepExecution().getJobParameters();
+		final JobParameters jobParameters = chunkContext.getStepContext().getStepExecution().getJobParameters();
+		final ExecutionContext stepExecutionContext = chunkContext.getStepContext().getStepExecution().getExecutionContext();
 
 		System.out.println("Hello Spring XD!");
 
@@ -63,6 +65,10 @@ public class HelloSpringXDTasklet implements Tasklet {
 						jobParameterEntry.getValue().isIdentifying(),
 						jobParameterEntry.getValue().getType().toString(),
 						jobParameterEntry.getValue().getValue()));
+
+				if (jobParameterEntry.getKey().startsWith("context")) {
+					stepExecutionContext.put(jobParameterEntry.getKey(), jobParameterEntry.getValue().getValue());
+				}
 			}
 
 			if (jobParameters.getString("throwError") != null

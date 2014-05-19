@@ -1,7 +1,7 @@
 Spring XD Simple Batch Sample
 =============================
 
-In this *Hello World* example for *Spring XD* you will create a minimal code-based Job. This Job does no processing, only printing out `Hello Spring XD!` as well as any Job parameters that were passed into the Job so as to focus only on the mechanics of the compiliation and copying of artifacts into the Spring XD installation directory.
+In this *Hello World* example for *Spring XD* you will create a minimal code-based Job. This Job does no processing, only printing out `Hello Spring XD!` as well as any Job parameters that were passed into the Job so as to focus only on the mechanics of the compilation and copying of artifacts into the Spring XD installation directory.
 
 ## Requirements
 
@@ -111,6 +111,14 @@ You can also experiment with Job parameters:
 ## Throwing Exceptions
 
 You can trigger an exception by providing a parameter named `throwError` with a String value of `true`.
+
+## Adding Variables to the Step Execution Context
+
+Any parameters that start with `context` will be added to the Step Execution Context.
+E.g. if you add a parameter named `contextHello` with a String value of `World`,
+the variable `contextHello` will be added to the Step Execution Context. You can
+verify the context using the **Admin UI** and drilling to the Step Execution Details
+via the *Executions* tab.
 
 ## Job Repository
 
