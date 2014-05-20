@@ -94,9 +94,7 @@ If you now drop text files into the  `/tmp/xd/input/wordCountFiles/` directory, 
 
 	xd:>! cp /tmp/nietzsche-chapter-1.txt /tmp/xd/input/wordCountFiles
 
->````
-> If you have an empty /count/in directory on the hdfs, remove it before copying files to /tmp/xd/input/wordCountFiles
->````
+**Important**: If you have an empty `/count/in` directory on the hdfs (check with `xd:> hadoop fs ls /`), remove it using `hadoop fs rm /count --recursive` before copying files to `/tmp/xd/input/wordCountFiles`. 
 
 ## Verify the result
 
