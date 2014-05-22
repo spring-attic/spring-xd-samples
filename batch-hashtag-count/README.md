@@ -10,6 +10,13 @@ In order for the sample to run you will need to have installed:
 * Spring XD ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Getting-Started))
 * Hadoop ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Hadoop-Installation))
 
+Furthermore you must have your Twitter API credentials ready:
+
+* Consumer Key
+* Consumer Secret
+* Access Token
+* Access Token Secret
+
 ## Building
 
 Build the sample simply by executing:
@@ -56,7 +63,30 @@ Now start the *Spring XD Shell* in a separate window:
 
 ## Collect Twitter Data
 
-	$ stream create --name tweets --definition "twitterstream | hdfs --rollover=10000000" --deploy
+In order to setup the Twitter stream, you must either provide your Twitter API credentials via the shell:
+
+```
+xd:> stream create --name tweets --definition "twitterstream \
+--consumerKey='your_credentials' \
+--consumerSecret='your_credentials' \
+--accessToken='your_credentials' \
+--accessTokenSecret='your_credentials' | hdfs --rollover=10000000" --deploy
+```
+
+or alternatively you can provide the credentials via:
+
+`config/modules/source/twitterstream/twitterstream.properties`
+
+```
+consumerKey=${twitter.consumerKey:your_credentials}
+consumerSecret=${twitter.consumerSecret:your_credentials}
+accessToken=${twitter.accessToken:your_credentials}
+accessTokenSecret=${twitter.accessTokenSecret:your_credentials}
+```
+
+That way you don't have to provide your credentials every time you create a stream:
+
+	xd:> stream create --name tweets --definition "twitterstream | hdfs --rollover=10000000" --deploy
 
 ## Create the Batch Job
 
@@ -76,7 +106,7 @@ You should see a message:
 
 First specify the Hadoop NameNode for the Spring XD Shell:
 
-	xd:>hadoop config -fs --namenode hdfs://localhost:8020
+	xd:>hadoop config fs --namenode hdfs://localhost:8020
 	
 We will now take a look at the root of the *HDFS* filesystem:
 	
