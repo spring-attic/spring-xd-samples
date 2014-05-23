@@ -128,7 +128,7 @@ As we declared the property `tweets.output.path` in **hashtagcount.xml** to be `
 
 Finally, executing:
 
-	xd:>hadoop fs -cat /hashtagcount/output/part-r-00000
+	xd:>hadoop fs cat /hashtagcount/output/part-r-00000
 
 should yield a long list of hashtags, indicating the number of occurrences within the provided input snapshot of Twitter data.
 
