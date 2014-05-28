@@ -22,7 +22,7 @@
 	<properties>
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
 		<spring.framework.version>4.0.3.RELEASE</spring.framework.version>
-		<spring.batch.version>3.0.0.M3</spring.batch.version>
+		<spring.batch.version>3.0.0.RELEASE</spring.batch.version>
 	</properties>
 	<profiles>
 		<profile>
