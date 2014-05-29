@@ -15,7 +15,7 @@ Build the sample simply by executing:
 
 	$ mvn clean assembly:assembly
 
-As a result, you will see the following files and directories created under `target/batch-payment-import-1.0.0.BUILD-SNAPSHOT-bin/`:
+As a result, you will see the following files and directories created under `target/batch-notifications-1.0.0.BUILD-SNAPSHOT-bin/`:
 
 ```
 |-- batch-notifications-1.0.0.BUILD-SNAPSHOT-bin
