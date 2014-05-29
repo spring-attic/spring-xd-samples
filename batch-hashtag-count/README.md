@@ -26,12 +26,11 @@ Build the sample simply by executing:
 As a result, you will see the following files and directories created under `target/batch-hashtag-count-1.0.0.BUILD-SNAPSHOT-bin/`:
 
 ```
-|-- batch-hashtag-count-1.0.0.BUILD-SNAPSHOT-bin
-|   |-- lib
-|   |   `-- hadoop-examples-1.1.2.jar
-|   |-- modules
-|   |   `-- job
-|   |       `-- hashtagcount.xml
+|-- lib
+|   `-- batch-hashtag-count-1.0.0.BUILD-SNAPSHOT.jar
+`-- modules
+    `-- job
+        `-- hashtagcount.xml
 ```
 
 the modules/job directory defines the location of the file to import, HDFS directories to use as well as the name node location.  You can verify the settings inside `hashtagcount.xml`.  All relevant properties are defined in the `util:property` element:
@@ -48,12 +47,13 @@ Please verify particularly the following property:
 
 ## Running the Sample
 
-In the batch-directory
+In the batch-directory execute
 
-	$ cp target/batch-hashtag-count-1.0.0.BUILD-SNAPSHOT-bin/modules/job/* $XD_HOME/modules/job
-	$ cp target/batch-hashtag-count-1.0.0.BUILD-SNAPSHOT-bin/lib/* $XD_HOME/lib
+	$ ./copy-files.sh
 
-Now your Sample is ready to be executed. Start your *Spring XD* admin server (If it was already running, you must restart it):
+Which will copy the job definition and jar file into $XD_HOME/modules/job/hashtagcount
+
+Now your sample is ready to be executed.  The simplest way to run Spring XD is using the singlenode server.
 
 	xd/bin>$ ./xd-singlenode
 
@@ -70,7 +70,7 @@ xd:> stream create --name tweets --definition "twitterstream \
 --consumerKey='your_credentials' \
 --consumerSecret='your_credentials' \
 --accessToken='your_credentials' \
---accessTokenSecret='your_credentials' | hdfs --rollover=10000000" --deploy
+--accessTokenSecret='your_credentials' | hdfs --rollover=2M" --deploy
 ```
 
 or alternatively you can provide the credentials via:
@@ -78,15 +78,15 @@ or alternatively you can provide the credentials via:
 `config/modules/source/twitterstream/twitterstream.properties`
 
 ```
-consumerKey=${twitter.consumerKey:your_credentials}
-consumerSecret=${twitter.consumerSecret:your_credentials}
-accessToken=${twitter.accessToken:your_credentials}
-accessTokenSecret=${twitter.accessTokenSecret:your_credentials}
+consumerKey=<your consumer key>
+consumerSecret=<your consumer secret>
+accessToken=<your access token>
+accessTokenSecret=<your token secret>
 ```
 
 That way you don't have to provide your credentials every time you create a stream:
 
-	xd:> stream create --name tweets --definition "twitterstream | hdfs --rollover=10000000" --deploy
+	xd:> stream create --name tweets --definition "twitterstream | hdfs --rollover=2M" --deploy
 
 ## Create the Batch Job
 
@@ -110,7 +110,7 @@ First specify the Hadoop NameNode for the Spring XD Shell:
 	
 We will now take a look at the root of the *HDFS* filesystem:
 	
-	xd:>hadoop fs ls /
+	xd:>hadoop fs -ls /
 
 You should see output like the following:
 
@@ -121,14 +121,14 @@ You should see output like the following:
 
 As we declared the property `tweets.output.path` in **hashtagcount.xml** to be `/hashtagcount/output/`, let's have a look at the respective directory:
 
-	xd:>hadoop fs ls /hashtagcount/output
+	xd:>hadoop fs -ls /hashtagcount/output
 	Found 2 items
 	-rw-r--r--   3 hillert supergroup          0 2013-08-10 00:07 /hashtagcount/output/_SUCCESS
 	-rw-r--r--   3 hillert supergroup      31752 2013-08-10 00:07 /hashtagcount/output/part-r-00000
 
 Finally, executing:
 
-	xd:>hadoop fs cat /hashtagcount/output/part-r-00000
+	xd:>hadoop fs -cat /hashtagcount/output/part-r-00000
 
 should yield a long list of hashtags, indicating the number of occurrences within the provided input snapshot of Twitter data.
 

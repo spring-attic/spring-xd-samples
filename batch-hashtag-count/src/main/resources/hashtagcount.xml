@@ -42,7 +42,7 @@
 	<hadoop:job id="hashtagcountJob"
 		input-path="${tweets.input.path}"
 		output-path="${tweets.output.path}"
-		libs="file:${xd.home}/lib/batch-hashtag-count-1.0.0.BUILD-SNAPSHOT.jar"
+		libs="file:${xd.home}/modules/job/hashtagcount/lib/batch-hashtag-count-1.0.0.BUILD-SNAPSHOT.jar"
 		mapper="org.springframework.xd.examples.hadoop.HashtagCount$TokenizerMapper"
 		reducer="org.springframework.xd.examples.hadoop.HashtagCount$LongSumReducer"
 		scope="step" />
