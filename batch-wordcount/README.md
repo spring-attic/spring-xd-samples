@@ -16,12 +16,12 @@ Build the sample simply by executing:
 
 	$ mvn clean assembly:assembly
 
-By default this builds against Apache Hadoop 1.2.1.
+By default this builds against Apache Hadoop 2.2.0
 
 >````
-> If you would like to build against Apache Hadoop 2.2 you can use the provided profile "hadoop22":
+> If you would like to build against Apache Hadoop 1.2.1 you can use the provided profile "hadoop12":
 >````
->	$ mvn clean assembly:assembly -P hadoop22
+>	$ mvn clean assembly:assembly -P hadoop12
 >````
 
 As a result, you will see the following files and directories created under `target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/`:
@@ -29,14 +29,14 @@ As a result, you will see the following files and directories created under `tar
 ```
 |-- batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin
 |   |-- lib
-|   |   `-- hadoop-examples-1.2.1.jar
+|   |   `-- hadoop-mapreduce-examples-2.2.0.jar
 |   |-- modules
 |   |   `-- job
 |   |       `-- wordcount.xml
 |   `-- nietzsche-chapter-1.txt
 ```
 
-In the case of hadoop 2.2, the `hadoop-mapreduce-examples-2.2.0.jar` will be under the lib directory.
+In the case of hadoop 1.2.1, the `hadoop-examples-1.2.1.jar` will be under the lib directory.
 
 the wordcount.xml defines the location of the file to import, HDFS directories to use as well as the name node location.  You can verify the settings under in util:property element:
 
@@ -60,20 +60,22 @@ Note that the `nietzsche-chapter-1.txt` file is copied to the /tmp directory.
 
 The wordcount sample is ready to be executed. For ease of use, start up the single node version of Spring XD that combines the admin and container nodes into one process. If it was already running, you must restart it.
 
-	xd/bin>$ ./xd-singlenode --hadoopDistro hadoop12
+	xd/bin>$ ./xd-singlenode
 
 Now start the *Spring XD Shell* in a separate window:
 
-	shell/bin>$ ./xd-shell --hadoopDistro hadoop12
+	shell/bin>$ ./xd-shell
+	
+By default, hadoop 2.2.0 distribution will be used.
 
 
 >````
-> If you would like to run against Apache Hadoop 2.2 pass in the command line option "--hadoopDistro hadoop22"
+> If you would like to run against Apache Hadoop 1.2.1 pass in the command line option "--hadoopDistro hadoop12"
 >
 >````
->    xd/bin>$ ./xd-singlenode --hadoopDistro hadoop22
+>    xd/bin>$ ./xd-singlenode --hadoopDistro hadoop12
 >
->    xd/bin>$ ./xd-shell --hadoopDistro hadoop22
+>    xd/bin>$ ./xd-shell --hadoopDistro hadoop12
 >````
 
 You will now create a new Batch Job Stream using the *Spring XD Shell*:
