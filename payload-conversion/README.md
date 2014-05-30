@@ -7,11 +7,25 @@ This sample also illustrates XD's built in payload conversion. This module may b
 
 ### Running the example
 
-To run this sample, deploy the module to an XD installation:
+Build the project by executing:
 
-	$ cp modules/processor/myTupleProcessor.xml $XD_HOME/modules/processor
-	$ ./gradlew jar
-	$ cp build/libs/payload-conversion.jar $XD_HOME/lib
+	$ ./gradlew clean dist
+
+This will result in the following files under `build/dist/`:
+
+```
+└── modules
+    └── processor
+        └── myTupleProcessor
+            ├── config
+            │   └── myTupleProcessor.xml
+            └── lib
+                └── payload-conversion.jar
+```
+
+Deploy the created module to an XD installation:
+
+	$ cp -R build/dist/modules/* $XD_HOME/modules
 
 Next, start the XD container and the XD admin process, either single-node, or distributed. And start the XD shell. Create and deploy a stream:
 
