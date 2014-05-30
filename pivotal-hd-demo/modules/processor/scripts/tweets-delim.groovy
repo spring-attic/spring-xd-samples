@@ -2,13 +2,13 @@ import groovy.json.JsonSlurper
 
 def slurper = new JsonSlurper()
 def jsonPayload = slurper.parseText(payload)
-def fromUser = jsonPayload?.fromUser
-def hashTags = jsonPayload?.entities?.hashTags
-def followers = jsonPayload?.user?.followersCount
-def createdAt = jsonPayload?.createdAt
-def languageCode = jsonPayload?.languageCode
-def retweetCount = jsonPayload?.retweetCount
-def retweet = jsonPayload?.retweet
+def fromUser = jsonPayload?.user?.name
+def hashTags = jsonPayload?.entities?.hashtags
+def followers = jsonPayload?.user?.followers_count
+def createdAt = jsonPayload?.created_at
+def languageCode = jsonPayload?.lang
+def retweetCount = jsonPayload?.retweet_count
+def retweet = jsonPayload?.retweeted
 
 def result = ""
 if (hashTags == null || hashTags.size() == 0) {
