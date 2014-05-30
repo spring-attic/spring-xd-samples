@@ -44,7 +44,7 @@ We need to specify the hadoop distro as phd20 since we are running against Pivot
 
 Open another command prompt and enter the following command:
 
-    /home/gpadmin/spring-xd-1.0.0.M6/shell/bin/xd-shell --hadoopDistro phd20
+    /home/gpadmin/spring-xd-1.0.0.M7/shell/bin/xd-shell --hadoopDistro phd20
     
 Once the shell starts up we need to need to set the hdfs configuration so we can run Hadoop fs commands from the shell:
 
@@ -149,10 +149,10 @@ using this command:
 Then change the content of the file to the following:
 
 ```
-driverClassName=org.postgresql.Driver
-url=jdbc:postgresql:gpadmin
-username=gpadmin
-password=
+url = jdbc:postgresql:gpadmin
+driverClassName = org.postgresql.Driver
+username = gpadmin
+password =
 ```
 
 Next step is to create the table in HAWQ. We open up a new command window and enter `psql` to start a PostgreSQL client 
