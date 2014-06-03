@@ -99,7 +99,7 @@ You should see a message:
 
 You can also experiment with Job parameters:
 
-	job launch helloSpringXD --params "{"myStringParameter":"foobar","-secondParam(long)":"123456"}"
+	job launch helloSpringXD --params {"myStringParameter":"foobar","-secondParam(long)":"123456"}
 
 	Hello Spring XD!
 	The following 3 Job Parameter(s) is/are present:
