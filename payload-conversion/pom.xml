@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.springframework.xd.samples</groupId>
+  <artifactId>payload-conversion</artifactId>
+  <version>1.0.0.BUILD-SNAPSHOT</version>
+  <name>Spring XD Sample - Payload type conversion example with a custom module</name>
+  <packaging>jar</packaging>
+
+  <prerequisites>
+    <maven>2.2.1</maven>
+  </prerequisites>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <spring.xd.version>1.0.0.M7</spring.xd.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>spring-milestone</id>
+      <url>http://repo.springsource.org/libs-milestone</url>
+    </repository>
+  </repositories>
+ 
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.xd</groupId>
+      <artifactId>spring-xd-tuple</artifactId>
+      <version>${spring.xd.version}</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+          <compilerArgument>-Xlint:all</compilerArgument>
+          <showWarnings>true</showWarnings>
+          <showDeprecation>true</showDeprecation>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <descriptors>
+            <descriptor>src/main/assembly/assembly.xml</descriptor>
+          </descriptors>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -9,9 +9,9 @@ This sample also illustrates XD's built in payload conversion. This module may b
 
 Build the project by executing:
 
-	$ ./gradlew clean dist
+	$ mvn clean assembly:assembly
 
-This will result in the following files under `build/dist/`:
+This will result in the following files under `target/payload-conversion-1.0.0.BUILD-SNAPSHOT-bin/`:
 
 ```
 └── modules
@@ -20,12 +20,12 @@ This will result in the following files under `build/dist/`:
             ├── config
             │   └── myTupleProcessor.xml
             └── lib
-                └── payload-conversion.jar
+                └── payload-conversion-1.0.0.BUILD-SNAPSHOT.jar
 ```
 
-Deploy the created module to an XD installation:
+Install the module to an XD installation:
 
-	$ cp -R build/dist/modules/* $XD_HOME/modules
+	$ cp -R target/payload-conversion-1.0.0.BUILD-SNAPSHOT-bin/* $XD_HOME/modules
 
 Next, start the XD container and the XD admin process, either single-node, or distributed. And start the XD shell. Create and deploy a stream:
 
@@ -37,7 +37,7 @@ Post some JSON content to the stream's http source:
 
 You should see the Tuple rendered as JSON:
 	
-	xd:>! cat /tmp/xd/output/test.out
+	xd:>cat /tmp/xd/output/test.out
 	
 	{"id":"719f5276-22d2-434d-87dc-39a23a978077","timestamp":1376387174881,"symbol":"FAKE","price":"75"}
 

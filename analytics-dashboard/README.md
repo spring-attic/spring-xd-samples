@@ -8,7 +8,7 @@ Standalone project which shows how you can use the D3 Javascript library to crea
 Running the App
 ===============
 
-All that's required to run the app is to serve up the `public` directory from a web server listening on port 9889. There are various ways you can do this. For example, you can use the Spring Boot CLI. If you have it [installed](http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#getting-started-installing-the-cli), run
+All that's required to run the app is to serve up the `public` directory from a web server listening on port 9889. There are various ways you can do this. For example, you can use the Spring Boot CLI. If you have it [installed](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-installing-the-cli), run
 
     spring run dashboard.groovy
 
