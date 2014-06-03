@@ -9,14 +9,12 @@ repositories{
 ext {
 	junitVersion = '4.11'
 	springVersion = '4.0.3.RELEASE'
-	springIntegrationVersion = '4.0.2.RELEASE'
 	springXdVersion ='1.0.0.M7'
 	slf4jVersion = '1.7.6'
 	log4jVersion = '1.2.17'
 }
 
 dependencies{
-		compile "org.springframework.integration:spring-integration-core:$springIntegrationVersion"
 		compile "org.springframework.xd:spring-xd-tuple:$springXdVersion"
 		runtime "org.slf4j:jcl-over-slf4j:$slf4jVersion"
 		runtime "org.slf4j:slf4j-log4j12:$slf4jVersion"
