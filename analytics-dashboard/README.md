@@ -24,9 +24,9 @@ NOTE: We're using `twitterstream` as a source which assumes the twitterstream mo
 
 These taps correspond to recording
 
-* A count of tweet's language.  The incoming JSON data from the twitter stream has this information located under the field named 'lang'.  This is done using the [Field Value Counter sink](https://github.com/spring-projects/spring-xd/wiki/Analytics#field-value-counter).  The name of the counter default to the name of the stream, 'tweetlang'
-* Storing the number of tweets in time buckets of minute, hour, day, month and year.  This information is used to show the graph of tweets per minute in the UI and is based on the [Aggregate Counter](https://github.com/spring-projects/spring-xd/wiki/Analytics#aggregate-counter)
-* A count of the hashtags in the tweets.  The incoming JSON data from the twitter stream has this information ocated under the path 'entities.hashtags.text'.  The name of the counter is explicitly specified to be 'hashtags'.
+* A count of tweet's language.  The incoming JSON data from the twitter stream has this information located under the field named `lang`.  This is done using the [Field Value Counter](https://github.com/spring-projects/spring-xd/wiki/Analytics#field-value-counter) sink.  The name of the counter default to the name of the stream, 'tweetlang'
+* The number of tweets pre-aggregated into minute, hour, day, month and year time buckets.  This information is used to show the graph of tweets per minute in the UI and is based on the [Aggregate Counter](https://github.com/spring-projects/spring-xd/wiki/Analytics#aggregate-counter) sink.
+* A count of the hashtags in the tweets.  The incoming JSON data from the twitter stream has this information ocated under the path `entities.hashtags.text`.  The name of the counter is explicitly specified to be 'hashtags'.
 
 
 All that's required to run the app is to serve up the `public` directory from a web server listening on port 9889. There are various ways you can do this. For example, you can use the Spring Boot CLI. If you have it [installed](http://docs.spring.io/spring-boot/docs/1.1.4.RELEASE/reference/html/getting-started-installing-spring-boot.html#getting-started-installing-the-cli), run
