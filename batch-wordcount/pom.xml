@@ -14,32 +14,17 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hadoop.version>2.2.0</hadoop.version>
-		<hadoop.examples>hadoop-mapreduce-examples</hadoop.examples>
-		<hadoop.exclude>hadoop-hdfs</hadoop.exclude>
-		<mapreduce.framework>yarn</mapreduce.framework>
 	</properties>
-
-	<profiles>
-			<profile>
-					<id>hadoop12</id>
-					<properties>
-							<hadoop.version>1.2.1</hadoop.version>
-							<hadoop.examples>hadoop-examples</hadoop.examples>
-							<hadoop.exclude>hadoop-core</hadoop.exclude>
-							<mapreduce.framework>classic</mapreduce.framework>
-					</properties>
-			</profile>
-	</profiles>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
-			<artifactId>${hadoop.examples}</artifactId>
+			<artifactId>hadoop-mapreduce-examples</artifactId>
 			<version>${hadoop.version}</version>
 			<scope>compile</scope>
 			<exclusions>
 				<exclusion>
-					<artifactId>${hadoop.exclude}</artifactId>
+					<artifactId>hadoop-hdfs</artifactId>
 					<groupId>org.apache.hadoop</groupId>
 				</exclusion>
 				<exclusion>
