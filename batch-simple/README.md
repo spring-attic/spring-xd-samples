@@ -11,7 +11,7 @@ In order for the sample to run you will need to have installed:
 
 ## Code Tour
 
-The processing actions that are part of a Step in a batch Job are pluggable.  The plug-in point for a Step is known as a [Tasklet](http://static.springsource.org/spring-batch/apidocs/org/springframework/batch/core/step/tasklet/Tasklet.html).  In this example we create a tasklet by implementing the Tasklet interface.  Take a look at the [source code](https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/java/org/springframework/springxd/samples/batch/HelloSpringXDTasklet.java) as well as its incorporation into a (Job definition)[https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/resources/myjob.xml) inside an XML file.  Note that the XML file must contain a single Job whole id is `job`.
+The processing actions that are part of a Step in a batch Job are pluggable.  The plug-in point for a Step is known as a [Tasklet](http://static.springsource.org/spring-batch/apidocs/org/springframework/batch/core/step/tasklet/Tasklet.html).  In this example we create a tasklet by implementing the Tasklet interface.  Take a look at the [source code](https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/java/org/springframework/springxd/samples/batch/HelloSpringXDTasklet.java) as well as its incorporation into a (Job definition)[https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/resources/myjob.xml) inside an XML file.  Note that the XML file must contain a single Job.
 
 ## Building
 
@@ -91,7 +91,7 @@ And then launch the job
 
 	xd:>job launch helloSpringXD
 
-You should see a message:
+You should see a message in the log output from the XD container:
 
 	Hello Spring XD!
 	The following 1 Job Parameter(s) is/are present:

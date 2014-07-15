@@ -3,16 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.springframework.samples.batch</groupId>
+	<groupId>org.springframework.xd.samples</groupId>
 	<artifactId>springxd-batch-simple</artifactId>
 	<version>1.0.0.BUILD-SNAPSHOT</version>
-	<name>Samples - Batch</name>
+	<name>Spring XD Sample - Batch Simple Example</name>
 	<packaging>jar</packaging>
-	<url>http://www.springframework.org/spring-batch/archetypes/simple-cli-archetype</url>
 	<description>
-		<![CDATA[
-      This project is a minimal command line batch sample from Spring Batch.
-    ]]>
+		<![CDATA[This project is a simple batch example for Spring XD.]]>
 	</description>
 
 	<prerequisites>
@@ -20,109 +17,19 @@
 	</prerequisites>
 
 	<properties>
-		<maven.test.failure.ignore>true</maven.test.failure.ignore>
-		<spring.framework.version>4.0.3.RELEASE</spring.framework.version>
-		<spring.batch.version>3.0.0.RELEASE</spring.batch.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.batch.version>3.0.1.RELEASE</spring.batch.version>
 	</properties>
-	<profiles>
-		<profile>
-			<id>strict</id>
-			<properties>
-				<maven.test.failure.ignore>false</maven.test.failure.ignore>
-			</properties>
-		</profile>
-		<profile>
-			<id>tiger</id>
-			<activation>
-				<jdk>1.5</jdk>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>javax.xml.stream</groupId>
-					<artifactId>com.springsource.javax.xml.stream</artifactId>
-					<version>1.0.1</version>
-				</dependency>
-			</dependencies>
-		</profile>
-	</profiles>
 
 	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${spring.framework.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${spring.framework.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring.framework.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib-nodep</artifactId>
-			<version>3.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-			<version>${spring.framework.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.batch</groupId>
 			<artifactId>spring-batch-core</artifactId>
 			<version>${spring.batch.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.batch</groupId>
-			<artifactId>spring-batch-infrastructure</artifactId>
-			<version>${spring.batch.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>1.8.0.10</version>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>1.8.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>1.8.0</version>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-		</dependency>
 	</dependencies>
 
 	<build>
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -136,37 +43,6 @@
 					<showDeprecation>true</showDeprecation>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
-				<configuration>
-					<mainClass>org.springframework.batch.core.launch.support.CommandLineJobRunner</mainClass>
-					<arguments>
-						<!-- job configuration file -->
-						<argument>classpath:/myjob.xml</argument>
-						<!-- job name -->
-						<argument>job</argument>
-					</arguments>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<archive>
-						<index>true</index>
-						<manifest>
-							<mainClass>org.springframework.batch.core.launch.support.CommandLineJobRunner</mainClass>
-							<addClasspath>true</addClasspath>
-							<classpathPrefix>lib/</classpathPrefix>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.4</version>
@@ -178,6 +54,7 @@
 			</plugin>
 		</plugins>
 	</build>	
+
 	<repositories>
 		<repository>
 			<id>spring-milestone</id>
