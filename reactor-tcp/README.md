@@ -14,7 +14,7 @@ To run this sample you'll need:
 
 You'll need to create a `reactor-tcp` source in *Spring XD* using the following example as a template:
 
-		stream create --name reactortcp --definition "reactor-tcp --port=3000 | throughput-sampler" --deploy
+		stream create --name reactortcp --definition "reactor-ip --transport=tcp  --port=3000 | throughput-sampler" --deploy
 
 You can change the port to which the source is bound by adjusting the `--port` parameter. The default is 3000 and that's what the Ruby script included with this sample will try to connect to, but you can easily change that, of course.
 
