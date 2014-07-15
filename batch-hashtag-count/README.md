@@ -110,7 +110,7 @@ First specify the Hadoop NameNode for the Spring XD Shell:
 	
 We will now take a look at the root of the *HDFS* filesystem:
 	
-	xd:>hadoop fs -ls /
+	xd:>hadoop fs ls /
 
 You should see output like the following:
 
@@ -121,14 +121,14 @@ You should see output like the following:
 
 As we declared the property `tweets.output.path` in **hashtagcount.xml** to be `/hashtagcount/output/`, let's have a look at the respective directory:
 
-	xd:>hadoop fs -ls /hashtagcount/output
+	xd:>hadoop fs ls /hashtagcount/output
 	Found 2 items
 	-rw-r--r--   3 hillert supergroup          0 2013-08-10 00:07 /hashtagcount/output/_SUCCESS
 	-rw-r--r--   3 hillert supergroup      31752 2013-08-10 00:07 /hashtagcount/output/part-r-00000
 
 Finally, executing:
 
-	xd:>hadoop fs -cat /hashtagcount/output/part-r-00000
+	xd:>hadoop fs cat /hashtagcount/output/part-r-00000
 
-should yield a long list of hashtags, indicating the number of occurrences within the provided input snapshot of Twitter data.
+should yield a long list of hashtags, indicating the number of occurrences within the provided input of Twitter data.
 
