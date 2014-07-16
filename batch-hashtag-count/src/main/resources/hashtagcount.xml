@@ -20,10 +20,7 @@
 	</util:properties>
 
 	<hadoop:configuration>
-        fs.default.name=hdfs://pivhdsne:8020
-		yarn.resourcemanager.address=pivhdsne:8032
-		mapreduce.jobhistory.address=pivhdsne:10020
-		yarn.application.classpath=$HADOOP_CONF_DIR,$HADOOP_COMMON_HOME/*,$HADOOP_COMMON_HOME/lib/*,$HADOOP_HDFS_HOME/*,$HADOOP_HDFS_HOME/lib/*,$HADOOP_MAPRED_HOME/*,$HADOOP_MAPRED_HOME/lib/*,$HADOOP_YARN_HOME/*,$HADOOP_YARN_HOME/lib/*,$USS_CONF/,$USS_HOME/*
+		fs.default.name=${hd.fs}
 	</hadoop:configuration>
 
 	<!-- required since Hadoop Job is a class not an interface and we need to use a Job with step scope to access #{jobParameters['...']} -->
