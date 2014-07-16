@@ -37,7 +37,7 @@ the modules/job directory defines the location of the file to import, HDFS direc
 
 	<util:properties id="myProperties" >
 		<prop key="tweets.input.path">/xd/tweets/</prop>
-		<prop key="tweets.output.path">/hashtagcount/out/</prop>
+		<prop key="tweets.output.path">/xd/hashtagcount/out/</prop>
 		<prop key="hd.fs">hdfs://localhost:8020</prop>
 	</util:properties>
 
@@ -110,25 +110,24 @@ First specify the Hadoop NameNode for the Spring XD Shell:
 	
 We will now take a look at the root of the *HDFS* filesystem:
 	
-	xd:>hadoop fs ls /
+	xd:>hadoop fs ls /xd
 
 You should see output like the following:
 
-	Found 4 items
-	drwxr-xr-x   - hillert supergroup          0 2013-08-12 11:01 /hashtagcount
-	drwxr-xr-x   - hillert supergroup          0 2013-08-09 11:31 /user
-	drwxr-xr-x   - hillert supergroup          0 2013-08-08 10:53 /xd
-
-As we declared the property `tweets.output.path` in **hashtagcount.xml** to be `/hashtagcount/output/`, let's have a look at the respective directory:
-
-	xd:>hadoop fs ls /hashtagcount/output
 	Found 2 items
-	-rw-r--r--   3 hillert supergroup          0 2013-08-10 00:07 /hashtagcount/output/_SUCCESS
-	-rw-r--r--   3 hillert supergroup      31752 2013-08-10 00:07 /hashtagcount/output/part-r-00000
+	drwxr-xr-x   - hillert supergroup          0 2013-08-12 11:01 /xd/hashtagcount
+	drwxrwxrwx   - hillert supergroup          0 2013-08-12 11:00 /xd/tweets
+
+As we declared the property `tweets.output.path` in **hashtagcount.xml** to be `/xd/hashtagcount/output/`, let's have a look at that directory:
+
+	xd:>hadoop fs ls /xd/hashtagcount/output
+	Found 2 items
+	-rw-r--r--   3 hillert supergroup          0 2013-08-10 00:07 /xd/hashtagcount/output/_SUCCESS
+	-rw-r--r--   3 hillert supergroup      31752 2013-08-10 00:07 /xd/hashtagcount/output/part-r-00000
 
 Finally, executing:
 
-	xd:>hadoop fs cat /hashtagcount/output/part-r-00000
+	xd:>hadoop fs cat /xd/hashtagcount/output/part-r-00000
 
 should yield a long list of hashtags, indicating the number of occurrences within the provided input of Twitter data.
 
