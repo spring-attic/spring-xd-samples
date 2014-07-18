@@ -1,6 +1,6 @@
 # Demo using Spring XD with Pivotal HD
 
-_(Using Pivotal HD 2.0 and Spring XD 1.0.0.M7)_
+_(Using Pivotal HD 2.0 and Spring XD 1.0.0.RC1)_
 
 ## Preparing the VM
 
@@ -9,19 +9,19 @@ _(Using Pivotal HD 2.0 and Spring XD 1.0.0.M7)_
 The "Pivotal HD 2.0 Single Node VM" can be downloded from: 
 https://network.gopivotal.com/products/pivotal-hd
 
-### Step 2: Download Spring XD 1.0 M7 release
+### Step 2: Download Spring XD 1.0 RC1 release
 
-From the Pivotal HD VM download Spring XD 1.0 M7 release using this link: 
-http://repo.spring.io/simple/libs-milestone-local/org/springframework/xd/spring-xd/1.0.0.M7/spring-xd-1.0.0.M7-dist.zip
+From the Pivotal HD VM download Spring XD 1.0 RC1 release using this link: 
+http://repo.spring.io/simple/libs-milestone-local/org/springframework/xd/spring-xd/1.0.0.RC1/spring-xd-1.0.0.RC1-dist.zip
 
-### Step 3: Unzip, configure and start Spring XD 1.0 M7 release
+### Step 3: Unzip, configure and start Spring XD 1.0 RC1 release
 
-Unzip the `spring-xd-1.0.0.M7.zip` file into the home directory of the gpadmin user. This should create 
-a `/home/gpadmin/spring-xd-1.0.0.M7` directory.
+Unzip the `spring-xd-1.0.0.RC1.zip` file into the home directory of the gpadmin user. This should create 
+a `/home/gpadmin/spring-xd-1.0.0.RC1` directory.
 
 We need to modify the connection properties for HDFS which are specified in `config/servers.yml`. We can edit that file using this command:
 
-    gedit /home/gpadmin/spring-xd-1.0.0.M7/xd/config/servers.yml
+    gedit /home/gpadmin/spring-xd-1.0.0.RC1/xd/config/servers.yml
 
 Find the Hadoop properties and uncomment that section and change the content to the following:
 
@@ -35,7 +35,7 @@ spring:
 
 Open a command prompt and enter the following commands:
 
-    cd /home/gpadmin/spring-xd-1.0.0.M7/xd
+    cd /home/gpadmin/spring-xd-1.0.0.RC1/xd
     ./bin/xd-singlenode --hadoopDistro phd20
 
 We need to specify the hadoop distro as phd20 since we are running against Pivotal HD 2.0.
@@ -44,7 +44,7 @@ We need to specify the hadoop distro as phd20 since we are running against Pivot
 
 Open another command prompt and enter the following command:
 
-    /home/gpadmin/spring-xd-1.0.0.M7/shell/bin/xd-shell --hadoopDistro phd20
+    /home/gpadmin/spring-xd-1.0.0.RC1/shell/bin/xd-shell --hadoopDistro phd20
     
 Once the shell starts up we need to need to set the hdfs configuration so we can run Hadoop fs commands from the shell:
 
@@ -67,11 +67,11 @@ be viewed or downloaded here:
 To use this script in our XD stream we need to copy it to the Spring XD `modules/processor/scripts` directory. We can do that 
 by opening another command prompt and entering the following commwnd:
 
-    wget -O /home/gpadmin/spring-xd-1.0.0.M7/xd/modules/processor/scripts/tweets-delim.groovy https://raw.github.com/spring-projects/spring-xd-samples/master/pivotal-hd-demo/modules/processor/scripts/tweets-delim.groovy --no-check-certificate
+    wget -O /home/gpadmin/spring-xd-1.0.0.RC1/xd/modules/processor/scripts/tweets-delim.groovy https://raw.github.com/spring-projects/spring-xd-samples/master/pivotal-hd-demo/modules/processor/scripts/tweets-delim.groovy --no-check-certificate
 
 Last config task is to add your Twitter consumerKey and consumerSecret to `config/mdules/modules.yml`. We can edit this file using:
 
-    gedit /home/gpadmin/spring-xd-1.0.0.M7/xd/config/modules/modules.yml
+    gedit /home/gpadmin/spring-xd-1.0.0.RC1/xd/config/modules/modules.yml
     
 Uncomment the following lines and add your consumer key and secret to this file:
 
@@ -144,7 +144,7 @@ HAWQ. We will insert one row per tweet using the Spring XD JDBC sink.
 We need to modify the connection properties for JDBC which are specified in `config/modules/sink/jdbc/jdbc.properties`. We can edit that file 
 using this command:
 
-    gedit /home/gpadmin/spring-xd-1.0.0.M7/xd/config/modules/sink/jdbc/jdbc.properties
+    gedit /home/gpadmin/spring-xd-1.0.0.RC1/xd/config/modules/sink/jdbc/jdbc.properties
 
 Then change the content of the file to the following:
 
@@ -167,7 +167,7 @@ available in the JSON document we get back from the Twitter search.
 
 If you didn't do this as part of Demo 1, then the last config task is to add your Twitter consumerKey and consumerSecret to `config/mdules/modules.yml`. We can edit this file using:
 
-    gedit /home/gpadmin/spring-xd-1.0.0.M7/xd/config/modules/modules.yml
+    gedit /home/gpadmin/spring-xd-1.0.0.RC1/xd/config/modules/modules.yml
     
 Uncomment the following lines and add your consumer key and secret to this file:
 
