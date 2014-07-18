@@ -146,7 +146,7 @@ using this command:
 
     gedit /home/gpadmin/spring-xd-1.0.0.RC1/xd/config/modules/sink/jdbc/jdbc.properties
 
-Then change the firts four lines of the file to the following leaving the lines after the "#Jdbc Connection Pool Properties" as is:
+Then change the first four lines of the file to the following, leaving the lines after the "#Jdbc Connection Pool Properties" as is:
 
 ```
 url = jdbc:postgresql:gpadmin
