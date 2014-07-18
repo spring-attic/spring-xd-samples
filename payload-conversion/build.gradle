@@ -9,7 +9,7 @@ repositories{
 ext {
 	junitVersion = '4.11'
 	springVersion = '4.0.3.RELEASE'
-	springXdVersion ='1.0.0.M7'
+	springXdVersion ='1.0.0.RC1'
 	slf4jVersion = '1.7.6'
 	log4jVersion = '1.2.17'
 }
