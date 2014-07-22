@@ -9,7 +9,7 @@
 	<fileSets>
 		<fileSet>
 			<directory>${project.basedir}/src/main/resources</directory>
-			<outputDirectory>/modules/job</outputDirectory>
+			<outputDirectory>/modules/job/payment-import/config</outputDirectory>
 			<includes>
 				<include>**/payment-import.xml</include>
 			</includes>
@@ -17,7 +17,7 @@
 	</fileSets>
 	<dependencySets>
 		<dependencySet>
-			<outputDirectory>/lib</outputDirectory>
+			<outputDirectory>/modules/job/payment-import/lib</outputDirectory>
 			<useProjectArtifact>true</useProjectArtifact>
 			<scope>runtime</scope>
 		</dependencySet>

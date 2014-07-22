@@ -18,12 +18,13 @@ Build the sample simply by executing:
 As a result, you will see the following files and directories created under `target/batch-notifications-1.0.0.BUILD-SNAPSHOT-bin/`:
 
 ```
-|-- batch-notifications-1.0.0.BUILD-SNAPSHOT-bin
-|   |-- lib
-|   |   `-- batch-notifications-1.0.0.BUILD-SNAPSHOT.jar
-|   |-- modules
-|   |   `-- job
-|   |       `-- payment-import.xml
+└── modules
+    └── job
+        └── payment-import
+            ├── config
+            │   └── payment-import.xml
+            └── lib
+                └── batch-notifications-1.0.0.BUILD-SNAPSHOT.jar
 ```
 
 ## Running the Sample
@@ -32,8 +33,7 @@ As a result, you will see the following files and directories created under `tar
 
 In the `batch-notifications` directory
 
-	$ cp target/batch-notifications-1.0.0.BUILD-SNAPSHOT-bin/modules/job/* $XD_HOME/modules/job
-	$ cp target/batch-notifications-1.0.0.BUILD-SNAPSHOT-bin/lib/* $XD_HOME/lib
+	$ cp -R target/batch-notifications-1.0.0.BUILD-SNAPSHOT-bin/modules/* $XD_HOME/modules
 
 Now your Sample is ready to be executed. Start your *Spring XD* admin server (If it was already running, you must restart it):
 
