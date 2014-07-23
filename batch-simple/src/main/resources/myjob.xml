@@ -18,4 +18,16 @@
 	<bean id="helloSpringXDTasklet"
 		class="org.springframework.springxd.samples.batch.HelloSpringXDTasklet" />
 
+	<!-- For job module with multiple steps, comment the above batch job configuration
+		and uncomment the below batch job configuration -->
+
+	<!-- <batch:job id="multiStepDemo">
+		<batch:step id="step1" next="step2">
+			<batch:tasklet ref="helloSpringXDTasklet" />
+		</batch:step>
+		<batch:step id="step2">
+			<batch:tasklet ref="helloSpringXDTasklet" />
+		</batch:step>
+	</batch:job> -->
+
 </beans>

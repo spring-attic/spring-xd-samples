@@ -20,20 +20,24 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.JobParameter;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.StepContribution;
+import org.springframework.batch.core.StepExecution;
+import org.springframework.batch.core.StepExecutionListener;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.repeat.RepeatStatus;
 
 /**
+ * Sample tasklet.
  *
  * @author Gunnar Hillert
- *
+ * @author Ilayaperumal Gopinathan
  */
-public class HelloSpringXDTasklet implements Tasklet {
+public class HelloSpringXDTasklet implements Tasklet, StepExecutionListener {
 
 	private volatile AtomicInteger counter = new AtomicInteger(0);
 
@@ -85,5 +89,18 @@ public class HelloSpringXDTasklet implements Tasklet {
 			}
 		}
 		return RepeatStatus.FINISHED;
+	}
+
+	@Override
+	public void beforeStep(StepExecution stepExecution) {
+	}
+
+	@Override
+	public ExitStatus afterStep(StepExecution stepExecution) {
+		// To make the job execution fail, set the step execution to fail
+		// and return failed ExitStatus
+		// stepExecution.setStatus(BatchStatus.FAILED);
+		// return ExitStatus.FAILED;
+		return ExitStatus.COMPLETED;
 	}
 }
