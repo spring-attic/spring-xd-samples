@@ -124,3 +124,7 @@ via the *Executions* tab.
 
 In this example the state of the Job execution is stored in an HSQLDB database embedded inside the single node server. Please refer to the Spring XD documentation if you would like to store this data in another database.
 
+## To run batch job with multiple steps
+
+Follow the instructions in myjob.xml module to have batch job with multiple steps
+
