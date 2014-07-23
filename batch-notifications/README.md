@@ -33,7 +33,7 @@ As a result, you will see the following files and directories created under `tar
 
 In the `batch-notifications` directory
 
-	$ cp -R target/batch-notifications-1.0.0.BUILD-SNAPSHOT-bin/modules/* $XD_HOME/modules
+	$ ./copy-files.sh
 
 Now your Sample is ready to be executed. Start your *Spring XD* admin server (If it was already running, you must restart it):
 
@@ -55,9 +55,9 @@ We also create a separate stream sends notifications from the job to the log. Th
 
 ## Execute the process
 
-	xd:> http post --data {"input.file.name":"/path/to/payment.input"}
+	xd:> http post --data {"input.file.name":"/tmp/payment.input"}
 
-The payment file is located under `/src/main/resources/data/paymentImport/payment.input`
+The payment file is located under `/src/main/resources/data/paymentImport/payment.input` and was copied to your `/tmp` directory.
 	
 ## Results
 

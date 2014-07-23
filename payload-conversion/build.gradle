@@ -1,25 +1,28 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'io.spring.dependency-management'
 
 repositories{
 	maven { url 'http://repo.spring.io/libs-milestone' }
 }
 
+dependencyManagement {
+     imports {
+          mavenBom 'io.spring.platform:platform-bom:1.0.1.RELEASE'
+     }
+}
+
 ext {
-	junitVersion = '4.11'
-	springVersion = '4.0.3.RELEASE'
 	springXdVersion ='1.0.0.RC1'
-	slf4jVersion = '1.7.6'
-	log4jVersion = '1.2.17'
 }
 
 dependencies{
 		compile "org.springframework.xd:spring-xd-tuple:$springXdVersion"
-		runtime "org.slf4j:jcl-over-slf4j:$slf4jVersion"
-		runtime "org.slf4j:slf4j-log4j12:$slf4jVersion"
-		runtime "log4j:log4j:$log4jVersion"
-		testCompile "junit:junit:$junitVersion"
+		runtime "org.slf4j:jcl-over-slf4j"
+		runtime "org.slf4j:slf4j-log4j12"
+		runtime "log4j:log4j"
+		testCompile "junit:junit"
 }
 
 task dist(type: Copy) {
@@ -30,6 +33,15 @@ task dist(type: Copy) {
 	from { 'modules/' } {
 		into 'dist/modules'
 	}
+}
+
+buildscript {
+    repositories {
+        maven { url 'http://repo.spring.io/plugins-snapshot'}
+    }
+    dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:0.1.0.RELEASE'
+    }
 }
 
 task wrapper(type: Wrapper) {

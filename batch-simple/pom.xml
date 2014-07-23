@@ -16,33 +16,33 @@
 		<maven>2.2.1</maven>
 	</prerequisites>
 
+	<parent>
+		<groupId>io.spring.platform</groupId>
+		<artifactId>platform-bom</artifactId>
+		<version>1.0.1.RELEASE</version>
+		<relativePath/>
+	</parent>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.batch.version>3.0.1.RELEASE</spring.batch.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>spring-milestone</id>
+			<url>http://repo.spring.io/libs-milestone</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.batch</groupId>
 			<artifactId>spring-batch-core</artifactId>
-			<version>${spring.batch.version}</version>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-					<compilerArgument>-Xlint:all</compilerArgument>
-					<showWarnings>true</showWarnings>
-					<showDeprecation>true</showDeprecation>
-				</configuration>
-			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.4</version>
@@ -54,11 +54,4 @@
 			</plugin>
 		</plugins>
 	</build>	
-
-	<repositories>
-		<repository>
-			<id>spring-milestone</id>
-			<url>http://repo.spring.io/libs-milestone</url>
-		</repository>
-	</repositories>
 </project>
