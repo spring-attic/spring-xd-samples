@@ -21,7 +21,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.xd.version>1.0.0.RC1</spring.xd.version>
+    <spring.xd.version>1.0.0.RELEASE</spring.xd.version>
   </properties>
 
   <repositories>
