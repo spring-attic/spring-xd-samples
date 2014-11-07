@@ -27,6 +27,14 @@ This is the quintessential *Hello World* example for [Spring XD][]. It consists 
 
 This is the [Spring Batch word-count sample for Hadoop][] adapted for [Spring XD][]. This sample will take an input file and count the occurrences of each word within that document.
 
+### kafka-message-bus
+
+This sample walks you through setting up [Kafka][] as a message bus for [Spring XD][], also demonstrating partitining and failover.
+
+### kafka-source
+
+This sample walks you through setting up a [Kafka][] source in [Spring XD][], also demonstrating the use of multiple modules for ingestion efficiency.
+
 ### payload-conversion
 
 This sample project implements a *custom processor* and demonstrates the use of the Tuple data type.
@@ -41,3 +49,4 @@ Demo using [Spring XD][] with [Pivotal HD][].
 [Spring Batch word-count sample for Hadoop]: https://github.com/SpringSource/spring-data-book/tree/master/hadoop/batch-wordcount
 [D3 Javascript library]: http://d3js.org/
 [Pivotal HD]: http://www.gopivotal.com/products/pivotal-hd
+[Kafka]: http://kafka.apache.org
