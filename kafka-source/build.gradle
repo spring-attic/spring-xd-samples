@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+sourceCompatibility = 1.7
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    kafkaVersion = '0.8.1.1'
+}
+
+mainClassName = 'org.springframework.xd.demo.kafka.KafkaSourceDemo'
+
+idea {
+    module
+            { downloadSources = true }
+}
+
+dependencies {
+    compile ("org.apache.kafka:kafka_2.10:${kafkaVersion}") {
+        exclude group:"javax.jms"
+        exclude group:"com.sun.jdmk"
+        exclude group:"com.sun.jmx"
+    }
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
