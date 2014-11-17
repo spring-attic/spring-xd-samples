@@ -51,7 +51,7 @@ In this example, the job is driven by a stream rather than being launched using 
 	xd:> stream create --name paymenthttp --definition "http > queue:job:payment" --deploy
 	xd:> stream create --name paymenttap --definition "tap:job:payment > log" --deploy
 	
-We also create a separate stream sends notifications from the job to the log. This lets us know when the job completes, along with status information.
+We also create a separate stream which sends notifications from the job to the log. This lets us know when the job completes, along with status information.
 
 ## Execute the process
 
