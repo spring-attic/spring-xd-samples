@@ -35,6 +35,10 @@ This sample walks you through setting up [Kafka][] as a message bus for [Spring 
 
 This sample walks you through setting up a [Kafka][] source in [Spring XD][], also demonstrating the use of multiple modules for ingestion efficiency.
 
+### si-dsl-module
+
+This sample demonstrates how to create a custom module project, including integration tests, and packaging the module as an uber-jar using maven (requires Spring XD 1.1.x). The project also demonstrates the use of the [Spring Integration Java DSL][]
+
 ### payload-conversion
 
 This sample project implements a *custom processor* and demonstrates the use of the Tuple data type.
@@ -50,3 +54,4 @@ Demo using [Spring XD][] with [Pivotal HD][].
 [D3 Javascript library]: http://d3js.org/
 [Pivotal HD]: http://www.gopivotal.com/products/pivotal-hd
 [Kafka]: http://kafka.apache.org
+[Spring Integration Java DSL]: https://github.com/spring-projects/spring-integration-java-dsl
