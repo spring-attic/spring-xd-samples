@@ -25,6 +25,8 @@ This implements a simple custom module which simply adds a prefix and/or suffix 
 
 The project [pom][] declares 'spring-xd-module-parent' as its parent. This adds the dependencies needed to compile and test the module and also provides and configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar packaging any dependencies that are not already provided by the Spring XD container. 
 
+In this case, `spring-integration-java-dsl` is a module dependency that must be packaged with the module to be loaded by the module's class loader. This component has transitive dependencies, including Spring Integration and Spring Framework libraries that are already in the Spring XD classpath. To avoid potential version conflicts and other class loader issues, the Spring Boot Maven Plugin is configured to exclude these from the from the uber-jar. See the [Modules][] section in the Spring XD Reference for instructions on how to override such exclusions.   
+
 
 ## Using the Custom Module
 
@@ -81,3 +83,4 @@ You should see the stream output in the Spring XD log:
 [pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/si-dsl-module/pom.xml
 [Spring Integration Java DSL]: https://github.com/spring-projects/spring-integration-java-dsl
 [Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
+[Modules]http://docs.spring.io/spring-xd/docs/current/reference/html/#modules
