@@ -11,7 +11,7 @@ In order to install the module run it in your Spring XD installation, you will n
 
 ## Code Tour
 
-This implements a simple custom module which simply adds a prefix and/or suffix to a string payload. The example demonstrates the use of the spring-xd-module-parent pom and is intentionally over-engineered to demonstrate Spring XD support for module development including:
+This implements a simple custom module which simply adds a prefix and/or suffix to a string payload. The example demonstrates the use of the `spring-xd-module-parent` pom and is intentionally over-engineered to demonstrate Spring XD support for module development including:
  * Advanced features related to  module options, such as using a Java class to define and validate module option values, and how to bind a module option to a Spring environment profile. 
  * The use of Spring Java configuration (@Configuration) and the [Spring Integration Java DSL][] for implementing the payload transformation
  * A unit test to validate the Module Options Metadata
@@ -78,6 +78,6 @@ You should see the stream output in the Spring XD log:
 	14:11:19,513 1.1.0.SNAP  INFO DeploymentSupervisor-0 server.StreamDeploymentListener - Stream Stream{name='test'} deployment attempt complete
 	14:11:22,582 1.1.0.SNAP  INFO pool-10-thread-4 sink.test - just saying hello, world
 
-
+[pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/si-dsl-module/pom.xml
 [Spring Integration Java DSL]: https://github.com/spring-projects/spring-integration-java-dsl
-[Spring Boot Maven Plugin] : http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
+[Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
