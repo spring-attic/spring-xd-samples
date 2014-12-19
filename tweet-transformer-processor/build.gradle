@@ -1,0 +1,59 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+group = 'com.custom.transformer'
+version = '1.0.0.BUILD-SNAPSHOT'
+
+description = "Spring XD Tweet Transformer Module"
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+ext {
+	springXdVersion = '1.1.0.BUILD-SNAPSHOT'
+}
+
+configurations {
+	messageBus {
+		transitive = false
+	}
+}
+
+dependencies {
+	compile("org.springframework.xd:spring-xd-dirt:${project.springXdVersion}") {
+		exclude group: 'org.springframework.xd', module: 'spring-xd-hadoop'
+	}
+
+	testCompile("org.springframework.xd:spring-xd-test:${project.springXdVersion}") {
+		exclude group: 'org.springframework.xd', module: 'spring-xd-hadoop'
+	}
+	testRuntime("org.apache.hadoop:hadoop-common:2.3.0") {
+		exclude group: 'javax.servlet'
+	}
+
+	messageBus("org.springframework.xd:spring-xd-messagebus-local:$springXdVersion")
+}
+
+task copyToLib(type: Copy) {
+	into "$projectDir/lib/messagebus/local"
+	from configurations.messageBus
+}
+
+test {
+	systemProperty 'XD_HOME', rootDir
+}
+
+test.dependsOn copyToLib
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '1.12'
+}
+
+repositories {
+	maven { url "http://repo.spring.io/libs-release" }
+	maven { url "http://jcenter.bintray.com/" }
+	maven { url "http://repo.spring.io/snapshot" }
+	maven { url "http://repo.spring.io/milestone" }
+}
+

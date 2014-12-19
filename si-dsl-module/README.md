@@ -7,7 +7,7 @@ This is an example of a custom module project that can be built and packaged for
 
 In order to install the module run it in your Spring XD installation, you will need to have installed:
 
-* Spring XD version 1.1.x ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Getting-Started))
+* Spring XD version 1.1.x ([Instructions](http://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started))
 
 ## Code Tour
 

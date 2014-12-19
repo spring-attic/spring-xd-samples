@@ -1,8 +1,9 @@
 .gradle/
 build
 target
-/.idea/
+**/.idea/
 /out/
+**/lib/
 *.ipr
 *.iml
 *.iws

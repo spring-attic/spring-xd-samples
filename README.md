@@ -39,6 +39,10 @@ This sample walks you through setting up a [Kafka][] source in [Spring XD][], al
 
 This sample demonstrates how to create a custom module project, including integration tests, and packaging the module as an uber-jar using maven (requires Spring XD 1.1.x). The project also demonstrates the use of the [Spring Integration Java DSL][]
 
+### tweet-transformer
+
+A simple custom processor module project, including integration tests. This one has no external dependencies other than the processor implementation and Spring configuration which is provided either as XML or @Configuration.
+
 ### payload-conversion
 
 This sample project implements a *custom processor* and demonstrates the use of the Tuple data type.
