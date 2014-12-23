@@ -40,21 +40,16 @@ The uber-jar will be in `target/reactor-moving-average-1.0.0.BUILD-SNAPSHOT.jar`
 
 Now create an deploy a stream:
 
-```
-xd:>stream create reactor --definition "http | reactor-moving-average --inputType=application/x-xd-tuple | log" --deploy
-```
+
+        xd:>stream create reactor --definition "http | reactor-moving-average --inputType=application/x-xd-tuple | log" --deploy
 
 To post several messages, use the script file generateData.script located in this repository.
 
-```
-xd:>script --file [path-to]/generateData.script
-```
+   	xd:>script --file [path-to]/generateData.script
 
 This will post JSON data such as {"id":"1","measurement":"10"} with increasing valuespwd for the measurement.  The use of the inputType option (all modules have this option) instructs XD to convert the JSON string to an XD Tuple object before invoking the process method.  
 
 You should see the stream output in the Spring XD log:
 
-```
 17:17:25,064 1.1.0.SNAP INFO pool-10-thread-12 sink.test3 - {"id":"d5c9617b-4bac-3786-6559-6b0ab221496c","timestamp":1419027445042,"average":12.0}
 17:17:25,137 1.1.0.SNAP INFO pool-10-thread-6 sink.test3 - {"id":"661aaab5-a14c-b63d-7e6d-c3329de2866a","timestamp":1419027445133,"average":17.0}
-```
