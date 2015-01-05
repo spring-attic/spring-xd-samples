@@ -23,4 +23,14 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
+	<repositories>
+		<repository>
+			<id>spring-io-milestone</id>
+			<url>http://repo.spring.io/milestone</url>
+		</repository>
+		<repository>
+			<id>jcenter</id>
+			<url>http://jcenter.bintray.com</url>
+		</repository>
+	</repositories>
 </project>
