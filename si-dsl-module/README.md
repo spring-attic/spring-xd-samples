@@ -1,11 +1,11 @@
 Spring XD SI DSL Module
 =============================
 
-This is an example of a custom module project that can be built and packaged for installation in an Spring XD runtime environment using maven. The project includes sample unit and integration tests, including the ability to test the module in an embedded single node container. It also illustrates how to define module options which are bound to either Spring properties or environment profiles.
+This is an example of a custom module project that is built and packaged for installation in a Spring XD runtime environment using maven. The project includes sample unit and integration tests, including the ability to test the module in an embedded single node container. It also illustrates how to define module options which are bound to either Spring properties or environment profiles.
 
 ## Requirements
 
-In order to install the module run it in your Spring XD installation, you will need to have installed:
+In order to install the module and run it in your Spring XD installation, you will need to have installed:
 
 * Spring XD version 1.1.x ([Instructions](http://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started))
 
@@ -16,14 +16,14 @@ This implements a simple custom module which simply adds a prefix and/or suffix 
  * The use of Spring Java configuration (@Configuration) and the [Spring Integration Java DSL][] for implementing the payload transformation
  * A unit test to validate the Module Options Metadata
  * An integration test to test the module definition with Spring Integration
- * An integration test to test the module registered and used in an embedded Spring XD single node container 
+ * An integration test to test the module registered and deployed in an embedded Spring XD single node container 
 
 
 ## Building
 
 	$ mvn package
 
-The project [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to compile and test the module and also provides and configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar packaging any dependencies that are not already provided by the Spring XD container. 
+The project [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to compile and test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container. 
 
 In this case, `spring-integration-java-dsl` is a module dependency that must be packaged with the module to be loaded by the module's class loader. This component has transitive dependencies, including Spring Integration and Spring Framework libraries that are already in the Spring XD classpath. To avoid potential version conflicts and other class loader issues, the Spring Boot Maven Plugin is configured to exclude these from the from the uber-jar. See the [Modules][] section in the Spring XD Reference for instructions on how to override such exclusions.   
 
@@ -36,7 +36,7 @@ The uber-jar will be in `target/si-dsl-module-1.0.0.BUILD-SNAPSHOT.jar`. To inst
 	_____                           __   _______
 	/  ___|          (-)             \ \ / /  _  \
 	\ `--. _ __  _ __ _ _ __   __ _   \ V /| | | |
- 	`--. \ '_ \| '__| | '_ \ / _` |  / ^ \| | | |
+ 	`--. \ '_ \| '__| | '_ \ / _` |   / ^ \| | | |
 	/\__/ / |_) | |  | | | | | (_| | / / \ \ |/ /
 	\____/| .__/|_|  |_|_| |_|\__, | \/   \/___/
     	  | |                  __/ |

@@ -1,11 +1,11 @@
 Spring XD SI DSL Module
 =============================
 
-This is an example of a custom module project that can be built and packaged as a simple jar file for installation in an Spring XD runtime environment using maven. The project includes sample integration tests demonstrating the ability to test the module in an embedded single node container.
+This is an example of a custom module project that can be built and packaged as a simple jar file for installation in a Spring XD runtime environment using maven. The project includes sample integration tests demonstrating the ability to test the module in an embedded single node container.
 
 ## Requirements
 
-In order to install the module run it in your Spring XD installation, you will need to have installed:
+In order to install the module and run it in your Spring XD installation, you will need to have installed:
 
 * Spring XD version 1.1.x ([Instructions](http://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started))
 

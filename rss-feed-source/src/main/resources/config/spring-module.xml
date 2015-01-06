@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:int="http://www.springframework.org/schema/integration"
+	   xmlns:int-feed="http://www.springframework.org/schema/integration/feed"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration
+		http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/integration/feed
+		http://www.springframework.org/schema/integration/feed/spring-integration-feed.xsd">
+
+	<int-feed:inbound-channel-adapter id="xdFeed" channel="to.json" url="${url}" auto-startup="false">
+		<int:poller fixed-rate="${fixedRate}" max-messages-per-poll="${maxMessagesPerPoll}" />
+	</int-feed:inbound-channel-adapter>
+
+	<int:transformer input-channel="to.json" output-channel="output">
+		<bean class="com.acme.SyndEntryJsonTransformer"/>
+	</int:transformer>
+
+	<int:channel id="output"/>
+
+
+</beans>

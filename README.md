@@ -43,6 +43,11 @@ This sample demonstrates how to create a custom module project, including integr
 
 A simple custom processor module project, including integration tests. This one has no external dependencies other than the processor implementation and Spring configuration which is provided either as XML or @Configuration.
 
+### rss-feed-source
+
+A simple custom source module project implementing an RSS feed, including integration tests.
+
+
 ### payload-conversion
 
 This sample project implements a *custom processor* and demonstrates the use of the Tuple data type.
