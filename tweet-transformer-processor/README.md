@@ -1,4 +1,4 @@
-Spring XD SI DSL Module
+Tweet Transformer Processor
 =============================
 
 This is an example of a custom module project that can be built and packaged as a simple jar file for installation in a Spring XD runtime environment using maven. The project includes sample integration tests demonstrating the ability to test the module in an embedded single node container.

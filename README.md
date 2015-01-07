@@ -47,6 +47,10 @@ A simple custom processor module project, including integration tests. This one 
 
 A simple custom source module project implementing an RSS feed, including integration tests.
 
+### redis-store-sink
+
+A simple custom sink module project implementing a Redis store, including integration tests.
+
 
 ### payload-conversion
 
