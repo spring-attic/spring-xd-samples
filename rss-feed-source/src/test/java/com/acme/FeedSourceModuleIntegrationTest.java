@@ -37,8 +37,6 @@ public class FeedSourceModuleIntegrationTest {
 
 	private static int RECEIVE_TIMEOUT = 6000;
 
-	private static String moduleName = "feed";
-
 	/**
 	 * Start the single node container, binding random unused ports, etc. to not conflict with any other instances
 	 * running on this host. Configure the ModuleRegistry to include the project module.
@@ -50,7 +48,7 @@ public class FeedSourceModuleIntegrationTest {
 		SingleNodeIntegrationTestSupport singleNodeIntegrationTestSupport = new SingleNodeIntegrationTestSupport
 				(application);
 		singleNodeIntegrationTestSupport.addModuleRegistry(new SingletonModuleRegistry(ModuleType.source,
-				moduleName));
+				"feed"));
 	}
 
 	@Test
