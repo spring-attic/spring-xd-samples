@@ -3,7 +3,6 @@
 *~
 /.gradle/
 build
-pom.xml
 .idea/
 /out/
 target/
