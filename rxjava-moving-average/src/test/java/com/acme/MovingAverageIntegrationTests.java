@@ -1,6 +1,9 @@
 package com.acme;
 
-import org.junit.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 import static org.springframework.xd.dirt.test.process.SingleNodeProcessingChainSupport.*;
@@ -27,24 +30,25 @@ public class MovingAverageIntegrationTests {
 
     private static int RECEIVE_TIMEOUT = 5000;
 
-    private static String moduleName = "reactor-moving-average";
+    private static String moduleName = "rxjava-moving-average";
 
     private SingleNodeProcessingChain chain;
 
     /**
      * Start the single node container, binding random unused ports, etc. to not conflict with any other instances
      * running on this host. Configure the ModuleRegistry to include the project module.
-     *
-     * XD_HOME must be set to a valid install location so that the message bus libraries can be copied over
      */
     @BeforeClass
     public static void setUp() {
+
+        System.setProperty("XD_HOME", "/home/mpollack/projects/spring-xd/build/dist/spring-xd/xd");
         RandomConfigurationSupport randomConfigSupport = new RandomConfigurationSupport();
         application = new SingleNodeApplication().run();
         SingleNodeIntegrationTestSupport singleNodeIntegrationTestSupport = new SingleNodeIntegrationTestSupport
                 (application);
         singleNodeIntegrationTestSupport.addModuleRegistry(new SingletonModuleRegistry(ModuleType.processor,
                 moduleName));
+
     }
 
     @After
@@ -62,7 +66,7 @@ public class MovingAverageIntegrationTests {
 
         String streamName = "testMovingAverage";
 
-        chain = chain(application, streamName, "reactor-moving-average");
+        chain = chain(application, streamName, "rxjava-moving-average");
 
         List<Tuple> inputData = new ArrayList<Tuple>();
         for (int i = 0; i < 10; i++) {
@@ -74,7 +78,6 @@ public class MovingAverageIntegrationTests {
         }
 
         assertResults(chain);
-
     }
 
     @Test
@@ -82,7 +85,7 @@ public class MovingAverageIntegrationTests {
 
         String streamName = "testMovingAverageJson";
 
-        chain = chain(application, streamName, "reactor-moving-average --inputType=application/x-xd-tuple");
+        chain = chain(application, streamName, "rxjava-moving-average --inputType=application/x-xd-tuple");
         List<String> jsonData = new ArrayList<String>();
         for (int i = 0; i < 10; i++) {
             String measurement = Integer.toString(i+10);
@@ -91,13 +94,8 @@ public class MovingAverageIntegrationTests {
         for (String json : jsonData) {
             chain.sendPayload(json);
         }
-
-
         assertResults(chain);
-
     }
-
-
 
     private void assertResults(SingleNodeProcessingChain chain) {
         List<Tuple> outputData = new ArrayList<Tuple>();
@@ -110,6 +108,4 @@ public class MovingAverageIntegrationTests {
         assertEquals(17D, outputData.get(1).getDouble("average"), 0.01);
         assertNull(outputData.get(2));
     }
-
-
 }

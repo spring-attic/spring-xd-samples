@@ -1,0 +1,13 @@
+http post --data {"id":"1","measurement":"10"} --contentType application/json
+http post --data {"id":"1","measurement":"11"} --contentType application/json
+http post --data {"id":"1","measurement":"12"} --contentType application/json
+http post --data {"id":"1","measurement":"13"} --contentType application/json
+http post --data {"id":"1","measurement":"14"} --contentType application/json
+http post --data {"id":"1","measurement":"15"} --contentType application/json
+http post --data {"id":"1","measurement":"16"} --contentType application/json
+http post --data {"id":"1","measurement":"17"} --contentType application/json
+http post --data {"id":"1","measurement":"18"} --contentType application/json
+http post --data {"id":"1","measurement":"19"} --contentType application/json
+
+
+

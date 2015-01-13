@@ -1,41 +1,53 @@
-16:31:43,692 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - XD Home: /home/mpollack/projects/spring-xd/build/dist/spring-xd/xd
-16:31:43,693 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - Transport: local
-16:31:43,693 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - XD config location: file:/home/mpollack/projects/spring-xd/build/dist/spring-xd/xd/config
-16:31:43,694 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - XD config names: servers
-16:31:43,694 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - XD module config location: file:/home/mpollack/projects/spring-xd/build/dist/spring-xd/xd/config/modules/
-16:31:43,694 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - XD module config name: modules
-16:31:43,695 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - Admin web UI: http://feynman:41644/admin-ui
-16:31:43,695 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - Zookeeper at: localhost:21998
-16:31:43,695 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - Zookeeper namespace: xd
-16:31:43,695 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - Analytics: memory
-16:31:43,775 1.1.0.SNAP  INFO LeaderSelector-0 server.DeploymentSupervisor - Leader Admin application:default,admin,singlenode,hsqldbServer:41644 is watching for stream/job deployment requests.
-16:31:43,861 1.1.0.SNAP  INFO DeploymentSupervisor-0 server.ContainerListener - Path cache event: type=INITIALIZED
-16:31:43,876 1.1.0.SNAP  INFO main server.AdminServerApplication - Started AdminServerApplication in 4.9 seconds (JVM running for 11.978)
-16:31:45,215 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - XD Home: /home/mpollack/projects/spring-xd/build/dist/spring-xd/xd
-16:31:45,216 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - Transport: local
-16:31:45,216 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - XD config location: file:/home/mpollack/projects/spring-xd/build/dist/spring-xd/xd/config
-16:31:45,216 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - XD config names: servers
-16:31:45,216 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - XD module config location: file:/home/mpollack/projects/spring-xd/build/dist/spring-xd/xd/config/modules/
-16:31:45,216 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - XD module config name: modules
-16:31:45,216 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - Container IP address: 192.168.70.136
-16:31:45,217 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - Container hostname:   feynman
-16:31:45,217 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - Hadoop Distro: hadoop25
-16:31:45,219 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - Hadoop version detected from classpath: 2.3.0
-16:31:45,219 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - Zookeeper at: localhost:21998
-16:31:45,219 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - Zookeeper namespace: xd
-16:31:45,219 1.1.0.SNAP  INFO main util.XdConfigLoggingInitializer - Analytics: memory
-16:31:45,227 1.1.0.SNAP  INFO main server.ContainerRegistrar - Container {ip=192.168.70.136, host=feynman, groups=, pid=19349, id=e2c9a3c1-7dc7-4604-a090-0f44443df26c} joined cluster
-16:31:45,230 1.1.0.SNAP  INFO main server.ContainerServerApplication - Started ContainerServerApplication in 0.553 seconds (JVM running for 13.332)
-16:31:45,237 1.1.0.SNAP  INFO DeploymentSupervisor-0 server.ContainerListener - Path cache event: path=/containers/e2c9a3c1-7dc7-4604-a090-0f44443df26c, type=CHILD_ADDED
-16:31:45,246 1.1.0.SNAP  INFO DeploymentsPathChildrenCache-0 server.DeploymentListener - Path cache event: type=INITIALIZED
-16:31:45,248 1.1.0.SNAP  INFO DeploymentSupervisor-0 server.ContainerListener - Container arrived: Container{name='e2c9a3c1-7dc7-4604-a090-0f44443df26c', attributes={ip=192.168.70.136, host=feynman, groups=, pid=19349, id=e2c9a3c1-7dc7-4604-a090-0f44443df26c}}
-16:31:45,249 1.1.0.SNAP  INFO DeploymentSupervisor-0 server.ContainerListener - Scheduling deployments to new container(s) in 15000 ms 
-16:31:45,846 1.1.0.SNAP  INFO DeploymentSupervisor-0 server.InitialDeploymentListener - Path cache event: path=/deployments/streams/testMovingAverageJson, type=CHILD_ADDED
-16:31:45,905 1.1.0.SNAP  INFO DeploymentSupervisor-0 server.StreamDeploymentListener - Deploying stream Stream{name='testMovingAverageJson'}
-16:31:45,924 1.1.0.SNAP  INFO DeploymentsPathChildrenCache-0 server.DeploymentListener - Path cache event: path=/deployments/modules/allocated/e2c9a3c1-7dc7-4604-a090-0f44443df26c/testMovingAverageJson.processor.reactor-moving-average.1, type=CHILD_ADDED
-16:31:45,925 1.1.0.SNAP  INFO DeploymentsPathChildrenCache-0 server.DeploymentListener - Deploying module 'reactor-moving-average' for stream 'testMovingAverageJson'
-16:31:46,003 1.1.0.SNAP  INFO DeploymentsPathChildrenCache-0 server.DeploymentListener - Deploying module [ModuleDescriptor@cf53f53 moduleName = 'reactor-moving-average', moduleLabel = 'reactor-moving-average', group = 'testMovingAverageJson', sourceChannelName = 'queue:producer', sinkChannelName = 'queue:consumer', index = 0, type = processor, parameters = map['inputType' -> 'application/x-xd-tuple'], children = list[[empty]]]
-16:31:46,306 1.1.0.SNAP  INFO DeploymentSupervisor-0 server.StreamDeploymentListener - Deployment status for stream 'testMovingAverageJson': DeploymentStatus{state=deployed}
-16:31:46,308 1.1.0.SNAP  INFO DeploymentSupervisor-0 server.StreamDeploymentListener - Stream Stream{name='testMovingAverageJson'} deployment attempt complete
-16:31:51,388 1.1.0.SNAP  INFO LeaderSelector-0 server.DeploymentSupervisor - Leadership canceled due to thread interrupt
-16:31:51,439 1.1.0.SNAP  INFO main-EventThread server.DeploymentListener - Undeploying module [ModuleDescriptor@cf53f53 moduleName = 'reactor-moving-average', moduleLabel = 'reactor-moving-average', group = 'testMovingAverageJson', sourceChannelName = 'queue:producer', sinkChannelName = 'queue:consumer', index = 0, type = processor, parameters = map['inputType' -> 'application/x-xd-tuple'], children = list[[empty]]]
+17:43:21,062 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - XD Home: /home/mpollack/software/spring-xd-1.1.0.M2/xd
+17:43:21,066 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - Transport: local
+17:43:21,067 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - XD config location: file:/home/mpollack/software/spring-xd-1.1.0.M2/xd/config
+17:43:21,068 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - XD config names: servers
+17:43:21,068 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - XD module config location: file:/home/mpollack/software/spring-xd-1.1.0.M2/xd/config/modules/
+17:43:21,068 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - XD module config name: modules
+17:43:21,069 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - Admin web UI: http://feynman:54644/admin-ui
+17:43:21,069 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - Zookeeper at: localhost:48081
+17:43:21,069 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - Zookeeper namespace: xd
+17:43:21,069 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - Analytics: memory
+17:43:21,145 1.1.0.M2  INFO LeaderSelector-0 server.DeploymentSupervisor - Leader Admin application:default,admin,singlenode,hsqldbServer:54644 is watching for stream/job deployment requests.
+17:43:21,327 1.1.0.M2  INFO DeploymentSupervisor-0 server.ContainerListener - Path cache event: type=INITIALIZED
+17:43:21,330 1.1.0.M2  INFO main server.AdminServerApplication - Started AdminServerApplication in 5.635 seconds (JVM running for 13.302)
+17:43:22,868 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - XD Home: /home/mpollack/software/spring-xd-1.1.0.M2/xd
+17:43:22,868 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - Transport: local
+17:43:22,868 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - XD config location: file:/home/mpollack/software/spring-xd-1.1.0.M2/xd/config
+17:43:22,868 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - XD config names: servers
+17:43:22,869 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - XD module config location: file:/home/mpollack/software/spring-xd-1.1.0.M2/xd/config/modules/
+17:43:22,869 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - XD module config name: modules
+17:43:22,869 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - Container IP address: 192.168.70.136
+17:43:22,869 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - Container hostname:   feynman
+17:43:22,869 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - Hadoop Distro: hadoop25
+17:43:22,871 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - Hadoop version detected from classpath: 2.3.0
+17:43:22,871 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - Zookeeper at: localhost:48081
+17:43:22,871 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - Zookeeper namespace: xd
+17:43:22,871 1.1.0.M2  INFO main util.XdConfigLoggingInitializer - Analytics: memory
+17:43:22,892 1.1.0.M2  INFO main server.ContainerRegistrar - Container {ip=192.168.70.136, host=feynman, groups=, pid=22099, id=fa19fd28-3ea7-4fa6-9131-9466c604d87b} joined cluster
+17:43:22,894 1.1.0.M2  INFO DeploymentSupervisor-0 server.ContainerListener - Path cache event: path=/containers/fa19fd28-3ea7-4fa6-9131-9466c604d87b, type=CHILD_ADDED
+17:43:22,894 1.1.0.M2  INFO main server.ContainerServerApplication - Started ContainerServerApplication in 0.663 seconds (JVM running for 14.866)
+17:43:22,906 1.1.0.M2  INFO DeploymentSupervisor-0 server.ContainerListener - Container arrived: Container{name='fa19fd28-3ea7-4fa6-9131-9466c604d87b', attributes={ip=192.168.70.136, host=feynman, groups=, pid=22099, id=fa19fd28-3ea7-4fa6-9131-9466c604d87b}}
+17:43:22,907 1.1.0.M2  INFO DeploymentSupervisor-0 server.ContainerListener - Scheduling deployments to new container(s) in 15000 ms 
+17:43:22,920 1.1.0.M2  INFO DeploymentsPathChildrenCache-0 server.DeploymentListener - Path cache event: type=INITIALIZED
+17:43:23,428 1.1.0.M2  INFO DeploymentSupervisor-0 server.InitialDeploymentListener - Path cache event: path=/deployments/streams/testMovingAverage, type=CHILD_ADDED
+17:43:23,475 1.1.0.M2  INFO DeploymentSupervisor-0 server.StreamDeploymentListener - Deploying stream Stream{name='testMovingAverage'}
+17:43:23,492 1.1.0.M2  INFO DeploymentsPathChildrenCache-0 server.DeploymentListener - Path cache event: path=/deployments/modules/allocated/fa19fd28-3ea7-4fa6-9131-9466c604d87b/testMovingAverage.processor.reactor-moving-average.1, type=CHILD_ADDED
+17:43:23,493 1.1.0.M2  INFO DeploymentsPathChildrenCache-0 server.DeploymentListener - Deploying module 'reactor-moving-average' for stream 'testMovingAverage'
+17:43:23,546 1.1.0.M2  INFO DeploymentsPathChildrenCache-0 server.DeploymentListener - Deploying module [ModuleDescriptor@5caad6a1 moduleName = 'reactor-moving-average', moduleLabel = 'reactor-moving-average', group = 'testMovingAverage', sourceChannelName = 'queue:producer', sinkChannelName = 'queue:consumer', index = 0, type = processor, parameters = map[[empty]], children = list[[empty]]]
+17:43:23,823 1.1.0.M2  INFO DeploymentSupervisor-0 server.StreamDeploymentListener - Deployment status for stream 'testMovingAverage': DeploymentStatus{state=deployed}
+17:43:23,825 1.1.0.M2  INFO DeploymentSupervisor-0 server.StreamDeploymentListener - Stream Stream{name='testMovingAverage'} deployment attempt complete
+17:43:28,895 1.1.0.M2  INFO main-EventThread server.DeploymentListener - Undeploying module [ModuleDescriptor@5caad6a1 moduleName = 'reactor-moving-average', moduleLabel = 'reactor-moving-average', group = 'testMovingAverage', sourceChannelName = 'queue:producer', sinkChannelName = 'queue:consumer', index = 0, type = processor, parameters = map[[empty]], children = list[[empty]]]
+17:43:28,912 1.1.0.M2  INFO DeploymentsPathChildrenCache-0 server.DeploymentListener - Path cache event: path=/deployments/modules/allocated/fa19fd28-3ea7-4fa6-9131-9466c604d87b/testMovingAverage.processor.reactor-moving-average.1, type=CHILD_REMOVED
+17:43:28,912 1.1.0.M2  INFO DeploymentSupervisor-0 server.InitialDeploymentListener - Path cache event: path=/deployments/streams/testMovingAverage, type=CHILD_REMOVED
+17:43:29,047 1.1.0.M2  INFO DeploymentSupervisor-0 server.InitialDeploymentListener - Path cache event: path=/deployments/streams/testMovingAverageJson, type=CHILD_ADDED
+17:43:29,093 1.1.0.M2  INFO DeploymentSupervisor-0 server.StreamDeploymentListener - Deploying stream Stream{name='testMovingAverageJson'}
+17:43:29,119 1.1.0.M2  INFO DeploymentsPathChildrenCache-0 server.DeploymentListener - Path cache event: path=/deployments/modules/allocated/fa19fd28-3ea7-4fa6-9131-9466c604d87b/testMovingAverageJson.processor.reactor-moving-average.1, type=CHILD_ADDED
+17:43:29,120 1.1.0.M2  INFO DeploymentsPathChildrenCache-0 server.DeploymentListener - Deploying module 'reactor-moving-average' for stream 'testMovingAverageJson'
+17:43:29,178 1.1.0.M2  INFO DeploymentsPathChildrenCache-0 server.DeploymentListener - Deploying module [ModuleDescriptor@39d528a0 moduleName = 'reactor-moving-average', moduleLabel = 'reactor-moving-average', group = 'testMovingAverageJson', sourceChannelName = 'queue:producer', sinkChannelName = 'queue:consumer', index = 0, type = processor, parameters = map['inputType' -> 'application/x-xd-tuple'], children = list[[empty]]]
+17:43:29,299 1.1.0.M2  INFO DeploymentSupervisor-0 server.StreamDeploymentListener - Deployment status for stream 'testMovingAverageJson': DeploymentStatus{state=deployed}
+17:43:29,301 1.1.0.M2  INFO DeploymentSupervisor-0 server.StreamDeploymentListener - Stream Stream{name='testMovingAverageJson'} deployment attempt complete
+17:43:34,335 1.1.0.M2  INFO main-EventThread server.DeploymentListener - Undeploying module [ModuleDescriptor@39d528a0 moduleName = 'reactor-moving-average', moduleLabel = 'reactor-moving-average', group = 'testMovingAverageJson', sourceChannelName = 'queue:producer', sinkChannelName = 'queue:consumer', index = 0, type = processor, parameters = map['inputType' -> 'application/x-xd-tuple'], children = list[[empty]]]
+17:43:34,354 1.1.0.M2  INFO DeploymentSupervisor-0 server.InitialDeploymentListener - Path cache event: path=/deployments/streams/testMovingAverageJson, type=CHILD_REMOVED
+17:43:34,354 1.1.0.M2  INFO DeploymentsPathChildrenCache-0 server.DeploymentListener - Path cache event: path=/deployments/modules/allocated/fa19fd28-3ea7-4fa6-9131-9466c604d87b/testMovingAverageJson.processor.reactor-moving-average.1, type=CHILD_REMOVED
+17:43:34,417 1.1.0.M2  INFO LeaderSelector-0 server.DeploymentSupervisor - Leadership canceled due to thread interrupt
