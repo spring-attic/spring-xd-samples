@@ -45,10 +45,7 @@ The jar will be in `target/tweet-transformer-1.0.0.BUILD-SNAPSHOT.jar` (maven) o
 
 Now create and deploy a stream:
 
-[Note] 
-====
-You must provide twitter credentials to run this example. See the [twittersearch source](http://docs.spring.io/spring-xd/docs/current/reference/html/#twitter-search) documentation for details.
-====
+Note: You must provide twitter credentials to run this example. See the [twittersearch source](http://docs.spring.io/spring-xd/docs/current/reference/html/#twitter-search) documentation for details.
 
 	xd:>stream create test --definition "twittersearch --query=[querystring] | tweet-transformer | log" --deploy
 
