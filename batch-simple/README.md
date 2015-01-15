@@ -7,37 +7,19 @@ In this *Hello World* example for *Spring XD* you will create a minimal code-bas
 
 In order for the sample to run you will need to have installed:
 
-* Spring XD ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Getting-Started))
+* Spring XD 1.1.0.M2 or higher ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Getting-Started))
 
 ## Code Tour
 
-The processing actions that are part of a Step in a batch Job are pluggable.  The plug-in point for a Step is known as a [Tasklet](http://static.springsource.org/spring-batch/apidocs/org/springframework/batch/core/step/tasklet/Tasklet.html).  In this example we create a tasklet by implementing the Tasklet interface.  Take a look at the [source code](https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/java/org/springframework/springxd/samples/batch/HelloSpringXDTasklet.java) as well as its incorporation into a (Job definition)[https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/resources/myjob.xml) inside an XML file.  Note that the XML file must contain a single Job.
+The processing actions that are part of a Step in a batch Job are pluggable.  The plug-in point for a Step is known as a [Tasklet](http://static.springsource.org/spring-batch/apidocs/org/springframework/batch/core/step/tasklet/Tasklet.html).  In this example we create a tasklet by implementing the Tasklet interface.  Take a look at the [source code](https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/java/org/springframework/springxd/samples/batch/HelloSpringXDTasklet.java) as well as its incorporation into a (Job definition)[https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/resources/spring-module.xml) inside an XML file. Note that the XML file must contain a single Job.
 
 ## Building
 
-	$ mvn clean assembly:assembly
+	$ mvn package
 
-As a result, you will see the following files and directories created under `target/springxd-batch-simple-1.0.0.BUILD-SNAPSHOT-bin/`:
+The project [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to compile and test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container. In this case there are no additional dependencies so the artifact is built as a common jar. ee the [Modules][] section in the Spring XD Reference for more details on module packaging.   
 
-```
-|-- springxd-batch-simple-1.0.0.BUILD-SNAPSHOT-bin
-|   |-- lib
-|   |   `-- springxd-batch-simple-1.0.0.BUILD-SNAPSHOT.jar
-|   `-- modules
-|       `-- job
-|           `-- myjob.xml
-```
-
-## Running the Sample
-
-**IMPORTANT**: Please ensure that you have defined the `$XD_HOME` environment variable, pointing to the correct *Spring XD* home directory.
-
-In the `batch-simple` directory run the shell script copy-files.sh.  
-
-  
-	$ ./copy-files.sh
-
-This will move the build artifacts into the `modules/job` and `lib` directories to the right locations under *$XD_HOME*.
+## Running the SampleStart up the spring-xd single node container 
 
 Now your sample is ready to be executed. Start your *Spring XD* admin server (If it was already running, you must restart it):
 
@@ -51,7 +33,7 @@ Now your sample is ready to be executed. Start your *Spring XD* admin server (If
 	\____/| .__/|_|  |_|_| |_|\__, | \/   \/___/
 	      | |                  __/ |
 	      |_|                 |___/
-	1.0.0.BUILD-SNAPSHOT             eXtreme Data
+	1.1.0.BUILD-SNAPSHOT             eXtreme Data
 
 
 	Started container : SingleNodeApplication
@@ -71,9 +53,13 @@ Now start the *Spring XD Shell* in a separate window:
 	      | |                  __/ |
 	      |_|                 |___/
 	eXtreme Data
-	1.0.0.BUILD-SNAPSHOT | Admin Server Target: http://localhost:9393
+	1.1.0.BUILD-SNAPSHOT | Admin Server Target: http://localhost:9393
 	Welcome to the Spring XD shell. For assistance hit TAB or type "help".
 	xd:>
+
+First install the module using the `module upload` command:
+
+	xd:>module upload --type job --name myjob --file [path-to]/spring-xd-samples/batch-simple/target/springxd-batch-simple-1.0.0.BUILD-SNAPSHOT.jar
 
 You will now create a new Batch Job Stream using the *Spring XD Shell*:
 
@@ -126,5 +112,9 @@ In this example the state of the Job execution is stored in an HSQLDB database e
 
 ## To run batch job with multiple steps
 
-Follow the instructions in myjob.xml module to have batch job with multiple steps
+Follow the instructions in the module's [xml] configuration to have batch job with multiple steps
 
+[xml]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/resource/config/spring-module.xml
+[pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/pom.xml
+[Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
+[Modules]: http://docs.spring.io/spring-xd/docs/current/reference/html/#modules
