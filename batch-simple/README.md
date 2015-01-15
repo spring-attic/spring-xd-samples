@@ -114,7 +114,7 @@ In this example the state of the Job execution is stored in an HSQLDB database e
 
 Follow the instructions in the module's [xml] configuration to have batch job with multiple steps
 
-[xml]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/resource/config/spring-module.xml
+[xml]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/resources/config/spring-module.xml
 [pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/pom.xml
 [Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
 [Modules]: http://docs.spring.io/spring-xd/docs/current/reference/html/#modules
