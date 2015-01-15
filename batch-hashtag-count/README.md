@@ -125,6 +125,6 @@ Finally, executing:
 should yield a long list of hashtags, indicating the number of occurrences within the provided input of Twitter data.
 
 [xml]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-hashtag-count/src/main/resources/config/spring-module.xml
-[pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/pom.xml
+[pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-hashtag-count/pom.xml
 [Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
 [Modules]: http://docs.spring.io/spring-xd/docs/current/reference/html/#modules
