@@ -12,10 +12,9 @@
 	</prerequisites>
 
 	<parent>
-		<groupId>io.spring.platform</groupId>
-		<artifactId>platform-bom</artifactId>
-		<version>1.0.1.RELEASE</version>
-		<relativePath/>
+		<groupId>org.springframework.xd</groupId>
+		<artifactId>spring-xd-module-parent</artifactId>
+		<version>1.1.0.M2</version>
 	</parent>
 
 	<properties>
@@ -25,40 +24,12 @@
 	<repositories>
 		<repository>
 			<id>spring-milestone</id>
-			<url>http://repo.springsource.org/libs-milestone</url>
+			<url>http://repo.spring.io/milestone</url>
+		</repository>
+		<repository>
+			<id>jcenter</id>
+			<url>http://jcenter.bintray.com</url>
 		</repository>
 	</repositories>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-		<groupId>org.springframework.batch</groupId>
-			<artifactId>spring-batch-core</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<descriptors>
-						<descriptor>src/main/assembly/assembly.xml</descriptor>
-					</descriptors>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>
 

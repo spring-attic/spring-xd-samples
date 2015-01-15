@@ -7,41 +7,28 @@ This sample will take an input file containing payment data, and import the data
 
 In order for the sample to run you will need to have installed:
 
-* Spring XD ([Instructions](https://github.com/spring-projects/spring-xd/wiki/Getting-Started))
+* Spring XD 1.1.0.M2 or later ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Getting-Started))
 
 ## Building
 
 Build the sample simply by executing:
 
-	$ mvn clean assembly:assembly
+	$ mvn clean package
 
-As a result, you will see the following files and directories created under `target/batch-notifications-1.0.0.BUILD-SNAPSHOT-bin/`:
-
-```
-└── modules
-    └── job
-        └── payment-import
-            ├── config
-            │   └── payment-import.xml
-            └── lib
-                └── batch-notifications-1.0.0.BUILD-SNAPSHOT.jar
-```
+The project [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to compile and test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container. In this case there are no additional dependencies so the artifact is built as a common jar. ee the [Modules][] section in the Spring XD Reference for more details on module packaging.
 
 ## Running the Sample
 
-**IMPORTANT**: Please ensure that you have defined the `$XD_HOME` environment variable, pointing to the correct *Spring XD* home directory.
-
-In the `batch-notifications` directory
-
-	$ ./copy-files.sh
-
-Now your Sample is ready to be executed. Start your *Spring XD* admin server (If it was already running, you must restart it):
-
+Now your Sample is ready to be executed. Start your *Spring XD* single node server:
 	xd/bin>$ ./xd-singlenode
 
 Now start the *Spring XD Shell* in a separate window:
 
 	shell/bin>$ ./xd-shell
+
+## Install the job
+
+	xd:>module upload --type job --name payment-import --file [path-to]/spring-xd-samples/batch-notifications/target/batch-notifications-1.0.0.BUILD-SNAPSHOT.jar
 
 ## Setup the process
 
@@ -55,9 +42,13 @@ We also create a separate stream which sends notifications from the job to the l
 
 ## Execute the process
 
-	xd:> http post --data {"input.file.name":"/tmp/payment.input"}
+In the `batch-notifications` directory
 
-The payment file is located under `/src/main/resources/data/paymentImport/payment.input` and was copied to your `/tmp` directory.
+	$ ./copy-data.sh
+
+to create the `/tmp/payment.input` file. The payment file is located under `/data/paymentImport/payment.input` and was copied to your `/tmp` directory.
+
+	xd:> http post --data {"input.file.name":"/tmp/payment.input"}
 	
 ## Results
 
@@ -90,3 +81,7 @@ The import will fail but all the payment records up to erroneous row have been i
 	
 This time the import will continue with the previously erroneous row and continues with the successful import of the rest of the file.
 
+[xml]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-notifications/src/main/resources/config/spring-module.xml
+[pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-notifications/pom.xml
+[Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
+[Modules]: http://docs.spring.io/spring-xd/docs/current/reference/html/#modules

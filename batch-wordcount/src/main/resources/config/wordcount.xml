@@ -42,8 +42,8 @@
 	<hadoop:job id="wordcountJob"
 		input-path="${wordcount.input.path}"
 		output-path="${wordcount.output.path}"
-		mapper="org.apache.hadoop.examples.WordCount.TokenizerMapper"
-		reducer="org.apache.hadoop.examples.WordCount.IntSumReducer"
+		mapper="org.apache.hadoop.examples.WordCount$TokenizerMapper"
+		reducer="org.apache.hadoop.examples.WordCount$IntSumReducer"
 		scope="step" />
 	<hadoop:script-tasklet id="scriptTasklet" script-ref="hdfsScript" scope="step"/>
 

@@ -18,6 +18,7 @@ package com.acme;
 import static org.junit.Assert.*;
 import static org.springframework.xd.dirt.test.process.SingleNodeProcessingChainSupport.*;
 
+import org.aspectj.lang.annotation.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -40,6 +41,8 @@ public class ExampleModuleIntegrationTest {
 	private static int RECEIVE_TIMEOUT = 5000;
 
 	private static String moduleName = "siDslModule";
+
+	SingleNodeProcessingChain chain;
 
 	/**
 	 * Start the single node container, binding random unused ports, etc. to not conflict with any other instances
@@ -70,13 +73,11 @@ public class ExampleModuleIntegrationTest {
 
 		String processingChainUnderTest = String.format("%s --prefix=%s --suffix=%s", moduleName, prefix, suffix);
 
-		SingleNodeProcessingChain chain = chain(application, streamName, processingChainUnderTest);
+		chain = chain(application, streamName, processingChainUnderTest);
 
 		chain.sendPayload("hello");
 		String result = (String) chain.receivePayload(RECEIVE_TIMEOUT);
 		assertEquals(prefix + "hello" + suffix, result);
-
-		chain.destroy();
 	}
 
 	@Test
@@ -87,12 +88,11 @@ public class ExampleModuleIntegrationTest {
 
 		String processingChainUnderTest = String.format("%s --prefix=%s --prefixOnly=true", moduleName, prefix);
 
-		SingleNodeProcessingChain chain = chain(application, streamName, processingChainUnderTest);
+		chain = chain(application, streamName, processingChainUnderTest);
 
 		chain.sendPayload("hello");
 		String result = (String) chain.receivePayload(RECEIVE_TIMEOUT);
 		assertEquals(prefix + "hello", result);
-		chain.destroy();
 	}
 
 	@Test(expected = ModuleConfigurationException.class)
@@ -102,6 +102,14 @@ public class ExampleModuleIntegrationTest {
 		String streamName = "testPrefixNotSameAsSuffix";
 
 		String processingChainUnderTest = String.format("%s --prefix=%s --suffix=%s", moduleName, prefix, suffix);
-		SingleNodeProcessingChain chain = chain(application, streamName, processingChainUnderTest);
+		chain = chain(application, streamName, processingChainUnderTest);
+	}
+
+	/**
+	 * Destroy the chain to reset message bus bindings and destroy the stream.
+	 */
+	@After
+	public void tearDown() {
+		chain.destroy();
 	}
 }
