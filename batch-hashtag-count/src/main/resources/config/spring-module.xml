@@ -51,12 +51,10 @@
 
 	<hadoop:script-tasklet id="scriptTasklet" script-ref="hdfsScript" scope="step"/>
 
-	<hadoop:script id="hdfsScript" language="groovy">
+	<hadoop:script id="hdfsScript" language="javascript">
 		<hadoop:property name="hdfsOutputDir" value="${tweets.output.path}"/>
-			// use the shell (made available under variable fsh)
-			if (fsh.test(hdfsOutputDir)) {
-				fsh.rmr(hdfsOutputDir)
-			}
+		// use the shell (made available under variable fsh)
+		if (fsh.test(hdfsOutputDir)) fsh.rmr(hdfsOutputDir)
 	</hadoop:script>
 </beans>
 

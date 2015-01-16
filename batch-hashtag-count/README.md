@@ -7,7 +7,7 @@ This sample will take an input file with Twitter JSON data and counts the occurr
 
 In order for the sample to run you will need to have installed:
 
-* Spring XD ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Getting-Started))
+* Spring XD 1.1.0.M2 or later ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Getting-Started))
 * Hadoop ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Hadoop-Installation))
 
 Furthermore you must have your Twitter API credentials ready:
@@ -53,7 +53,7 @@ Now start the *Spring XD Shell* in a separate window:
 
 In the Spring XD shell:
 
-    xd:>module upload --type job --name hashtagCountJob --file [path-to]/spring-xd-samples/batch-hashtag-count/target/springxd-batch-hashtag-count-1.0.0.BUILD-SNAPSHOT.jar
+    xd:>module upload --type job --name hashtagcount --file [path-to]/spring-xd-samples/batch-hashtag-count/target/batch-hashtag-count-1.0.0.BUILD-SNAPSHOT.jar
 
 ## Collect Twitter Data
 

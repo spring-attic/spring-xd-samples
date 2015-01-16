@@ -15,13 +15,15 @@ The processing actions that are part of a Step in a batch Job are pluggable.  Th
 
 ## Building
 
+Build the sample simply by executing:
+
 	$ mvn package
 
-The project [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to compile and test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container. In this case there are no additional dependencies so the artifact is built as a common jar. ee the [Modules][] section in the Spring XD Reference for more details on module packaging.   
+The project [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to compile and test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container. In this case there are no additional dependencies so the artifact is built as a common jar. ee the [Modules][] section in the Spring XD Reference for more details on module packaging.
 
 ## Running the SampleStart up the spring-xd single node container 
 
-Now your sample is ready to be executed. Start your *Spring XD* admin server (If it was already running, you must restart it):
+Now your sample is ready to be executed. Start your *Spring XD* singlenode server:
 
 	xd/bin>$ ./xd-singlenode
 
