@@ -16,11 +16,13 @@
 	<util:properties id="myProperties" >
 		<prop key="tweets.input.path">/xd/tweets/*.txt</prop>
 		<prop key="tweets.output.path">/xd/hashtagcount/output/</prop>
-		<prop key="hd.fs">hdfs://localhost:8020</prop>
 	</util:properties>
 
 	<hadoop:configuration>
-		fs.default.name=${hd.fs}
+		fs.defaultFS=${spring.hadoop.fsUri}
+		yarn.resourcemanager.hostname=${spring.hadoop.resourceManagerHost}
+		mapreduce.framework.name=yarn
+		mapreduce.jobhistory.address=${spring.hadoop.resourceManagerHost}:10020
 	</hadoop:configuration>
 
 	<!-- required since Hadoop Job is a class not an interface and we need to use a Job with step scope to access #{jobParameters['...']} -->
@@ -42,7 +44,7 @@
 	<hadoop:job id="hashtagcountJob"
 		input-path="${tweets.input.path}"
 		output-path="${tweets.output.path}"
-		libs="file:${xd.home}/modules/job/hashtagcount/lib/batch-hashtag-count-1.0.0.BUILD-SNAPSHOT.jar"
+		jar="${xd.customModule.home}/job/hashtagCountJob.jar"
 		mapper="org.springframework.xd.examples.hadoop.HashtagCount$TokenizerMapper"
 		reducer="org.springframework.xd.examples.hadoop.HashtagCount$LongSumReducer"
 		scope="step" />
