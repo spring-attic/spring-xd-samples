@@ -61,10 +61,10 @@ In order to setup the Twitter stream, you must either provide your Twitter API c
 
 ```
 xd:> stream create --name tweets --definition "twitterstream \
---consumerKey='your_credentials' \
---consumerSecret='your_credentials' \
---accessToken='your_credentials' \
---accessTokenSecret='your_credentials' | hdfs --rollover=2M" --deploy
+--consumerKey: 'your_credentials' \
+--consumerSecret: 'your_credentials' \
+--accessToken: 'your_credentials' \
+--accessTokenSecret: 'your_credentials' | hdfs --rollover=2M" --deploy
 ```
 
 or alternatively you can provide the credentials in `config/modules/modules.yml`
