@@ -13,10 +13,11 @@ In order for the sample to run you will need to have installed:
 
 In the batch-simple directory
 
-        $ cp simple_example.xml $XD_HOME/modules/job
+		$mkdir -p $XD_HOME/custom-modules/job/simple_example/config
+        $ cp simple_example.xml $XD_HOME/modules/job/simple_example/config
         $ cp sample.txt /tmp
 
-Now your Sample is ready to be executed. Start your *Spring XD* admin server (If it was already running, you must restart it):
+Now your Sample is ready to be executed. Start your *Spring XD* singlenode server:
 
         xd/bin>$ ./xd-singlenode
 
