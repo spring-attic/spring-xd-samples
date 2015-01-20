@@ -13,7 +13,7 @@
 
     <int:channel id="input"/>
 
-    <bean name="messageHandler" class="org.springframework.xd.reactor.SynchronousDispatcherMessageHandler">
+    <bean name="messageHandler" class="org.springframework.xd.reactor.BroadcasterMessageHandler">
         <constructor-arg ref="messageProcessor"/>
     </bean>
 
