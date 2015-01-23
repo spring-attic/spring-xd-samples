@@ -15,33 +15,20 @@
  */
 package com.acme;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.xd.reactor.Processor;
 import reactor.fn.tuple.Tuple;
-import reactor.io.IOStreams;
 import reactor.rx.BiStreams;
 import reactor.rx.Stream;
 import reactor.rx.Streams;
-import reactor.rx.stream.MapStream;
-
-import java.io.IOException;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
+ * Calculates the top 10 hashtags over a 1 second time window.  
+ *
  * @author Mark Pollack
  */
 public class TopTags implements Processor<String, String> {
-
-    private static final Logger LOG = LoggerFactory.getLogger(TopTags.class);
-    // a Java Chronicle backed persistent map that auto delete on JVM shutdown for testing purposes
-    // each update on the map will trigger subscriber signals
-    MapStream<String, Integer> persistentMap;
-
-    public TopTags() throws IOException {
-        this.persistentMap = IOStreams.persistentMap("popularTags", true);
-    }
 
     @Override
     public Stream<String> process(Stream<String> stream) {
@@ -52,11 +39,9 @@ public class TopTags implements Processor<String, String> {
                 )
                 .map(w -> Tuple.of(w, 1))
                 .window(1, SECONDS)
-                .flatMap(s ->  BiStreams.reduceByKey(s, (acc, next) -> acc + next)
-                                        .sort((a, b) -> -a.t2.compareTo(b.t2))
-                                        .take(10)
-                                        .finallyDo(_s -> LOG.info("------------------------ window complete! ----------------------"))
-                )
+                .flatMap(s -> BiStreams.reduceByKey(s, (acc, next) -> acc + next)
+                        .sort((a, b) -> -a.t2.compareTo(b.t2))
+                        .take(10))
                 .map(entry -> entry.toString());
     }
 }

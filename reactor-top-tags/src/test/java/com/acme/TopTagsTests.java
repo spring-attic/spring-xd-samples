@@ -82,22 +82,4 @@ public class TopTagsTests {
         }
     }
 
-    @Test
-    public void simple() {
-        Broadcaster<String> sink = Streams.broadcast(Environment.get());
-
-        sink.map(String::toUpperCase)
-                .consume(s -> System.out.printf("%s greeting = %s%n", Thread.currentThread(), s));
-
-        sink.onNext("Hello World!");
-    }
-
-    @Test
-    public void simple2() {
-        Stream<String> st = Streams.just("Hello World!");
-
-        st.dispatchOn(Environment.cachedDispatcher())
-                .map(String::toUpperCase)
-                .consume(s -> System.out.printf("%s greeting = %s%n", Thread.currentThread(), s));
-    }
 }
