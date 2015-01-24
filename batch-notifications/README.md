@@ -9,13 +9,19 @@ In order for the sample to run you will need to have installed:
 
 * Spring XD 1.1.0.M2 or later ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Getting-Started))
 
-## Building
+## Building with Maven
 
 Build the sample simply by executing:
 
 	$ mvn clean package
 
-The project [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to compile and test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container. In this case there are no additional dependencies so the artifact is built as a common jar. ee the [Modules][] section in the Spring XD Reference for more details on module packaging.
+The project [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to compile and test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container. In this case there are no additional dependencies so the artifact is built as a common jar. See the [Modules][] section in the Spring XD Reference for more details on module packaging.
+
+## Building with Gradle
+
+	$./gradlew clean bootRepackage
+
+The project's [build.gradle][] applies the `spring-xd-module` plugin, providing analagous build and packaging support for gradle. This plugin also applies the [Spring Boot Gradle Plugin][] as well as the [propdeps plugin][]. 
 
 ## Running the Sample
 
@@ -28,7 +34,7 @@ Now start the *Spring XD Shell* in a separate window:
 
 ## Install the job
 
-	xd:>module upload --type job --name payment-import --file [path-to]/spring-xd-samples/batch-notifications/target/batch-notifications-1.0.0.BUILD-SNAPSHOT.jar
+	xd:>module upload --type job --name payment-import --file [path-to]/batch-notifications-1.0.0.BUILD-SNAPSHOT.jar
 
 ## Setup the process
 
@@ -83,5 +89,8 @@ This time the import will continue with the previously erroneous row and continu
 
 [xml]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-notifications/src/main/resources/config/spring-module.xml
 [pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-notifications/pom.xml
+[build.gradle]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-notifications/build.gradle
 [Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
+[Spring Boot Gradle Plugin]: http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/build-tool-plugins-gradle-plugin.html
+[propdeps plugin]: https://github.com/spring-projects/gradle-plugins/tree/master/propdeps-plugin
 [Modules]: http://docs.spring.io/spring-xd/docs/current/reference/html/#modules

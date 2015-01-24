@@ -18,14 +18,14 @@ package com.acme;
 import static org.junit.Assert.*;
 import static org.springframework.xd.dirt.test.process.SingleNodeProcessingChainSupport.*;
 
-import org.aspectj.lang.annotation.After;
+import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import org.springframework.xd.dirt.test.SingletonModuleRegistry;
 import org.springframework.xd.dirt.plugins.ModuleConfigurationException;
 import org.springframework.xd.dirt.server.SingleNodeApplication;
 import org.springframework.xd.dirt.test.SingleNodeIntegrationTestSupport;
+import org.springframework.xd.dirt.test.SingletonModuleRegistry;
 import org.springframework.xd.dirt.test.process.SingleNodeProcessingChain;
 import org.springframework.xd.module.ModuleType;
 import org.springframework.xd.test.RandomConfigurationSupport;
@@ -110,6 +110,8 @@ public class ExampleModuleIntegrationTest {
 	 */
 	@After
 	public void tearDown() {
-		chain.destroy();
+		if (chain != null) {
+			chain.destroy();
+		}
 	}
 }

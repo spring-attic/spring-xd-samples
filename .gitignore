@@ -3,6 +3,7 @@ build
 target
 **/.idea/
 /out/
+**/logs/
 **/lib/
 *.ipr
 *.iml

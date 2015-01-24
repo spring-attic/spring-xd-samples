@@ -41,7 +41,6 @@ public class MovingAverageIntegrationTests {
     @BeforeClass
     public static void setUp() {
 
-        System.setProperty("XD_HOME", "/home/mpollack/projects/spring-xd/build/dist/spring-xd/xd");
         RandomConfigurationSupport randomConfigSupport = new RandomConfigurationSupport();
         application = new SingleNodeApplication().run();
         SingleNodeIntegrationTestSupport singleNodeIntegrationTestSupport = new SingleNodeIntegrationTestSupport

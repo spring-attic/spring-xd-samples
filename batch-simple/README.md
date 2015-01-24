@@ -13,13 +13,21 @@ In order for the sample to run you will need to have installed:
 
 The processing actions that are part of a Step in a batch Job are pluggable.  The plug-in point for a Step is known as a [Tasklet](http://static.springsource.org/spring-batch/apidocs/org/springframework/batch/core/step/tasklet/Tasklet.html).  In this example we create a tasklet by implementing the Tasklet interface.  Take a look at the [source code](https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/java/org/springframework/springxd/samples/batch/HelloSpringXDTasklet.java) as well as its incorporation into a (Job definition)[https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/resources/spring-module.xml) inside an XML file. Note that the XML file must contain a single Job.
 
-## Building
+## Building with Maven
 
 Build the sample simply by executing:
 
-	$ mvn package
+	$ mvn clean package
 
-The project [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to compile and test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container. In this case there are no additional dependencies so the artifact is built as a common jar. ee the [Modules][] section in the Spring XD Reference for more details on module packaging.
+The project's [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to compile and test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container. In this case there are no additional dependencies so the artifact is built as a common jar. See the [Modules][] section in the Spring XD Reference for more details on module packaging.
+
+## Building with Gradle
+
+	$./gradlew clean bootRepackage
+
+The project's [build.gradle][] applies the `spring-xd-module` plugin, providing analagous build and packaging support for gradle. This plugin also applies the [Spring Boot Gradle Plugin][] as well as the [propdeps plugin][]. 
+
+
 
 ## Running the SampleStart up the spring-xd single node container 
 
@@ -61,7 +69,7 @@ Now start the *Spring XD Shell* in a separate window:
 
 First install the module using the `module upload` command:
 
-	xd:>module upload --type job --name myjob --file [path-to]/spring-xd-samples/batch-simple/target/springxd-batch-simple-1.0.0.BUILD-SNAPSHOT.jar
+	xd:>module upload --type job --name myjob --file [path-to]/springxd-batch-simple-1.0.0.BUILD-SNAPSHOT.jar
 
 You will now create a new Batch Job Stream using the *Spring XD Shell*:
 
@@ -118,5 +126,8 @@ Follow the instructions in the module's [xml] configuration to have batch job wi
 
 [xml]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/src/main/resources/config/spring-module.xml
 [pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/pom.xml
+[build.gradle]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-simple/build.gradle
 [Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
+[Spring Boot Gradle Plugin]: http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/build-tool-plugins-gradle-plugin.html
+[propdeps plugin]: https://github.com/spring-projects/gradle-plugins/tree/master/propdeps-plugin
 [Modules]: http://docs.spring.io/spring-xd/docs/current/reference/html/#modules

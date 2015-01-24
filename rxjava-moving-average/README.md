@@ -14,13 +14,17 @@ In order to install the module run it in your Spring XD installation, you will n
 The heart of the sample is the processing module named MovingAverage.java.  This uses the Stream API to perform an average over the last 5 values of data.  The tuple data type is used as a generic container for keyed data.
 
 
-## Building
+## Building with Maven
 
-	$ mvn package
+	$ mvn clean package
+
+## Building with Gradle
+
+	$./gradlew clean test bootRepackage
 
 ## Using the Custom Module
 
-The uber-jar will be in `target/rxjava-moving-average-1.0.0.BUILD-SNAPSHOT.jar`. To install and register the module to your Spring XD distribution, use the `module upload` Spring XD shell command. Start Spring XD and the shell:
+The uber-jar will be in `[project build dir]/rxjava-moving-average-1.0.0.BUILD-SNAPSHOT.jar`. To install and register the module to your Spring XD distribution, use the `module upload` Spring XD shell command. Start Spring XD and the shell:
 
 
 	_____                           __   _______
@@ -34,7 +38,7 @@ The uber-jar will be in `target/rxjava-moving-average-1.0.0.BUILD-SNAPSHOT.jar`.
 	eXtreme Data
 	1.1.0.BUILD-SNAPSHOT | Admin Server Target: http://localhost:9393
 	Welcome to the Spring XD shell. For assistance hit TAB or type "help".
-	xd:>module upload --file [path-to]/spring-xd-samples/rxjava-moving-average/target/rxjava-moving-average-1.0.0.BUILD-SNAPSHOT.jar --name rxjava-moving-average --type processor
+	xd:>module upload --file [path-to]/rxjava-moving-average-1.0.0.BUILD-SNAPSHOT.jar --name rxjava-moving-average --type processor
 	Successfully uploaded module 'processor:rxjava-moving-average'
 	xd:>
 

@@ -27,15 +27,21 @@ This issue may be resolved in one of the following ways:
 
 It turns out that Option 1 does not work in this case because one of SyndEntry's fields contains a circular reference which results in a stack overflow when invoking the Jackson ObjectMapper to convert the object to JSON. So Option 3 is the best choice. The module uses [SyndEntryJsonTransformer][] to configure an ObjectMapper that ignores the field containing the cycle. The ObjectMapper is used to write the feed contents to a JSON String.
 
-## Building
+## Building with Maven
 
 	$ mvn package
 
-The project [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container. See the [Modules][] section in the Spring XD Reference for a more detailed explanation of module class loading.
+The project's [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container. See the [Modules][] section in the Spring XD Reference for a more detailed explanation of module class loading.
+
+## Building with Gradle
+
+	$./gradlew clean test bootRepackage
+
+The project's [build.gradle][] applies the `spring-xd-module` plugin, providing analagous build and packaging support for gradle. This plugin also applies the [Spring Boot Gradle Plugin][] as well as the [propdeps plugin][]. 
 
 ## Using the Custom Module
 
-The uber-jar will be in `target/rss-source-feed-1.0.0.BUILD-SNAPSHOT.jar`. To install and register the module to your Spring XD distribution, use the `module upload` Spring XD shell command. Start Spring XD and the shell:
+The uber-jar will be in `[project-build-dir]/rss-source-feed-1.0.0.BUILD-SNAPSHOT.jar`. To install and register the module to your Spring XD distribution, use the `module upload` Spring XD shell command. Start Spring XD and the shell:
 
 
 	_____                           __   _______
@@ -49,7 +55,7 @@ The uber-jar will be in `target/rss-source-feed-1.0.0.BUILD-SNAPSHOT.jar`. To in
 	eXtreme Data
 	1.1.0.BUILD-SNAPSHOT | Admin Server Target: http://localhost:9393
 	Welcome to the Spring XD shell. For assistance hit TAB or type "help".
-	xd:>module upload --file [path-to]/spring-xd-samples/rss-source-feed/target/rss-source-feed-1.0.0.BUILD-SNAPSHOT.jar --name feed --type source
+	xd:>module upload --file [path-to]/rss-source-feed-1.0.0.BUILD-SNAPSHOT.jar --name feed --type source
 	Successfully uploaded module 'source:feed'
 	xd:>
 
@@ -77,7 +83,10 @@ You should see the stream output in the Spring XD log with each entry rendered a
 
 
 [pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/rss-feed-source/pom.xml
+[build.gradle]: https://github.com/spring-projects/spring-xd-samples/blob/master/rss-feed-source/build.gradle
 [Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
+[Spring Boot Gradle Plugin]: http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/build-tool-plugins-gradle-plugin.html
+[propdeps plugin]: https://github.com/spring-projects/gradle-plugins/tree/master/propdeps-plugin
 [Modules]: http://docs.spring.io/spring-xd/docs/current/reference/html/#modules
 [rome]: http://rometools.github.io/rome/
 [SyndEntryJsonTransformer]:  https://github.com/spring-projects/spring-xd-samples/blob/master/rss-feed-source/src/main/java/com/acme/SyndEntryJsonTransformer.java

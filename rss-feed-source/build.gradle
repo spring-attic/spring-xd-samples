@@ -1,0 +1,49 @@
+
+buildscript {
+    repositories {
+		maven { url "http://repo.spring.io/plugins-snapshot" }
+        maven { url "http://repo.spring.io/snapshot" }
+		//todo: temporary
+        mavenLocal()
+        maven { url "http://jcenter.bintray.com/" }
+    }
+    dependencies {
+		classpath("org.springframework.xd:spring-xd-module-plugin:1.1.0.BUILD-SNAPSHOT")
+    }
+}
+
+ext {
+	springXdVersion = '1.1.0.M2'
+    springIntegrationVersion = '4.1.1.RELEASE'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-xd-module'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.12'
+}
+
+group = 'com.acme'
+version = '1.0.0.BUILD-SNAPSHOT'
+
+description = "Spring XD source module for RSS Feed"
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+repositories {
+	 maven { url "http://repo.spring.io/libs-release" }
+	//todo: temporary
+     mavenLocal()
+     maven { url "http://jcenter.bintray.com/" }
+     maven { url "http://repo.spring.io/snapshot" }
+     maven { url "http://repo.spring.io/milestone" }
+     
+}
+
+dependencies {
+    compile "org.springframework.integration:spring-integration-feed:$springIntegrationVersion"
+}

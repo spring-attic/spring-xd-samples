@@ -1,7 +1,7 @@
 Spring XD SI DSL Module
 =============================
 
-This is an example of a custom module project that is built and packaged for installation in a Spring XD runtime environment using maven. The project includes sample unit and integration tests, including the ability to test the module in an embedded single node container. It also illustrates how to define module options which are bound to either Spring properties or environment profiles.
+This is an example of a custom module project that is built and packaged for installation in a Spring XD runtime environment using maven or gradle. The project includes sample unit and integration tests, including the ability to test the module in an embedded single node container. It also illustrates how to define module options which are bound to either Spring properties or environment profiles.
 
 ## Requirements
 
@@ -19,18 +19,24 @@ This implements a simple custom module which simply adds a prefix and/or suffix 
  * An integration test to test the module registered and deployed in an embedded Spring XD single node container 
 
 
-## Building
+## Building with Maven
 
-	$ mvn package
+	$ mvn clean package
 
-The project [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to compile and test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container. 
+The project's [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to compile and test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container.
+
+## Building with Gradle
+
+	$./gradlew clean test bootRepackage
+
+The project's [build.gradle][] applies the `spring-xd-module` plugin, providing analagous build and packaging support for gradle. This plugin also applies the [Spring Boot Gradle Plugin][] as well as the [propdeps plugin][]. 
 
 In this case, `spring-integration-java-dsl` is a module dependency that must be packaged with the module to be loaded by the module's class loader. This component has transitive dependencies, including Spring Integration and Spring Framework libraries that are already in the Spring XD classpath. To avoid potential version conflicts and other class loader issues, the Spring Boot Maven Plugin is configured to exclude these from the from the uber-jar. See the [Modules][] section in the Spring XD Reference for instructions on how to override such exclusions.   
 
 
 ## Using the Custom Module
 
-The uber-jar will be in `target/si-dsl-module-1.0.0.BUILD-SNAPSHOT.jar`. To install and register the module to your Spring XD distribution, use the `module upload` Spring XD shell command. Start Spring XD and the shell:
+The uber-jar will be in `[project build dir]/si-dsl-module-1.0.0.BUILD-SNAPSHOT.jar`. To install and register the module to your Spring XD distribution, use the `module upload` Spring XD shell command. Start Spring XD and the shell:
 
 
 	_____                           __   _______
@@ -44,7 +50,7 @@ The uber-jar will be in `target/si-dsl-module-1.0.0.BUILD-SNAPSHOT.jar`. To inst
 	eXtreme Data
 	1.1.0.BUILD-SNAPSHOT | Admin Server Target: http://localhost:9393
 	Welcome to the Spring XD shell. For assistance hit TAB or type "help".
-	xd:>module upload --file [path-to]/spring-xd-samples/si-dsl-module/target/si-dsl-module-1.0.0.BUILD-SNAPSHOT.jar --name si-dsl-module --type processor
+	xd:>module upload --file [path-to]/si-dsl-module-1.0.0.BUILD-SNAPSHOT.jar --name si-dsl-module --type processor
 	Successfully uploaded module 'processor:si-dsl-module'
 	xd:>
 
@@ -81,6 +87,9 @@ You should see the stream output in the Spring XD log:
 	14:11:22,582 1.1.0.SNAP  INFO pool-10-thread-4 sink.test - just saying hello, world
 
 [pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/si-dsl-module/pom.xml
+[build.gradle]: https://github.com/spring-projects/spring-xd-samples/blob/master/si-dsl-module/build.gradle
 [Spring Integration Java DSL]: https://github.com/spring-projects/spring-integration-java-dsl
 [Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
+[Spring Boot Gradle Plugin]: http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/build-tool-plugins-gradle-plugin.html
+[propdeps plugin]: https://github.com/spring-projects/gradle-plugins/tree/master/propdeps-plugin
 [Modules]: http://docs.spring.io/spring-xd/docs/current/reference/html/#modules
