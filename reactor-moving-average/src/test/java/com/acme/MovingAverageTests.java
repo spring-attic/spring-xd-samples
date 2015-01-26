@@ -8,7 +8,8 @@ import reactor.Environment;
 import reactor.fn.Consumer;
 import reactor.rx.Stream;
 import reactor.rx.Streams;
-import reactor.rx.action.Broadcaster;
+import reactor.rx.broadcast.Broadcaster;
+import reactor.rx.broadcast.SerializedBroadcaster;
 
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class MovingAverageTests {
     @Test
     public void simple() {
         Environment.initializeIfEmpty();
-        final Broadcaster<Object> broadcaster = Streams.serializedBroadcast();
+        final Broadcaster<Object> broadcaster = SerializedBroadcaster.create();
 
         Processor processor = new MovingAverage();
         Stream<?> outputStream = processor.process(broadcaster);
