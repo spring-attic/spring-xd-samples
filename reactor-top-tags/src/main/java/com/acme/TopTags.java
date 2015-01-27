@@ -30,6 +30,13 @@ import static java.util.concurrent.TimeUnit.SECONDS;
  */
 public class TopTags implements Processor<String, String> {
 
+    private int timeWindow;
+
+
+    public TopTags(int timeWindow) {
+        this.timeWindow = timeWindow;
+    }
+
     @Override
     public Stream<String> process(Stream<String> stream) {
 
@@ -38,7 +45,7 @@ public class TopTags implements Processor<String, String> {
                                         .filter(w -> !w.trim().isEmpty())
                 )
                 .map(w -> Tuple.of(w, 1))
-                .window(1, SECONDS)
+                .window(timeWindow, SECONDS)
                 .flatMap(s -> BiStreams.reduceByKey(s, (acc, next) -> acc + next)
                         .sort((a, b) -> -a.t2.compareTo(b.t2))
                         .take(10))

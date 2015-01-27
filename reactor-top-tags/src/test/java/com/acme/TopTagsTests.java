@@ -23,7 +23,8 @@ import reactor.Environment;
 import reactor.fn.Consumer;
 import reactor.rx.Stream;
 import reactor.rx.Streams;
-import reactor.rx.action.Broadcaster;
+import reactor.rx.broadcast.Broadcaster;
+import reactor.rx.broadcast.SerializedBroadcaster;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -51,9 +52,9 @@ public class TopTagsTests {
     @Test
     public void tags() throws IOException {
 
-        final Broadcaster<Object> broadcaster = Streams.serializedBroadcast();
+        final Broadcaster<Object> broadcaster = SerializedBroadcaster.create();
 
-        Processor processor = new TopTags();
+        Processor processor = new TopTags(1);
         Stream<?> outputStream = processor.process(broadcaster);
 
 
@@ -62,6 +63,14 @@ public class TopTagsTests {
             public void accept(Object o) {
                 System.out.println("processed : " + o);
             }
+            //TODO - expect
+//            processed : Tuple2{t1=foo, t2=3}
+//            processed : Tuple2{t1=baz, t2=1}
+//            processed : Tuple2{t1=bar, t2=1}
+//            processed : Tuple2{t1=foo, t2=2}
+//            processed : Tuple2{t1=aaa, t2=1}
+//            processed : Tuple2{t1=aaa, t2=1}
+//            processed : Tuple2{t1=bbb, t2=1}
         });
 
         List<String> sampleData = Arrays.asList(
