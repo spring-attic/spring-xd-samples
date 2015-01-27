@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Created by mpollack on 12/19/14.
  */
-public class MovingAverageIntegrationTests {
+public class MovingAverageIntegrationTest {
 
     private static SingleNodeApplication application;
 

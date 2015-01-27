@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by mpollack on 12/19/14.
  */
-public class MovingAverageTests {
+public class MovingAverageTest {
 
     @Test
     public void simple() {
