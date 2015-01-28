@@ -52,13 +52,12 @@ public class TopTags implements Processor<String, Tuple> {
             return Streams.from(array.toArray(new String[array.size()]));
         })
 
-                .map(w -> reactor.fn.tuple.Tuple.of(w, 1))
-                .window(timeWindow, SECONDS)
-                .flatMap(s -> BiStreams.reduceByKey(s, (acc, next) -> acc + next)
-                        .sort((a, b) -> -a.t2.compareTo(b.t2))
-                        .take(topN)
-                        .finallyDo(_s -> System.out.println("window closed!!!!!")))
-                .map(entry -> tuple().of("hashtag", entry.t1, "count", entry.t2));
+                    .map(w -> reactor.fn.tuple.Tuple.of(w, 1))
+                    .window(timeWindow, SECONDS)
+                    .flatMap(s -> BiStreams.reduceByKey(s, (acc, next) -> acc + next)
+                            .sort((a, b) -> -a.t2.compareTo(b.t2))
+                            .take(topN))
+                    .map(entry -> tuple().of("hashtag", entry.t1, "count", entry.t2));
 
     }
 }
