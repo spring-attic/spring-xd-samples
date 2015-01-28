@@ -18,23 +18,21 @@ package com.acme;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.xd.reactor.Processor;
 import reactor.Environment;
 import reactor.fn.Consumer;
 import reactor.rx.Stream;
-import reactor.rx.Streams;
 import reactor.rx.broadcast.Broadcaster;
 import reactor.rx.broadcast.SerializedBroadcaster;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Scanner;
 
 /**
  * @author Mark Pollack
  */
-public class TopTagsTests {
+public class TopTagsTupleTest {
 
 
     protected Environment env;
@@ -54,7 +52,7 @@ public class TopTagsTests {
 
         final Broadcaster<Object> broadcaster = SerializedBroadcaster.create();
 
-        Processor processor = new TopTags(1);
+        Processor processor = new TopTags(1,10);
         Stream<?> outputStream = processor.process(broadcaster);
 
 
@@ -64,22 +62,19 @@ public class TopTagsTests {
                 System.out.println("processed : " + o);
             }
             //TODO - expect
-//            processed : Tuple2{t1=foo, t2=3}
-//            processed : Tuple2{t1=baz, t2=1}
-//            processed : Tuple2{t1=bar, t2=1}
-//            processed : Tuple2{t1=foo, t2=2}
-//            processed : Tuple2{t1=aaa, t2=1}
-//            processed : Tuple2{t1=aaa, t2=1}
-//            processed : Tuple2{t1=bbb, t2=1}
+//            processed : {"id":"55786760-7472-065d-8e62-eb83260948a4","timestamp":1422399628134,"hashtag":"AndroidGames","count":1}
+//            processed : {"id":"bd99050f-abfa-a239-c09a-f2fe721daafb","timestamp":1422399628182,"hashtag":"Android","count":1}
+//            processed : {"id":"10ce993c-fd57-322d-efa1-16f810918187","timestamp":1422399628184,"hashtag":"GameInsight","count":1}
         });
 
-        List<String> sampleData = Arrays.asList(
-                "foo,bar", "foo", "foo,baz", "foo", "foo,aaa", "aaa", "bbb", "bbb,foo");
-
-        for (String tag : sampleData) {
-            broadcaster.onNext(tag);
-            simulateLatency();
+        ClassPathResource resource = new ClassPathResource("tweets.json");
+        Scanner scanner = new Scanner(resource.getInputStream());
+        while (scanner.hasNext()) {
+            String tweet = scanner.nextLine();
+            broadcaster.onNext(tweet);
+            //simulateLatency();
         }
+        //System.in.read();
 
     }
 

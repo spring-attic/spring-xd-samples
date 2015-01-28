@@ -24,7 +24,18 @@ import org.springframework.xd.module.options.spi.ModuleOption;
  */
 public class TopTagsOptionsMetadata {
 
-    private int timeWindow;
+    private int timeWindow = 1;
+
+    private int topN = 10;
+
+    public int getTopN() {
+        return topN;
+    }
+
+    @ModuleOption("The number of entires to include in the top N listing")
+    public void setTopN(int topN) {
+        this.topN = topN;
+    }
 
     public int getTimeWindow() {
         return timeWindow;

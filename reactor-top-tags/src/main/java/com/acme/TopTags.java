@@ -15,40 +15,50 @@
  */
 package com.acme;
 
+import com.jayway.jsonpath.JsonPath;
+import net.minidev.json.JSONArray;
+import org.springframework.util.StringUtils;
 import org.springframework.xd.reactor.Processor;
-import reactor.fn.tuple.Tuple;
+import org.springframework.xd.tuple.Tuple;
+import reactor.fn.Predicate;
 import reactor.rx.BiStreams;
 import reactor.rx.Stream;
 import reactor.rx.Streams;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.springframework.xd.tuple.TupleBuilder.tuple;
 
 /**
- * Calculates the top 10 hashtags over a 1 second time window.  
- *
  * @author Mark Pollack
  */
-public class TopTags implements Processor<String, String> {
+public class TopTags implements Processor<String, Tuple> {
 
     private int timeWindow;
 
+    private int topN;
 
-    public TopTags(int timeWindow) {
+
+    public TopTags(int timeWindow, int topN) {
         this.timeWindow = timeWindow;
+        this.topN = topN;
     }
 
     @Override
-    public Stream<String> process(Stream<String> stream) {
+    public Stream<Tuple> process(Stream<String> stream) {
 
-        return stream
-                .flatMap(tags -> Streams.from(tags.split(","))
-                                        .filter(w -> !w.trim().isEmpty())
-                )
-                .map(w -> Tuple.of(w, 1))
+
+        return stream.flatMap(tweet -> {
+            JSONArray array = JsonPath.read(tweet, "$.entities.hashtags[*].text");
+            return Streams.from(array.toArray(new String[array.size()]));
+        })
+
+                .map(w -> reactor.fn.tuple.Tuple.of(w, 1))
                 .window(timeWindow, SECONDS)
                 .flatMap(s -> BiStreams.reduceByKey(s, (acc, next) -> acc + next)
                         .sort((a, b) -> -a.t2.compareTo(b.t2))
-                        .take(10))
-                .map(entry -> entry.toString());
+                        .take(topN)
+                        .finallyDo(_s -> System.out.println("window closed!!!!!")))
+                .map(entry -> tuple().of("hashtag", entry.t1, "count", entry.t2));
+
     }
 }
