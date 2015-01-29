@@ -13,7 +13,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 	</properties>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -51,7 +50,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.xd</groupId>

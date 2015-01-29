@@ -1,7 +1,7 @@
 
 buildscript {
     repositories {
-		maven { url "http://repo.spring.io/plugins-snapshot" }
+        maven { url "http://repo.spring.io/plugins-snapshot" }
         maven { url "http://repo.spring.io/snapshot" }
         jcenter()
     }
@@ -33,9 +33,8 @@ targetCompatibility = 1.6
 
 repositories {
     maven { url "http://repo.spring.io/release" }
-	mavenCentral()
+    mavenCentral()
     jcenter()
-    maven { url "http://jcenter.bintray.com/" }
     maven { url "http://repo.spring.io/snapshot" }
     maven { url "http://repo.spring.io/milestone" }
 }

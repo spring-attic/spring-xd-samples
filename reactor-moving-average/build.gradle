@@ -1,7 +1,7 @@
 
 buildscript {
     repositories {
-		maven { url "http://repo.spring.io/plugins-snapshot" }
+        maven { url "http://repo.spring.io/plugins-snapshot" }
         maven { url "http://repo.spring.io/release" }
         jcenter()
         maven { url "http://repo.spring.io/snapshot" }
@@ -34,12 +34,11 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-	 maven { url "http://repo.spring.io/release" }
-     mavenCentral()
-     jcenter()
-     maven { url "http://repo.spring.io/snapshot" }
-     maven { url "http://repo.spring.io/milestone" }
-     
+    maven { url "http://repo.spring.io/release" }
+    mavenCentral()
+    jcenter()
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" } 
 }
 
 dependencies {

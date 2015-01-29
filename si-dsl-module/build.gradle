@@ -1,7 +1,7 @@
 
 buildscript {
     repositories {
-		maven { url "http://repo.spring.io/plugins-snapshot" }
+        maven { url "http://repo.spring.io/plugins-snapshot" }
         maven { url "http://repo.spring.io/release" }
         jcenter()
         maven { url "http://repo.spring.io/snapshot" }
@@ -13,7 +13,7 @@ buildscript {
 }
 
 ext {
-	springXdVersion = '1.1.0.RC1'
+    springXdVersion = '1.1.0.RC1'
 }
 
 apply plugin: 'java'
@@ -34,11 +34,10 @@ sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
 repositories {
-        maven { url "http://repo.spring.io/release" }
-        jcenter()
-        maven { url "http://repo.spring.io/snapshot" }
-        maven { url "http://repo.spring.io/milestone" }
-     
+    maven { url "http://repo.spring.io/release" }
+    jcenter()
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" } 
 }
 
 dependencies {

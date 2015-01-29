@@ -1,9 +1,9 @@
 
 buildscript {
     repositories {
-		maven { url "http://repo.spring.io/plugins-snapshot" }
+        maven { url "http://repo.spring.io/plugins-snapshot" }
         maven { url "http://repo.spring.io/snapshot" }
-		jcenter()
+        jcenter()
     }
     dependencies {
 		classpath("org.springframework.xd:spring-xd-module-plugin:1.1.0.RC1")
@@ -33,7 +33,7 @@ targetCompatibility = 1.6
 
 repositories {
     maven { url "http://repo.spring.io/release" }
-	mavenCentral()
+    mavenCentral()
     jcenter()
     maven { url "http://repo.spring.io/snapshot" }
     maven { url "http://repo.spring.io/milestone" }

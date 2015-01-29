@@ -1,9 +1,9 @@
 
 buildscript {
     repositories {
-		maven { url "http://repo.spring.io/plugins-snapshot" }
+        maven { url "http://repo.spring.io/plugins-snapshot" }
         maven { url "http://repo.spring.io/snapshot" }
-        maven { url "http://jcenter.bintray.com/" }
+        jcenter()
     }
     dependencies {
 		classpath("org.springframework.xd:spring-xd-module-plugin:1.1.0.RC1")
@@ -11,7 +11,7 @@ buildscript {
 }
 
 ext {
-	springXdVersion = '1.1.0.RC1'
+    springXdVersion = '1.1.0.RC1'
     hadoopVersion = '2.6.0'
 }
 
@@ -34,7 +34,7 @@ targetCompatibility = 1.6
 
 repositories {
     maven { url "http://repo.spring.io/libs-release" }
-	mavenCentral()
+    mavenCentral()
     jcenter()
     maven { url "http://repo.spring.io/snapshot" }
     maven { url "http://repo.spring.io/milestone" }
