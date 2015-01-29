@@ -1,19 +1,19 @@
 
 buildscript {
     repositories {
-		maven { url "http://repo.spring.io/plugins-snapshot" }
+        maven { url "http://repo.spring.io/plugins-snapshot" }
+        maven { url "http://repo.spring.io/release" }
+        jcenter()
         maven { url "http://repo.spring.io/snapshot" }
-		//todo: temporary
-        mavenLocal()
-        maven { url "http://jcenter.bintray.com/" }
+        maven { url "http://repo.spring.io/milestone" }
     }
     dependencies {
-		classpath("org.springframework.xd:spring-xd-module-plugin:1.1.0.BUILD-SNAPSHOT")
+		classpath("org.springframework.xd:spring-xd-module-plugin:1.1.0.RC1")
     }
 }
 
 ext {
-	springXdVersion = '1.1.0.M2'
+	springXdVersion = '1.1.0.RC1'
     springIntegrationVersion = '4.1.1.RELEASE'
 }
 
@@ -35,12 +35,11 @@ sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
 repositories {
-	 maven { url "http://repo.spring.io/libs-release" }
-	//todo: temporary
-     mavenLocal()
-     maven { url "http://jcenter.bintray.com/" }
-     maven { url "http://repo.spring.io/snapshot" }
-     maven { url "http://repo.spring.io/milestone" }
+    maven { url "http://repo.spring.io/release" }
+	mavenCentral()
+    jcenter()
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
      
 }
 

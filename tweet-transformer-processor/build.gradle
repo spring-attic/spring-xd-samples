@@ -11,7 +11,7 @@ sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
 ext {
-	springXdVersion = '1.1.0.BUILD-SNAPSHOT'
+	springXdVersion = '1.1.0.RC1'
 }
 
 configurations {
@@ -28,7 +28,7 @@ dependencies {
 	testCompile("org.springframework.xd:spring-xd-test:${project.springXdVersion}") {
 		exclude group: 'org.springframework.xd', module: 'spring-xd-hadoop'
 	}
-	testRuntime("org.apache.hadoop:hadoop-common:2.3.0") {
+	testRuntime("org.apache.hadoop:hadoop-common:2.6.0") {
 		exclude group: 'javax.servlet'
 	}
 
@@ -51,8 +51,9 @@ task wrapper(type: Wrapper) {
 }
 
 repositories {
-	maven { url "http://repo.spring.io/libs-release" }
-	maven { url "http://jcenter.bintray.com/" }
+	maven { url "http://repo.spring.io/release" }	
+	mavenCentral()
+	jcenter()
 	maven { url "http://repo.spring.io/snapshot" }
 	maven { url "http://repo.spring.io/milestone" }
 }

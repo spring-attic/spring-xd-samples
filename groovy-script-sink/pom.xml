@@ -6,14 +6,14 @@
 	<parent>
 		<groupId>org.springframework.xd</groupId>
 		<artifactId>spring-xd-module-parent</artifactId>
-		<version>1.1.0.M2</version>
+		<version>1.1.0.RC1</version>
 	</parent>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.xd</groupId>
 			<artifactId>spring-xd-extension-script</artifactId>
-			<version>1.1.0.M2</version>
+			<version>1.1.0.RC1</version>
 		</dependency>
 	</dependencies>
 	<repositories>
