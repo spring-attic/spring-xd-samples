@@ -1,5 +1,5 @@
 Spring XD Batch Hashtag Count Sample
-=================================
+====================================
 
 This sample will take an input file with Twitter JSON data and counts the occurrences of hashtags.
 
@@ -57,7 +57,7 @@ Now start the *Spring XD Shell* in a separate window:
 
 In the Spring XD shell:
 
-    xd:>module upload --type job --name hashtagcount --file [path-to]/batch-hashtag-count-1.0.0.BUILD-SNAPSHOT.jar
+    xd:>module upload --type job --name hashtagCountExample --file [path-to]/batch-hashtag-count-1.0.0.BUILD-SNAPSHOT.jar
 
 ## Collect Twitter Data
 
@@ -65,20 +65,20 @@ In order to setup the Twitter stream, you must either provide your Twitter API c
 
 ```
 xd:> stream create --name tweets --definition "twitterstream \
---consumerKey: 'your_credentials' \
---consumerSecret: 'your_credentials' \
---accessToken: 'your_credentials' \
---accessTokenSecret: 'your_credentials' | hdfs --rollover=2M" --deploy
+--consumerKey='your_credentials' \
+--consumerSecret='your_credentials' \
+--accessToken='your_credentials' \
+--accessTokenSecret='your_credentials' | hdfs --rollover=2M" --deploy
 ```
 
 or alternatively you can provide the credentials in `config/modules/modules.yml`
 
 ```
 twitter:
-   consumerKey=<your consumer key>
-   consumerSecret=<your consumer secret>
-   accessToken=<your access token>
-   accessTokenSecret=<your token secret>
+   consumerKey: <your consumer key>
+   consumerSecret: <your consumer secret>
+   accessToken: <your access token>
+   accessTokenSecret: <your token secret>
 ```
 
 That way you don't have to provide your credentials every time you create a stream:
@@ -89,7 +89,7 @@ That way you don't have to provide your credentials every time you create a stre
 
 You will now create a new Batch Job Stream using the *Spring XD Shell*:
 
-	xd:>job create --name hashtagCountJob --definition "hashtagcount" --deploy
+	xd:>job create --name hashtagCountJob --definition "hashtagCountExample" --deploy
 
 Launch the job using:
 
