@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:hadoop="http://www.springframework.org/schema/hadoop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/hadoop http://www.springframework.org/schema/hadoop/spring-hadoop.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:property-placeholder properties-ref="myProperties" />
+
+	<util:properties id="myProperties" >
+		<prop key="hive.input.path">/xd/tweets</prop>
+		<prop key="hive.output.path">/xd/hiveout</prop>
+	</util:properties>
+
+	<hadoop:configuration>
+		fs.defaultFS=${spring.hadoop.fsUri}
+		yarn.resourcemanager.hostname=${spring.hadoop.resourceManagerHost}
+		mapreduce.framework.name=yarn
+		mapreduce.jobhistory.address=${spring.hadoop.resourceManagerHost}:10020
+	</hadoop:configuration>
+
+	<!-- required since Hadoop Job is a class not an interface and we need to use a Job with step scope to access #{jobParameters['...']} -->
+	<bean class="org.springframework.batch.core.scope.StepScope">
+		<property name="proxyTargetClass" value="true"/>
+	</bean>
+
+	<batch:job id="job">
+		<batch:step id="setup" next="hive">
+			<batch:tasklet ref="script-tasklet"/>
+		</batch:step>
+		<batch:step id="hive">
+			<batch:tasklet ref="hive-tasklet" />
+		</batch:step>
+	</batch:job>
+
+	<hadoop:script-tasklet id="script-tasklet" script-ref="hdfs-script" scope="step"/>
+
+	<hadoop:script id="hdfs-script" language="javascript">
+		<hadoop:property name="hdfsOutputDir" value="${hive.output.path}"/>
+		// use the shell (made available under variable fsh)
+		if (fsh.test(hdfsOutputDir)) fsh.rmr(hdfsOutputDir)
+	</hadoop:script>
+
+    <hadoop:hive-tasklet id="hive-tasklet">
+        <hadoop:script>
+	        create external table if not exists tweetdata (value STRING) LOCATION '${hive.input.path}';
+	        insert overwrite directory '${hive.output.path}'
+	          select u.user_name, '\t', max(cast(u.followers_count as int)) as count
+	          from tweetdata j
+	            lateral view json_tuple(j.value, 'user') t as user
+	            lateral view json_tuple(t.user, 'name', 'followers_count') u as user_name, followers_count
+	          group by u.user_name order by count desc limit 10;
+        </hadoop:script>
+    </hadoop:hive-tasklet>
+
+	<hadoop:hive-client-factory host="localhost" port="10000"/>
+
+</beans>
+
