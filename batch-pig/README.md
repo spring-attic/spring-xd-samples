@@ -19,6 +19,8 @@ First, configure the XD Shell to use our Hadoop NameNode:
 	
 Now we can copy the data file to the `/xd/hashtagcounts/output` directory.
 
+    xd:>hadoop fs mkdir /xd/hashtagcount
+    xd:>hadoop fs mkdir /xd/hashtagcount/output
     xd:>hadoop fs copyFromLocal --from <path-to-this-sample>/data/part-r-00000 --to /xd/hashtagcount/output/part-r-00000
 
 
