@@ -16,10 +16,10 @@
 package org.springframework.xd.examples.hadoop;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
@@ -30,32 +30,36 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
+import org.codehaus.jackson.JsonFactory;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 
 public class HashtagCount {
 
 	public static class TokenizerMapper extends
 			Mapper<Object, Text, Text, LongWritable> {
 
-		final static Pattern TAG_PATTERN = Pattern.compile("\"hashtags\":\\[([^\\]]*)");
+		private static final ObjectMapper jsonMapper = new ObjectMapper(new JsonFactory());
 		private final static LongWritable ONE = new LongWritable(1L);
-		private Text word = new Text();
 
 		public void map(Object key, Text value, Context context)
 				throws IOException, InterruptedException {
-			Matcher matcher = TAG_PATTERN.matcher(value.toString());
-			while (matcher.find()) {
-				String found = matcher.group();
-				String cleanedString = found.replaceFirst("\"hashtags\":\\[\\{\"text\":\"", "");
-				String superPolished = cleanedString.split("\",\"")[0];
 
-				String useMe = superPolished;
-				if (superPolished.startsWith("\\u")) {
-					useMe = StringEscapeUtils.unescapeJava(superPolished);
+			Map<String, Object> tweet = jsonMapper.readValue(value.toString(),
+					new TypeReference<HashMap<String, Object>>() {
+					});
+			Map<String, Object> entities = (Map<String, Object>) tweet.get("entities");
+			List<Map<String, Object>> hashTagEntries = null;
+
+			if (entities != null) {
+				hashTagEntries = (List<Map<String, Object>>) entities.get("hashtags");
+			}
+
+			if (hashTagEntries != null && hashTagEntries.size() > 0) {
+				for (Map<String, Object> hashTagEntry : hashTagEntries) {
+					String hashTag = hashTagEntry.get("text").toString();
+					context.write(new Text(hashTag), ONE);
 				}
-				useMe = useMe.split("\"")[0];
-
-				word.set(useMe.toLowerCase());
-				context.write(word, ONE);
 			}
 		}
 
