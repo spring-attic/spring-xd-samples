@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:hadoop="http://www.springframework.org/schema/hadoop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/hadoop http://www.springframework.org/schema/hadoop/spring-hadoop.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:property-placeholder properties-ref="myProperties" />
+
+	<util:properties id="myProperties" >
+		<prop key="pig.input.path">/xd/hashtagcount/output</prop>
+		<prop key="pig.output.path">/xd/pigout/results</prop>
+	</util:properties>
+
+	<hadoop:configuration>
+		fs.defaultFS=${spring.hadoop.fsUri}
+		yarn.resourcemanager.hostname=${spring.hadoop.resourceManagerHost}
+		mapreduce.framework.name=yarn
+		mapreduce.jobhistory.address=${spring.hadoop.resourceManagerHost}:10020
+	</hadoop:configuration>
+
+	<!-- required since Hadoop Job is a class not an interface and we need to use a Job with step scope to access #{jobParameters['...']} -->
+	<bean class="org.springframework.batch.core.scope.StepScope">
+		<property name="proxyTargetClass" value="true"/>
+	</bean>
+
+	<batch:job id="job">
+		<batch:step id="setup" next="pig">
+			<batch:tasklet ref="script-tasklet"/>
+		</batch:step>
+		<batch:step id="pig">
+			<batch:tasklet ref="pig-tasklet" />
+		</batch:step>
+	</batch:job>
+
+	<hadoop:script-tasklet id="script-tasklet" script-ref="hdfs-script" scope="step"/>
+
+	<hadoop:pig-tasklet id="pig-tasklet" scope="step">
+		<hadoop:script location="classpath:tweet-analysis.pig">
+			<hadoop:arguments>
+				inputPath=${pig.input.path}
+				outputPath="${pig.output.path}"		
+			</hadoop:arguments>
+		</hadoop:script>					
+	</hadoop:pig-tasklet>
+
+	<hadoop:pig-factory exec-type="MAPREDUCE" configuration-ref="hadoopConfiguration" properties-location="classpath:pig-server.properties"/>
+
+	<hadoop:script id="hdfs-script" language="javascript">
+		<hadoop:property name="hdfsOutputDir" value="${pig.output.path}"/>
+		// use the shell (made available under variable fsh)
+		if (fsh.test(hdfsOutputDir)) fsh.rmr(hdfsOutputDir)
+	</hadoop:script>
+</beans>
+
