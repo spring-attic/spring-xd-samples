@@ -94,7 +94,7 @@ Check that the job is running and wait for it complete:
       --  --------  -----------------------  --------------------  ----------------  -----------------  -----------------
       72  pigJob    2015-02-03 16:20:52,743  2                     STARTED           Deployed           Exists
 
-When the Execution Status changes to COMPLETED you can check teh results.
+When the Execution Status changes to COMPLETED you can check the results.
 
 To do that we should configure the XD Shell to use our Hadoop NameNode:
 

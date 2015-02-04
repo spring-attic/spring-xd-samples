@@ -91,13 +91,18 @@ You will now create a new Batch Job Stream using the *Spring XD Shell*:
 
 	xd:>job create --name hashtagCountJob --definition "hashtagCountExample" --deploy
 
+You should see a message:
+
+	Successfully created and deployed job 'hashtagCountJob'
+
 Launch the job using:
 
 	xd:>job launch hashtagCountJob
 
 You should see a message:
 
-	Successfully created and deployed job 'hashtagCountJob'
+	Successfully submitted launch request for job 'hashtagCountJob'
+
 
 ## Verify the result
 
