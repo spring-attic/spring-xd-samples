@@ -23,6 +23,10 @@ Now we can copy the data file to the `/xd/hashtagcounts/output` directory.
     xd:>hadoop fs mkdir /xd/hashtagcount/output
     xd:>hadoop fs copyFromLocal --from <path-to-this-sample>/data/part-r-00000 --to /xd/hashtagcount/output/part-r-00000
 
+> *NOTE:* If you are using an Hadoop cluster that uses a different classpath configuration than the default one from Apache Hadoop, then you need
+> to provide a 'yarn.application.classpath' property with the correct classpath to be used by any task submitted to the YARN cluster. The file 
+> `yarn-site.xml` that is included in this example should be used for this, see notes in this file for details.
+
 
 ## Building
 

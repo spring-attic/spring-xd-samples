@@ -17,6 +17,11 @@ Furthermore you must have your Twitter API credentials ready:
 * Access Token
 * Access Token Secret
 
+> *NOTE:* If you are using an Hadoop cluster that uses a different classpath configuration than the default one from Apache Hadoop, then you need
+> to provide a 'yarn.application.classpath' property with the correct classpath to be used by any task submitted to the YARN cluster. The file 
+> `yarn-site.xml` that is included in this example should be used for this, see notes in this file for details.
+
+
 ## Building with Maven
 
 Build the sample simply by executing:
