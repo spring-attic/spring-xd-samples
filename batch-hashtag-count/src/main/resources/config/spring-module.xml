@@ -16,6 +16,8 @@
 	<util:properties id="myProperties" >
 		<prop key="tweets.input.path">/xd/tweets/*.txt</prop>
 		<prop key="tweets.output.path">/xd/hashtagcount/output/</prop>
+		<!-- the name to use when uploading this module - we need this to reference the jar file -->
+		<prop key="module.name">hashtagCountExample</prop>
 	</util:properties>
 
 	<hadoop:configuration>
@@ -44,7 +46,7 @@
 	<hadoop:job id="hashtagcountJob"
 		input-path="${tweets.input.path}"
 		output-path="${tweets.output.path}"
-		jar="${xd.customModule.home}/job/hashtagCountExample.jar"
+		jar="${xd.customModule.home}/job/${module.name}.jar"
 		mapper="org.springframework.xd.examples.hadoop.HashtagCount$TokenizerMapper"
 		reducer="org.springframework.xd.examples.hadoop.HashtagCount$LongSumReducer"
 		scope="step" />
