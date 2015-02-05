@@ -16,6 +16,8 @@
 	<util:properties id="myProperties" >
 		<prop key="hive.input.path">/xd/tweets</prop>
 		<prop key="hive.output.path">/xd/hiveout</prop>
+		<prop key="hive.server.host">localhost</prop>
+		<prop key="hive.server.port">10000</prop>
 	</util:properties>
 
 	<hadoop:configuration>
@@ -31,21 +33,10 @@
 	</bean>
 
 	<batch:job id="job">
-		<batch:step id="setup" next="hive">
-			<batch:tasklet ref="script-tasklet"/>
-		</batch:step>
 		<batch:step id="hive">
 			<batch:tasklet ref="hive-tasklet" />
 		</batch:step>
 	</batch:job>
-
-	<hadoop:script-tasklet id="script-tasklet" script-ref="hdfs-script" scope="step"/>
-
-	<hadoop:script id="hdfs-script" language="javascript">
-		<hadoop:property name="hdfsOutputDir" value="${hive.output.path}"/>
-		// use the shell (made available under variable fsh)
-		if (fsh.test(hdfsOutputDir)) fsh.rmr(hdfsOutputDir)
-	</hadoop:script>
 
     <hadoop:hive-tasklet id="hive-tasklet">
         <hadoop:script>
@@ -59,7 +50,7 @@
         </hadoop:script>
     </hadoop:hive-tasklet>
 
-	<hadoop:hive-client-factory host="localhost" port="10000"/>
+	<hadoop:hive-client-factory host="${hive.server.host}" port="${hive.server.port}"/>
 
 </beans>
 

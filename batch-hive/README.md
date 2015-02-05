@@ -112,6 +112,14 @@ Finally, executing:
 
 should yield a list of 10 Twitter users and their respective follower counts.
 
+## Removing output directory
+
+Depending on your cluster setup, the output directory might have been created by another user like `hive`. You would need to
+remove this directory running as that user or with a super user account. On a non a non-secured cluster this can be achieved
+with:
+
+    $ HADOOP_USER_NAME=hive hadoop fs -rm -r /xd/hiveout
+
 [pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-hive/pom.xml
 [Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
 [Modules]: http://docs.spring.io/spring-xd/docs/current/reference/html/#modules
