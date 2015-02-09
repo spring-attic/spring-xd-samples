@@ -79,6 +79,10 @@ A custom module that uses RxJava's Observable API to perform stream analysis.
 
 This sample demonstrates how to create a custom module project, including integration tests, and packaging the module as an uber-jar using maven (requires Spring XD 1.1.x). The project also demonstrates the use of the [Spring Integration Java DSL][]
 
+### syslog
+
+This sample demonstrates how to setup syslog ingestion from multiple hosts into HDFS.
+
 ### tweet-transformer-processor
 
 A simple custom processor module project, including integration tests. This one has no external dependencies other than the processor implementation and Spring configuration which is provided either as XML or @Configuration.

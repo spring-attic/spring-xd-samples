@@ -1,0 +1,42 @@
+This examples show you how to setup syslog ingestion from multiple hosts into HDFS.
+
+Create the streams with syslog as source and HDFS as sink (Please refer to link:Sources#sources[source] and link:Sinks#sinks[sink])
+
+  $ curl -d “syslog-udp --port=<udp-port> | hdfs” http://localhost:8080/streams/<stream-name>
+
+  $ curl -d “syslog-tcp –-port=<tcp-port> | hdfs” http://localhost:8080/streams/<stream-name>
+
+Please note for hdfs sink, set `rollover` parameter to a smaller value to avoid buffering and to see the data has made to HDFS (incase of smaller volume of log).
+
+Configure the external hosts’ syslog daemons forward their messages to the xd-container host’s UDP/TCP port (where the syslog-udp/syslog-tcp source module is deployed).
+
+==== A sample configuration using syslog-ng
+
+Edit /etc/syslog-ng/syslog-ng.conf :
+
+1) Add destination
+ 
+  Add destination <destinationName> {
+        tcp("<xd-container-host>" port("<tcp-port>"));
+  };
+
+or,
+
+  Add destination <destinationName> {
+        udp("<xd-container-host>" port("<udp-port>"));
+  };
+
+
+2) Add log rule to log message sources:
+
+  log {
+    source(<message_source>); destination(<destinationName>);
+  };
+
+We can use “s_all” as message source to try this example.
+
+3) Make sure to restart the service after the change:
+
+  sudo service syslog-ng restart
+
+Now, the syslog messages are written into HDFS /xd/<stream-name>/
