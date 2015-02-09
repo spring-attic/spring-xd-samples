@@ -29,7 +29,24 @@
     <description>Classpath for typical applications.</description>
     <name>yarn.application.classpath</name>
     <value>
-     /etc/hadoop/conf,/usr/lib/hadoop/*,/usr/lib/hadoop/lib/*,/usr/lib/hadoop-hdfs/*,/usr/lib/hadoop-hdfs/lib/*,/usr/lib/hadoop-yarn/*,/usr/lib/hadoop-yarn/lib/*,/usr/lib/hadoop-mapreduce/*,/usr/lib/hadoop-mapreduce/lib/*
+      /etc/hadoop/conf,/usr/hdp/current/hadoop-client/*,/usr/hdp/current/hadoop-client/lib/*,/usr/hdp/current/hadoop-hdfs-client/*,/usr/hdp/current/hadoop-hdfs-client/lib/*,/usr/hdp/current/hadoop-mapreduce-client/*,/usr/hdp/current/hadoop-mapreduce-client/lib/*,/usr/hdp/current/hadoop-yarn-client/*,/usr/hdp/current/hadoop-yarn-client/lib/* 
+    </value>
+  </property>
+  <property>
+    <description>Java opts for the MR App Master processes.</description>
+    <name>yarn.app.mapreduce.am.command-opts</name>
+    <value>-Dhdp.version=2.2.0.0-2041</value>
+  </property>
+  <property>
+    <description>Path to the MapReduce framework archive.</description>
+    <name>mapreduce.application.framework.path</name>
+    <value>/hdp/apps/2.2.0.0-2041/mapreduce/mapreduce.tar.gz#mr-framework</value>
+  </property>
+  <property>
+    <description>CLASSPATH for MR applications.</description>
+    <name>mapreduce.application.classpath</name>
+    <value>
+      $PWD/mr-framework/hadoop/share/hadoop/mapreduce/*:$PWD/mr-framework/hadoop/share/hadoop/mapreduce/lib/*:$PWD/mr-framework/hadoop/share/hadoop/common/*:$PWD/mr-framework/hadoop/share/hadoop/common/lib/*:$PWD/mr-framework/hadoop/share/hadoop/yarn/*:$PWD/mr-framework/hadoop/share/hadoop/yarn/lib/*:$PWD/mr-framework/hadoop/share/hadoop/hdfs/*:$PWD/mr-framework/hadoop/share/hadoop/hdfs/lib/*:/etc/hadoop/conf/secure
     </value>
   </property>
   -->

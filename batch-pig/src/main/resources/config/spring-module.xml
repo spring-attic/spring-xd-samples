@@ -20,7 +20,7 @@
 
 	<hadoop:configuration>
 		fs.defaultFS=${spring.hadoop.fsUri}
-		yarn.resourcemanager.hostname=${spring.hadoop.resourceManagerHost}
+		yarn.resourcemanager.address=${spring.hadoop.resourceManagerHost}:${spring.hadoop.resourceManagerPort}
 		mapreduce.framework.name=yarn
 		mapreduce.jobhistory.address=${spring.hadoop.resourceManagerHost}:10020
 	</hadoop:configuration>
