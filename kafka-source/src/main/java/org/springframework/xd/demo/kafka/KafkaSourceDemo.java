@@ -36,8 +36,9 @@ public class KafkaSourceDemo {
 
 		ProducerConfig config = new ProducerConfig(producerConfigProperties);
 		Producer<byte[], byte[]> producer = new Producer<byte[], byte[]>(config);
-		for (int i=0; i<1000; i++) {
-			KeyedMessage<byte[], byte[]> message = new KeyedMessage<byte[], byte[]>("kafka-source-test", (i+"").getBytes(), ("Message " + i + " at " + new Date()).getBytes());
+		for (int i = 0; i < 100; i++) {
+			KeyedMessage<byte[], byte[]> message = new KeyedMessage<byte[], byte[]>("kafka-source-test", (i + "").getBytes(),
+					("Message " + i + " at " + new Date()).getBytes());
 			producer.send(message);
 		}
 	}

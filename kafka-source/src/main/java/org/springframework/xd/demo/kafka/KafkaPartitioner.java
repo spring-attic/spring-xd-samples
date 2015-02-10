@@ -21,8 +21,8 @@ import kafka.producer.Partitioner;
 import kafka.utils.VerifiableProperties;
 
 /**
-* @author Marius Bogoevici
-*/
+ * @author Marius Bogoevici
+ */
 public class KafkaPartitioner implements Partitioner {
 
 	public KafkaPartitioner(VerifiableProperties verifiableProperties) {
@@ -30,7 +30,7 @@ public class KafkaPartitioner implements Partitioner {
 	}
 
 	/**
-	 * A basic partitioner, that takes the
+	 * A basic partitioner, that takes the value of the key and converts it to its numeric value
 	 * @param key
 	 * @param numPartitions
 	 * @return
