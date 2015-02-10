@@ -8,12 +8,12 @@ buildscript {
         maven { url "http://repo.spring.io/milestone" }
     }
     dependencies {
-		classpath("org.springframework.xd:spring-xd-module-plugin:1.1.0.RC1")
+		classpath("org.springframework.xd:spring-xd-module-plugin:1.1.0.RELEASE")
     }
 }
 
 ext {
-	springXdVersion = '1.1.0.RC1'
+	springXdVersion = '1.1.0.RELEASE'
 }
 
 apply plugin: 'java'

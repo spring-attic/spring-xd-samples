@@ -3,15 +3,16 @@ buildscript {
     repositories {
         maven { url "http://repo.spring.io/plugins-snapshot" }
         maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/release" }
         jcenter()
     }
     dependencies {
-		classpath("org.springframework.xd:spring-xd-module-plugin:1.1.0.RC1")
+		classpath("org.springframework.xd:spring-xd-module-plugin:1.1.0.RELEASE")
     }
 }
 
 ext {
-	springXdVersion = '1.1.0.RC1'
+	springXdVersion = '1.1.0.RELEASE'
 }
 
 apply plugin: 'java'

@@ -8,13 +8,13 @@ buildscript {
         maven { url "http://repo.spring.io/milestone" }
     }
     dependencies {
-		classpath("org.springframework.xd:spring-xd-module-plugin:1.1.0.RC1")
+		classpath("org.springframework.xd:spring-xd-module-plugin:1.1.0.RELEASE")
     }
 }
 
 ext {
-    springXdVersion = '1.1.0.RC1'
-    springIntegrationVersion = '4.1.1.RELEASE'
+    springXdVersion = '1.1.0.RELEASE'
+    springIntegrationVersion = '4.1.2.RELEASE'
 }
 
 apply plugin: 'java'
@@ -31,8 +31,8 @@ version = '1.0.0.BUILD-SNAPSHOT'
 
 description = "Spring XD source module for RSS Feed"
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 repositories {
     maven { url "http://repo.spring.io/release" }

@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.xd</groupId>
 		<artifactId>spring-xd-module-parent</artifactId>
-		<version>1.1.0.RC1</version>
+		<version>1.1.0.RELEASE</version>
 	</parent>
 
 	<properties>
@@ -24,8 +24,8 @@
 
 	<repositories>
 		<repository>
-			<id>spring-milestone</id>
-			<url>http://repo.spring.io/milestone</url>
+			<id>spring-release</id>
+			<url>http://repo.spring.io/release</url>
 		</repository>
 		<repository>
 			<id>jcenter</id>

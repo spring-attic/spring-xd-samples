@@ -14,7 +14,7 @@ dependencyManagement {
 }
 
 ext {
-	springXdVersion ='1.1.0.M1'
+	springXdVersion ='1.1.0.RELEASE'
 }
 
 dependencies{

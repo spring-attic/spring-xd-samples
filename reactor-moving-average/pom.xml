@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.xd</groupId>
 		<artifactId>spring-xd-module-parent</artifactId>
-		<version>1.1.0.RC1</version>
+		<version>1.1.0.RELEASE</version>
 	</parent>
 
 	<repositories>
@@ -14,6 +14,14 @@
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
 			<url>http://repo.spring.io/libs-milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-release</id>
+			<name>Spring Releases</name>
+			<url>http://repo.spring.io/release</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>

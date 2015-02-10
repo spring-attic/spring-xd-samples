@@ -21,12 +21,16 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.xd.version>1.0.1.RELEASE</spring.xd.version>
+    <spring.xd.version>1.1.0.RELEASE</spring.xd.version>
   </properties>
 
   <repositories>
     <repository>
       <id>spring-milestone</id>
+      <url>http://repo.springsource.org/libs-milestone</url>
+    </repository>
+     <repository>
+      <id>spring-release</id>
       <url>http://repo.springsource.org/libs-milestone</url>
     </repository>
   </repositories>
