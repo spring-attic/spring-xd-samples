@@ -11,7 +11,7 @@ In order to install the module run it in your Spring XD installation, you will n
 
 ## Code Tour
 
-The heart of the sample is the processing module named [MovingAverage.java](src/main/java/com/acme/MovingAverage.java). This uses the Stream API to perform an average over the last 5 values of data. The [Tuple](http://docs.spring.io/spring-xd/docs/current/reference/html/#tuples) data type is used as a generic container for keyed data.
+The heart of the sample is the processing module named [TopTags.java](src/main/java/com/acme/TopTags.java). This uses the Stream API to perform an average over the last 5 values of data. The [Tuple](http://docs.spring.io/spring-xd/docs/current/reference/html/#tuples) data type is used as a generic container for keyed data.
 
 
 ## Building
@@ -20,7 +20,7 @@ The heart of the sample is the processing module named [MovingAverage.java](src/
 
 ## Using the Custom Module
 
-The uber-jar will be in `target/reactor-moving-average-1.0.0.BUILD-SNAPSHOT.jar`. To install and register the module to your Spring XD distribution, use the `module upload` Spring XD shell command. Start Spring XD and the shell:
+The uber-jar will be in `target/reactor-top-tags-1.0.0.BUILD-SNAPSHOT.jar`. To install and register the module to your Spring XD distribution, use the `module upload` Spring XD shell command. Start Spring XD and the shell:
 
 ```
  _____                           __   _______
@@ -34,15 +34,15 @@ The uber-jar will be in `target/reactor-moving-average-1.0.0.BUILD-SNAPSHOT.jar`
 eXtreme Data
 1.1.0.BUILD-SNAPSHOT | Admin Server Target: http://localhost:9393
 Welcome to the Spring XD shell. For assistance hit TAB or type "help".
-xd:>module upload --file [path-to]/spring-xd-samples/reactor-moving-average/target/reactor-moving-average-1.0.0.BUILD-SNAPSHOT.jar --name reactor-moving-average --type processor
-Successfully uploaded module 'processor:reactor-moving-average'
+xd:>module upload --file [path-to]/spring-xd-samples/reactor-top-tags/target/reactor-top-tags-1.0.0.BUILD-SNAPSHOT.jar --name reactor-top-tags --type processor
+Successfully uploaded module 'processor:reactor-top-tags'
 xd:>
 ```
 
 Now create an deploy a stream:
 
 ```
-xd:>stream create reactor --definition "http | reactor-moving-average --inputType=application/x-xd-tuple | log" --deploy
+xd:>stream create reactor --definition "http | reactor-top-tags --inputType=application/x-xd-tuple | log" --deploy
 ```
 
 To post several messages, use the script file generateData.script located in this repository.
