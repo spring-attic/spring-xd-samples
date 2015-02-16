@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:int="http://www.springframework.org/schema/integration"
+	   xmlns="http://www.springframework.org/schema/beans"
+	   xsi:schemaLocation="http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="processor" class="com.acme.TopTags">
+		<constructor-arg index="0" value="${timeWindow}"/>
+		<constructor-arg index="1" value="${topN}"/>
+	</bean>
+
+
+	<!-- The rest is boilerplate that XD 1.1 RC1 will avoid you having to provide -->
+
+	<int:channel id="input"/>
+
+	<bean name="messageHandler" class="org.springframework.xd.rxjava.SubjectMessageHandler">
+		<constructor-arg ref="processor"/>
+	</bean>
+
+
+	<int:service-activator input-channel="input" ref="messageHandler"
+						   output-channel="output"/>
+
+	<int:channel id="output"/>
+
+</beans>
