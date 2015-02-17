@@ -8,7 +8,8 @@
 
 	<bean id="processor" class="com.acme.TopTags">
 		<constructor-arg index="0" value="${timeWindow}"/>
-		<constructor-arg index="1" value="${topN}"/>
+		<constructor-arg index="1" value="${timeShift}"/>
+		<constructor-arg index="2" value="${topN}"/>
 	</bean>
 
 

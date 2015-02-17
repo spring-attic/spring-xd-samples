@@ -39,10 +39,13 @@ public class TopTags implements Processor<String, Tuple> {
 
 	private int timeWindow;
 
+	private int timeShift;
+
 	private int topN;
 
-	public TopTags(int timeWindow, int topN) {
+	public TopTags(int timeWindow, int timeShift, int topN) {
 		this.timeWindow = timeWindow;
+		this.timeShift = timeShift;
 		this.topN = topN;
 	}
 
@@ -57,7 +60,7 @@ public class TopTags implements Processor<String, Tuple> {
 				// create (tag,1) tuple for each incoming tag
 				.map(tag -> Tuples.pair(tag, 1))
 						// batch all tags in the time window
-				.window(timeWindow, SECONDS)
+				.window(timeWindow, timeShift, SECONDS)
 						// with each time window stream
 				.flatMap(windowBuffer ->
 								windowBuffer
