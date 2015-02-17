@@ -6,55 +6,21 @@
   <artifactId>payload-conversion</artifactId>
   <version>1.0.0.BUILD-SNAPSHOT</version>
   <name>Spring XD Sample - Payload type conversion example with a custom module</name>
-  <packaging>jar</packaging>
 
-  <prerequisites>
-    <maven>2.2.1</maven>
-  </prerequisites>
+    <parent>
+        <groupId>org.springframework.xd</groupId>
+        <artifactId>spring-xd-module-parent</artifactId>
+        <version>1.1.0.RELEASE</version>
+    </parent>
 
-  <parent>
-    <groupId>io.spring.platform</groupId>
-    <artifactId>platform-bom</artifactId>
-    <version>1.0.1.RELEASE</version>
-    <relativePath/>
-  </parent>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.xd.version>1.1.0.RELEASE</spring.xd.version>
-  </properties>
-
-  <repositories>
-    <repository>
-      <id>spring-milestone</id>
-      <url>http://repo.springsource.org/libs-milestone</url>
-    </repository>
-     <repository>
-      <id>spring-release</id>
-      <url>http://repo.springsource.org/libs-milestone</url>
-    </repository>
-  </repositories>
- 
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.xd</groupId>
-      <artifactId>spring-xd-tuple</artifactId>
-      <version>${spring.xd.version}</version>
-      <scope>compile</scope>
-    </dependency>
-  </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.4</version>
-        <configuration>
-          <descriptors>
-            <descriptor>src/main/assembly/assembly.xml</descriptor>
-          </descriptors>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+    <repositories>
+        <repository>
+            <id>spring-io-release</id>
+            <url>http://repo.spring.io/release</url>
+        </repository>
+        <repository>
+            <id>jcenter</id>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
 </project>
