@@ -5,29 +5,50 @@ This sample project implements a custom processor module named *myTupleProcessor
 
 This sample also illustrates XD's built in payload conversion. This module may be linked to a source that produces any JSON string.
 
+## Building with Maven
+
+	$ mvn package
+
+The project's [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container. See the [Modules][] section in the Spring XD Reference for a more detailed explanation of module class loading.
+
+## Building with Gradle
+
+	$./gradlew clean test bootRepackage
+
+The project's [build.gradle][] applies the `spring-xd-module` plugin, providing analagous build and packaging support for gradle. This plugin also applies the [Spring Boot Gradle Plugin][] as well as the [propdeps plugin][].
+
+## Using the Custom Module
+
+The uber-jar will be in `[project-build-dir]/payload-conversion-1.0.0.BUILD-SNAPSHOT.jar`. To install and register the module to your Spring XD distribution, use the `module upload` Spring XD shell command. Start Spring XD and the shell:
+
+     _____                           __   _______
+    /  ___|          (-)             \ \ / /  _  \
+    \ `--. _ __  _ __ _ _ __   __ _   \ V /| | | |
+     `--. \ '_ \| '__| | '_ \ / _` |  / ^ \| | | |
+    /\__/ / |_) | |  | | | | | (_| | / / \ \ |/ /
+    \____/| .__/|_|  |_|_| |_|\__, | \/   \/___/
+          | |                  __/ |
+          |_|                 |___/
+    eXtreme Data
+    1.1.0.BUILD-SNAPSHOT | Admin Server Target: http://localhost:9393
+    Welcome to the Spring XD shell. For assistance hit TAB or type "help".
+    xd:>module upload --file [path-to]/payload-conversion-1.0.0.BUILD-SNAPSHOT.jar --name myTupleProcessor --type processor
+    Successfully uploaded module 'processor:myTupleProcessor'
+
+You can also get information about the available module options:
+
+    xd:>module info processor:myTupleProcessor
+    Information about processor module 'myTupleProcessor':
+
+      Option Name  Description                                            Default  Type
+      -----------  -----------------------------------------------------  -------  --------
+      outputType   how this module should emit messages it produces       <none>   MimeType
+      inputType    how this module should interpret messages it consumes  <none>   MimeType
+
+
 ### Running the example
 
-Build the project by executing:
-
-	$ mvn clean assembly:assembly
-
-This will result in the following files under `target/payload-conversion-1.0.0.BUILD-SNAPSHOT-bin/`:
-
-```
-└── modules
-    └── processor
-        └── myTupleProcessor
-            ├── config
-            │   └── myTupleProcessor.xml
-            └── lib
-                └── payload-conversion-1.0.0.BUILD-SNAPSHOT.jar
-```
-
-Install the module to an XD installation:
-
-	$ cp -R target/payload-conversion-1.0.0.BUILD-SNAPSHOT-bin/modules/* $XD_HOME/modules
-
-Next, start the XD container and the XD admin process, either single-node, or distributed. And start the XD shell. Create and deploy a stream:
+ Create and deploy a stream:
 
 	xd:>stream create test --definition "http | myTupleProcessor --inputType=application/x-xd-tuple | file" --deploy
 
