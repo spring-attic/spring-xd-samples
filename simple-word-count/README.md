@@ -30,11 +30,11 @@ stream create words --definition "file --dir=<directory-with-text-files> --outpu
 
 Then we will tap the original stream and create a new one, for counting the words. We will use a field value counter for accumulating results in the 
 * the `words` stream is tapped after the splitter;
-* we use a transformer to wrap the individual words into Spring XD `Tuple`s, which are one of the expected 
+* we use a transformer to wrap the individual words into Spring XD `Tuple`s, which are one of the expected inputs for the field value counter.
 
 
 ```
-stream create wordcount --definition "tap:stream:words.transformer > transform --expression=T(org.springframework.xd.tuple.TupleBuilder).tuple().of('word',payload) | field-value-counter --fieldName=word"
+stream create wordcount --definition "tap:stream:words.splitter > transform --expression=T(org.springframework.xd.tuple.TupleBuilder).tuple().of('word',payload) | field-value-counter --fieldName=word"
 ```
 
 You can use the [analytics-dashboard]() project to visualize the word counts as the stream is processed.
