@@ -18,8 +18,10 @@ package com.acme;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.xd.reactor.Processor;
+
 import reactor.Environment;
 import reactor.fn.Consumer;
 import reactor.rx.Stream;
@@ -35,55 +37,56 @@ import java.util.Scanner;
 public class TopTagsTupleTest {
 
 
-    protected Environment env;
+	protected Environment env;
 
-    @Before
-    public void loadEnv() {
-        env = Environment.initializeIfEmpty().assignErrorJournal();
-    }
+	@Before
+	public void loadEnv() {
+		env = Environment.initializeIfEmpty().assignErrorJournal();
+	}
 
-    @After
-    public void closeEnv() {
-        Environment.terminate();
-    }
+	@After
+	public void closeEnv() {
+		Environment.terminate();
+	}
 
-    @Test
-    public void tags() throws IOException {
+	@Test
+	public void tags() throws IOException {
 
-        final Broadcaster<Object> broadcaster = SerializedBroadcaster.create();
+		final Broadcaster<Object> broadcaster = SerializedBroadcaster.create();
 
-        Processor processor = new TopTags(1,10);
-        Stream<?> outputStream = processor.process(broadcaster);
+		Processor processor = new TopTags(1, 1, 10);
+		Stream<?> outputStream = processor.process(broadcaster);
 
 
-        outputStream.consume(new Consumer<Object>() {
-            @Override
-            public void accept(Object o) {
-                System.out.println("processed : " + o);
-            }
-            //TODO - expect
+		outputStream.consume(new Consumer<Object>() {
+			@Override
+			public void accept(Object o) {
+				System.out.println("processed : " + o);
+			}
+			//TODO - expect
 //            processed : {"id":"55786760-7472-065d-8e62-eb83260948a4","timestamp":1422399628134,"hashtag":"AndroidGames","count":1}
 //            processed : {"id":"bd99050f-abfa-a239-c09a-f2fe721daafb","timestamp":1422399628182,"hashtag":"Android","count":1}
 //            processed : {"id":"10ce993c-fd57-322d-efa1-16f810918187","timestamp":1422399628184,"hashtag":"GameInsight","count":1}
-        });
+		});
 
-        ClassPathResource resource = new ClassPathResource("tweets.json");
-        Scanner scanner = new Scanner(resource.getInputStream());
-        while (scanner.hasNext()) {
-            String tweet = scanner.nextLine();
-            broadcaster.onNext(tweet);
-            //simulateLatency();
-        }
-        //System.in.read();
+		ClassPathResource resource = new ClassPathResource("tweets.json");
+		Scanner scanner = new Scanner(resource.getInputStream());
+		while (scanner.hasNext()) {
+			String tweet = scanner.nextLine();
+			broadcaster.onNext(tweet);
+			//simulateLatency();
+		}
+		//System.in.read();
 
-    }
+	}
 
-    private void simulateLatency(){
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+	private void simulateLatency() {
+		try {
+			Thread.sleep(500);
+		}
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

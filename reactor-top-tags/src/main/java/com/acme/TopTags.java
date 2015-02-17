@@ -38,13 +38,16 @@ import java.util.LinkedHashMap;
  */
 public class TopTags implements Processor<String, Tuple> {
 
-	private int timeWindow;
+	private long timeWindow;
+
+	private long timeShift;
 
 	private int topN;
 
 
-	public TopTags(int timeWindow, int topN) {
+	public TopTags(long timeWindow, long timeShift, int topN) {
 		this.timeWindow = timeWindow;
+		this.timeShift = timeShift;
 		this.topN = topN;
 	}
 
@@ -58,7 +61,7 @@ public class TopTags implements Processor<String, Tuple> {
 		})
 
 				.map(w -> reactor.fn.tuple.Tuple.of(w, 1))
-				.window(timeWindow, SECONDS)
+				.window(timeWindow, timeShift, SECONDS)
 				.map(s -> BiStreams.reduceByKey(s, (acc, next) -> acc + next)
 						.sort((a, b) -> -a.t2.compareTo(b.t2))
 						.take(topN))

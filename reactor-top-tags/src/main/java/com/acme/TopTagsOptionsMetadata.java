@@ -26,6 +26,8 @@ public class TopTagsOptionsMetadata {
 
 	private int timeWindow = 1;
 
+	private int timeShift = 1;
+
 	private int topN = 10;
 
 	public int getTopN() {
@@ -41,8 +43,17 @@ public class TopTagsOptionsMetadata {
 		return timeWindow;
 	}
 
-	@ModuleOption("The length in seconds of the time window")
+	@ModuleOption("The length in seconds of the time window over which the top N tags are calculated")
 	public void setTimeWindow(int timeWindow) {
 		this.timeWindow = timeWindow;
+	}
+
+	public int getTimeShift() {
+		return timeShift;
+	}
+
+	@ModuleOption("The frequency in seconds with which the top N tags are calculated")
+	public void setTimeShift(int timeShift) {
+		this.timeShift = timeShift;
 	}
 }
