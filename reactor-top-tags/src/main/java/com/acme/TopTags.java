@@ -15,49 +15,47 @@
  */
 package com.acme;
 
+import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.springframework.xd.tuple.TupleBuilder.tuple;
+
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
-import org.springframework.util.StringUtils;
-import org.springframework.xd.reactor.Processor;
-import org.springframework.xd.tuple.Tuple;
-import reactor.fn.Predicate;
 import reactor.rx.BiStreams;
 import reactor.rx.Stream;
 import reactor.rx.Streams;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.springframework.xd.tuple.TupleBuilder.tuple;
+import org.springframework.xd.reactor.Processor;
+import org.springframework.xd.tuple.Tuple;
 
 /**
  * @author Mark Pollack
  */
 public class TopTags implements Processor<String, Tuple> {
 
-    private int timeWindow;
+	private int timeWindow;
 
-    private int topN;
-
-
-    public TopTags(int timeWindow, int topN) {
-        this.timeWindow = timeWindow;
-        this.topN = topN;
-    }
-
-    @Override
-    public Stream<Tuple> process(Stream<String> stream) {
+	private int topN;
 
 
-        return stream.flatMap(tweet -> {
-            JSONArray array = JsonPath.read(tweet, "$.entities.hashtags[*].text");
-            return Streams.from(array.toArray(new String[array.size()]));
-        })
+	public TopTags(int timeWindow, int topN) {
+		this.timeWindow = timeWindow;
+		this.topN = topN;
+	}
 
-                    .map(w -> reactor.fn.tuple.Tuple.of(w, 1))
-                    .window(timeWindow, SECONDS)
-                    .flatMap(s -> BiStreams.reduceByKey(s, (acc, next) -> acc + next)
-                            .sort((a, b) -> -a.t2.compareTo(b.t2))
-                            .take(topN))
-                    .map(entry -> tuple().of("hashtag", entry.t1, "count", entry.t2));
+	@Override
+	public Stream<Tuple> process(Stream<String> stream) {
 
-    }
+
+		return stream.flatMap(tweet -> {
+			JSONArray array = JsonPath.read(tweet, "$.entities.hashtags[*].text");
+			return Streams.from(array.toArray(new String[array.size()]));
+		})
+				.map(w -> reactor.fn.tuple.Tuple.of(w, 1))
+				.window(timeWindow, SECONDS)
+				.flatMap(s -> BiStreams.reduceByKey(s, (acc, next) -> acc + next)
+						.sort((a, b) -> -a.t2.compareTo(b.t2))
+						.take(topN))
+				.map(entry -> tuple().of("hashtag", entry.t1, "count", entry.t2));
+
+	}
 }
