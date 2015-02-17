@@ -24,25 +24,36 @@ import org.springframework.xd.module.options.spi.ModuleOption;
  */
 public class TopTagsOptionsMetadata {
 
-    private int timeWindow = 1;
+	private int timeWindow = 1;
 
-    private int topN = 10;
+	private int timeShift = 1;
 
-    public int getTopN() {
-        return topN;
-    }
+	private int topN = 10;
 
-    @ModuleOption("The number of entires to include in the top N listing")
-    public void setTopN(int topN) {
-        this.topN = topN;
-    }
+	public int getTopN() {
+		return topN;
+	}
 
-    public int getTimeWindow() {
-        return timeWindow;
-    }
+	@ModuleOption("The number of entires to include in the top N listing")
+	public void setTopN(int topN) {
+		this.topN = topN;
+	}
 
-    @ModuleOption("The length in seconds of the time window")
-    public void setTimeWindow(int timeWindow) {
-        this.timeWindow = timeWindow;
-    }
+	public int getTimeWindow() {
+		return timeWindow;
+	}
+
+	@ModuleOption("The length in seconds of the time window over which the top N tags are calculated")
+	public void setTimeWindow(int timeWindow) {
+		this.timeWindow = timeWindow;
+	}
+
+	public int getTimeShift() {
+		return timeShift;
+	}
+
+	@ModuleOption("The frequency in seconds with which the top N tags are calculated")
+	public void setTimeShift(int timeShift) {
+		this.timeShift = timeShift;
+	}
 }
