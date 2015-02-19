@@ -1,0 +1,166 @@
+
+body {
+    font: 10px sans-serif;
+    margin: 0;
+}
+
+
+path.line {
+    fill: none;
+    stroke: #666;
+    stroke-width: 3px;
+}
+
+path.area {
+    fill: #e7e7e7;
+}
+
+.axis {
+    shape-rendering: crispEdges;
+}
+
+.x.axis line {
+    stroke: #fff;
+}
+
+.x.axis .minor {
+    stroke-opacity: .5;
+}
+
+.tick{
+	font: 12px sans-serif;
+}
+
+.x.axis path {
+    display: none;
+    
+}
+
+.y.axis .line, .y.axis path {
+    fill: none;
+    stroke: #000;
+    stroke-width: 1px;
+}
+
+.guideline {
+    margin-right: 100px;
+    float: right;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+.chart-container {
+    height: 280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+body {
+    background: #6db33f;
+    color: white;
+    font-family: 'montserratregular';
+}
+
+.main > header {
+}
+
+.panel {
+    border: 1px solid #777;
+    min-height: 500px;
+}
+
+.panel-body {
+    color: #34302d;
+}
+
+.panel-heading {
+    background-color: #34302d;
+}
+
+h1 {
+    font-size: 46px;
+    letter-spacing: -2px;
+    margin: 40px 0 20px 0;
+    text-align: center;
+    text-shadow: 1px 1px 5px rgba(31, 24, 24, 0.61);
+}
+
+h4 {
+    border-bottom: 1px dotted gray;
+}
+
+.kpi {
+    font-size: 32px;
+}
+
+h4 {
+    font-size: 22px;
+    padding: 0 0 10px 0;
+}
+
+footer {
+    color: #34302d;
+}
+
+footer .container {
+    padding-top: 15px;
+}
+
+.logo {
+    width: 50px;
+    margin-top: -10px;
+    margin-right: 10px;
+}
+
+.separator {
+    background: #6db33f;
+    height: 1px;
+    margin: 30px 0;
+}
+
+.icon-power {
+    font-size: 30px;
+}
+
+.icon-plugs {
+    width: 30px;
+}
+
+.load-distribution-bar-label {
+	font-size: 14px;
+	padding: 0 0 10px 0;
+	text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
+}
+
+.smart-grid-load-chart text{
+	font-size: 14px;
+	text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
+	font-weight: bold;
+}
+#grid .bar .dropdown {
+  float:left;
+}
+
+#grid .legend {
+  text-align: center;
+  padding-left: 68px;
+  padding-top: 6px;
+}
+
+#grid .legend > span {
+  text-transform: uppercase;
+  font-size: 18px;
+  padding: 2px 40px;
+}
+
+#grid .legend .actual {
+  color: #1f77b4;
+}
+
+#grid .legend .prediction {
+  color: #ff7f0e;
+}

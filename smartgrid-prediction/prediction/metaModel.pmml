@@ -1,0 +1,3505 @@
+<PMML xmlns="http://www.dmg.org/PMML-4_2" version="4.2" xsi:schemaLocation="http://www.dmg.org/PMML-4_2 http://www.dmg.org/v4-2/pmml-4-2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Header copyright="Copyright (c) 2014 ebottard" description="Neural Network PMML Model">
+    <Extension name="user" value="ebottard" extender="Rattle/PMML"/>
+    <Application name="Rattle/PMML" version="1.4"/>
+    <Timestamp>
+      2014-09-03 11:12:56
+    </Timestamp>
+  </Header>
+  <DataDictionary numberOfFields="4">
+    <DataField name="house" optype="continuous" dataType="double"/>
+    <DataField name="derived_value" optype="continuous" dataType="double"/>
+    <DataField name="timestamp" optype="continuous" dataType="double"/>
+    <DataField name="FinalResult" optype="continuous" dataType="double"/>
+  </DataDictionary>
+  <MiningModel functionName="regression">
+    <MiningSchema>
+      <MiningField name="derived_value" usageType="predicted"/>
+      <MiningField name="timestamp" usageType="active"/>
+      <MiningField name="house" usageType="active"/>
+      <MiningField name="FinalResult" usageType="predicted"/>
+    </MiningSchema>
+    <Segmentation multipleModelMethod="selectFirst">
+      <Segment id="0">
+        <SimplePredicate field="house" operator="equal" value="0"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="33.1540682508526">
+              <Con from="1" weight="10.0838284677359"/>
+            </Neuron>
+            <Neuron id="3" bias="94.8045001218411">
+              <Con from="1" weight="-943.530680398272"/>
+            </Neuron>
+            <Neuron id="4" bias="997.446742439746">
+              <Con from="1" weight="-650.474184929219"/>
+            </Neuron>
+            <Neuron id="5" bias="23.2457778141836">
+              <Con from="1" weight="412.068930529001"/>
+            </Neuron>
+            <Neuron id="6" bias="307.13123208897">
+              <Con from="1" weight="-273.612044835092"/>
+            </Neuron>
+            <Neuron id="7" bias="966.102290578788">
+              <Con from="1" weight="-3178.17765237981"/>
+            </Neuron>
+            <Neuron id="8" bias="1427.92925755138">
+              <Con from="1" weight="821.920861199481"/>
+            </Neuron>
+            <Neuron id="9" bias="848.199060611648">
+              <Con from="1" weight="544.030527878797"/>
+            </Neuron>
+            <Neuron id="10" bias="195.73232711402">
+              <Con from="1" weight="-342.015261005464"/>
+            </Neuron>
+            <Neuron id="11" bias="12.6953255762232">
+              <Con from="1" weight="3.81715503406287"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-46.4632663808297">
+              <Con from="2" weight="-41.5708358158407"/>
+              <Con from="3" weight="-2.17889865704905"/>
+              <Con from="4" weight="-1.82688089362559"/>
+              <Con from="5" weight="0.446887296208833"/>
+              <Con from="6" weight="2.05604678240776"/>
+              <Con from="7" weight="0.248435236071811"/>
+              <Con from="8" weight="212.659807143825"/>
+              <Con from="9" weight="-1.83089469648617"/>
+              <Con from="10" weight="-2.32512157712766"/>
+              <Con from="11" weight="-119.070871220059"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="1">
+        <SimplePredicate field="house" operator="equal" value="1"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="225.917548880551">
+              <Con from="1" weight="-147.250004346097"/>
+            </Neuron>
+            <Neuron id="3" bias="-181.107538358457">
+              <Con from="1" weight="161.145623224394"/>
+            </Neuron>
+            <Neuron id="4" bias="32.2473310211182">
+              <Con from="1" weight="-7.93548675275886"/>
+            </Neuron>
+            <Neuron id="5" bias="-193.64115967455">
+              <Con from="1" weight="-124.10211022213"/>
+            </Neuron>
+            <Neuron id="6" bias="108.279598121526">
+              <Con from="1" weight="-189.520501661847"/>
+            </Neuron>
+            <Neuron id="7" bias="9.87471295695032">
+              <Con from="1" weight="-34.2417813718333"/>
+            </Neuron>
+            <Neuron id="8" bias="-10.2101017458052">
+              <Con from="1" weight="123.979459951967"/>
+            </Neuron>
+            <Neuron id="9" bias="-30.5305221861803">
+              <Con from="1" weight="-14.5323420475061"/>
+            </Neuron>
+            <Neuron id="10" bias="-33.7265943788145">
+              <Con from="1" weight="-18.402830539681"/>
+            </Neuron>
+            <Neuron id="11" bias="10.5710436768272">
+              <Con from="1" weight="-129.185453845752"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="2.36985184237349">
+              <Con from="2" weight="-0.440103410424033"/>
+              <Con from="3" weight="-0.43803664444894"/>
+              <Con from="4" weight="-15.4101170770659"/>
+              <Con from="5" weight="0.554855362522828"/>
+              <Con from="6" weight="-0.496659818715264"/>
+              <Con from="7" weight="0.0600132942557393"/>
+              <Con from="8" weight="13.6225485483853"/>
+              <Con from="9" weight="-27.5111647844194"/>
+              <Con from="10" weight="-0.676159238377023"/>
+              <Con from="11" weight="13.1634265374367"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="2">
+        <SimplePredicate field="house" operator="equal" value="2"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="158.671100832588">
+              <Con from="1" weight="-241.688782674927"/>
+            </Neuron>
+            <Neuron id="3" bias="-13.5380401628835">
+              <Con from="1" weight="21.2690098434879"/>
+            </Neuron>
+            <Neuron id="4" bias="120.940956734641">
+              <Con from="1" weight="77.6738741515325"/>
+            </Neuron>
+            <Neuron id="5" bias="0.721737395108163">
+              <Con from="1" weight="-1.12273101221502"/>
+            </Neuron>
+            <Neuron id="6" bias="65.2301203401033">
+              <Con from="1" weight="-59.7889348541476"/>
+            </Neuron>
+            <Neuron id="7" bias="135.200971686296">
+              <Con from="1" weight="-205.721989016281"/>
+            </Neuron>
+            <Neuron id="8" bias="1.07857017368034">
+              <Con from="1" weight="1.80572885115566"/>
+            </Neuron>
+            <Neuron id="9" bias="72.9040386513892">
+              <Con from="1" weight="-66.9571732384144"/>
+            </Neuron>
+            <Neuron id="10" bias="11.5344676374515">
+              <Con from="1" weight="-118.134445464996"/>
+            </Neuron>
+            <Neuron id="11" bias="1.79306806628916">
+              <Con from="1" weight="-2.38826562070954"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="9.03317892894102">
+              <Con from="2" weight="-29.1525793762611"/>
+              <Con from="3" weight="2.06208364738945"/>
+              <Con from="4" weight="-0.550951020241391"/>
+              <Con from="5" weight="-20.4495613914556"/>
+              <Con from="6" weight="6.74557222333879"/>
+              <Con from="7" weight="30.1201275640789"/>
+              <Con from="8" weight="-6.13460076213035"/>
+              <Con from="9" weight="-6.07754669100305"/>
+              <Con from="10" weight="-0.5694055261461"/>
+              <Con from="11" weight="9.67906529412169"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="3">
+        <SimplePredicate field="house" operator="equal" value="3"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="73.0783027975564">
+              <Con from="1" weight="47.7648880039622"/>
+            </Neuron>
+            <Neuron id="3" bias="32.0550462828942">
+              <Con from="1" weight="-20.9095157940232"/>
+            </Neuron>
+            <Neuron id="4" bias="7.30597961194742">
+              <Con from="1" weight="-5.08075941104819"/>
+            </Neuron>
+            <Neuron id="5" bias="41.3019489041646">
+              <Con from="1" weight="-71.8354074538303"/>
+            </Neuron>
+            <Neuron id="6" bias="8.00642111862198">
+              <Con from="1" weight="-7.88964860021527"/>
+            </Neuron>
+            <Neuron id="7" bias="62.6094153967401">
+              <Con from="1" weight="40.7311717589532"/>
+            </Neuron>
+            <Neuron id="8" bias="-9.23276674453368">
+              <Con from="1" weight="9.46526840430955"/>
+            </Neuron>
+            <Neuron id="9" bias="-13.3891322349013">
+              <Con from="1" weight="135.099710962295"/>
+            </Neuron>
+            <Neuron id="10" bias="38.0749872080636">
+              <Con from="1" weight="-24.8315571028976"/>
+            </Neuron>
+            <Neuron id="11" bias="52.4255446469119">
+              <Con from="1" weight="33.884496835807"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-11.0934338486021">
+              <Con from="2" weight="10.5802912128493"/>
+              <Con from="3" weight="18.9091367602839"/>
+              <Con from="4" weight="-9.12103472254166"/>
+              <Con from="5" weight="-0.957499119365326"/>
+              <Con from="6" weight="18.1299561197108"/>
+              <Con from="7" weight="-19.3194286090568"/>
+              <Con from="8" weight="13.1005338832103"/>
+              <Con from="9" weight="0.581747392430026"/>
+              <Con from="10" weight="-15.9717971325698"/>
+              <Con from="11" weight="8.20280772366713"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="4">
+        <SimplePredicate field="house" operator="equal" value="4"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="0.209346880557683">
+              <Con from="1" weight="-2.7651027201296"/>
+            </Neuron>
+            <Neuron id="3" bias="10.0054792923924">
+              <Con from="1" weight="-0.149566136227465"/>
+            </Neuron>
+            <Neuron id="4" bias="-10.4536310300878">
+              <Con from="1" weight="0.230543880491028"/>
+            </Neuron>
+            <Neuron id="5" bias="-23.1275901322426">
+              <Con from="1" weight="230.564680327091"/>
+            </Neuron>
+            <Neuron id="6" bias="11.5579311175473">
+              <Con from="1" weight="-21.083923801095"/>
+            </Neuron>
+            <Neuron id="7" bias="1.04313825206059">
+              <Con from="1" weight="-2.46952958288509"/>
+            </Neuron>
+            <Neuron id="8" bias="191.385259938356">
+              <Con from="1" weight="122.877258956042"/>
+            </Neuron>
+            <Neuron id="9" bias="13.1003456787792">
+              <Con from="1" weight="-24.2846126456297"/>
+            </Neuron>
+            <Neuron id="10" bias="6.75812921343797">
+              <Con from="1" weight="-9.08853869402328"/>
+            </Neuron>
+            <Neuron id="11" bias="8.55206419307269">
+              <Con from="1" weight="-11.0128717145411"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="2.11189180455716">
+              <Con from="2" weight="14.1841115737733"/>
+              <Con from="3" weight="0.828001306189673"/>
+              <Con from="4" weight="-13.0383207644463"/>
+              <Con from="5" weight="0.840366253325531"/>
+              <Con from="6" weight="-60.5474312526971"/>
+              <Con from="7" weight="-26.0557890309678"/>
+              <Con from="8" weight="-0.833564371797179"/>
+              <Con from="9" weight="43.3387599186923"/>
+              <Con from="10" weight="109.316068664589"/>
+              <Con from="11" weight="-82.5196034925042"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="5">
+        <SimplePredicate field="house" operator="equal" value="5"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-19.0524684662649">
+              <Con from="1" weight="14.3554683124976"/>
+            </Neuron>
+            <Neuron id="3" bias="-2.99323634845502">
+              <Con from="1" weight="6.07319065644891"/>
+            </Neuron>
+            <Neuron id="4" bias="21.5313209469704">
+              <Con from="1" weight="-33.7833975990861"/>
+            </Neuron>
+            <Neuron id="5" bias="8.55863625918959">
+              <Con from="1" weight="-9.59705452449417"/>
+            </Neuron>
+            <Neuron id="6" bias="4.11312661448468">
+              <Con from="1" weight="-3.55717587772347"/>
+            </Neuron>
+            <Neuron id="7" bias="5.17868815052597">
+              <Con from="1" weight="-2.2381783521008"/>
+            </Neuron>
+            <Neuron id="8" bias="3.53776909053757">
+              <Con from="1" weight="-1.31443638498058"/>
+            </Neuron>
+            <Neuron id="9" bias="4.12694427746909">
+              <Con from="1" weight="-5.21813658540713"/>
+            </Neuron>
+            <Neuron id="10" bias="24.6947428478269">
+              <Con from="1" weight="-38.9017912302553"/>
+            </Neuron>
+            <Neuron id="11" bias="1.33902425532371">
+              <Con from="1" weight="30.0291750646587"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="0.200898715537887">
+              <Con from="2" weight="0.070365207285352"/>
+              <Con from="3" weight="-0.584234520479264"/>
+              <Con from="4" weight="2.5586848385151"/>
+              <Con from="5" weight="0.816003240555596"/>
+              <Con from="6" weight="0.851701684803562"/>
+              <Con from="7" weight="-0.738425389875419"/>
+              <Con from="8" weight="0.0357455294383052"/>
+              <Con from="9" weight="-2.15841866860292"/>
+              <Con from="10" weight="-2.33616441210308"/>
+              <Con from="11" weight="0.0441220572112136"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="6">
+        <SimplePredicate field="house" operator="equal" value="6"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="1.74724220043654">
+              <Con from="1" weight="0.368187660020177"/>
+            </Neuron>
+            <Neuron id="3" bias="-10.6433192557241">
+              <Con from="1" weight="0.398050793862024"/>
+            </Neuron>
+            <Neuron id="4" bias="-17.1391228740445">
+              <Con from="1" weight="0.0954176859949044"/>
+            </Neuron>
+            <Neuron id="5" bias="1.08480917515748">
+              <Con from="1" weight="-19.7851734475381"/>
+            </Neuron>
+            <Neuron id="6" bias="226.172277905878">
+              <Con from="1" weight="-201.177606402851"/>
+            </Neuron>
+            <Neuron id="7" bias="292.158898766431">
+              <Con from="1" weight="-190.616458594081"/>
+            </Neuron>
+            <Neuron id="8" bias="146.121630418941">
+              <Con from="1" weight="-255.505072119478"/>
+            </Neuron>
+            <Neuron id="9" bias="1.25341530190609">
+              <Con from="1" weight="0.524926481199242"/>
+            </Neuron>
+            <Neuron id="10" bias="156.001642227712">
+              <Con from="1" weight="87.7956427631387"/>
+            </Neuron>
+            <Neuron id="11" bias="239.316301949941">
+              <Con from="1" weight="153.457779454553"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-2.38960623423889">
+              <Con from="2" weight="-37.1608300091555"/>
+              <Con from="3" weight="-1.26194773718517"/>
+              <Con from="4" weight="-1.32629875585337"/>
+              <Con from="5" weight="-0.119925868318561"/>
+              <Con from="6" weight="0.507795078282169"/>
+              <Con from="7" weight="-0.60130461948982"/>
+              <Con from="8" weight="-0.629881776196419"/>
+              <Con from="9" weight="18.9729569416083"/>
+              <Con from="10" weight="19.9911698028546"/>
+              <Con from="11" weight="-0.600373560342875"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="7">
+        <SimplePredicate field="house" operator="equal" value="7"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-2.90736302707515">
+              <Con from="1" weight="-0.0459697965300098"/>
+            </Neuron>
+            <Neuron id="3" bias="14.484577184869">
+              <Con from="1" weight="-9.99532601142654"/>
+            </Neuron>
+            <Neuron id="4" bias="-6.91559945942374">
+              <Con from="1" weight="6.72336909536786"/>
+            </Neuron>
+            <Neuron id="5" bias="42.1039621047906">
+              <Con from="1" weight="-25.8070441872668"/>
+            </Neuron>
+            <Neuron id="6" bias="-26.0745421873543">
+              <Con from="1" weight="260.287783719875"/>
+            </Neuron>
+            <Neuron id="7" bias="-95.1012190661782">
+              <Con from="1" weight="140.354532472674"/>
+            </Neuron>
+            <Neuron id="8" bias="213.00643491912">
+              <Con from="1" weight="136.729941258"/>
+            </Neuron>
+            <Neuron id="9" bias="20.1606076281326">
+              <Con from="1" weight="-14.0372261046672"/>
+            </Neuron>
+            <Neuron id="10" bias="13.3704336238133">
+              <Con from="1" weight="-21.3461090118869"/>
+            </Neuron>
+            <Neuron id="11" bias="-8.69774836677962">
+              <Con from="1" weight="9.07420465389186"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="12.8799817159676">
+              <Con from="2" weight="-10.8053432630462"/>
+              <Con from="3" weight="-35.3828516844072"/>
+              <Con from="4" weight="-24.762919917998"/>
+              <Con from="5" weight="3.74153937398828"/>
+              <Con from="6" weight="1.28859852758145"/>
+              <Con from="7" weight="-1.43065409982804"/>
+              <Con from="8" weight="-0.909253063182091"/>
+              <Con from="9" weight="23.3529429311867"/>
+              <Con from="10" weight="-3.59852778207092"/>
+              <Con from="11" weight="16.3165578981933"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="8">
+        <SimplePredicate field="house" operator="equal" value="8"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-108.976126290628">
+              <Con from="1" weight="-70.0333717539678"/>
+            </Neuron>
+            <Neuron id="3" bias="206.3826193975">
+              <Con from="1" weight="-311.556180624851"/>
+            </Neuron>
+            <Neuron id="4" bias="-266.307274977765">
+              <Con from="1" weight="402.86204327917"/>
+            </Neuron>
+            <Neuron id="5" bias="147.152693654009">
+              <Con from="1" weight="-221.372725174142"/>
+            </Neuron>
+            <Neuron id="6" bias="40.1567466136843">
+              <Con from="1" weight="-127.675446252989"/>
+            </Neuron>
+            <Neuron id="7" bias="31.5786356389423">
+              <Con from="1" weight="-29.9628628140817"/>
+            </Neuron>
+            <Neuron id="8" bias="101.738430140506">
+              <Con from="1" weight="-65.1579663755905"/>
+            </Neuron>
+            <Neuron id="9" bias="-39.7810151274007">
+              <Con from="1" weight="396.833190566299"/>
+            </Neuron>
+            <Neuron id="10" bias="-320.876926406622">
+              <Con from="1" weight="486.032890353474"/>
+            </Neuron>
+            <Neuron id="11" bias="-8.71209595017916">
+              <Con from="1" weight="13.8166947313552"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="47.7057324145807">
+              <Con from="2" weight="0.169365341729288"/>
+              <Con from="3" weight="-58.8532990457625"/>
+              <Con from="4" weight="-123.264756716587"/>
+              <Con from="5" weight="10.1884431523006"/>
+              <Con from="6" weight="0.216070247951567"/>
+              <Con from="7" weight="0.313502233590052"/>
+              <Con from="8" weight="-0.167562738339436"/>
+              <Con from="9" weight="1.39152865292427"/>
+              <Con from="10" weight="74.3625613194057"/>
+              <Con from="11" weight="0.689034473301922"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="9">
+        <SimplePredicate field="house" operator="equal" value="9"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-12.1667315162187">
+              <Con from="1" weight="9.0096246271434"/>
+            </Neuron>
+            <Neuron id="3" bias="-18.6671891834386">
+              <Con from="1" weight="12.3688445396206"/>
+            </Neuron>
+            <Neuron id="4" bias="-2.91582569893327">
+              <Con from="1" weight="-51.0797632071375"/>
+            </Neuron>
+            <Neuron id="5" bias="3.86230872255213">
+              <Con from="1" weight="4.37867520025733"/>
+            </Neuron>
+            <Neuron id="6" bias="1.55115314131962">
+              <Con from="1" weight="-4.23240504287163"/>
+            </Neuron>
+            <Neuron id="7" bias="16.5609900399339">
+              <Con from="1" weight="-163.429712071162"/>
+            </Neuron>
+            <Neuron id="8" bias="16.7685824489207">
+              <Con from="1" weight="-12.9065696201192"/>
+            </Neuron>
+            <Neuron id="9" bias="-0.121727082704785">
+              <Con from="1" weight="0.900126620221418"/>
+            </Neuron>
+            <Neuron id="10" bias="-1.64680495385852">
+              <Con from="1" weight="5.1491160735176"/>
+            </Neuron>
+            <Neuron id="11" bias="-4.6318914816275">
+              <Con from="1" weight="-5.2569031182313"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="13.9357781563056">
+              <Con from="2" weight="-8.07290898633954"/>
+              <Con from="3" weight="2.88240114804176"/>
+              <Con from="4" weight="-0.244062095262693"/>
+              <Con from="5" weight="4.54854300157333"/>
+              <Con from="6" weight="-9.93055914419491"/>
+              <Con from="7" weight="-0.806546305332332"/>
+              <Con from="8" weight="-5.34730269979277"/>
+              <Con from="9" weight="-7.28187826914126"/>
+              <Con from="10" weight="-7.20473797224997"/>
+              <Con from="11" weight="2.90311929470903"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="10">
+        <SimplePredicate field="house" operator="equal" value="10"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="101.814356091868">
+              <Con from="1" weight="-177.900611832519"/>
+            </Neuron>
+            <Neuron id="3" bias="2.57613166895367">
+              <Con from="1" weight="-5.67651452072747"/>
+            </Neuron>
+            <Neuron id="4" bias="158.606361069667">
+              <Con from="1" weight="-141.052267325715"/>
+            </Neuron>
+            <Neuron id="5" bias="138.531857325971">
+              <Con from="1" weight="-90.3442307564965"/>
+            </Neuron>
+            <Neuron id="6" bias="171.392969407989">
+              <Con from="1" weight="109.926660096019"/>
+            </Neuron>
+            <Neuron id="7" bias="1.54988920264324">
+              <Con from="1" weight="5.67697133270859"/>
+            </Neuron>
+            <Neuron id="8" bias="71.1102640968396">
+              <Con from="1" weight="-46.3855946522934"/>
+            </Neuron>
+            <Neuron id="9" bias="-3.681564125461">
+              <Con from="1" weight="4.79987286828133"/>
+            </Neuron>
+            <Neuron id="10" bias="-2.94329667069006">
+              <Con from="1" weight="4.29754632047933"/>
+            </Neuron>
+            <Neuron id="11" bias="85.4140402980257">
+              <Con from="1" weight="46.8276006791613"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-20.3402874093445">
+              <Con from="2" weight="-0.439900885657376"/>
+              <Con from="3" weight="5.82355741569939"/>
+              <Con from="4" weight="0.397610168652678"/>
+              <Con from="5" weight="-1.02583343616844"/>
+              <Con from="6" weight="-0.423358960841354"/>
+              <Con from="7" weight="-0.380761699888096"/>
+              <Con from="8" weight="0.825655423440032"/>
+              <Con from="9" weight="-18.7588123209732"/>
+              <Con from="10" weight="25.4013732730161"/>
+              <Con from="11" weight="14.4701386681735"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="11">
+        <SimplePredicate field="house" operator="equal" value="11"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-0.310753287637869">
+              <Con from="1" weight="-0.777396184362954"/>
+            </Neuron>
+            <Neuron id="3" bias="11.4943506487443">
+              <Con from="1" weight="-113.887245678993"/>
+            </Neuron>
+            <Neuron id="4" bias="-2.64694795267019">
+              <Con from="1" weight="-2.71783429071985"/>
+            </Neuron>
+            <Neuron id="5" bias="5.81532553801712">
+              <Con from="1" weight="-5.30708072808183"/>
+            </Neuron>
+            <Neuron id="6" bias="6.58235141103282">
+              <Con from="1" weight="-20.3370961537193"/>
+            </Neuron>
+            <Neuron id="7" bias="53.0856852494757">
+              <Con from="1" weight="-41.75088909524"/>
+            </Neuron>
+            <Neuron id="8" bias="-13.170969722487">
+              <Con from="1" weight="130.555145702631"/>
+            </Neuron>
+            <Neuron id="9" bias="3.57452251836929">
+              <Con from="1" weight="4.2694803849543"/>
+            </Neuron>
+            <Neuron id="10" bias="-1.61201395888451">
+              <Con from="1" weight="-0.802733335823869"/>
+            </Neuron>
+            <Neuron id="11" bias="8.69982629508711">
+              <Con from="1" weight="6.96712816776899"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-19.067202114668">
+              <Con from="2" weight="-14.1508877236342"/>
+              <Con from="3" weight="8.24716472828609"/>
+              <Con from="4" weight="27.6819715158973"/>
+              <Con from="5" weight="3.49200810947075"/>
+              <Con from="6" weight="0.771943112304746"/>
+              <Con from="7" weight="-0.350264101080809"/>
+              <Con from="8" weight="8.9930365879676"/>
+              <Con from="9" weight="10.9306033738813"/>
+              <Con from="10" weight="-17.8109404236555"/>
+              <Con from="11" weight="2.89403324921577"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="12">
+        <SimplePredicate field="house" operator="equal" value="12"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-8.57506280404231">
+              <Con from="1" weight="14.016411745992"/>
+            </Neuron>
+            <Neuron id="3" bias="20.0235374831306">
+              <Con from="1" weight="9.78889760273536"/>
+            </Neuron>
+            <Neuron id="4" bias="-8.78064334873554">
+              <Con from="1" weight="5.05876339929489"/>
+            </Neuron>
+            <Neuron id="5" bias="-4.59019311212838">
+              <Con from="1" weight="14.4264223717587"/>
+            </Neuron>
+            <Neuron id="6" bias="-22.5401768618052">
+              <Con from="1" weight="223.984369216637"/>
+            </Neuron>
+            <Neuron id="7" bias="-11.8068798694205">
+              <Con from="1" weight="19.8211239043584"/>
+            </Neuron>
+            <Neuron id="8" bias="4.21388916266697">
+              <Con from="1" weight="-5.08954476530951"/>
+            </Neuron>
+            <Neuron id="9" bias="3.41438771675259">
+              <Con from="1" weight="-2.97141215834787"/>
+            </Neuron>
+            <Neuron id="10" bias="7.28640560268344">
+              <Con from="1" weight="-7.78992101267598"/>
+            </Neuron>
+            <Neuron id="11" bias="44.9393270011905">
+              <Con from="1" weight="28.6198644268407"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-1.24272751347533">
+              <Con from="2" weight="-6.62012026957568"/>
+              <Con from="3" weight="4.20916081296208"/>
+              <Con from="4" weight="1.22215138334833"/>
+              <Con from="5" weight="-0.99662297286642"/>
+              <Con from="6" weight="0.804799886731576"/>
+              <Con from="7" weight="3.44128219883291"/>
+              <Con from="8" weight="-15.5864188797958"/>
+              <Con from="9" weight="4.16320196718588"/>
+              <Con from="10" weight="8.04277487281635"/>
+              <Con from="11" weight="-0.283663848636812"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="13">
+        <SimplePredicate field="house" operator="equal" value="13"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="47.9008066573843">
+              <Con from="1" weight="25.6220914684571"/>
+            </Neuron>
+            <Neuron id="3" bias="4.53140608806811">
+              <Con from="1" weight="-5.01359921447492"/>
+            </Neuron>
+            <Neuron id="4" bias="-8.95241910543545">
+              <Con from="1" weight="4.20399719429725"/>
+            </Neuron>
+            <Neuron id="5" bias="3.93122931878884">
+              <Con from="1" weight="-5.25054748919937"/>
+            </Neuron>
+            <Neuron id="6" bias="18.1619289120301">
+              <Con from="1" weight="8.1127549404537"/>
+            </Neuron>
+            <Neuron id="7" bias="-86.6551858662463">
+              <Con from="1" weight="151.184992389237"/>
+            </Neuron>
+            <Neuron id="8" bias="23.7918269586436">
+              <Con from="1" weight="-12.9697935847547"/>
+            </Neuron>
+            <Neuron id="9" bias="10.4259071487321">
+              <Con from="1" weight="-0.476526454003005"/>
+            </Neuron>
+            <Neuron id="10" bias="159.475809780514">
+              <Con from="1" weight="102.215435527577"/>
+            </Neuron>
+            <Neuron id="11" bias="11.5988158706971">
+              <Con from="1" weight="-13.0365413755267"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-3.28899290954655">
+              <Con from="2" weight="11.1421405840682"/>
+              <Con from="3" weight="7.63201481613557"/>
+              <Con from="4" weight="19.5907647689815"/>
+              <Con from="5" weight="-4.00112452483262"/>
+              <Con from="6" weight="-9.77072262067805"/>
+              <Con from="7" weight="0.657696848346997"/>
+              <Con from="8" weight="6.99925780137821"/>
+              <Con from="9" weight="-7.21367778002627"/>
+              <Con from="10" weight="-0.536831529128491"/>
+              <Con from="11" weight="-1.70185566581597"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="14">
+        <SimplePredicate field="house" operator="equal" value="14"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-129.53767196668">
+              <Con from="1" weight="1290.19306977065"/>
+            </Neuron>
+            <Neuron id="3" bias="-1633.572696673">
+              <Con from="1" weight="2453.30741054683"/>
+            </Neuron>
+            <Neuron id="4" bias="20.0668248563796">
+              <Con from="1" weight="350.110270538583"/>
+            </Neuron>
+            <Neuron id="5" bias="1092.31201740784">
+              <Con from="1" weight="-712.452420338421"/>
+            </Neuron>
+            <Neuron id="6" bias="888.043316929872">
+              <Con from="1" weight="569.648509126464"/>
+            </Neuron>
+            <Neuron id="7" bias="-18.7469529291938">
+              <Con from="1" weight="29.778956669215"/>
+            </Neuron>
+            <Neuron id="8" bias="1958.07659585052">
+              <Con from="1" weight="1127.97011485288"/>
+            </Neuron>
+            <Neuron id="9" bias="-20.1724285271246">
+              <Con from="1" weight="-352.0296128124"/>
+            </Neuron>
+            <Neuron id="10" bias="5.45721714600701">
+              <Con from="1" weight="-7.97641324767156"/>
+            </Neuron>
+            <Neuron id="11" bias="811.564576506458">
+              <Con from="1" weight="-721.795751772195"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-115.708919604344">
+              <Con from="2" weight="2.12319372202324"/>
+              <Con from="3" weight="-2.93098524635607"/>
+              <Con from="4" weight="-77.8092176634015"/>
+              <Con from="5" weight="-1.41652925885171"/>
+              <Con from="6" weight="-1.45554397212683"/>
+              <Con from="7" weight="5.95964821382571"/>
+              <Con from="8" weight="193.714459553528"/>
+              <Con from="9" weight="-78.3609807423899"/>
+              <Con from="10" weight="2.02320450390246"/>
+              <Con from="11" weight="1.11606366626921"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="15">
+        <SimplePredicate field="house" operator="equal" value="15"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-93.1123676464843">
+              <Con from="1" weight="140.308838754043"/>
+            </Neuron>
+            <Neuron id="3" bias="-2.17968382376562">
+              <Con from="1" weight="46.6360007157725"/>
+            </Neuron>
+            <Neuron id="4" bias="2.0259803605152">
+              <Con from="1" weight="-39.5893376244921"/>
+            </Neuron>
+            <Neuron id="5" bias="-91.2364234137483">
+              <Con from="1" weight="137.918755810477"/>
+            </Neuron>
+            <Neuron id="6" bias="-5.1349041832694">
+              <Con from="1" weight="2.03803084390882"/>
+            </Neuron>
+            <Neuron id="7" bias="1.5123869286824">
+              <Con from="1" weight="-4.99934225992694"/>
+            </Neuron>
+            <Neuron id="8" bias="-24.5371232737379">
+              <Con from="1" weight="-12.3676175853603"/>
+            </Neuron>
+            <Neuron id="9" bias="-80.5246003851578">
+              <Con from="1" weight="-51.5882407790756"/>
+            </Neuron>
+            <Neuron id="10" bias="5.68844686840215">
+              <Con from="1" weight="-5.05218978872626"/>
+            </Neuron>
+            <Neuron id="11" bias="3.77161832930951">
+              <Con from="1" weight="-3.24207103105859"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="8.48835543867065">
+              <Con from="2" weight="-9.42320222015335"/>
+              <Con from="3" weight="-3.16364924620999"/>
+              <Con from="4" weight="-3.61460375139205"/>
+              <Con from="5" weight="9.26828020053218"/>
+              <Con from="6" weight="-19.0286970358019"/>
+              <Con from="7" weight="2.0525938114934"/>
+              <Con from="8" weight="-3.84184475620094"/>
+              <Con from="9" weight="0.37383713042774"/>
+              <Con from="10" weight="12.4761147553762"/>
+              <Con from="11" weight="-20.1066162715891"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="16">
+        <SimplePredicate field="house" operator="equal" value="16"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="49.3040483238335">
+              <Con from="1" weight="30.7540007516021"/>
+            </Neuron>
+            <Neuron id="3" bias="-5.00637444397542">
+              <Con from="1" weight="5.61953011592931"/>
+            </Neuron>
+            <Neuron id="4" bias="122.829043556052">
+              <Con from="1" weight="78.6262414836566"/>
+            </Neuron>
+            <Neuron id="5" bias="-20.0189039026198">
+              <Con from="1" weight="34.2226676105881"/>
+            </Neuron>
+            <Neuron id="6" bias="-7.72389247543669">
+              <Con from="1" weight="11.2630377787023"/>
+            </Neuron>
+            <Neuron id="7" bias="-75.8521510343432">
+              <Con from="1" weight="-48.3647424094771"/>
+            </Neuron>
+            <Neuron id="8" bias="-53.3332876810782">
+              <Con from="1" weight="-33.6091443742065"/>
+            </Neuron>
+            <Neuron id="9" bias="6.40862178041673">
+              <Con from="1" weight="-8.32916701204536"/>
+            </Neuron>
+            <Neuron id="10" bias="24.2424590564422">
+              <Con from="1" weight="-243.162116891381"/>
+            </Neuron>
+            <Neuron id="11" bias="4.01995551126711">
+              <Con from="1" weight="-3.83669649970147"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="45.1979026807578">
+              <Con from="2" weight="15.0329474325097"/>
+              <Con from="3" weight="-38.4194763591767"/>
+              <Con from="4" weight="-7.55466996072065"/>
+              <Con from="5" weight="3.51314502409304"/>
+              <Con from="6" weight="-14.5688936252712"/>
+              <Con from="7" weight="-18.4696198175596"/>
+              <Con from="8" weight="26.782132735576"/>
+              <Con from="9" weight="-32.005055194139"/>
+              <Con from="10" weight="-1.17412394117672"/>
+              <Con from="11" weight="-19.9322989627768"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="17">
+        <SimplePredicate field="house" operator="equal" value="17"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="0.0818649700868035">
+              <Con from="1" weight="-0.381022858041788"/>
+            </Neuron>
+            <Neuron id="3" bias="31.2988524776876">
+              <Con from="1" weight="-54.8111932446627"/>
+            </Neuron>
+            <Neuron id="4" bias="8.17718783890023">
+              <Con from="1" weight="-9.24107637460772"/>
+            </Neuron>
+            <Neuron id="5" bias="22.0093505168676">
+              <Con from="1" weight="11.0474522371586"/>
+            </Neuron>
+            <Neuron id="6" bias="5.39030908306525">
+              <Con from="1" weight="-0.919779329252087"/>
+            </Neuron>
+            <Neuron id="7" bias="-6.98214811559927">
+              <Con from="1" weight="7.73605588394484"/>
+            </Neuron>
+            <Neuron id="8" bias="6.64022794545151">
+              <Con from="1" weight="-64.8075101673104"/>
+            </Neuron>
+            <Neuron id="9" bias="3.75138250247307">
+              <Con from="1" weight="-3.03937980180381"/>
+            </Neuron>
+            <Neuron id="10" bias="-92.7147420296553">
+              <Con from="1" weight="-59.3949061384403"/>
+            </Neuron>
+            <Neuron id="11" bias="6.43407685052344">
+              <Con from="1" weight="-62.6956464789001"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="4.10129827704214">
+              <Con from="2" weight="0.20116592571531"/>
+              <Con from="3" weight="-0.579911651222052"/>
+              <Con from="4" weight="-9.90022398425999"/>
+              <Con from="5" weight="3.32603757488105"/>
+              <Con from="6" weight="5.37907444400833"/>
+              <Con from="7" weight="-12.2108836306916"/>
+              <Con from="8" weight="-11.266121685065"/>
+              <Con from="9" weight="-2.81736598245591"/>
+              <Con from="10" weight="0.417375933255748"/>
+              <Con from="11" weight="10.8980078773564"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="18">
+        <SimplePredicate field="house" operator="equal" value="18"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-5.18771827078669">
+              <Con from="1" weight="-0.255215918295482"/>
+            </Neuron>
+            <Neuron id="3" bias="7.27591577785398">
+              <Con from="1" weight="-3.55739414055014"/>
+            </Neuron>
+            <Neuron id="4" bias="-2.57617190902012">
+              <Con from="1" weight="-48.0287214423228"/>
+            </Neuron>
+            <Neuron id="5" bias="93.3813964185505">
+              <Con from="1" weight="61.0340181620656"/>
+            </Neuron>
+            <Neuron id="6" bias="-9.08365256700695">
+              <Con from="1" weight="9.63258592359769"/>
+            </Neuron>
+            <Neuron id="7" bias="-8.42072083904857">
+              <Con from="1" weight="8.81935175386987"/>
+            </Neuron>
+            <Neuron id="8" bias="-39.8675721001207">
+              <Con from="1" weight="68.975437195329"/>
+            </Neuron>
+            <Neuron id="9" bias="42.2863669119359">
+              <Con from="1" weight="22.7073158828741"/>
+            </Neuron>
+            <Neuron id="10" bias="-98.8603543732151">
+              <Con from="1" weight="-64.6978848470904"/>
+            </Neuron>
+            <Neuron id="11" bias="5.82143998448605">
+              <Con from="1" weight="-3.59375066741967"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="1.94407946299851">
+              <Con from="2" weight="5.42112024108743"/>
+              <Con from="3" weight="11.9647756812924"/>
+              <Con from="4" weight="-0.114185334313848"/>
+              <Con from="5" weight="-11.3563148087572"/>
+              <Con from="6" weight="22.169203428644"/>
+              <Con from="7" weight="-25.0463255834694"/>
+              <Con from="8" weight="0.970050885428103"/>
+              <Con from="9" weight="6.1337608434973"/>
+              <Con from="10" weight="-10.642709584942"/>
+              <Con from="11" weight="-9.21252759918887"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="19">
+        <SimplePredicate field="house" operator="equal" value="19"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-0.253008542501857">
+              <Con from="1" weight="-2.44978956642261"/>
+            </Neuron>
+            <Neuron id="3" bias="0.636403088089824">
+              <Con from="1" weight="1.97369635766265"/>
+            </Neuron>
+            <Neuron id="4" bias="-8.87391671570397">
+              <Con from="1" weight="12.5883462942759"/>
+            </Neuron>
+            <Neuron id="5" bias="0.01470036070302">
+              <Con from="1" weight="-2.09294133240263"/>
+            </Neuron>
+            <Neuron id="6" bias="-1.20231555574633">
+              <Con from="1" weight="-0.082225967596983"/>
+            </Neuron>
+            <Neuron id="7" bias="-0.778991865729718">
+              <Con from="1" weight="-4.06628631893734"/>
+            </Neuron>
+            <Neuron id="8" bias="0.0950089347664734">
+              <Con from="1" weight="0.640127176441911"/>
+            </Neuron>
+            <Neuron id="9" bias="2.31993122291717">
+              <Con from="1" weight="-0.250204059040349"/>
+            </Neuron>
+            <Neuron id="10" bias="-8.90334700326103">
+              <Con from="1" weight="12.2021346985687"/>
+            </Neuron>
+            <Neuron id="11" bias="-14.9178657652248">
+              <Con from="1" weight="18.5199520781571"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-0.597190981507432">
+              <Con from="2" weight="-1.8688646641803"/>
+              <Con from="3" weight="-0.412481942232991"/>
+              <Con from="4" weight="1.85385454290307"/>
+              <Con from="5" weight="1.50047464532765"/>
+              <Con from="6" weight="-0.163370155658829"/>
+              <Con from="7" weight="0.252245979578601"/>
+              <Con from="8" weight="0.381101817164705"/>
+              <Con from="9" weight="-0.137175537877239"/>
+              <Con from="10" weight="-2.33570288411423"/>
+              <Con from="11" weight="0.514636601157929"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="20">
+        <SimplePredicate field="house" operator="equal" value="20"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="2.39264462143367">
+              <Con from="1" weight="9.84800041498495"/>
+            </Neuron>
+            <Neuron id="3" bias="60.3223082457553">
+              <Con from="1" weight="-101.442316116663"/>
+            </Neuron>
+            <Neuron id="4" bias="-64.6386258395809">
+              <Con from="1" weight="108.597285618067"/>
+            </Neuron>
+            <Neuron id="5" bias="-15.0026778317951">
+              <Con from="1" weight="1.04918078378598"/>
+            </Neuron>
+            <Neuron id="6" bias="-3.85187016393101">
+              <Con from="1" weight="3.8648340258936"/>
+            </Neuron>
+            <Neuron id="7" bias="11.0519949681311">
+              <Con from="1" weight="-12.6397042327331"/>
+            </Neuron>
+            <Neuron id="8" bias="324.95567427767">
+              <Con from="1" weight="208.371123017393"/>
+            </Neuron>
+            <Neuron id="9" bias="-3.05371816559627">
+              <Con from="1" weight="2.56630683930627"/>
+            </Neuron>
+            <Neuron id="10" bias="-331.101236576821">
+              <Con from="1" weight="-189.144140557519"/>
+            </Neuron>
+            <Neuron id="11" bias="3.46601175939806">
+              <Con from="1" weight="-1.49550018076967"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-43.4598493730487">
+              <Con from="2" weight="-0.981286485504926"/>
+              <Con from="3" weight="-60.6495729207982"/>
+              <Con from="4" weight="-57.4801324181999"/>
+              <Con from="5" weight="26.0758509599656"/>
+              <Con from="6" weight="-84.9506083756853"/>
+              <Con from="7" weight="-8.58310315570221"/>
+              <Con from="8" weight="-1.60926128342556"/>
+              <Con from="9" weight="131.607564654042"/>
+              <Con from="10" weight="-56.2907716299075"/>
+              <Con from="11" weight="114.247308910385"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="21">
+        <SimplePredicate field="house" operator="equal" value="21"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-2.07277162969332">
+              <Con from="1" weight="15.3343216022003"/>
+            </Neuron>
+            <Neuron id="3" bias="-423.142195852037">
+              <Con from="1" weight="639.097988754574"/>
+            </Neuron>
+            <Neuron id="4" bias="15.1392638558382">
+              <Con from="1" weight="-10.1051253345084"/>
+            </Neuron>
+            <Neuron id="5" bias="-8.09109804366534">
+              <Con from="1" weight="7.31277884841148"/>
+            </Neuron>
+            <Neuron id="6" bias="5.80962450138486">
+              <Con from="1" weight="-4.79655685036596"/>
+            </Neuron>
+            <Neuron id="7" bias="-453.494430988728">
+              <Con from="1" weight="684.56802540988"/>
+            </Neuron>
+            <Neuron id="8" bias="-137.541736214179">
+              <Con from="1" weight="-88.3445990506245"/>
+            </Neuron>
+            <Neuron id="9" bias="-2.42089816497501">
+              <Con from="1" weight="13.5551741578834"/>
+            </Neuron>
+            <Neuron id="10" bias="-100.816937736945">
+              <Con from="1" weight="65.7069806673914"/>
+            </Neuron>
+            <Neuron id="11" bias="4.77327862276701">
+              <Con from="1" weight="-0.232888724043732"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="13.5277302136044">
+              <Con from="2" weight="6.36911062942897"/>
+              <Con from="3" weight="138.038981423041"/>
+              <Con from="4" weight="9.00377269854289"/>
+              <Con from="5" weight="-22.866832078565"/>
+              <Con from="6" weight="-34.0186985381854"/>
+              <Con from="7" weight="-138.30900192041"/>
+              <Con from="8" weight="0.537911728573322"/>
+              <Con from="9" weight="-5.73815298001469"/>
+              <Con from="10" weight="1.1734795489208"/>
+              <Con from="11" weight="11.3124251890833"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="22">
+        <SimplePredicate field="house" operator="equal" value="22"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-49.7772971884041">
+              <Con from="1" weight="61.3319403469782"/>
+            </Neuron>
+            <Neuron id="3" bias="0.311663648803933">
+              <Con from="1" weight="29.750424678632"/>
+            </Neuron>
+            <Neuron id="4" bias="16.5434722036029">
+              <Con from="1" weight="2.78185450138369"/>
+            </Neuron>
+            <Neuron id="5" bias="29.6408264345508">
+              <Con from="1" weight="13.4685642500316"/>
+            </Neuron>
+            <Neuron id="6" bias="28.2918442126716">
+              <Con from="1" weight="-27.8203925870516"/>
+            </Neuron>
+            <Neuron id="7" bias="123.208384632999">
+              <Con from="1" weight="-185.78193494375"/>
+            </Neuron>
+            <Neuron id="8" bias="20.8571950467388">
+              <Con from="1" weight="20.5854977337252"/>
+            </Neuron>
+            <Neuron id="9" bias="-102.799081923961">
+              <Con from="1" weight="157.43306458688"/>
+            </Neuron>
+            <Neuron id="10" bias="99.7482851734572">
+              <Con from="1" weight="-151.676289421439"/>
+            </Neuron>
+            <Neuron id="11" bias="26.5246449278435">
+              <Con from="1" weight="-25.9746277094863"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="7.39051953244588">
+              <Con from="2" weight="0.186258466861796"/>
+              <Con from="3" weight="0.161240970786496"/>
+              <Con from="4" weight="7.57034300491315"/>
+              <Con from="5" weight="7.98727488301865"/>
+              <Con from="6" weight="0.855623607883248"/>
+              <Con from="7" weight="21.5906861000609"/>
+              <Con from="8" weight="-0.00161501891808357"/>
+              <Con from="9" weight="-23.8075930550487"/>
+              <Con from="10" weight="-45.4229589000491"/>
+              <Con from="11" weight="-0.650828835689294"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="23">
+        <SimplePredicate field="house" operator="equal" value="23"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-24.4767736960335">
+              <Con from="1" weight="238.791872283909"/>
+            </Neuron>
+            <Neuron id="3" bias="-23.9103286845021">
+              <Con from="1" weight="42.9535352601584"/>
+            </Neuron>
+            <Neuron id="4" bias="5.13485470163219">
+              <Con from="1" weight="-5.71871904767998"/>
+            </Neuron>
+            <Neuron id="5" bias="28.3743367089147">
+              <Con from="1" weight="-278.518241291149"/>
+            </Neuron>
+            <Neuron id="6" bias="0.412563212517863">
+              <Con from="1" weight="0.0128150089657368"/>
+            </Neuron>
+            <Neuron id="7" bias="32.8128927022371">
+              <Con from="1" weight="-323.467724085584"/>
+            </Neuron>
+            <Neuron id="8" bias="193.790131064402">
+              <Con from="1" weight="109.29016911319"/>
+            </Neuron>
+            <Neuron id="9" bias="-4.63140416973064">
+              <Con from="1" weight="5.82194247526021"/>
+            </Neuron>
+            <Neuron id="10" bias="278.467087436039">
+              <Con from="1" weight="178.57116045539"/>
+            </Neuron>
+            <Neuron id="11" bias="5.96792577951124">
+              <Con from="1" weight="-6.18734718419971"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="22.6911266789261">
+              <Con from="2" weight="10.8455606794386"/>
+              <Con from="3" weight="0.71953128477217"/>
+              <Con from="4" weight="-124.242715283293"/>
+              <Con from="5" weight="26.3257872066072"/>
+              <Con from="6" weight="-8.10929908973553"/>
+              <Con from="7" weight="-16.2823097498472"/>
+              <Con from="8" weight="23.1313716634138"/>
+              <Con from="9" weight="-51.4662283934993"/>
+              <Con from="10" weight="-0.364624506217591"/>
+              <Con from="11" weight="72.8361955194915"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="24">
+        <SimplePredicate field="house" operator="equal" value="24"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="2.77801170971343">
+              <Con from="1" weight="0.0345131161724215"/>
+            </Neuron>
+            <Neuron id="3" bias="324.29157904824">
+              <Con from="1" weight="-491.508374596042"/>
+            </Neuron>
+            <Neuron id="4" bias="96.9810147656304">
+              <Con from="1" weight="61.9120754744894"/>
+            </Neuron>
+            <Neuron id="5" bias="72.0384782114672">
+              <Con from="1" weight="50.7888530976105"/>
+            </Neuron>
+            <Neuron id="6" bias="87.1064471455677">
+              <Con from="1" weight="48.7268248481765"/>
+            </Neuron>
+            <Neuron id="7" bias="-3.56901179024858">
+              <Con from="1" weight="4.34334524391381"/>
+            </Neuron>
+            <Neuron id="8" bias="-369.827183323397">
+              <Con from="1" weight="560.894124324828"/>
+            </Neuron>
+            <Neuron id="9" bias="-29.1137676061533">
+              <Con from="1" weight="289.629152074917"/>
+            </Neuron>
+            <Neuron id="10" bias="-3.0309379851119">
+              <Con from="1" weight="3.2140689293718"/>
+            </Neuron>
+            <Neuron id="11" bias="-4.83307020092382">
+              <Con from="1" weight="6.59447899464489"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-28.8450491779887">
+              <Con from="2" weight="-52.0075988553141"/>
+              <Con from="3" weight="71.3318918718983"/>
+              <Con from="4" weight="-0.594385514720585"/>
+              <Con from="5" weight="0.00280077323041292"/>
+              <Con from="6" weight="6.40929916328046"/>
+              <Con from="7" weight="-38.2603522387502"/>
+              <Con from="8" weight="70.7614563118833"/>
+              <Con from="9" weight="1.61895386454332"/>
+              <Con from="10" weight="23.0489738980059"/>
+              <Con from="11" weight="17.612548780134"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="25">
+        <SimplePredicate field="house" operator="equal" value="25"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-697.411668500009">
+              <Con from="1" weight="454.665334440555"/>
+            </Neuron>
+            <Neuron id="3" bias="0.0537869811165672">
+              <Con from="1" weight="-0.00396835358228661"/>
+            </Neuron>
+            <Neuron id="4" bias="302.406524643681">
+              <Con from="1" weight="-267.835956191773"/>
+            </Neuron>
+            <Neuron id="5" bias="-572.676573674663">
+              <Con from="1" weight="-367.320698865791"/>
+            </Neuron>
+            <Neuron id="6" bias="-36.3380457714405">
+              <Con from="1" weight="-7.75422976724729"/>
+            </Neuron>
+            <Neuron id="7" bias="-51.7293661375582">
+              <Con from="1" weight="-10.2663788970777"/>
+            </Neuron>
+            <Neuron id="8" bias="218.730263339894">
+              <Con from="1" weight="-382.100330384147"/>
+            </Neuron>
+            <Neuron id="9" bias="-69.1999703519657">
+              <Con from="1" weight="690.156800096132"/>
+            </Neuron>
+            <Neuron id="10" bias="328.311856832288">
+              <Con from="1" weight="-291.082892913962"/>
+            </Neuron>
+            <Neuron id="11" bias="802.910801750523">
+              <Con from="1" weight="461.007383072198"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-78.4541945103294">
+              <Con from="2" weight="0.615636582346235"/>
+              <Con from="3" weight="12.8159171358153"/>
+              <Con from="4" weight="-2.2525758640739"/>
+              <Con from="5" weight="0.692975282850753"/>
+              <Con from="6" weight="-6.46152725839169"/>
+              <Con from="7" weight="-42.2464788788534"/>
+              <Con from="8" weight="-0.762886655399119"/>
+              <Con from="9" weight="0.745584062985568"/>
+              <Con from="10" weight="2.91934789952552"/>
+              <Con from="11" weight="71.2856148575098"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="26">
+        <SimplePredicate field="house" operator="equal" value="26"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-9.53626776993578">
+              <Con from="1" weight="7.00995742016565"/>
+            </Neuron>
+            <Neuron id="3" bias="20.2269768215559">
+              <Con from="1" weight="-203.920528751937"/>
+            </Neuron>
+            <Neuron id="4" bias="163.384228795353">
+              <Con from="1" weight="104.792006375644"/>
+            </Neuron>
+            <Neuron id="5" bias="17.0193006329703">
+              <Con from="1" weight="-12.0809890726237"/>
+            </Neuron>
+            <Neuron id="6" bias="-17.2699543163555">
+              <Con from="1" weight="28.949385566881"/>
+            </Neuron>
+            <Neuron id="7" bias="-1.63851960735822">
+              <Con from="1" weight="-0.0164728445328065"/>
+            </Neuron>
+            <Neuron id="8" bias="-16.0549234746321">
+              <Con from="1" weight="26.7922738921669"/>
+            </Neuron>
+            <Neuron id="9" bias="11.7262192985242">
+              <Con from="1" weight="-9.95482223629134"/>
+            </Neuron>
+            <Neuron id="10" bias="-98.9007637608191">
+              <Con from="1" weight="-54.9151019676766"/>
+            </Neuron>
+            <Neuron id="11" bias="37.3234736415006">
+              <Con from="1" weight="-22.6980931793307"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-31.9311223272251">
+              <Con from="2" weight="35.3596844466436"/>
+              <Con from="3" weight="-0.613051159380041"/>
+              <Con from="4" weight="-0.594419928847476"/>
+              <Con from="5" weight="16.6274460616746"/>
+              <Con from="6" weight="16.484453446812"/>
+              <Con from="7" weight="-4.23225963878235"/>
+              <Con from="8" weight="-16.2767730645964"/>
+              <Con from="9" weight="13.7447641514764"/>
+              <Con from="10" weight="-14.1197578932845"/>
+              <Con from="11" weight="2.86841706524828"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="27">
+        <SimplePredicate field="house" operator="equal" value="27"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="0.783980898183778">
+              <Con from="1" weight="-1.84780561894915"/>
+            </Neuron>
+            <Neuron id="3" bias="19.0235273063305">
+              <Con from="1" weight="-15.7422069600261"/>
+            </Neuron>
+            <Neuron id="4" bias="1.23219525962895">
+              <Con from="1" weight="-1.695140515205"/>
+            </Neuron>
+            <Neuron id="5" bias="-7.85846790292175">
+              <Con from="1" weight="14.6517031970844"/>
+            </Neuron>
+            <Neuron id="6" bias="14.4458519776835">
+              <Con from="1" weight="-12.0832161908857"/>
+            </Neuron>
+            <Neuron id="7" bias="-13.6248239194087">
+              <Con from="1" weight="134.296218293752"/>
+            </Neuron>
+            <Neuron id="8" bias="9.36212221887023">
+              <Con from="1" weight="-17.3809772127235"/>
+            </Neuron>
+            <Neuron id="9" bias="11.5749608033448">
+              <Con from="1" weight="-113.731837082088"/>
+            </Neuron>
+            <Neuron id="10" bias="19.2197145522139">
+              <Con from="1" weight="-9.54982911668441"/>
+            </Neuron>
+            <Neuron id="11" bias="60.6845808323059">
+              <Con from="1" weight="39.095360631227"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-2.25313037254654">
+              <Con from="2" weight="27.8732095606093"/>
+              <Con from="3" weight="-9.79117260526628"/>
+              <Con from="4" weight="-39.723762786187"/>
+              <Con from="5" weight="-13.182414827885"/>
+              <Con from="6" weight="14.7285877184379"/>
+              <Con from="7" weight="9.21083219908599"/>
+              <Con from="8" weight="-11.6628428272121"/>
+              <Con from="9" weight="8.03934968049504"/>
+              <Con from="10" weight="12.5154003123898"/>
+              <Con from="11" weight="-0.516033013786575"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="28">
+        <SimplePredicate field="house" operator="equal" value="28"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="72.1225839033202">
+              <Con from="1" weight="-716.934559705758"/>
+            </Neuron>
+            <Neuron id="3" bias="-0.413373308284018">
+              <Con from="1" weight="-16.0955886550756"/>
+            </Neuron>
+            <Neuron id="4" bias="-0.471874474427096">
+              <Con from="1" weight="-16.6775351390493"/>
+            </Neuron>
+            <Neuron id="5" bias="509.749585625797">
+              <Con from="1" weight="293.873008961605"/>
+            </Neuron>
+            <Neuron id="6" bias="-479.230572080533">
+              <Con from="1" weight="-275.515581160743"/>
+            </Neuron>
+            <Neuron id="7" bias="-271.584608788574">
+              <Con from="1" weight="212.724694434014"/>
+            </Neuron>
+            <Neuron id="8" bias="1208.62167339135">
+              <Con from="1" weight="-788.215525711823"/>
+            </Neuron>
+            <Neuron id="9" bias="877.233520522978">
+              <Con from="1" weight="562.6968358913"/>
+            </Neuron>
+            <Neuron id="10" bias="410.638269885758">
+              <Con from="1" weight="-365.176142830522"/>
+            </Neuron>
+            <Neuron id="11" bias="-230.34949174852">
+              <Con from="1" weight="402.456542080412"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="104.748633685031">
+              <Con from="2" weight="-1.5925822871031"/>
+              <Con from="3" weight="21.3125824107014"/>
+              <Con from="4" weight="-21.4053526671247"/>
+              <Con from="5" weight="-101.153895196601"/>
+              <Con from="6" weight="-307.229730978634"/>
+              <Con from="7" weight="0.237875668399971"/>
+              <Con from="8" weight="-2.26053664376228"/>
+              <Con from="9" weight="-2.56880475103318"/>
+              <Con from="10" weight="2.69967565836591"/>
+              <Con from="11" weight="2.81661474631455"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="29">
+        <SimplePredicate field="house" operator="equal" value="29"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="6.60108721852631">
+              <Con from="1" weight="-3.05718867159129"/>
+            </Neuron>
+            <Neuron id="3" bias="0.502745928801076">
+              <Con from="1" weight="-1.93505426696156"/>
+            </Neuron>
+            <Neuron id="4" bias="-2.17444471758954">
+              <Con from="1" weight="1.50131136897762"/>
+            </Neuron>
+            <Neuron id="5" bias="3.23596873563338">
+              <Con from="1" weight="-8.96597972143365"/>
+            </Neuron>
+            <Neuron id="6" bias="2.54801486990054">
+              <Con from="1" weight="46.2252175520811"/>
+            </Neuron>
+            <Neuron id="7" bias="47.2162354840009">
+              <Con from="1" weight="-82.581328007181"/>
+            </Neuron>
+            <Neuron id="8" bias="6.53804769689402">
+              <Con from="1" weight="-4.00142244494824"/>
+            </Neuron>
+            <Neuron id="9" bias="47.5912602384008">
+              <Con from="1" weight="30.1652321467365"/>
+            </Neuron>
+            <Neuron id="10" bias="51.8847756167954">
+              <Con from="1" weight="32.9685820865108"/>
+            </Neuron>
+            <Neuron id="11" bias="7.31840553043669">
+              <Con from="1" weight="-9.05452499985688"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="2.57526427600378">
+              <Con from="2" weight="14.2585413109998"/>
+              <Con from="3" weight="-3.82544037546876"/>
+              <Con from="4" weight="-15.25782806595"/>
+              <Con from="5" weight="-0.492071490572389"/>
+              <Con from="6" weight="0.155369873281474"/>
+              <Con from="7" weight="-0.381282209663907"/>
+              <Con from="8" weight="-11.7129143366141"/>
+              <Con from="9" weight="3.20519246333048"/>
+              <Con from="10" weight="-3.40278348683929"/>
+              <Con from="11" weight="-0.914838189595471"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="30">
+        <SimplePredicate field="house" operator="equal" value="30"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-30.2856998246977">
+              <Con from="1" weight="44.1515917385289"/>
+            </Neuron>
+            <Neuron id="3" bias="14.9207884652737">
+              <Con from="1" weight="1.07143750775573"/>
+            </Neuron>
+            <Neuron id="4" bias="98.7335909460394">
+              <Con from="1" weight="-149.716426851472"/>
+            </Neuron>
+            <Neuron id="5" bias="70.7508246009611">
+              <Con from="1" weight="-106.818244490605"/>
+            </Neuron>
+            <Neuron id="6" bias="5.8137824636656">
+              <Con from="1" weight="-0.872654635362108"/>
+            </Neuron>
+            <Neuron id="7" bias="-1.28146663337595">
+              <Con from="1" weight="-0.109413348024457"/>
+            </Neuron>
+            <Neuron id="8" bias="33.645955799241">
+              <Con from="1" weight="-48.2819044476734"/>
+            </Neuron>
+            <Neuron id="9" bias="9.34751166612796">
+              <Con from="1" weight="0.161137193574121"/>
+            </Neuron>
+            <Neuron id="10" bias="124.554731272254">
+              <Con from="1" weight="-189.332705594869"/>
+            </Neuron>
+            <Neuron id="11" bias="-24.5137187303715">
+              <Con from="1" weight="36.2721157393943"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-5.18813008682872">
+              <Con from="2" weight="-27.0614814228543"/>
+              <Con from="3" weight="10.1771953753012"/>
+              <Con from="4" weight="46.4427291026875"/>
+              <Con from="5" weight="-25.1202279198749"/>
+              <Con from="6" weight="7.20032841076222"/>
+              <Con from="7" weight="-0.48424574456486"/>
+              <Con from="8" weight="-14.8833686849791"/>
+              <Con from="9" weight="6.72211719793838"/>
+              <Con from="10" weight="-25.9686725490623"/>
+              <Con from="11" weight="7.57843653970098"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="31">
+        <SimplePredicate field="house" operator="equal" value="31"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-29.2575897270677">
+              <Con from="1" weight="45.0213250984288"/>
+            </Neuron>
+            <Neuron id="3" bias="8.78025991624332">
+              <Con from="1" weight="-10.8244080665705"/>
+            </Neuron>
+            <Neuron id="4" bias="-4.68538521002691">
+              <Con from="1" weight="4.53874627028967"/>
+            </Neuron>
+            <Neuron id="5" bias="20.2765177243928">
+              <Con from="1" weight="-30.8744231677988"/>
+            </Neuron>
+            <Neuron id="6" bias="11.2623162680142">
+              <Con from="1" weight="-12.9403348461641"/>
+            </Neuron>
+            <Neuron id="7" bias="2.66119486230664">
+              <Con from="1" weight="-4.7137299103316"/>
+            </Neuron>
+            <Neuron id="8" bias="5.9680569704204">
+              <Con from="1" weight="-1.11119853414621"/>
+            </Neuron>
+            <Neuron id="9" bias="36.7475146139975">
+              <Con from="1" weight="-56.8029131602734"/>
+            </Neuron>
+            <Neuron id="10" bias="4.25587771572566">
+              <Con from="1" weight="-4.95400675469959"/>
+            </Neuron>
+            <Neuron id="11" bias="-12.3228636023044">
+              <Con from="1" weight="17.9135204490773"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="8.17942545264392">
+              <Con from="2" weight="-10.7754268812442"/>
+              <Con from="3" weight="-6.13479665962263"/>
+              <Con from="4" weight="1.29350812484847"/>
+              <Con from="5" weight="-6.96238676399246"/>
+              <Con from="6" weight="3.18040069115015"/>
+              <Con from="7" weight="-0.544900873676359"/>
+              <Con from="8" weight="4.52230699093063"/>
+              <Con from="9" weight="-5.91107160075655"/>
+              <Con from="10" weight="2.8943036822138"/>
+              <Con from="11" weight="-3.9071450055628"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="32">
+        <SimplePredicate field="house" operator="equal" value="32"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="1.29076543809177">
+              <Con from="1" weight="-0.282099881734954"/>
+            </Neuron>
+            <Neuron id="3" bias="-163.437600153936">
+              <Con from="1" weight="106.002471159289"/>
+            </Neuron>
+            <Neuron id="4" bias="-3.91853990698367">
+              <Con from="1" weight="2.25241042184138"/>
+            </Neuron>
+            <Neuron id="5" bias="-228.216147025994">
+              <Con from="1" weight="-146.145564785354"/>
+            </Neuron>
+            <Neuron id="6" bias="-47.2617602192872">
+              <Con from="1" weight="64.6703937979492"/>
+            </Neuron>
+            <Neuron id="7" bias="143.442503268622">
+              <Con from="1" weight="-93.4773655993958"/>
+            </Neuron>
+            <Neuron id="8" bias="156.097374815197">
+              <Con from="1" weight="-102.234910310053"/>
+            </Neuron>
+            <Neuron id="9" bias="-206.113243447132">
+              <Con from="1" weight="-131.934211797949"/>
+            </Neuron>
+            <Neuron id="10" bias="14.2215684992863">
+              <Con from="1" weight="-9.10637841601576"/>
+            </Neuron>
+            <Neuron id="11" bias="-12.1995064340474">
+              <Con from="1" weight="11.0979341755761"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="10.0942146988072">
+              <Con from="2" weight="10.4089285098212"/>
+              <Con from="3" weight="-31.9823560892551"/>
+              <Con from="4" weight="52.4843150732378"/>
+              <Con from="5" weight="12.0274554731664"/>
+              <Con from="6" weight="-0.977568631307942"/>
+              <Con from="7" weight="-66.28438347948"/>
+              <Con from="8" weight="31.4839657369836"/>
+              <Con from="9" weight="-10.4308640502862"/>
+              <Con from="10" weight="15.6054064154008"/>
+              <Con from="11" weight="-9.97572337996395"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="33">
+        <SimplePredicate field="house" operator="equal" value="33"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="865.956947487252">
+              <Con from="1" weight="497.349461485531"/>
+            </Neuron>
+            <Neuron id="3" bias="-3.27067728647266">
+              <Con from="1" weight="18.9001148765933"/>
+            </Neuron>
+            <Neuron id="4" bias="-3.18624225361734">
+              <Con from="1" weight="18.7106335223965"/>
+            </Neuron>
+            <Neuron id="5" bias="510.853999601742">
+              <Con from="1" weight="327.653619889903"/>
+            </Neuron>
+            <Neuron id="6" bias="-216.847785193153">
+              <Con from="1" weight="378.770186457454"/>
+            </Neuron>
+            <Neuron id="7" bias="17.2820734096502">
+              <Con from="1" weight="1.216562686994"/>
+            </Neuron>
+            <Neuron id="8" bias="-1.71441836531736">
+              <Con from="1" weight="-0.00359079576091759"/>
+            </Neuron>
+            <Neuron id="9" bias="164.043202972478">
+              <Con from="1" weight="-86.4845507593963"/>
+            </Neuron>
+            <Neuron id="10" bias="353.269604453746">
+              <Con from="1" weight="-314.601036379315"/>
+            </Neuron>
+            <Neuron id="11" bias="2231.9620297283">
+              <Con from="1" weight="-1456.06618087581"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-97.3868004612049">
+              <Con from="2" weight="193.915063241776"/>
+              <Con from="3" weight="-53.6347545323212"/>
+              <Con from="4" weight="54.8090035035272"/>
+              <Con from="5" weight="-1.50424900561377"/>
+              <Con from="6" weight="1.73911455859393"/>
+              <Con from="7" weight="-97.6577102822483"/>
+              <Con from="8" weight="80.2643307564113"/>
+              <Con from="9" weight="-10.0670749312613"/>
+              <Con from="10" weight="1.5562840892613"/>
+              <Con from="11" weight="-1.41798086585916"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="34">
+        <SimplePredicate field="house" operator="equal" value="34"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="263.280330195702">
+              <Con from="1" weight="-397.374630785312"/>
+            </Neuron>
+            <Neuron id="3" bias="15.02621718518">
+              <Con from="1" weight="-12.1458298269852"/>
+            </Neuron>
+            <Neuron id="4" bias="5.67401533211401">
+              <Con from="1" weight="-0.782740445618877"/>
+            </Neuron>
+            <Neuron id="5" bias="-24.3705360397577">
+              <Con from="1" weight="11.3406329810561"/>
+            </Neuron>
+            <Neuron id="6" bias="-98.3214538982497">
+              <Con from="1" weight="146.313503811175"/>
+            </Neuron>
+            <Neuron id="7" bias="-217.067747127928">
+              <Con from="1" weight="330.266020442774"/>
+            </Neuron>
+            <Neuron id="8" bias="193.205782566024">
+              <Con from="1" weight="-292.591660922515"/>
+            </Neuron>
+            <Neuron id="9" bias="110.784601893248">
+              <Con from="1" weight="-166.274254126973"/>
+            </Neuron>
+            <Neuron id="10" bias="14.6109675635707">
+              <Con from="1" weight="-11.8187351176867"/>
+            </Neuron>
+            <Neuron id="11" bias="18.3600467738742">
+              <Con from="1" weight="-186.063020942698"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="72.7527064124544">
+              <Con from="2" weight="81.0381274886954"/>
+              <Con from="3" weight="-13.3896654335746"/>
+              <Con from="4" weight="-9.10691124079063"/>
+              <Con from="5" weight="7.00552497349716"/>
+              <Con from="6" weight="8.19230452234468"/>
+              <Con from="7" weight="-72.016312911691"/>
+              <Con from="8" weight="-170.376310859726"/>
+              <Con from="9" weight="25.4931833845083"/>
+              <Con from="10" weight="13.5280939548402"/>
+              <Con from="11" weight="-0.582555809457043"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="35">
+        <SimplePredicate field="house" operator="equal" value="35"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="25.7893731197901">
+              <Con from="1" weight="-257.349726351694"/>
+            </Neuron>
+            <Neuron id="3" bias="133.170750897617">
+              <Con from="1" weight="85.5177783555326"/>
+            </Neuron>
+            <Neuron id="4" bias="-3.79724279646011">
+              <Con from="1" weight="0.319358051112866"/>
+            </Neuron>
+            <Neuron id="5" bias="-156.862314758086">
+              <Con from="1" weight="193.127205197491"/>
+            </Neuron>
+            <Neuron id="6" bias="-58.0946301060521">
+              <Con from="1" weight="37.1282699338365"/>
+            </Neuron>
+            <Neuron id="7" bias="-3.96708634167311">
+              <Con from="1" weight="12.5269792734971"/>
+            </Neuron>
+            <Neuron id="8" bias="1.92556836040232">
+              <Con from="1" weight="2.85537345749905"/>
+            </Neuron>
+            <Neuron id="9" bias="-36.0378564591632">
+              <Con from="1" weight="34.4426270109231"/>
+            </Neuron>
+            <Neuron id="10" bias="-15.0937687155349">
+              <Con from="1" weight="151.245348749239"/>
+            </Neuron>
+            <Neuron id="11" bias="-3.73284832004074">
+              <Con from="1" weight="11.7878599748749"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="1.61714796934527">
+              <Con from="2" weight="-2.07989737173193"/>
+              <Con from="3" weight="-0.108304757004348"/>
+              <Con from="4" weight="-12.4491934556583"/>
+              <Con from="5" weight="0.27777748985289"/>
+              <Con from="6" weight="0.148779448674738"/>
+              <Con from="7" weight="-14.2738174044338"/>
+              <Con from="8" weight="0.0977995187337145"/>
+              <Con from="9" weight="-0.362575014463095"/>
+              <Con from="10" weight="-1.37586630041713"/>
+              <Con from="11" weight="14.7080749609752"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="36">
+        <SimplePredicate field="house" operator="equal" value="36"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="1.51521791281498">
+              <Con from="1" weight="-14.2866788488501"/>
+            </Neuron>
+            <Neuron id="3" bias="3.69662932852792">
+              <Con from="1" weight="-0.658117150941463"/>
+            </Neuron>
+            <Neuron id="4" bias="-74.5955045265073">
+              <Con from="1" weight="91.7416936396066"/>
+            </Neuron>
+            <Neuron id="5" bias="9.78221033409962">
+              <Con from="1" weight="-17.9395925919207"/>
+            </Neuron>
+            <Neuron id="6" bias="-11.6995078361704">
+              <Con from="1" weight="116.829590999272"/>
+            </Neuron>
+            <Neuron id="7" bias="-26.2576693767999">
+              <Con from="1" weight="22.518526653899"/>
+            </Neuron>
+            <Neuron id="8" bias="-10.4539250834574">
+              <Con from="1" weight="104.552236342276"/>
+            </Neuron>
+            <Neuron id="9" bias="2.3161059717629">
+              <Con from="1" weight="-4.82948534730845"/>
+            </Neuron>
+            <Neuron id="10" bias="8.27390514309582">
+              <Con from="1" weight="2.72703958498354"/>
+            </Neuron>
+            <Neuron id="11" bias="-24.3849558950009">
+              <Con from="1" weight="20.9852694634375"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="15.7370179132784">
+              <Con from="2" weight="-0.665040225087421"/>
+              <Con from="3" weight="-9.71469419016585"/>
+              <Con from="4" weight="0.516142734428824"/>
+              <Con from="5" weight="-0.790001536394155"/>
+              <Con from="6" weight="8.82021083818974"/>
+              <Con from="7" weight="7.15518283302803"/>
+              <Con from="8" weight="-8.32235443965707"/>
+              <Con from="9" weight="1.63854991284281"/>
+              <Con from="10" weight="-7.07717849227519"/>
+              <Con from="11" weight="-7.65772045334597"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="37">
+        <SimplePredicate field="house" operator="equal" value="37"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-16.8255208148887">
+              <Con from="1" weight="-300.499321069983"/>
+            </Neuron>
+            <Neuron id="3" bias="-390.439132773113">
+              <Con from="1" weight="347.461153209008"/>
+            </Neuron>
+            <Neuron id="4" bias="-213.192878117331">
+              <Con from="1" weight="373.141547172181"/>
+            </Neuron>
+            <Neuron id="5" bias="77.5401490825632">
+              <Con from="1" weight="-773.738851830872"/>
+            </Neuron>
+            <Neuron id="6" bias="-679.445231838938">
+              <Con from="1" weight="-435.820639337987"/>
+            </Neuron>
+            <Neuron id="7" bias="161.278313213792">
+              <Con from="1" weight="-126.400849076336"/>
+            </Neuron>
+            <Neuron id="8" bias="370.467608024661">
+              <Con from="1" weight="-241.757960291042"/>
+            </Neuron>
+            <Neuron id="9" bias="-413.907376149693">
+              <Con from="1" weight="270.071853164153"/>
+            </Neuron>
+            <Neuron id="10" bias="213.412591459357">
+              <Con from="1" weight="-373.505812365515"/>
+            </Neuron>
+            <Neuron id="11" bias="821.929574111721">
+              <Con from="1" weight="471.985728690471"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-56.2412355170596">
+              <Con from="2" weight="-0.16923972060492"/>
+              <Con from="3" weight="-0.859397649954397"/>
+              <Con from="4" weight="-35.2479161917441"/>
+              <Con from="5" weight="-0.550584319425804"/>
+              <Con from="6" weight="0.784073872691238"/>
+              <Con from="7" weight="-0.123220066927372"/>
+              <Con from="8" weight="5.69840330960899"/>
+              <Con from="9" weight="6.3595805347516"/>
+              <Con from="10" weight="-36.1033801096014"/>
+              <Con from="11" weight="86.9147185500285"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="38">
+        <SimplePredicate field="house" operator="equal" value="38"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-107.362140391257">
+              <Con from="1" weight="-68.8279590375912"/>
+            </Neuron>
+            <Neuron id="3" bias="-347.816652968378">
+              <Con from="1" weight="525.012572584252"/>
+            </Neuron>
+            <Neuron id="4" bias="-103.968788575905">
+              <Con from="1" weight="67.2420409548408"/>
+            </Neuron>
+            <Neuron id="5" bias="-8.92949405304182">
+              <Con from="1" weight="9.19798994924193"/>
+            </Neuron>
+            <Neuron id="6" bias="-283.555450588795">
+              <Con from="1" weight="428.504950952467"/>
+            </Neuron>
+            <Neuron id="7" bias="-211.958755081493">
+              <Con from="1" weight="321.079733367573"/>
+            </Neuron>
+            <Neuron id="8" bias="34.6466844715049">
+              <Con from="1" weight="-345.780712272113"/>
+            </Neuron>
+            <Neuron id="9" bias="-60.5402910406514">
+              <Con from="1" weight="-31.5369477701078"/>
+            </Neuron>
+            <Neuron id="10" bias="-176.517541279448">
+              <Con from="1" weight="268.589690711471"/>
+            </Neuron>
+            <Neuron id="11" bias="-9.24460118278828">
+              <Con from="1" weight="9.43785164785203"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="0.154655335026552">
+              <Con from="2" weight="0.232564225457477"/>
+              <Con from="3" weight="-88.5832268400552"/>
+              <Con from="4" weight="0.17672853408171"/>
+              <Con from="5" weight="17.379234032368"/>
+              <Con from="6" weight="144.284236190391"/>
+              <Con from="7" weight="-71.0071884383373"/>
+              <Con from="8" weight="-0.768732751977798"/>
+              <Con from="9" weight="-47.3585555977106"/>
+              <Con from="10" weight="15.2845171421907"/>
+              <Con from="11" weight="-17.3233787008793"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+      <Segment id="39">
+        <SimplePredicate field="house" operator="equal" value="39"/>
+        <NeuralNetwork modelName="NeuralNet_model" functionName="regression" numberOfLayers="2" activationFunction="logistic">
+          <MiningSchema>
+            <MiningField name="derived_value" usageType="predicted"/>
+            <MiningField name="timestamp" usageType="active"/>
+            <MiningField name="FinalResult" usageType="supplementary"/>
+          </MiningSchema>
+          <Output>
+            <OutputField name="Predicted_derived_value" feature="predictedValue"/>
+            <OutputField name="FinalResult" feature="transformedValue">
+              <NormContinuous field="Predicted_derived_value">
+                <LinearNorm orig="0" norm="1092.8388121582"/>
+                <LinearNorm orig="1" norm="2440.26102718863"/>
+              </NormContinuous>
+            </OutputField>
+          </Output>
+          <LocalTransformations>
+            <DerivedField name="derived_timestamp" dataType="double" optype="continuous">
+              <NormContinuous field="timestamp">
+                <LinearNorm orig="1378016518.76346" norm="0"/>
+                <LinearNorm orig="1378033908.16689" norm="1"/>
+              </NormContinuous>
+            </DerivedField>
+          </LocalTransformations>
+          <NeuralInputs numberOfInputs="1">
+            <NeuralInput id="1">
+              <DerivedField name="derivedNI_derived_timestamp" optype="continuous" dataType="double">
+                <FieldRef field="derived_timestamp"/>
+              </DerivedField>
+            </NeuralInput>
+          </NeuralInputs>
+          <NeuralLayer numberOfNeurons="10">
+            <Neuron id="2" bias="-7.99763844608047">
+              <Con from="1" weight="2.14293792512572"/>
+            </Neuron>
+            <Neuron id="3" bias="64.1603497105948">
+              <Con from="1" weight="-637.888006680757"/>
+            </Neuron>
+            <Neuron id="4" bias="4.88992395397483">
+              <Con from="1" weight="-12.07509314903"/>
+            </Neuron>
+            <Neuron id="5" bias="481.011901822994">
+              <Con from="1" weight="275.41134682142"/>
+            </Neuron>
+            <Neuron id="6" bias="-599.199649346693">
+              <Con from="1" weight="907.250792633542"/>
+            </Neuron>
+            <Neuron id="7" bias="318.497483144306">
+              <Con from="1" weight="204.330799843005"/>
+            </Neuron>
+            <Neuron id="8" bias="551.215722577779">
+              <Con from="1" weight="-834.14109472228"/>
+            </Neuron>
+            <Neuron id="9" bias="7.38199007091532">
+              <Con from="1" weight="-2.19096670492797"/>
+            </Neuron>
+            <Neuron id="10" bias="19.3945058361708">
+              <Con from="1" weight="-17.7497196610175"/>
+            </Neuron>
+            <Neuron id="11" bias="4.20720084581405">
+              <Con from="1" weight="-8.16809855139064"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralLayer numberOfNeurons="1" activationFunction="identity">
+            <Neuron id="12" bias="-97.9465618270878">
+              <Con from="2" weight="-4.47807378796271"/>
+              <Con from="3" weight="-1.79752819731822"/>
+              <Con from="4" weight="4.13619391184945"/>
+              <Con from="5" weight="60.3922035759553"/>
+              <Con from="6" weight="102.573741981489"/>
+              <Con from="7" weight="-0.864117405921343"/>
+              <Con from="8" weight="103.273393495987"/>
+              <Con from="9" weight="-63.3308717953335"/>
+              <Con from="10" weight="2.21284196893112"/>
+              <Con from="11" weight="-6.49515740050451"/>
+            </Neuron>
+          </NeuralLayer>
+          <NeuralOutputs numberOfOutputs="1">
+            <NeuralOutput outputNeuron="12">
+              <DerivedField name="derivedNO_derived_value" optype="continuous" dataType="double">
+                <FieldRef field="derived_value"/>
+              </DerivedField>
+            </NeuralOutput>
+          </NeuralOutputs>
+        </NeuralNetwork>
+      </Segment>
+    </Segmentation>
+  </MiningModel>
+</PMML>

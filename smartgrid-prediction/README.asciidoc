@@ -1,0 +1,115 @@
+# Introduction
+
+This sample showcases a fictional use of Spring XD in the context of smart electricity metering and production. It was inspired by the http://www.cse.iitb.ac.in/debs2014/?page_id=42[ACM Distributed Event Based Systems Grand Challenge 2014] and re-uses some of its sample input data.
+
+Smart plugs are used to measure power consumption and report metrics to the system. In this sample, smartplugs are simulated by data ingestion using JMeter. Also, to have the demo display some lively data, everything has been re-sampled to be played at 60x the original speed (as such, the 16hrs worth of data available are ingested in ~16mins).
+
+The ingestion, aggregation and machine learning features of Spring XD are used to display and predict the energy consumption of the grid, in a scalable way.
+
+The overall logical architecture of this sample is depicted below:
+
+image::arch.png[]
+
+# Understanding the sample
+
+You'll find several directories in this sample. Not all are needed to actually run the solution, but are included for complete reference. In addition, the main piece of the puzzle is the list of stream definitions that make up the XD solution. You'll read about them in the xref:running[] section.
+
+* link:jmeter[] contains the JMeter plan and supporting scripts that can be used to ingest data in Spring XD.
+* link:frontend[] contains a small serverside app (and accompanying frontend) that reads aggregated counters and displays them
+* link:prediction[] is the home of the link:prediction/metaModel.pmml[Neural Network models] that can predict consumption, as well as explanations about how to re-create that file from scratch.
+
+[[running]]
+# Running the demo
+## Install the analytic-pmml module
+
+*TODO*
+
+
+## Stream definition
+The demo relies on the creation of 3 streams in Spring XD, which mimic what you would typically find in such an analytics scenarion.
+
+1. The first stream, `ingest` simulates the ingestion of data to some Big Data store (_e.g._ HDFS). For the ease of the sample, one can simply replace such a sink with the `null` sink, which discards data.
++
+[source]
+----
+http | null
+----
+2. Tapping the `ingest` stream, the `count` stream will aggregate data in buckets based off the actual timestamp in the message. The bucket will be incremented by the consumed power, and there is one bucket per house.
++
+[source]
+----
+tap:stream:ingest >
+aggregate-counter --timeField=payload.dateTime.toString() 
+                  --incrementExpression=(T(java.lang.Double).parseDouble(payload.value.toString()))/60 
+                  --nameExpression='smartgrid_h_'+payload.house+'_load_actual'
+----
+3. The last stream is used to trigger the calculation of the predicted value. This is a bit artificial in this demo, as obviously one could use the model to pre-calculate the whole profile (as it only depends on the timestamp), but this shows that the `analytic-pmml` is indeed capable of applying a model calculation to any (number of) input messages:
++
+[source]
+----
+tap:stream:ingest >
+analytic-pmml --inputType=application/x-xd-tuple 
+              --location=/home/ubuntu/spring-xd-1.0.1.BUILD-SNAPSHOT/xd/lib/metaModel.pmml 
+              --inputFieldMapping='ts:timestamp,house:house' 
+| aggregate-counter --timeField=payload.dateTime.toString() 
+                    --incrementExpression=T(java.lang.Double).parseDouble(payload.FinalResult.toString())/60 
+                    --nameExpression='smartgrid_h_'+payload.house+'_load_predicted'
+----
+
+## Ingesting the smart plug data
+This assumes you have some version of JMeter installed and on your `PATH`. Change accordingly if it is not the case.
+
+Change directories to the `jmeter` folder and run the following script:
+
+[source,bash]
+----
+./generateLoad.sh
+----
+
+This script runs the JMeter plan with some variables, so that you can easily change the target host to inject the load to (the default is `localhost:9000`) which happens to be the default for the `http` source module. The test plan reads the file `sorted100M.1s.hsum.csv` and emits JSON snippets at a 60x rate. The `sorted100M.1s.hsum.csv` file itself has been crafted from sample data available from the ACM DEBS challenge to average data over a minute. There is approximately 16hrs worth of data, so by replaying at a 60x rate, it should be ingested in roughly 16mins (the JMeter plan uses a BeanShell timer for this).
+
+## Look at the counters with the XD Shell
+
+The aggregate-counters are named after the scheme:
+
+smartgrid_h_${payload.house}_load_actual::
+This represents the actual load values, directly fed from the http ingestion. Values are actually summed in one-minute buckets (taken at the time of the sample, using the `--timeField` option), and the amount used to increment is the power consumption, thanks to the use of the `--incrementExpression` option.
+smartgrid_h_${payload.house}_load_predicted::
+These counters will contain the predicted power consumption, using a naming and summation scheme similar to the `_actual` counters. The `analytics-pmml` module is used to emit a message that looks similar to the real ingested data, but contains an extra field named `payload.FinalResult` that is used as the increment value.
+
+One can display the counters in the XD Shell, either during the ingestion or after the fact, as such (note the use of the `--from` and `--to` options, to query the date range that corresponds to the original csv data):
+
+```
+xd:>aggregate-counter display --name smartgrid_h_28_load_actual --from '2013-09-01 00:00:00' --to '2013-09-02 00:00:00' --resolution hour
+  AggregateCounter=smartgrid_h_28_load_actual
+  -------------------------------------------  -  ------
+  TIME                                         -  COUNT
+  Sun Sep 01 00:00:00 CEST 2013                |  32,684
+  Sun Sep 01 01:00:00 CEST 2013                |  0
+  Sun Sep 01 02:00:00 CEST 2013                |  0
+```
+
+## Display the data as a graph
+To start the smartgrid-frontend app goto the `frontend` sub-directory and start the
+Spring boot app _via_:
+
+[source, bash]
+----
+mvn spring-boot:run
+----
+
+The Smartgrid-Frontend is a Spring Boot app that hosts a D3.js visualization of smartplug load distribution 
+as well as the actual and predicted energy consumption by house. 
+It accesses data from aggregate-counters via the REST interface provided by Spring XD.
+
+The frontend is available at http://localhost:8080
+
+image::ui.png[]
+
+
+If need be, you can customize the location of the Spring XD Aggregate Counter URL _via_
+
+[source]
+----
+-Dsmartgrid.frontend.aggregateCounterUrl=http://localhost:9393/metrics/aggregate-counters
+----

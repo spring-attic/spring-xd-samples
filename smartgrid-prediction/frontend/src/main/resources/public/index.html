@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <script src="webjars/jquery/2.1.1/jquery.min.js"></script>
+    <script src="webjars/d3js/3.4.11/d3.min.js" charset="UTF-8"></script>
+    <script src="webjars/bootstrap/3.1.1/js/bootstrap.min.js" charset="UTF-8"></script>
+
+    <link rel='stylesheet' href='assets/fonts/montserrat/stylesheet.css'>
+
+    <link rel='stylesheet' href='webjars/bootstrap/3.1.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='webjars/bootstrap/3.1.1/css/bootstrap-theme.min.css'>
+
+    <link rel='stylesheet' href='styles/ui.css'>
+
+    <script type='text/javascript' src='scripts/dataService.js'></script>
+    <script type='text/javascript' src='scripts/loadChart.js'></script>
+    <script type='text/javascript' src='scripts/loadDistributionChart.js'></script>
+    <script type='text/javascript' src='scripts/gridStats.js'></script>
+    <script type='text/javascript' src='scripts/app.js'></script>
+</head>
+
+<body>
+<div class='main container'>
+    <header>
+        <h1><img class='logo' src='assets/css/spring.png'>SmartGrid - Powered by Spring XD </h1>
+    </header>
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">Power Data &nbsp;&nbsp;|&nbsp;&nbsp; Grid - Overview</h3>
+        </div>
+        <div class="panel-body">
+            <div class='sum col-xs-4'>
+                <h4>DEMAND</h4>
+                <table>
+                    <tr>
+                        <td width='40px'><span class="icon-power glyphicon glyphicon-flash"></span></td>
+                        <td>
+                            <div class='kpi'><span class='kpi-value kpi-total-load'>18788</span> kW</div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="icon-power glyphicon glyphicon-home"></span></td>
+                        <td>
+                            <div class='kpi'><span class='kpi-value kpi-houses'>40</span></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="icon-power glyphicon glyphicon-user"></span></td>
+                        <td>
+                            <div class='kpi'><span class='kpi-value kpi-households'>343</span></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img class='icon-plugs' src='assets/css/electrical-plug.png'></td>
+                        <td>
+                            <div class='kpi'><span class='kpi-value kpi-plugs'>2125</span></div>
+                        </td>
+                    </tr>
+                    <!---->
+                </table>
+
+                <h4>DISTRIBUTION</h4>
+
+                <div class='chart-container text-center'>
+                    <svg class='smart-grid-load-distribution-chart'></svg>
+                </div>
+            </div>
+
+            <div id='grid' class='col-xs-8'>
+                <h4><span class='text-left'>LOAD</span><span class="pull-right today"></span></h4>
+                <div class='bar'>
+                  <div class="dropdown">
+                      <button id='selected-house' class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                              data-toggle="dropdown">
+                          Grid
+                          <span class="caret"></span>
+                      </button>
+
+                      <ul id='house-filter' class="dropdown-menu scrollable-menu" role="menu">
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Grid</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">House 1 *</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">House 2</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">House 3</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">House 4</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">House 5</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">House 6</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">House 7</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">House 8</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">House 9</a></li>
+                      </ul>
+                  </div>
+                  
+                  <div class='legend'>
+                    <span class='actual'>ACTUAL</span>
+                    <span class='prediction'>PREDICTED</span>
+                  </div>
+                </div>
+                <svg class='smart-grid-load-chart'></svg>
+            </div>
+            <div class='col-xs-12'>
+                <div class='separator'></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+        <div class="container text-right">
+            &copy; Spring, 2014
+        </div>
+    </nav>
+</footer>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<PMML version="4.2" xmlns="http://www.dmg.org/PMML-4_2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_2 http://www.dmg.org/v4-2/pmml-4-2.xsd">
+ <Header copyright="Copyright (c) 2014 ebottard" description="Neural Network PMML Model">
+  <Extension name="user" value="ebottard" extender="Rattle/PMML"/>
+  <Application name="Rattle/PMML" version="1.4"/>
+  <Timestamp>2014-09-03 11:12:56</Timestamp>
+ </Header>
+ <DataDictionary numberOfFields="4">
+  <DataField name="house" optype="continuous" dataType="double"/>
+  <DataField name="derived_value" optype="continuous" dataType="double"/>
+  <DataField name="timestamp" optype="continuous" dataType="double"/>
+  <DataField name="FinalResult" optype="continuous" dataType="double"/>
+ </DataDictionary>
+ <MiningModel functionName="regression">
+  <MiningSchema>
+   <MiningField name="derived_value" usageType="predicted"/>
+   <MiningField name="timestamp" usageType="active"/>
+   <MiningField name="house"  usageType="active"/>
+   <MiningField name="FinalResult"  usageType="predicted"/>
+  </MiningSchema>
+  
+  <Segmentation multipleModelMethod="selectFirst">
+  </Segmentation>
+ </MiningModel>
+ 
+</PMML>
