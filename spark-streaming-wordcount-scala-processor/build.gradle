@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+apply plugin: 'scala'
+tasks.withType(ScalaCompile) { scalaCompileOptions.useAnt = false }
+
+group = 'com.springframework.xd.spark.scala'
+
+sourceCompatibility = 1.7
+version = '0.1.0'
+
+configurations {
+    	provided
+	compile.extendsFrom provided
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'http://repo.spring.io/release' }	
+}
+
+dependencies {
+    	provided "org.apache.spark:spark-core_2.10:1.2.1"
+	provided "org.apache.spark:spark-streaming_2.10:1.2.1"
+	provided "org.springframework.xd:spring-xd-spark-streaming:1.1.0.RELEASE"
+}
