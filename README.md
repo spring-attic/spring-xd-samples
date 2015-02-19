@@ -79,6 +79,10 @@ A custom module that uses RxJava's Observable API to perform stream analysis.
 
 This sample demonstrates how to create a custom module project, including integration tests, and packaging the module as an uber-jar using maven (requires Spring XD 1.1.x). The project also demonstrates the use of the [Spring Integration Java DSL][]
 
+### smartgrid-prediction
+
+This sample showcases a fictional use of Spring XD in the context of smart electricity metering and production. It was inspired by the http://www.cse.iitb.ac.in/debs2014/?page_id=42[ACM Distributed Event Based Systems Grand Challenge 2014].
+
 ### syslog
 
 This sample demonstrates how to setup syslog ingestion from multiple hosts into HDFS.
