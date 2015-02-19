@@ -40,7 +40,7 @@ http | null
 ----
 tap:stream:ingest >
 aggregate-counter --timeField=payload.dateTime.toString() 
-                  --incrementExpression=(T(java.lang.Double).parseDouble(payload.value.toString()))/60 
+                  --incrementExpression=(T(java.lang.Double).parseDouble(payload.value.toString()))/60D 
                   --nameExpression='smartgrid_h_'+payload.house+'_load_actual'
 ----
 3. The last stream is used to trigger the calculation of the predicted value. This is a bit artificial in this demo, as obviously one could use the model to pre-calculate the whole profile (as it only depends on the timestamp), but this shows that the `analytic-pmml` is indeed capable of applying a model calculation to any (number of) input messages:
@@ -52,7 +52,7 @@ analytic-pmml --inputType=application/x-xd-tuple
               --location=/home/ubuntu/spring-xd-1.0.1.BUILD-SNAPSHOT/xd/lib/metaModel.pmml 
               --inputFieldMapping='ts:timestamp,house:house' 
 | aggregate-counter --timeField=payload.dateTime.toString() 
-                    --incrementExpression=T(java.lang.Double).parseDouble(payload.FinalResult.toString())/60 
+                    --incrementExpression=T(java.lang.Double).parseDouble(payload.FinalResult.toString())/60D 
                     --nameExpression='smartgrid_h_'+payload.house+'_load_predicted'
 ----
 

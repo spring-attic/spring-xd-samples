@@ -53,7 +53,7 @@
 	<array>
 		<dict>
 			<key>Bounds</key>
-			<string>{{444.72856948558763, 238.82051815122125}, {102.51984405517578, 27.250608444213867}}</string>
+			<string>{{420.93854138757581, 224.8030497588324}, {102.51984405517578, 27.250608444213867}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -82,7 +82,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{466.65202244223292, 293.79196151479653}, {102.51984405517578, 27.250608444213867}}</string>
+			<string>{{437.55062305876379, 276.72577080786004}, {102.51984405517578, 27.250608444213867}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -123,7 +123,7 @@
 			<array>
 				<string>{269.49919711665524, 158.32430006812319}</string>
 				<string>{322.93246759787331, 219.36739964776217}</string>
-				<string>{674.09059009141947, 280.50785220756802}</string>
+				<string>{633.44748976826395, 252.26396029457223}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -158,7 +158,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{468.82584828603683, 9.4353606948465938}, {93.231757689572987, 56.692913055419922}}</string>
+			<string>{{561.21235041268937, 384.30056661702395}, {93.231757689572987, 56.692913055419922}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -168,7 +168,7 @@
 				<key>ID</key>
 				<integer>16</integer>
 				<key>Position</key>
-				<real>0.32901924848556519</real>
+				<real>0.53561919927597046</real>
 				<key>RotationType</key>
 				<integer>0</integer>
 			</dict>
@@ -200,10 +200,10 @@ Model}</string>
 			<integer>16</integer>
 			<key>Points</key>
 			<array>
-				<string>{675.19648993993678, 88.466566164833722}</string>
-				<string>{630.18308014800004, 48.369830357115276}</string>
-				<string>{375.389889252773, 59.951339034171077}</string>
-				<string>{337.96367845767503, 290.13697575406303}</string>
+				<string>{716.28475804328923, 161.83704082338386}</string>
+				<string>{733.84185965751772, 380.82725591024581}</string>
+				<string>{414.32847321403773, 408.75912977843916}</string>
+				<string>{333.77566520192499, 313.35519690030452}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -227,7 +227,7 @@ Model}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{286.58256475732696, 290.63049498913296}, {98.171028137207031, 27.250608444213867}}</string>
+			<string>{{272.86327429641688, 285.72255275112337}, {98.171028137207031, 27.250608444213867}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -268,7 +268,7 @@ Model}</string>
 			<array>
 				<string>{246.64254863969833, 158.44342283193444}</string>
 				<string>{265.02492421259444, 292.26277779158397}</string>
-				<string>{674.09059009141947, 308.39819458318482}</string>
+				<string>{633.44748976826395, 280.154302670189}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -406,7 +406,7 @@ Model}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{674.09059009141947, 259.19280023781397}, {73.951370239257812, 78.249214172363281}}</string>
+			<string>{{633.44748976826395, 230.94890832481815}, {73.951370239257812, 78.249214172363281}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -540,7 +540,7 @@ Plugs}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2015-02-13 17:02:29 +0000</string>
+	<string>2015-02-19 16:13:28 +0000</string>
 	<key>Modifier</key>
 	<string>Eric Bottard</string>
 	<key>NotesVisible</key>
@@ -637,7 +637,7 @@ Plugs}</string>
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{-21, 0}, {825.69344215244723, 560.00000779646177}}</string>
+		<string>{{-21, 0}, {825.69344215244712, 560.00000779646166}}</string>
 		<key>Zoom</key>
 		<real>1.4678571224212646</real>
 		<key>ZoomValues</key>
