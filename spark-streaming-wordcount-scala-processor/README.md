@@ -19,7 +19,7 @@ Once the spark cluster is setup, you can configure the property `spark.master` i
   }
 ```
 
-By default it is set to use `spark://localhost:7077`
+By default Spring XD is set to use `spark://localhost:7077`. Please note that if running Spring XD in standalone mode, it is required to run the Spark cluster in local mode, and therefore to set the `spark.master` property to `local[<n>]`, where `n` is a greater than 1 integer representing the worker threads of the cluster (for the purpose of this example `local[2]` should be sufficient).
 
 ### Upload the module
 
@@ -31,12 +31,11 @@ Spring XD provides uploading modules archive from the `shell` interface. We can 
     ./gradlew clean build
   ```
   This will generate the spark-streaming-wordcount-scala-processor-0.1.0.jar under build/libs.
-  or, you can copy the upload-ready jar located at `.upload-ready-jar/`
   
 2. Upload the generated jar into XD module registry
 
   ```
-    module upload --file <location of the jar file>/spark-streaming-wordcount-scala-processor-0.1.0.jar 
+    module upload --file [path-to]path to]/spark-streaming-wordcount-scala-processor/build/libs/spark-streaming-wordcount-scala-processor-0.1.0.jar 
     --name scala-word-count --type processor
   ```
   
