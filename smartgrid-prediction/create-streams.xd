@@ -1,0 +1,6 @@
+stream create ingest --definition "http | null" --deploy
+
+stream create count --definition "tap:stream:ingest > aggregate-counter --timeField=payload.dateTime.toString() --incrementExpression=(T(java.lang.Double).parseDouble(payload.value.toString()))/60D --nameExpression='smartgrid_h_'+payload.house+'_load_actual'" --deploy
+
+stream create predict --definition "tap:stream:ingest > analytic-pmml --inputType=application/x-xd-tuple --location=classpath:metaModel.pmml --inputFieldMapping='ts:timestamp,house:house' | aggregate-counter --timeField=payload.dateTime.toString() --incrementExpression=T(java.lang.Double).parseDouble(payload.FinalResult.toString())/60D --nameExpression='smartgrid_h_'+payload.house+'_load_predicted'" --deploy
+

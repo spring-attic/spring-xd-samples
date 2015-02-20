@@ -22,8 +22,13 @@ You'll find several directories in this sample. Not all are needed to actually r
 # Running the demo
 ## Install the analytic-pmml module
 
-*TODO*
+This sample makes use of the [analytic-pmml] module which is not part of the main Spring XD distribution and has to be built from source. You can read the README in its repository to build and install it, or you can use the provided link:setup-pmml.sh[] script that automates that process.
 
+[NOTE]
+.PMML Model also included in the module itself
+====
+The script referenced above also embeds the link:prediction/metaModel.pmml[Neural Network models] file directly inside the built `analytic-pmml` module. This is so that we can easily reference it later in the stream definitions as `classpath:metaModel.pmml`. *This is not something* you would typically do, but makes writing this README easier. In a real world scenario, you would reference the model file by its path on the container filesystem (something we obviously can't predict at the time of writing).
+====
 
 ## Stream definition
 The demo relies on the creation of 3 streams in Spring XD, which mimic what you would typically find in such an analytics scenarion.
@@ -49,12 +54,20 @@ aggregate-counter --timeField=payload.dateTime.toString()
 ----
 tap:stream:ingest >
 analytic-pmml --inputType=application/x-xd-tuple 
-              --location=/home/ubuntu/spring-xd-1.0.1.BUILD-SNAPSHOT/xd/lib/metaModel.pmml 
+              --location=classpath:metaModel.pmml 
               --inputFieldMapping='ts:timestamp,house:house' 
 | aggregate-counter --timeField=payload.dateTime.toString() 
                     --incrementExpression=T(java.lang.Double).parseDouble(payload.FinalResult.toString())/60D 
                     --nameExpression='smartgrid_h_'+payload.house+'_load_predicted'
 ----
+
+For your convenience, a script that creates those streams is link:create-streams.xd[available]. You can run it inside the shell like so:
+
+[source]
+----
+xd:> script --file <path/to/smartgrid-prediction>/create-streams.xd
+---- 
+
 
 ## Ingesting the smart plug data
 This assumes you have some version of JMeter installed and on your `PATH`. Change accordingly if it is not the case.
