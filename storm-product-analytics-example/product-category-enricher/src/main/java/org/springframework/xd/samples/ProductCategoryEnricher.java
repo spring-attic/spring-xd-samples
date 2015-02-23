@@ -1,0 +1,53 @@
+/*
+ * Copyright 2014 the original author or authors.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.springframework.xd.samples;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.xd.tuple.Tuple;
+import org.springframework.xd.tuple.TupleBuilder;
+
+/**
+ * @author David Turanski
+ */
+class ProductCategoryEnricher {
+	private final RedisTemplate<String, String> redisTemplate;
+
+	public ProductCategoryEnricher(RedisTemplate<String, String> redisTemplate) {
+		this.redisTemplate = redisTemplate;
+	}
+
+	String getCategory(String productId) {
+		String content = redisTemplate.boundValueOps(productId).get();
+		Tuple product = TupleBuilder.fromString(content);
+		return product.getString("category");
+	}
+
+	public Tuple enrichEvent(Tuple event) {
+		if ("PRODUCT".equals(event.getString("type"))) {
+			List<String> names = new ArrayList<>(event.getFieldNames());
+			List<Object> values = new ArrayList(event.getValues());
+			names.add("category");
+			values.add(getCategory(event.getString("product")));
+			return TupleBuilder.tuple().ofNamesAndValues(names, values);
+		}
+		else {
+			return null;
+		}
+	}
+}
