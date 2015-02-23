@@ -3,7 +3,9 @@
 
 ## Overview
 
-This is a Spring XD implementation of a [Storm Product Analytics Example](https://github.com/storm-book/examples-ch06-real-life-app). This example is documented in [Getting Started with Storm](http://ifeve.com/wp-content/uploads/2014/03/Getting-Started-With-Storm-Jonathan-Leibiusky-Gabriel-E_1276.pdf). The example uses a node.js application to track user product page hits and uses Redis to store and retrieve results. This example works the Storm example web app and requires the web app, Redis Spring XD (single node), and the Spring XD shell to be running.
+This is a Spring XD implementation of a [Storm Product Analytics Example](https://github.com/storm-book/examples-ch06-real-life-app). This example is documented in [Getting Started with Storm](http://www.amazon.com/Getting-Started-Storm-Jonathan-Leibiusky/dp/1449324010). The example in Chapter 6 uses a node.js application to track user product page hits and uses Redis to store and retrieve results. The Storm topology processes the page hits in real time and produces some statistics cross-referencing product categories associated with other product pages to which the user has also navigated.
+
+This implementation of the example works with the Storm example's original web app and requires that componenent as well as a Redis serve,  Spring XD (single node), and the Spring XD shell to be running.
 
 This project includes the following XD custom modules:
 
@@ -19,17 +21,23 @@ The redis source is configurable, but must use the default connection for this e
 
 ## Running The Example
 
-* Download the original [storm example](https://github.com/storm-book/examples-ch06-real-life-app)
-* Follow the instructions to install node.js in *Appendix C* of [the book](http://ifeve.com/wp-content/uploads/2014/03/Getting-Started-With-Storm-Jonathan-Leibiusky-Gabriel-E_1276.pdf) if necessary.
+* Download the original example
+
+````
+$git clone https://github.com/storm-book/examples-ch06-real-life-app
+````
 
 * Start the Redis server on localhost:6379 (the default), if necessary
+
+* Download [node.js](http://nodejs.org/download/) if necessary
 
 * Start the sample node app from the Storm example project location:
 
 ````
 $node webapp\app.js
 ````
-Note: do not run the Storm component from the example while this example is running, they both consume messages from the same Redis *navigation* queue.
+
+__Note: Do not run the Storm component from the example while this example is running, they both consume messages from the same Redis *navigation* queue.*__
 
 The web app loads test data when it starts up and runs on [http://localhost:3000]().
 
@@ -62,9 +70,9 @@ xd:>stream create product-analytics --definition "redis --queue=navigation --out
 ````
 ## How it Works
 
-The XD stream is a drop in replacement for the Storm Topology for the example described in Chapter 6 of [Getting Started with Storm](http://ifeve.com/wp-content/uploads/2014/03/Getting-Started-With-Storm-Jonathan-Leibiusky-Gabriel-E_1276.pdf). 
+The XD stream is a drop in replacement for the Storm Topology for the example described in Chapter 6 of __Getting Started with Storm__. 
 
-The web app posts user navigation events to a Redis queue named *navigation*. The redis source is configured to consume events from this queue, as is the *UserNavigationSpout* in the original example. The source is configured in the stream definition above:
+The web app posts user navigation events to a Redis queue named *navigation*. The redis source is configured to consume events from this queue, as is the [UserNavigationSpout](https://github.com/storm-book/examples-ch06-real-life-app/blob/master/src/main/java/storm/analytics/UsersNavigationSpout.java) in the original example. The source is configured in the stream definition above:
 
 ````
 redis --queue=navigation --outputType=application/x-xd-tuple
