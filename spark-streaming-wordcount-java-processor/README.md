@@ -33,7 +33,6 @@ Spring XD provides uploading modules archive from the `shell` interface. We can 
     ./gradlew clean build
   ```
   This will generate the spark-streaming-wordcount-java-processor-0.1.0.jar under build/libs.
-  or, skip this step and copy the upload ready jar located at `.upload-ready-jar/`
   
 2. Upload the generated jar into XD module registry
 
