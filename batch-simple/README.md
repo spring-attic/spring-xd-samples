@@ -7,7 +7,7 @@ In this *Hello World* example for *Spring XD* you will create a minimal code-bas
 
 In order for the sample to run you will need to have installed:
 
-* Spring XD 1.1.0.M2 or higher ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Getting-Started))
+* Spring XD 1.1.0.RELEASE or higher ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Getting-Started))
 
 ## Code Tour
 
@@ -28,8 +28,7 @@ The project's [pom][] declares `spring-xd-module-parent` as its parent. This add
 The project's [build.gradle][] applies the `spring-xd-module` plugin, providing analagous build and packaging support for gradle. This plugin also applies the [Spring Boot Gradle Plugin][] as well as the [propdeps plugin][]. 
 
 
-
-## Running the SampleStart up the spring-xd single node container 
+## Running the Sample
 
 Now your sample is ready to be executed. Start your *Spring XD* singlenode server:
 
