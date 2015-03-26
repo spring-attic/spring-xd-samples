@@ -12,7 +12,7 @@ Prerequisites
 
 In order to get started, make sure that you have the following components installed:
 
-* Spring XD 1.1.0.RELEASE ([instructions](https://github.com/spring-projects/spring-xd/wiki/Getting-Started))
+* Spring XD 1.1.0.RELEASE or higher ([instructions](https://github.com/spring-projects/spring-xd/wiki/Getting-Started))
 * Kafka 0.8.1.1 - including ZooKeeper ([instructions](http://kafka.apache.org/documentation.html#quickstart))
 
 
