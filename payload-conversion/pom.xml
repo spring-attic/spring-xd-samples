@@ -7,20 +7,10 @@
   <version>1.0.0.BUILD-SNAPSHOT</version>
   <name>Spring XD Sample - Payload type conversion example with a custom module</name>
 
-    <parent>
-        <groupId>org.springframework.xd</groupId>
-        <artifactId>spring-xd-module-parent</artifactId>
-        <version>1.1.0.RELEASE</version>
-    </parent>
-
-    <repositories>
-        <repository>
-            <id>spring-io-release</id>
-            <url>http://repo.spring.io/release</url>
-        </repository>
-        <repository>
-            <id>jcenter</id>
-            <url>http://jcenter.bintray.com</url>
-        </repository>
-    </repositories>
+  <parent>
+    <groupId>org.springframework.xd.samples</groupId>
+    <artifactId>sample-modules-parent</artifactId>
+    <version>1.0.0.BUILD-SNAPSHOT</version>
+    <relativePath>../sample-modules-parent</relativePath>
+  </parent>
 </project>

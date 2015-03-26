@@ -5,29 +5,11 @@
 	<artifactId>payload-value-counter</artifactId>
 	<version>1.0.0.BUILD-SNAPSHOT</version>
 	<parent>
-		<groupId>org.springframework.xd</groupId>
-		<artifactId>spring-xd-module-parent</artifactId>
-		<version>1.1.0.RELEASE</version>
+		<groupId>org.springframework.xd.samples</groupId>
+		<artifactId>sample-modules-parent</artifactId>
+		<version>1.0.0.BUILD-SNAPSHOT</version>
+		<relativePath>../sample-modules-parent</relativePath>
 	</parent>
-
-	<repositories>
-		<repository>
-			<id>spring-releases</id>
-			<name>Spring Releases</name>
-			<url>http://repo.spring.io/release</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>http://repo.spring.io/libs-milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<dependency>

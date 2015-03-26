@@ -12,26 +12,11 @@
 	</prerequisites>
 
 	<parent>
-		<groupId>io.spring.platform</groupId>
-		<artifactId>platform-bom</artifactId>
-		<version>1.1.1.RELEASE</version>
-		<relativePath/>
+		<groupId>org.springframework.xd.samples</groupId>
+		<artifactId>sample-modules-parent</artifactId>
+		<version>1.0.0.BUILD-SNAPSHOT</version>
+		<relativePath>../sample-modules-parent</relativePath>
 	</parent>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
-	<repositories>
-		<repository>
-			<id>spring-milestone</id>
-			<url>http://repo.spring.io/milestone</url>
-		</repository>
-		<repository>
-			<id>spring-release</id>
-			<url>http://repo.spring.io/release</url>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<dependency>

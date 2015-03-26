@@ -23,6 +23,7 @@ import java.util.Set;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
@@ -49,10 +50,11 @@ public class ProductCategoryEnricherTest {
 		redisTemplate.setDefaultSerializer(new StringRedisSerializer());
 		redisTemplate.afterPropertiesSet();
 		productCategoryEnricher = new ProductCategoryEnricher(redisTemplate);
-		
+
 	}
-	
+
 	@Test
+	@Ignore
 	public void testEnrichProductWithCategory() {
 		String event = "{\"user\":\"60571253-8315-40ff-8142-f8d68f9d35f0\",\"product\":\"15\",\"type\":\"PRODUCT\"}";
 		Tuple enrichedEvent = productCategoryEnricher.enrichEvent(TupleBuilder.fromString(event));

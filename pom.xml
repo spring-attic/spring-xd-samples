@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.springframework.xd.samples</groupId>
+	<artifactId>sample-modules-parent</artifactId>
+	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>batch-hashtag-count</module>
+		<module>batch-hive</module>
+		<module>batch-notifications</module>
+		<module>batch-pig</module>
+		<module>batch-simple</module>
+		<module>batch-wordcount</module>
+		<module>groovy-script-sink</module>
+		<module>payload-conversion</module>
+		<module>payload-value-counter</module>
+		<!-- <module>reactor-moving-average</module> -->
+		<!-- <module>reactor-top-tags</module> -->
+		<module>redis-store-sink</module>
+		<module>rss-feed-source</module>
+		<module>rxjava-moving-average</module>
+		<module>si-dsl-module</module>
+		<module>storm-product-analytics-example</module>
+		<module>tweet-transformer-processor</module>
+	</modules>
+</project>

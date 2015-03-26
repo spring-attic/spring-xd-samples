@@ -11,7 +11,7 @@ sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
 ext {
-	springXdVersion = '1.1.0.RC1'
+	springXdVersion = '1.1.1.RELEASE'
 }
 
 configurations {
@@ -32,19 +32,11 @@ dependencies {
 		exclude group: 'javax.servlet'
 	}
 
-	messageBus("org.springframework.xd:spring-xd-messagebus-local:$springXdVersion")
-}
-
-task copyToLib(type: Copy) {
-	into "$projectDir/lib/messagebus/local"
-	from configurations.messageBus
 }
 
 test {
 	systemProperty 'XD_HOME', rootDir
 }
-
-test.dependsOn copyToLib
 
 task wrapper(type: Wrapper) {
 	gradleVersion = '1.12'

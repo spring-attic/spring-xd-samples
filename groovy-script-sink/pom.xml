@@ -4,11 +4,11 @@
 	<artifactId>groovy-script-sink</artifactId>
 	<version>1.0.0.BUILD-SNAPSHOT</version>
 	<parent>
-		<groupId>org.springframework.xd</groupId>
-		<artifactId>spring-xd-module-parent</artifactId>
-		<version>1.1.0.RELEASE</version>
+		<groupId>org.springframework.xd.samples</groupId>
+		<artifactId>sample-modules-parent</artifactId>
+		<version>1.0.0.BUILD-SNAPSHOT</version>
+		<relativePath>../sample-modules-parent</relativePath>
 	</parent>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.xd</groupId>
@@ -16,14 +16,4 @@
 			<version>1.1.0.RELEASE</version>
 		</dependency>
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>spring-io-release</id>
-			<url>http://repo.spring.io/release</url>
-		</repository>
-		<repository>
-			<id>jcenter</id>
-			<url>http://jcenter.bintray.com</url>
-		</repository>
-	</repositories>
 </project>

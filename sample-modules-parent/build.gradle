@@ -1,0 +1,24 @@
+
+ext {
+    springXdVersion = '1.1.1.RELEASE'
+    hadoopVersion = '2.6.0'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.12'
+}
+
+group = 'org.springframework.xd.samples'
+version = '1.0.0.BUILD-SNAPSHOT'
+
+repositories {
+    maven { url "http://repo.spring.io/release" }
+    mavenCentral()
+    jcenter()
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
+}

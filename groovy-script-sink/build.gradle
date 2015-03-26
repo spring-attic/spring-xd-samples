@@ -1,45 +1,20 @@
 
+/*
+NOTE: This configuration is convenient for maintaining shared configuration across multiple projects in the samples repo. 
+If copying this example, it may be simpler to declare the  
+required configuration inline. 
+*/
 buildscript {
-    repositories {
-        maven { url "http://repo.spring.io/plugins-snapshot" }
-        maven { url "http://repo.spring.io/snapshot" }
-        maven { url "http://repo.spring.io/release" }
-        jcenter()
-    }
-    dependencies {
-		classpath("org.springframework.xd:spring-xd-module-plugin:1.1.0.RELEASE")
-    }
+   apply from: '../sample-modules-parent/buildscript.gradle', 
+   to: buildscript
 }
-
-ext {
-    springXdVersion = '1.1.0.RELEASE'
-    springIntegrationVersion = '4.1.2.RELEASE'
-}
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
+apply from: '../sample-modules-parent/build.gradle'
 apply plugin: 'spring-xd-module'
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.12'
-}
-
-group = 'com.acme'
-version = '1.0.0.BUILD-SNAPSHOT'
 
 description = "Spring XD custom Groovy sink"
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
-
-repositories {
-    maven { url "http://repo.spring.io/release" }
-    mavenCentral()
-    jcenter()
-    maven { url "http://repo.spring.io/snapshot" }
-    maven { url "http://repo.spring.io/milestone" } 
-}
 
 dependencies {
     compile "org.springframework.xd:spring-xd-extension-script:$springXdVersion"

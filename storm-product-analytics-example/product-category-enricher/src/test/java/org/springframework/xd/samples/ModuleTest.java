@@ -20,6 +20,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -43,8 +44,9 @@ import org.springframework.xd.tuple.TupleBuilder;
 public class ModuleTest {
 	@Autowired SubscribableChannel output;
 	@Autowired MessageChannel input;
-	
+
 	@Test
+	@Ignore
 	public void test() {
 		String event = "{\"user\":\"Dave\",\"product\":\"15\",\"type\":\"PRODUCT\"}";
 		Tuple t = TupleBuilder.fromString(event);
