@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Spring XD Dashboard</title>
+        <!-- Load c3.css -->
+        <link href="c3/c3.css" rel="stylesheet" type="text/css">
+        <link href="theme.css" rel="stylesheet" type="text/css">
+
+        <!-- Load d3.js and c3.js -->
+        <script src="d3/d3.v3.min.js"></script>
+        <script src="c3/c3.js"></script>
+        <script src="sockjs/sockjs.js"></script>
+        <script src="stomp/stomp.js"></script>
+    </head>
+    <body>
+    <h1>Spring XD Event Monitoring Demo</h1>
+    <div id='chart'></div>
+    <input type="text" size="80" onkeydown="keyPress()" id="subscription"=>Topic</input>
+    <button onclick="subscribe()" >Subscribe</button>
+  
+    <div id="topics"/>
+
+    <script type="text/javascript">
+
+var ws = new SockJS('http://' + 'localhost' + ':15674/stomp');
+var client = Stomp.over(ws);
+// SockJS does not support heart-beat: disable heart-beats
+client.heartbeat.outgoing = 0;
+client.heartbeat.incoming = 0;
+//client.debug = null;
+
+    
+var on_connect = function(x) {
+    console.log('connected');
+};
+var on_error =  function() {
+    console.log('error');
+};
+client.connect('guest', 'guest', on_connect, on_error, '/');
+
+var topics = [];
+var subscriptions = [];
+
+function topicExists(topic) {
+    var exists = false;
+    for (var i in topics) {
+        if (topics[i][0].valueOf() == topic.valueOf()){
+            return true;
+        }
+    }
+    return false;
+}
+
+function findTopicIndex(topic) {
+    for (var i in topics) {
+        if (topics[i][0] == topic){
+            return i;
+        }
+    }
+    return null;
+}
+
+
+function update(topic, newVal) {
+        topic.push(newVal);
+        
+        if (topic.length > 120) {
+            var name = topic.shift();
+            topic.shift();
+            topic = [name].concat(topic);
+        }
+    return topic;
+}
+
+var chart = c3.generate({
+    data: {
+         columns: [topics]
+    },
+});
+
+function validateTopic(topic) {
+   var regex = /^[\w-]+\.(\*|\w*\*{0,1}\w*)/
+   return topic.match(regex);
+}
+
+function subscribe() {
+    var topic = document.getElementById("subscription").value;
+    if (topic.length == 0) {
+        return;
+    }
+
+    if (validateTopic(topic) == null) {
+        alert(topic + " is an invalid topic pattern.");
+        return;
+    }
+
+    var subscription = client.subscribe("/exchange/applications/" + topic, function(d) {
+
+        var metric = JSON.parse(d.body);
+        var currentTime = new Date().getTime();
+        console.log ("latency :" + (currentTime - metric.bucketTimestamp));
+       // console.log(metric.source + "." + metric.metricName + "<-" + d.headers.destination);
+        
+        //If topic contains wildcards, this holds the specific destination
+        var destination = d.headers.destination.replace(/^\/exchange\/applications\//,"");
+        if (!topicExists(destination)){
+            topics.push([destination]);
+        }
+        var index = findTopicIndex(destination);
+        topics[index] = update(topics[index], metric.metricValue)
+
+        for (var i in topics) {
+            console.log("loading " + topics[i][0]);
+        }
+
+        chart.load({columns: topics});
+    });
+      
+    subscriptions.push({topic:topic, subscription:subscription});
+
+    var button = d3.select("#topics").append("button")
+    .attr("onclick","unsubscribe('" + topic.replace(".","_") + "')")
+    .attr("id", topic.replace(".","_"));
+    button.text("Unsubscribe " + topic);
+}
+
+function keyPress(e) {
+    if (!e) e = window.event; // needed for cross browser compatibility
+     if (e.keyCode == 13){
+        subscribe();
+        return true;
+     }
+     return false;
+}
+
+function unsubscribeFromTopic(topic) {
+    for (var i in subscriptions) {
+        var sub = subscriptions[i];
+        if (sub.topic == topic){
+            console.log("unsubcribing " + sub.subscription.id);
+            sub.subscription.unsubscribe();
+            subscriptions.splice(i,1);
+        }
+    }
+}
+
+function unsubscribe(topic) {
+    document.getElementById(topic).remove();
+    var topicName = topic.replace("_",".")
+    unsubscribeFromTopic(topicName);
+    
+    if (topicName.includes("*")) {
+        //<source>.
+        topicName = topicName.substr(0,topicName.indexOf(".")+1);
+    }
+    //received topics;
+    var ids = [];
+    for(var i = topics.length - 1; i >= 0; i--) { 
+        var id  = topics[i][0]; 
+        console.log("checking " + id);
+        if (id.startsWith(topicName)) {
+            console.log("unloading " + id);
+            ids.push(id);
+            topics.splice(i,1);
+        }         
+    }
+
+
+    if (ids.length > 0) {
+        chart.unload({ids:ids});
+    }
+}
+        </script>
+    </body>
+</html>     
