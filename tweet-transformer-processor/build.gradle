@@ -7,11 +7,11 @@ version = '1.0.0.BUILD-SNAPSHOT'
 
 description = "Spring XD Tweet Transformer Module"
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 ext {
-	springXdVersion = '1.1.1.RELEASE'
+	springXdVersion = '1.2.0.BUILD-SNAPSHOT'
 }
 
 configurations {
@@ -23,6 +23,7 @@ configurations {
 dependencies {
 	compile("org.springframework.xd:spring-xd-dirt:${project.springXdVersion}") {
 		exclude group: 'org.springframework.xd', module: 'spring-xd-hadoop'
+		exclude group: 'org.springframework.xd', module: 'spring-xd-spark-streaming'
 	}
 
 	testCompile("org.springframework.xd:spring-xd-test:${project.springXdVersion}") {
@@ -34,12 +35,8 @@ dependencies {
 
 }
 
-test {
-	systemProperty 'XD_HOME', rootDir
-}
-
 task wrapper(type: Wrapper) {
-	gradleVersion = '1.12'
+	gradleVersion = '2.2'
 }
 
 repositories {

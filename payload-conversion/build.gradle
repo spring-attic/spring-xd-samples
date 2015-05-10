@@ -15,11 +15,3 @@ description = "Spring XD processor module "
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-repositories {
-    maven { url "http://repo.spring.io/release" }
-    mavenCentral()
-    jcenter()
-    maven { url "http://repo.spring.io/snapshot" }
-    maven { url "http://repo.spring.io/milestone" }
-}
-

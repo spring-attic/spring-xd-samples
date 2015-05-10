@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.springframework.xd</groupId>
 		<artifactId>spring-xd-module-parent</artifactId>
-		<version>1.2.0.M1</version>
+		<version>1.2.0.BUILD-SNAPSHOT</version>
 		<relativePath></relativePath>
 	</parent>
 	<properties>
@@ -23,7 +23,7 @@
 		<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
-			<url>http://repo.spring.io/libs-milestone</url>
+			<url>http://repo.spring.io/milestone</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>

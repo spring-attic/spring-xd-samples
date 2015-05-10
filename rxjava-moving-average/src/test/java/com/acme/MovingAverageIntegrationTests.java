@@ -8,7 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.springframework.xd.dirt.test.process.SingleNodeProcessingChainSupport.*;
 
-import org.springframework.xd.dirt.server.SingleNodeApplication;
+import org.springframework.xd.dirt.server.singlenode.SingleNodeApplication;
 import org.springframework.xd.dirt.test.SingleNodeIntegrationTestSupport;
 import org.springframework.xd.dirt.test.SingletonModuleRegistry;
 import org.springframework.xd.dirt.test.process.SingleNodeProcessingChain;

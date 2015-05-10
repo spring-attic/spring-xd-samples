@@ -23,7 +23,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import org.springframework.xd.dirt.plugins.ModuleConfigurationException;
-import org.springframework.xd.dirt.server.SingleNodeApplication;
+import org.springframework.xd.dirt.server.singlenode.SingleNodeApplication;
 import org.springframework.xd.dirt.test.SingleNodeIntegrationTestSupport;
 import org.springframework.xd.dirt.test.SingletonModuleRegistry;
 import org.springframework.xd.dirt.test.process.SingleNodeProcessingChain;
