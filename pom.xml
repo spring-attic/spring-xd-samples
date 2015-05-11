@@ -11,6 +11,7 @@
 		<module>batch-notifications</module>
 		<module>batch-pig</module>
 		<module>batch-simple</module>
+                <module>batch-simple-jc</module>
 		<module>batch-wordcount</module>
 		<module>groovy-script-sink</module>
 		<module>payload-conversion</module>
