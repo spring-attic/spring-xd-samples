@@ -40,7 +40,7 @@ task wrapper(type: Wrapper) {
 }
 
 repositories {
-	maven { url "http://repo.spring.io/release" }	
+	maven { url "http://repo.spring.io/libs-release" }	
 	mavenCentral()
 	jcenter()
 	maven { url "http://repo.spring.io/snapshot" }
