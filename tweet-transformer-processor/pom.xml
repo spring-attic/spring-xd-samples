@@ -58,6 +58,11 @@
 			<url>http://jcenter.bintray.com/</url>
 		</repository>
 		<repository>
+			<id>repository.io.libs.release</id>
+			<name>Spring Extended Release Repository</name>
+			<url>http://repo.spring.io/libs-release</url>
+		</repository>
+		<repository>
 			<id>repository.io.snapshot</id>
 			<name>Spring Snapshot Repository</name>
 			<url>http://repo.spring.io/snapshot</url>
