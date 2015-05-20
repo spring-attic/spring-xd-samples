@@ -1,71 +1,20 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.acme</groupId>
+	<groupId>org.springframework.xd.samples</groupId>
 	<artifactId>tweet-transformer</artifactId>
 	<version>1.0.0.BUILD-SNAPSHOT</version>
-	<properties>
-		<spring.xd.version>1.2.0.BUILD-SNAPSHOT</spring.xd.version>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.7</java.version>
-		<resource.delimiter>@</resource.delimiter>
-		<spring.boot.version>1.2.3.RELEASE</spring.boot.version>
-		<maven.compiler.source>${java.version}</maven.compiler.source>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.target>${java.version}</maven.compiler.target>
-	</properties>
-	
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.xd</groupId>
-			<artifactId>spring-xd-dirt</artifactId>
-			<version>${spring.xd.version}</version>
-			<scope>provided</scope>
-			<exclusions>
-				<exclusion>
-					<artifactId>spring-xd-hadoop</artifactId>
-					<groupId>org.springframework.xd</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>spring-xd-spark-streaming</artifactId>
-					<groupId>org.springframework.xd</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.xd</groupId>
-			<artifactId>spring-xd-test</artifactId>
-			<version>${spring.xd.version}</version>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<artifactId>spring-xd-hadoop</artifactId>
-					<groupId>org.springframework.xd</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<!-- required for SingleNodeApplication to output Hadoop version -->
-		<dependency>
-			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-common</artifactId>
-			<version>2.3.0</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-	<repositories>
-		<repository>
-			<id>jcenter</id>
-			<name>JCenter Repository</name>
-			<url>http://jcenter.bintray.com/</url>
-		</repository>
-		<repository>
-			<id>repository.io.snapshot</id>
-			<name>Spring Snapshot Repository</name>
-			<url>http://repo.spring.io/snapshot</url>
-		</repository>
-		<repository>
-			<id>repository.io.milestone</id>
-			<name>Spring Milestone Repository</name>
-			<url>http://repo.spring.io/milestone</url>
-		</repository>
-	</repositories>
+	<name>Spring XD Sample - Tweet Transformer</name>
+	<packaging>jar</packaging>
+
+	<prerequisites>
+		<maven>2.2.1</maven>
+	</prerequisites>
+
+	<parent>
+		<groupId>org.springframework.xd.samples</groupId>
+		<artifactId>sample-modules-parent</artifactId>
+		<version>1.0.0.BUILD-SNAPSHOT</version>
+		<relativePath>../sample-modules-parent</relativePath>
+	</parent>
 </project>
