@@ -8,5 +8,5 @@
         jcenter()
     }
     dependencies {
-		classpath("org.springframework.xd:spring-xd-module-plugin:1.2.0.RELEASE")
+		classpath("org.springframework.xd:spring-xd-module-plugin:1.2.1.BUILD-SNAPSHOT")
     }

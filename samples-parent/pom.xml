@@ -1,24 +1,40 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.xd.samples</groupId>
-	<artifactId>sample-modules-parent</artifactId>
+	<artifactId>samples-parent</artifactId>
 	<version>1.0.0.BUILD-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<parent>
-		<groupId>org.springframework.xd</groupId>
-		<artifactId>spring-xd-module-parent</artifactId>
-<<<<<<< HEAD
-		<version>1.2.0.RELEASE</version>
-=======
-		<version>1.2.1.BUILD-SNAPSHOT</version>
->>>>>>> XD-2957 added serialization-benchmarks
-		<relativePath></relativePath>
-	</parent>
 	<properties>
+		<spring.xd.version>1.2.1.BUILD-SNAPSHOT</spring.xd.version>
+		<spring.framework.version>4.1.6.RELEASE</spring.framework.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hadoop.version>2.6.0</hadoop.version>
+		<junit.version>4.12</junit.version>
 	</properties>
-
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.xd</groupId>
+				<artifactId>spring-xd-codec</artifactId>
+				<version>${spring.xd.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.xd</groupId>
+				<artifactId>spring-xd-dirt</artifactId>
+				<version>${spring.xd.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<repositories>
 		<repository>
 			<id>jcenter</id>
@@ -35,7 +51,7 @@
 		<repository>
 			<id>spring-release</id>
 			<name>Spring Releases</name>
-			<url>http://repo.spring.io/libs-release</url>
+			<url>http://repo.spring.io/release</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>

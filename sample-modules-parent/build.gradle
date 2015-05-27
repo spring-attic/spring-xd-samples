@@ -1,7 +1,7 @@
 
 ext {
     springIntegrationVersion='4.1.5.RELEASE'
-    springXdVersion = '1.2.0.RELEASE'
+    springXdVersion = '1.2.1.BUILD-SNAPSHOT'
     hadoopVersion = '2.6.0'
 }
 
