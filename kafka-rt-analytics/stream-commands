@@ -1,0 +1,16 @@
+
+#
+# Single pipeline with partitioning
+#
+#module compose --name metrics-feed --definition "event-aggregator | metrics | splitter | rabbit"
+
+
+
+#
+# Basic No composition
+#
+stream create s1 --definition "firehose-simulator --numSources=1000 | event-aggregator | metrics | splitter | rabbit --inputType=application/json --exchange=applications --routingKey='#jsonPath(payload, \"$.source\") + \".\" + #jsonPath(payload, \"$.metricName\")'"
+
+#stream create s1 --definition "ingest --firehose-simulator.numApps=1000 | metrics-feed | rabbit --inputType=application/json --exchange=applications --routingKey='#jsonPath(payload, \"$.appId\") + \".\" + #jsonPath(payload, \"$.metricName\")'"
+
+#stream deploy --name s1 --properties "module.ingest.producer.partitionKeyExpression='payload.appId()', module.ingest.producer.partitionCount=100, module.metrics-feed.count=5,module.rabbit.count=0"

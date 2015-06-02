@@ -1,0 +1,6 @@
+module delete source:firehose-simulator
+module delete processor:event-aggregator
+module delete processor:metrics
+module upload --name firehose-simulator --type source --file ~/s2build/kafka-rt-analytics/firehose-simulator/target/firehose-simulator-1.0.0.BUILD-SNAPSHOT.jar
+module upload --name event-aggregator --type processor --file ~/s2build/kafka-rt-analytics/event-aggregator/target/event-aggregator-1.0.0.BUILD-SNAPSHOT.jar
+module upload --name metrics --type processor --file ~/s2build/kafka-rt-analytics/metrics/target/metrics-1.0.0.BUILD-SNAPSHOT.jar
