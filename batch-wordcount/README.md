@@ -12,25 +12,7 @@ In order for the sample to run you will need to have installed:
 
 ## Building
 
-Build the sample simply by executing:
-
-	$ mvn clean assembly:assembly
-
-By default this builds against Apache Hadoop 2.2.0
-
-As a result, you will see the following files and directories created under `target/batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin/`:
-
-```
-|-- batch-wordcount-1.0.0.BUILD-SNAPSHOT-bin
-|   |-- lib
-|   |   `-- hadoop-mapreduce-examples-2.2.0.jar
-|   |-- modules
-|   |   `-- job
-|   |       `-- wordcount.xml
-|   `-- nietzsche-chapter-1.txt
-```
-
-the wordcount.xml defines the location of the file to import, HDFS directories to use as well as the name node location.  You can verify the settings under in util:property element:
+Before building, please verify the setting under `/src/main/resources/config/wordcount.xml`. It defines the location of the file to import, HDFS directories to use as well as the name node location. Please check the the settings under in `util:property` element:
 
 	<util:properties id="myProperties" >
 		<prop key="wordcount.input.path">/count/in/</prop>
@@ -42,41 +24,49 @@ Please verify particularly the following property:
 
 * hd.fs - The [Hadoop NameNode](http://wiki.apache.org/hadoop/NameNode) to use. The setting should be fine, but the port may be different between Hadoop versions (e.g. port 9000 is common also)
 
+Now you can build the sample simply by executing:
+
+	$ mvn clean package
+
+The project [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to compile and test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container. In this case there are no additional dependencies so the artifact is built as a common jar. ee the [Modules][] section in the Spring XD Reference for more details on module packaging.
+
+As a result, you will see the following jar being created: `target/batch-wordcount-1.0.0.BUILD-SNAPSHOT.jar`.
+
 ## Running the Sample
 
-In the `batch-wordcount` directory copy the result of the build to the XD installation using the script. Your `XD_HOME` environment variable needs to be set to the install directory of XD
-
-	$ ./copy-files.sh
-
-Note that the `nietzsche-chapter-1.txt` file is copied to the /tmp directory.
-
-The wordcount sample is ready to be executed. For ease of use, start up the single node version of Spring XD that combines the admin and container nodes into one process. If it was already running, *you must restart it*.
+The wordcount sample is ready to be executed. The simplest way to run Spring XD is using the `singlenode` server.
 
 	xd/bin>$ ./xd-singlenode
 
 Now start the *Spring XD Shell* in a separate window:
 
 	shell/bin>$ ./xd-shell
-	
-By default, hadoop 2.2.0 distribution will be used.
+
+## Upload the module
+
+In the Spring XD shell:
+
+    xd:>module upload --type job --name wordcount --file [path-to]/batch-wordcount-1.0.0.BUILD-SNAPSHOT.jar
 
 You will now create a new Batch Job Stream using the *Spring XD Shell*:
 
 	xd:>job create --name wordCountJob --definition "wordcount"
 
-The UI located on the machine where xd-singlenode is running, will show you the jobs that can be deployed.  The UI is located at http://localhost:9393/admin-ui
+The UI located on the machine where `xd-singlenode` is running, will show you the jobs that can be deployed.  The UI is located at:
 
-Alternatively, you can deploy it using the shell command:
+http://localhost:9393/admin-ui
+
+Alternatively, you can deploy the job using the shell command:
 
 	xd:>job deploy --name wordCountJob
 
-We will now create a stream that polls a local directory for files.  By default the name of the directory is named after the name of the stream, so in this case the directory will be `/tmp/xd/input/wordCountFiles`.  If the directory does not exist, it will be created.  You can override the default directory using the `--dir` option.
+We will now create a stream that polls a local directory for files.  By default the name of the directory is named after the name of the stream, so in this case the directory will be `/tmp/xd/input/wordCountFiles`. If the directory does not exist, it will be created. You can override the default directory using the `--dir` option.
 
-	xd:>stream create --name wordCountFiles --definition "file --ref=true > queue:job:wordCountJob"  --deploy
+	xd:>stream create --name wordCountFiles --definition "file --mode=ref > queue:job:wordCountJob" --deploy
 
-If you now drop text files into the  `/tmp/xd/input/wordCountFiles/` directory, the file will be picked up, copied to HDFS and its words counted. You can move the supplied .txt file there via
+If you now drop text files into the  `/tmp/xd/input/wordCountFiles/` directory, the file will be picked up, copied to HDFS and its words counted. You can move the supplied `nietzsche-chapter-1.txt` file to the input directory using the shell by executing:
 
-	xd:>! cp /tmp/nietzsche-chapter-1.txt /tmp/xd/input/wordCountFiles
+	xd:>! cp /path/to/spring-xd-samples/batch-wordcount/data/nietzsche-chapter-1.txt /tmp/xd/input/wordCountFiles
 
 **Important**: If you have an empty `/count/in` directory on the *hdfs* (check with `xd:> hadoop fs ls /`), remove it using `xd:> hadoop fs rm /count --recursive` before copying files to `/tmp/xd/input/wordCountFiles`. 
 
@@ -111,3 +101,6 @@ Finally, executing:
 
 should yield a long list of words, indicating the number of occurrences within the provided input text.
 
+[pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-wordcount/pom.xml
+[Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
+[Modules]: http://docs.spring.io/spring-xd/docs/current/reference/html/#modules
