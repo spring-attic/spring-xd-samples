@@ -10,21 +10,11 @@ In order for the sample to run you will need to have installed:
 * Spring XD ([Instructions](https://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started))
 * Hadoop ([Instructions](https://docs.spring.io/spring-xd/docs/current/reference/html/#_installing_hadoop))
 
+NOTE: If you are using a Hadoop distribution that uses a different configuration than the default one from Apache Hadoop, then you need to provide additional configuration settings to be used by any MapReduce tasks submitted to the cluster. See this [page](../hadoop-config/README.asciidoc) for details.
+
 ## Building
 
-Before building, please verify the setting under `/src/main/resources/config/wordcount.xml`. It defines the location of the file to import, HDFS directories to use as well as the name node location. Please check the the settings under the `util:property` element:
-
-	<util:properties id="myProperties" >
-		<prop key="wordcount.input.path">/count/in/</prop>
-		<prop key="wordcount.output.path">/count/out/</prop>
-		<prop key="hd.fs">hdfs://localhost:8020</prop>
-	</util:properties>
-
-Please verify particularly the following property:
-
-* **hd.fs** - The [Hadoop NameNode](http://wiki.apache.org/hadoop/NameNode) to use. The setting should be fine, but the port may be different between Hadoop versions (e.g. port `9000` is common also)
-
-Now you can build the sample simply by executing:
+You can build the sample simply by executing:
 
 	$ mvn clean package
 
@@ -68,7 +58,7 @@ If you now drop text files into the  `/tmp/xd/input/wordCountFiles/` directory, 
 
 	xd:>! cp /path/to/spring-xd-samples/batch-wordcount/data/nietzsche-chapter-1.txt /tmp/xd/input/wordCountFiles
 
-**Important**: If you have an empty `/count/in` directory on the *hdfs* (check with `xd:> hadoop fs ls /`), remove it using `xd:> hadoop fs rm /count --recursive` before copying files to `/tmp/xd/input/wordCountFiles`. 
+**Note**: Anything under `/xd/count` directory on *hdfs* will be removed each time the job executes. 
 
 ## Verify the result
 
@@ -78,26 +68,23 @@ First specify the Hadoop NameNode for the Spring XD Shell:
 
 We will now take a look at the root of the *HDFS* filesystem:
 
-	xd:>hadoop fs ls /
+	xd:>hadoop fs ls /xd/
 
 You should see output like the following:
 
-	Found 4 items
-	drwxr-xr-x   - hillert supergroup          0 2013-08-06 22:35 /Users
-	drwxr-xr-x   - hillert supergroup          0 2013-08-12 11:01 /count
-	drwxr-xr-x   - hillert supergroup          0 2013-08-09 11:31 /user
-	drwxr-xr-x   - hillert supergroup          0 2013-08-08 10:53 /xd
+	Found 1 items
+	drwxr-xr-x   - hillert supergroup          0 2013-08-12 11:01 /xd/count
 
-As we declared the property `wordcount.output.path` in **wordcount.xml** to be `/count/out/`, let's have a look at the respective directory:
+As we declared the property `wordcount.output.path` in **wordcount.xml** to be `/xd/count/out/`, let's have a look at the respective directory:
 
-	xd:>hadoop fs ls /count/out
+	xd:>hadoop fs ls /xd/count/out
 	Found 2 items
-	-rw-r--r--   3 hillert supergroup          0 2013-08-10 00:07 /count/out/_SUCCESS
-	-rw-r--r--   3 hillert supergroup      31752 2013-08-10 00:07 /count/out/part-r-00000
+	-rw-r--r--   3 hillert supergroup          0 2013-08-10 00:07 /xd/count/out/_SUCCESS
+	-rw-r--r--   3 hillert supergroup      31752 2013-08-10 00:07 /xd/count/out/part-r-00000
 
 Finally, executing:
 
-	xd:>hadoop fs cat /count/out/part-r-00000
+	xd:>hadoop fs cat /xd/count/out/part-r-00000
 
 should yield a long list of words, indicating the number of occurrences within the provided input text.
 
