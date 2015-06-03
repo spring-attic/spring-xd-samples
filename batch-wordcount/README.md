@@ -7,12 +7,12 @@ This is the [*Spring Batch* word-count sample](https://github.com/SpringSource/s
 
 In order for the sample to run you will need to have installed:
 
-* Spring XD ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Getting-Started))
-* Hadoop ([Instructions](https://github.com/SpringSource/spring-xd/wiki/Hadoop-Installation))
+* Spring XD ([Instructions](https://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started))
+* Hadoop ([Instructions](https://docs.spring.io/spring-xd/docs/current/reference/html/#_installing_hadoop))
 
 ## Building
 
-Before building, please verify the setting under `/src/main/resources/config/wordcount.xml`. It defines the location of the file to import, HDFS directories to use as well as the name node location. Please check the the settings under in `util:property` element:
+Before building, please verify the setting under `/src/main/resources/config/wordcount.xml`. It defines the location of the file to import, HDFS directories to use as well as the name node location. Please check the the settings under the `util:property` element:
 
 	<util:properties id="myProperties" >
 		<prop key="wordcount.input.path">/count/in/</prop>
@@ -22,13 +22,13 @@ Before building, please verify the setting under `/src/main/resources/config/wor
 
 Please verify particularly the following property:
 
-* hd.fs - The [Hadoop NameNode](http://wiki.apache.org/hadoop/NameNode) to use. The setting should be fine, but the port may be different between Hadoop versions (e.g. port 9000 is common also)
+* **hd.fs** - The [Hadoop NameNode](http://wiki.apache.org/hadoop/NameNode) to use. The setting should be fine, but the port may be different between Hadoop versions (e.g. port `9000` is common also)
 
 Now you can build the sample simply by executing:
 
 	$ mvn clean package
 
-The project [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to compile and test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an uber-jar, packaging any dependencies that are not already provided by the Spring XD container. In this case there are no additional dependencies so the artifact is built as a common jar. ee the [Modules][] section in the Spring XD Reference for more details on module packaging.
+The project [pom][] declares `spring-xd-module-parent` as its parent. This adds the dependencies needed to compile and test the module and also configures the [Spring Boot Maven Plugin][] to package the module as an über-jar, packaging any dependencies that are not already provided by the Spring XD container. See the [Modules][] section in the Spring XD Reference for more details on module packaging.
 
 As a result, you will see the following jar being created: `target/batch-wordcount-1.0.0.BUILD-SNAPSHOT.jar`.
 
