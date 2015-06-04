@@ -1,0 +1,17 @@
+Spring XD Batch and Hadoop configuration for MapReduce tasks.
+=============================================================
+
+If you are using a Hadoop distribution that uses a different configuration than the default one from Apache Hadoop, then you need
+to provide additional configuration settings to be used by any MapReduce tasks submitted to the cluster.
+
+Some common settings that work on current single node virtual machine distributions from Pivotal, Hortonworks and Cloudera are provided in a configuration file for each supported distribution and version.
+
+We provide a custom configuration file for the following distributions and versions:
+
+* Pivotal HD 2.x - link:phd21/yarn-site.xml[]
+* Pivotal HD 3.0 - link:phd30/mapred-site.xml[]
+* Hortonworks PHD 2.2.0 - link:hdp22-2.2.0/mapred-site.xml[]
+* Hortonworks PHD 2.2.4 - link:hdp22-2.2.4/mapred-site.xml[]
+* Cloudera CDH 5.3.x - link:cdh5/yarn-site.xml[]
+
+Copy the configuration file for the distribution and version you want to use to the `src/main/resources` directory of the batch sample app you want to build.
