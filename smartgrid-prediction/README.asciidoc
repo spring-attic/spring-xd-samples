@@ -24,7 +24,7 @@ You'll find several directories in this sample. Not all are needed to actually r
 
 This sample makes use of the [analytic-pmml] module which is not part of the main Spring XD distribution and has to be built from source. You can read the link:https://github.com/spring-projects/spring-xd-modules/tree/master/analytics-ml-pmml[README] in its repository to build and install it, or you can use the provided link:setup-pmml.sh[] script that automates that process.
 
-*In all cases*, you'll need to delete the `analytic-pmml` placeholder directory that can be found in the standard XD distribution before installing the hand-built module.
+*If using an old version of Spring XD*, you'll need to delete the `analytic-pmml` placeholder directory that can be found in the standard XD distribution before installing the hand-built module.
 
 [NOTE]
 .PMML Model also included in the module itself
