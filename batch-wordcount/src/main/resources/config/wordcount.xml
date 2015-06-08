@@ -78,7 +78,12 @@
 			fsh.rmr(hdfsLibDir)
 		}
 		fsh.mkdir(hdfsLibDir);
-		fsh.put(moduleArchivePath + moduleArchiveName + ".jar", hdfsLibDir + moduleArchiveName + ".zip");
+		if (moduleArchivePath.startsWith("hdfs:")) {
+			fsh.cp(moduleArchivePath + moduleArchiveName + ".jar", hdfsLibDir + moduleArchiveName + ".zip");
+		}
+		else {
+			fsh.put(moduleArchivePath + moduleArchiveName + ".jar", hdfsLibDir + moduleArchiveName + ".zip");
+		}
 	</hadoop:script>
 
 </beans>
