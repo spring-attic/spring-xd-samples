@@ -50,7 +50,7 @@ Spring XD provides uploading modules archive from the `shell` interface. We can 
 2. Post messages to the stream
 
   ```
-    http post --message "foo foo foo"
+    http post --data "foo foo foo"
   ```
   
 3. The data "foo foo foo" is expected to be available at scala-logger module's application's `stdout` in the spark cluster
