@@ -47,15 +47,35 @@ Spring XD provides uploading modules archive from the `shell` interface. We can 
   stream create spark-streaming-word-count --definition "http | java-word-count | log" --deploy
   ```
   
-2. Post messages to the stream
-
+  Note: To add a tap at the `output` of Spark streaming processor module, the option `--enableTap` should be set
+  In that case, the stream definition would look like this:
+  
   ```
-    http post --message "foo foo foo"
+  stream create spark-streaming-word-count --definition "http | java-word-count --enableTap=true | log" --deploy
   ```
   
-3. The log sink module would show the word count results at the container log. This shows the word count computation happens at the spark cluster by the `java-word-count` module and the result is sent to the log module.
+2. To add a tap at the `output` of Spark streaming processor module, 
+
+  ```
+  stream create tap-word-count --definition "tap:stream:spark-streaming-word-count.java-word-count > counter --name=word-counter" --deploy
+  ```
+  
+3. Post messages to the stream
+
+  ```
+    http post --data "foo foo foo"
+  ```
+  
+4. The log sink module would show the word count results at the container log. This shows the word count computation happens at the spark cluster by the `java-word-count` module and the result is sent to the log module.
 
   ```
   .....  INFO xdbus.a1.1-1 sink.a1 - (foo,3)
   ```
 
+5. For each message output at the Spark streaming word-count module, the tap stream above will count.
+
+   ```
+   counter display word-counter
+   ```
+   
+The above command will show the counter value.
