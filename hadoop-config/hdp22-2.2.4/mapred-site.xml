@@ -2,7 +2,7 @@
 
 <configuration>
 
-  <!-- Hortonworks PHD 2.2.4 -->
+  <!-- Hortonworks HDP 2.2.4 -->
   <property>
     <description>Java opts for the MR App Master processes.</description>
     <name>yarn.app.mapreduce.am.command-opts</name>

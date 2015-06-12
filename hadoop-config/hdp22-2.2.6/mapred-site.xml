@@ -2,11 +2,11 @@
 
 <configuration>
 
-  <!-- Hortonworks HDP 2.2.0 -->
+  <!-- Hortonworks HDP 2.2.6 -->
   <property>
     <description>Java opts for the MR App Master processes.</description>
     <name>yarn.app.mapreduce.am.command-opts</name>
-    <value>-Dstack.name=hdp -Dstack.version=2.2.0.0-2041</value>
+    <value>-Dstack.name=hdp -Dstack.version=2.2.6.0-2800</value>
   </property>
 
   <property>
@@ -16,7 +16,7 @@
 
   <property>
     <name>mapreduce.application.framework.path</name>
-    <value>/hdp/apps/2.2.0.0-2041/mapreduce/mapreduce.tar.gz#mr-framework</value>
+    <value>/hdp/apps/2.2.6.0-2800/mapreduce/mapreduce.tar.gz#mr-framework</value>
   </property>
 
 </configuration>
