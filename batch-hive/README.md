@@ -22,6 +22,7 @@ Now we can copy the data file to the `/xd/tweets` directory.
     xd:>hadoop fs mkdir /xd/tweets
     xd:>hadoop fs copyFromLocal --from <path-to-this-sample>/data/tweets-0.txt --to /xd/tweets/tweets-0.txt
 
+NOTE: If you are using a Hadoop distribution that uses a different configuration than the default one from Apache Hadoop, then you need to provide additional configuration settings to be used by any MapReduce tasks submitted to the cluster. See this [page](../hadoop-config/README.asciidoc) for details.
 
 ## Building
 
