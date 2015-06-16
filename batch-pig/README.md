@@ -23,7 +23,7 @@ Now we can copy the data file to the `/xd/hashtagcounts/output` directory.
     xd:>hadoop fs mkdir /xd/hashtagcount/output
     xd:>hadoop fs copyFromLocal --from <path-to-this-sample>/data/part-r-00000 --to /xd/hashtagcount/output/part-r-00000
 
->> **Note**: If you are using a Hadoop distribution that uses a different configuration than the default one from Apache Hadoop, then you need to provide additional configuration settings to be used by any MapReduce tasks submitted to the cluster. See this [page](../hadoop-config/README.asciidoc) for details.
+> **Note**: If you are using a Hadoop distribution that uses a different configuration than the default one from Apache Hadoop, then you need to provide additional configuration settings to be used by any MapReduce tasks submitted to the cluster. See this [page](../hadoop-config/README.asciidoc) for details.
 
 ## Building
 
