@@ -36,7 +36,11 @@ The modules `src\main\resources\config` directory contains the `spring-module.xm
     <util:properties id="myProperties" >
         <prop key="hive.input.path">/xd/tweets</prop>
         <prop key="hive.output.path">/xd/hiveout</prop>
+        <prop key="hive.server.host">localhost</prop>
+        <prop key="hive.server.port">10000</prop>
     </util:properties>
+
+If your Hadoop cluster has a HiveServer running then change the `hive.server.host` and `hive.server.port` properties to match your cluster. Note that HiveServer2 won't work since that uses JDBC. This example only works with the Thrift based original HiveServer. You can also start a HiveServer locally, see the [HiveServer documentation](https://cwiki.apache.org/confluence/display/Hive/HiveServer). To download pre Hive 1.0 releases you need to use the [Apache archive](http://archive.apache.org/dist/hive/).
 
 The same `spring-module.xml` file also defines the Hadoop configuration, defaulting to what is specified in the Spring XD configuration.
 
