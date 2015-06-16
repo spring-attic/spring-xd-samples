@@ -6,7 +6,7 @@
   <property>
     <description>Java opts for the MR App Master processes.</description>
     <name>yarn.app.mapreduce.am.command-opts</name>
-    <value>-Dstack.name=hdp -Dstack.version=2.2.6.0-2800</value>
+    <value>-Dstack.name=hdp -Dstack.version=2.2.6.0-2800 -Dhdp.version=2.2.6.0-2800</value>
   </property>
 
   <property>
