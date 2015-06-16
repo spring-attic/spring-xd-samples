@@ -27,7 +27,7 @@
 		<dependency>
 			<groupId>org.springframework.xd.</groupId>
 			<artifactId>spring-xd-rxjava</artifactId>
-			<version>1.1.0.BUILD-SNAPSHOT</version>
+			<version>1.2.0.RELEASE</version>
 		</dependency>
 
 

@@ -11,7 +11,7 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 ext {
-	springXdVersion = '1.2.0.BUILD-SNAPSHOT'
+	springXdVersion = '1.2.0.RELEASE'
 }
 
 configurations {

@@ -1,7 +1,7 @@
 
 ext {
-    springIntegrationVersion='4.1.3.RELEASE'
-    springXdVersion = '1.2.0.BUILD-SNAPSHOT'
+    springIntegrationVersion='4.1.5.RELEASE'
+    springXdVersion = '1.2.0.RELEASE'
     hadoopVersion = '2.6.0'
 }
 
@@ -10,7 +10,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.12'
+    gradleVersion = '2.2'
 }
 
 group = 'org.springframework.xd.samples'
