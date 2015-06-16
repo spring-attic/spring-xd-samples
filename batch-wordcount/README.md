@@ -10,7 +10,7 @@ In order for the sample to run you will need to have installed:
 * Spring XD ([Instructions](https://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started))
 * Hadoop ([Instructions](https://docs.spring.io/spring-xd/docs/current/reference/html/#_installing_hadoop))
 
-NOTE: If you are using a Hadoop distribution that uses a different configuration than the default one from Apache Hadoop, then you need to provide additional configuration settings to be used by any MapReduce tasks submitted to the cluster. See this [page](../hadoop-config/README.asciidoc) for details.
+>> **Note**: If you are using a Hadoop distribution that uses a different configuration than the default one from Apache Hadoop, then you need to provide additional configuration settings to be used by any MapReduce tasks submitted to the cluster. See this [page](../hadoop-config/README.asciidoc) for details.
 
 ## Building
 
@@ -58,7 +58,7 @@ If you now drop text files into the  `/tmp/xd/input/wordCountFiles/` directory, 
 
 	xd:>! cp /path/to/spring-xd-samples/batch-wordcount/data/nietzsche-chapter-1.txt /tmp/xd/input/wordCountFiles
 
-**Note**: Anything under `/xd/count` directory on *hdfs* will be removed each time the job executes. 
+>> **Note**: Anything under `/xd/count` directory on *hdfs* will be removed each time the job executes. 
 
 ## Verify the result
 
