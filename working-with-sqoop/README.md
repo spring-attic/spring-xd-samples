@@ -44,7 +44,7 @@ We will create the table that we can use with the Sqoop jobs we will run. You ca
 The DDL used for HSQLDB:
 
     CREATE TABLE
-        snowfall
+        SNOWFALL
         (
             REGION VARCHAR(100),
             START VARCHAR(10),
@@ -83,7 +83,7 @@ $ curl -L -O http://search.maven.org/remotecontent?filepath=org/hsqldb/hsqldb/2.
 To create the database table with the HSQLDB SqlTool we can run the following:
 
 ```
-$ java -jar sqltool-2.3.2.jar --inlineRc url=jdbc:hsqldb:hsql://localhost:9101/xdjob,user=sa,password= --sql "CREATE TABLE snowfall (REGION VARCHAR(100), START VARCHAR(10), END VARCHAR(10), RSI DECIMAL(9,3), CATEGORY CHAR(1), TERM1PCT DECIMAL(9,3), TERM2PCT DECIMAL(9,3), TERM3PCT DECIMAL(9,3), TERM4PCT DECIMAL(9,3), AREA0 INT, POP0 INT, AREA1 INT, POP1 INT, AREA2 INT, POP2 INT, AREA3 INT, POP3 INT, AREA4 INT, POP4 INT, STORM_ID VARCHAR(20), REGION_CODE CHAR(3), YEAR VARCHAR(4), MONTH VARCHAR(2));"
+$ java -jar sqltool-2.3.2.jar --inlineRc url=jdbc:hsqldb:hsql://localhost:9101/xdjob,user=sa,password= --sql "CREATE TABLE SNOWFALL (REGION VARCHAR(100), START VARCHAR(10), END VARCHAR(10), RSI DECIMAL(9,3), CATEGORY CHAR(1), TERM1PCT DECIMAL(9,3), TERM2PCT DECIMAL(9,3), TERM3PCT DECIMAL(9,3), TERM4PCT DECIMAL(9,3), AREA0 INT, POP0 INT, AREA1 INT, POP1 INT, AREA2 INT, POP2 INT, AREA3 INT, POP3 INT, AREA4 INT, POP4 INT, STORM_ID VARCHAR(20), REGION_CODE CHAR(3), YEAR VARCHAR(4), MONTH VARCHAR(2));"
 ```
 
 ## Step3: copy CSV file to HDFS
@@ -112,7 +112,7 @@ Found 1 items
 We first create the job using the `export` command. In the args parameter we provide all additional Sqoop options we need for our job to run like directory where files to be exported are, table name, connect string, username and password. We also specify batch mode to speed up the process.
 
 ```
-xd:> job create exp_snowfall --definition "sqoop --command=export --args='--table snowfall --connect jdbc:hsqldb:hsql://localhost:9101/xdjob --username sa --export-dir /xd/noaa --optionally-enclosed-by \" --batch'"
+xd:> job create exp_snowfall --definition "sqoop --command=export --args='--table SNOWFALL --connect jdbc:hsqldb:hsql://localhost:9101/xdjob --username sa --export-dir /xd/noaa --optionally-enclosed-by \" --batch'"
 ```
 
 Now that we have the job we can deploy and launch it.
@@ -134,12 +134,12 @@ Check the execution status and once that is COMPLETED we can close the XD Shell 
 xd:> exit
 ```
 
-To see how many rows we exported to the database we can run a simple `SELECT COUNT(*) FROM snowfall` query.
+To see how many rows we exported to the database we can run a simple `SELECT COUNT(*) FROM SNOWFALL` query.
 
 If you downloaded the HSQLDB SqlTool you can use the following command:
 
 ```
-$ java -jar sqltool-2.3.2.jar --inlineRc url=jdbc:hsqldb:hsql://localhost:9101/xdjob,user=sa,password= --sql "SELECT COUNT(*) FROM snowfall;"
+$ java -jar sqltool-2.3.2.jar --inlineRc url=jdbc:hsqldb:hsql://localhost:9101/xdjob,user=sa,password= --sql "SELECT COUNT(*) FROM SNOWFALL;"
 ```
 
 The count should be 4179.
@@ -158,7 +158,7 @@ xd:> hadoop config fs --namenode hdfs://localhost:8020
 When creating the job, we need to specify the connection string and username along with the table name as previously. We also specify the target directory since the default is to copy the data to our /user/<username> directory in HDFS. Since we don't have a primary key for the table we do need to specify the column to split the data between the mappers or use a single mapper. This is a small table so just using one mapper should be fine.
 
 ```
-xd:> job create imp_snowfall --definition "sqoop --command=import --args='--table snowfall --connect jdbc:hsqldb:hsql://localhost:9101/xdjob --username sa --target-dir /xd/import --num-mappers 1'"
+xd:> job create imp_snowfall --definition "sqoop --command=import --args='--table SNOWFALL --connect jdbc:hsqldb:hsql://localhost:9101/xdjob --username sa --target-dir /xd/import --num-mappers 1'"
 ```
 
 We specified the HDFS target directory as `/xd/import`. If this directory already exists, choose a different name or remove the existing directory using:
