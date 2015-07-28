@@ -20,5 +20,5 @@ repositories {
 dependencies {
     provided "org.apache.spark:spark-core_2.10:1.2.1"
 	provided "org.apache.spark:spark-streaming_2.10:1.2.1"
-	provided "org.springframework.xd:spring-xd-spark-streaming:1.2.0.RELEASE"
+	provided "org.springframework.xd:spring-xd-spark-streaming:1.2.1.RELEASE"
 }
