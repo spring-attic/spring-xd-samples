@@ -13,6 +13,7 @@ We provide a custom configuration file for the following distributions and versi
 * Hortonworks HDP 2.2.0 - link:hdp22-2.2.0/hadoop-site.xml[]
 * Hortonworks HDP 2.2.4 - link:hdp22-2.2.4/hadoop-site.xml[]
 * Hortonworks HDP 2.2.6 - link:hdp22-2.2.6/hadoop-site.xml[]
+* Hortonworks HDP 2.3.2 - link:hdp23-2.3.2/hadoop-site.xml[]
 * Cloudera CDH 5.3.x - link:cdh5/hadoop-site.xml[]
 
 Copy the configuration file for the distribution and version you want to use to the `src/main/resources` directory of the batch sample app you want to build.
