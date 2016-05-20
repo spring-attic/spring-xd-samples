@@ -172,7 +172,7 @@ public class TweetTransformerIntegrationTest {
 
 		String processingChainUnderTest = moduleName;
 
-		SingleNodeProcessingChain chain = chain(application, streamName, processingChainUnderTest);
+		SingleNodeProcessingChain chain = new SingleNodeProcessingChain(application, streamName, processingChainUnderTest);
 
 		chain.sendPayload(tweet);
 
