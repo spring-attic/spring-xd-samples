@@ -108,7 +108,7 @@ public class TweetTransformerIntegrationTest {
 				"        \"profile_sidebar_border_color\": \"C0DEED\",\n" +
 				"        \"profile_background_tile\": false,\n" +
 				"        \"name\": \"Sean Cummings\",\n" +
-				"        \"profile_image_url\": \"http://a0.twimg.com/profile_images/2359746665/1v6zfgqo8g0d3mk7ii5s_normal.jpeg\",\n" +
+				"        \"profile_image_url\": \"https://a0.twimg.com/profile_images/2359746665/1v6zfgqo8g0d3mk7ii5s_normal.jpeg\",\n" +
 				"        \"created_at\": \"Mon Apr 26 06:01:55 +0000 2010\",\n" +
 				"        \"location\": \"LA, CA\",\n" +
 				"        \"follow_request_sent\": null,\n" +
@@ -157,7 +157,7 @@ public class TweetTransformerIntegrationTest {
 				"        \"time_zone\": \"Pacific Time (US & Canada)\",\n" +
 				"        \"description\": \"Born 330 Live 310\",\n" +
 				"        \"default_profile_image\": false,\n" +
-				"        \"profile_background_image_url\": \"http://a0.twimg.com/images/themes/theme1/bg.png\",\n" +
+				"        \"profile_background_image_url\": \"https://a0.twimg.com/images/themes/theme1/bg.png\",\n" +
 				"        \"statuses_count\": 579,\n" +
 				"        \"friends_count\": 110,\n" +
 				"        \"following\": null,\n" +

@@ -1,4 +1,4 @@
-<PMML xmlns="http://www.dmg.org/PMML-4_2" version="4.2" xsi:schemaLocation="http://www.dmg.org/PMML-4_2 http://www.dmg.org/v4-2/pmml-4-2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PMML xmlns="/PMML-4_2/" version="4.2" xsi:schemaLocation="/PMML-4_2/ http://dmg.org/v4-2/pmml-4-2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Header copyright="Copyright (c) 2014 Pivotal" description="Neural Network PMML Model">
     <Extension name="user" value="ebottard" extender="Rattle/PMML"/>
     <Application name="Rattle/PMML" version="1.4"/>

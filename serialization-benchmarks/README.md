@@ -19,4 +19,4 @@ Details of how to optimize serialization in Spring XD are included in the [Optim
 [Kryo]: https://github.com/EsotericSoftware/kryo
 [jvm-serializers]: https://github.com/eishay/jvm-serializers/wiki
 [references]: https://github.com/EsotericSoftware/kryo#references[references]
-[Optimizing Serialization]: http://docs.spring.io/spring-xd/docs/current-SNAPSHOT/reference/html/#optimizing-serialization
+[Optimizing Serialization]: https://docs.spring.io/spring-xd/docs/current-SNAPSHOT/reference/html/#optimizing-serialization

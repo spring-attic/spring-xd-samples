@@ -7,7 +7,7 @@ This is an example of a custom module project that can be built and packaged as 
 
 In order to install the module and run it in your Spring XD installation, you will need to have installed:
 
-* Spring XD ([Instructions](http://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started))
+* Spring XD ([Instructions](https://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started))
 
 ## Code Tour
 
@@ -46,7 +46,7 @@ The jar will be in `target/tweet-transformer-1.0.0.BUILD-SNAPSHOT.jar` (maven) o
 
 Now create and deploy a stream:
 
-Note: You must provide twitter credentials to run this example. See the [twittersearch source](http://docs.spring.io/spring-xd/docs/current/reference/html/#twitter-search) documentation for details.
+Note: You must provide twitter credentials to run this example. See the [twittersearch source](https://docs.spring.io/spring-xd/docs/current/reference/html/#twitter-search) documentation for details.
 
 	xd:>stream create test --definition "twittersearch --query=[querystring] | tweet-transformer | log" --deploy
 

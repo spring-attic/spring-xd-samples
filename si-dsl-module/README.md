@@ -7,7 +7,7 @@ This is an example of a custom module project that is built and packaged for ins
 
 In order to install the module and run it in your Spring XD installation, you will need to have installed:
 
-* Spring XD version 1.1.x ([Instructions](http://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started))
+* Spring XD version 1.1.x ([Instructions](https://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started))
 
 ## Code Tour
 
@@ -89,7 +89,7 @@ You should see the stream output in the Spring XD log:
 [pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/si-dsl-module/pom.xml
 [build.gradle]: https://github.com/spring-projects/spring-xd-samples/blob/master/si-dsl-module/build.gradle
 [Spring Integration Java DSL]: https://github.com/spring-projects/spring-integration-java-dsl
-[Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
-[Spring Boot Gradle Plugin]: http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/build-tool-plugins-gradle-plugin.html
+[Spring Boot Maven Plugin]: https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
+[Spring Boot Gradle Plugin]: https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/build-tool-plugins-gradle-plugin.html
 [propdeps plugin]: https://github.com/spring-projects/gradle-plugins/tree/master/propdeps-plugin
-[Modules]: http://docs.spring.io/spring-xd/docs/current/reference/html/#modules
+[Modules]: https://docs.spring.io/spring-xd/docs/current/reference/html/#modules

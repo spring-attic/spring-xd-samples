@@ -1,7 +1,7 @@
 Kafka Source Demo
 =================
 
-In this example, you will learn how to set up an [Apache Kafka](http://kafka.apache.org) source for Spring XD. 
+In this example, you will learn how to set up an [Apache Kafka](https://kafka.apache.org) source for Spring XD. 
 
 We will begin by demonstrating a very simple configuration based on the single node mode, and we will follow up with a
 more elaborate one, demonstrating distribution and failover.
@@ -12,7 +12,7 @@ Prerequisites
 In order to get started, make sure that you have the following components installed:
 
 * Spring XD ([instructions](https://github.com/spring-projects/spring-xd/wiki/Getting-Started))
-* Kafka - including ZooKeeper ([instructions](http://kafka.apache.org/documentation.html#quickstart))
+* Kafka - including ZooKeeper ([instructions](https://kafka.apache.org/documentation.html#quickstart))
 
 
 Single-node mode

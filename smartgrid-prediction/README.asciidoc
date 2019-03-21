@@ -1,6 +1,6 @@
 # Introduction
 
-This sample showcases a fictional use of Spring XD in the context of smart electricity metering and production. It was inspired by the http://www.cse.iitb.ac.in/debs2014/?page_id=42[ACM Distributed Event Based Systems Grand Challenge 2014] and re-uses some of its sample input data.
+This sample showcases a fictional use of Spring XD in the context of smart electricity metering and production. It was inspired by the https://www.cse.iitb.ac.in/debs2014/?page_id=42[ACM Distributed Event Based Systems Grand Challenge 2014] and re-uses some of its sample input data.
 
 Smart plugs are used to measure power consumption and report metrics to the system. In this sample, smartplugs are simulated by data ingestion using JMeter. Also, to have the demo display some lively data, everything has been re-sampled to be played at 60x the original speed (as such, the 16hrs worth of data available are ingested in ~16mins).
 

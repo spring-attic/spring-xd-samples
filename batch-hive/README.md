@@ -41,7 +41,7 @@ The modules `src\main\resources\config` directory contains the `spring-module.xm
         <prop key="hive.server.port">10000</prop>
     </util:properties>
 
-If your Hadoop cluster has a HiveServer running then change the `hive.server.host` and `hive.server.port` properties to match your cluster. Note that HiveServer2 won't work since that uses JDBC. This example only works with the Thrift based original HiveServer. You can also start a HiveServer locally, see the [HiveServer documentation](https://cwiki.apache.org/confluence/display/Hive/HiveServer). To download pre Hive 1.0 releases you need to use the [Apache archive](http://archive.apache.org/dist/hive/).
+If your Hadoop cluster has a HiveServer running then change the `hive.server.host` and `hive.server.port` properties to match your cluster. Note that HiveServer2 won't work since that uses JDBC. This example only works with the Thrift based original HiveServer. You can also start a HiveServer locally, see the [HiveServer documentation](https://cwiki.apache.org/confluence/display/Hive/HiveServer). To download pre Hive 1.0 releases you need to use the [Apache archive](https://archive.apache.org/dist/hive/).
 
 The same `spring-module.xml` file also defines the Hadoop configuration, defaulting to what is specified in the Spring XD configuration.
 
@@ -126,5 +126,5 @@ with:
     $ HADOOP_USER_NAME=hive hadoop fs -rm -r /xd/hiveout
 
 [pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-hive/pom.xml
-[Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
-[Modules]: http://docs.spring.io/spring-xd/docs/current/reference/html/#modules
+[Spring Boot Maven Plugin]: https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
+[Modules]: https://docs.spring.io/spring-xd/docs/current/reference/html/#modules

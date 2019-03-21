@@ -1,7 +1,7 @@
 Spring XD Sqoop Batch Job Example
 =================================
 
-This is a brief example showing how to work with the Sqoop batch job that is provided with Spring XD. [Apache Sqoop](http://sqoop.apache.org/) is a tool designed for efficiently transferring bulk data between Apache Hadoop and structured datastores such as relational databases.
+This is a brief example showing how to work with the Sqoop batch job that is provided with Spring XD. [Apache Sqoop](https://sqoop.apache.org/) is a tool designed for efficiently transferring bulk data between Apache Hadoop and structured datastores such as relational databases.
 
 ## Requirements
 
@@ -9,8 +9,8 @@ You need to have Spring XD 1.1.0 or later installed
 
 In order to follow this example you will need to have the following installed and running:
 
-* Spring XD version 1.1.x ([Instructions](http://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started)) running in `xd-singlenode` mode.
-* Apache Hadoop version 2.6.x ([Instructions](http://docs.spring.io/spring-xd/docs/current/reference/html/#installing-hadoop)) running with namenode listening on `hdfs://localhost:8020`.
+* Spring XD version 1.1.x ([Instructions](https://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started)) running in `xd-singlenode` mode.
+* Apache Hadoop version 2.6.x ([Instructions](https://docs.spring.io/spring-xd/docs/current/reference/html/#installing-hadoop)) running with namenode listening on `hdfs://localhost:8020`.
 
 > This example is developed to be run on a Linux or Mac OS X system.
 
@@ -76,8 +76,8 @@ You might have a preferred SQL tool, and if so, you can connect to the Spring XD
 If you don't have an SQL tool we can quickly download the HSQLDB SqlTool and use that. Just run:
 
 ```
-$ curl -L -O http://search.maven.org/remotecontent?filepath=org/hsqldb/sqltool/2.3.2/sqltool-2.3.2.jar
-$ curl -L -O http://search.maven.org/remotecontent?filepath=org/hsqldb/hsqldb/2.3.2/hsqldb-2.3.2.jar
+$ curl -L -O https://search.maven.org/remotecontent?filepath=org/hsqldb/sqltool/2.3.2/sqltool-2.3.2.jar
+$ curl -L -O https://search.maven.org/remotecontent?filepath=org/hsqldb/hsqldb/2.3.2/hsqldb-2.3.2.jar
 ```
 
 To create the database table with the HSQLDB SqlTool we can run the following:

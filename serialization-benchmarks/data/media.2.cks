@@ -2,7 +2,7 @@
 // This is mainly used to check if the serializers are "honest".
 {
 	Media = {
-		Uri = "http://javaone.com/keynote.ogg"
+		Uri = "https://www.oracle.com/javaone/index.html"
 		Title = None
 		Width = 641
 		Height = 481
@@ -17,21 +17,21 @@
 
 	Images = [
 		{
-			Uri = "http://javaone.com/keynote_huge.jpg"
+			Uri = "https://www.oracle.com/javaone/index.html"
 			Title = Set: "Javaone Keynote"
 			Width = 32000
 			Height = 24000
 			Size = Large
 		}
 		{
-			Uri = "http://javaone.com/keynote_large.jpg"
+			Uri = "https://www.oracle.com/javaone/index.html"
 			Title = None
 			Width = 1024
 			Height = 768
 			Size = Large
 		}
 		{
-			Uri = "http://javaone.com/keynote_small.jpg"
+			Uri = "https://www.oracle.com/javaone/index.html"
 			Title = None
 			Width = 320
 			Height = 240

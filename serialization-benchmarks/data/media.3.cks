@@ -1,7 +1,7 @@
 // Long strings.
 {
 	Media = {
-		Uri = "http://javaone.com/keynote.mpglkajldfjlskajdflkjslfjdslfjldjfljsdfljsdlfjsljfldjfldjals;djfasldjf;alskdjf;aslkdjf;asdjf;laskdjflsjdalfjd;alksjdfl;jsa;lfdja;slkdjf;alsjfd;lajsfl;dj"
+		Uri = "https://www.oracle.com/javaone/index.html"
 		Title = Set: "Javaone Keynotelkajldfjlskajdflkjslfjdslfjldjfljsdfljsdlfjsljfldjfldjals;djfasldjf;alskdjf;aslkdjf;asdjf;laskdjflsjdalfjd;alksjdfl;jsa;lfdja;slkdjf;alsjfd;lajsfl;dj"
 		Width = 640
 		Height = 480
@@ -16,14 +16,14 @@
 
 	Images = [
 		{
-			Uri = "http://javaone.com/keynote_large.jpglkajldfjlskajdflkjslfjdslfjldjfljsdfljsdlfjsljfldjfldjals;djfasldjf;alskdjf;aslkdjf;asdjf;laskdjflsjdalfjd;alksjdfl;jsa;lfdja;slkdjf;alsjfd;lajsfl;dj"
+			Uri = "https://www.oracle.com/javaone/index.html"
 			Title = Set: "Javaone Keynotelkajldfjlskajdflkjslfjdslfjldjfljsdfljsdlfjsljfldjfldjals;djfasldjf;alskdjf;aslkdjf;asdjf;laskdjflsjdalfjd;alksjdfl;jsa;lfdja;slkdjf;alsjfd;lajsfl;dj"
 			Width = 1024
 			Height = 768
 			Size = Large
 		}
 		{
-			Uri = "http://javaone.com/keynote_small.jpglkajldfjlskajdflkjslfjdslfjldjfljsdfljsdlfjsljfldjfldjals;djfasldjf;alskdjf;aslkdjf;asdjf;laskdjflsjdalfjd;alksjdfl;jsa;lfdja;slkdjf;alsjfd;lajsfl;dj"
+			Uri = "https://www.oracle.com/javaone/index.html"
 			Title = Set: "Javaone Keynotelkajldfjlskajdflkjslfjdslfjldjfljsdfljsdlfjsljfldjfldjals;djfasldjf;alskdjf;aslkdjf;asdjf;laskdjflsjdalfjd;alksjdfl;jsa;lfdja;slkdjf;alsjfd;lajsfl;dj"
 			Width = 320
 			Height = 240

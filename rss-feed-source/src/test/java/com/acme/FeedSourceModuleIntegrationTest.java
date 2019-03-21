@@ -53,7 +53,7 @@ public class FeedSourceModuleIntegrationTest {
 
 	@Test
 	public void test() {
-		String url = "http://feeds.bbci.co.uk/news/rss.xml";
+		String url = "https://feeds.bbci.co.uk/news/rss.xml";
 		SingleNodeProcessingChainConsumer chain = chainConsumer(application, "feedStream",
 				String.format("feed --url='%s'", url));
 

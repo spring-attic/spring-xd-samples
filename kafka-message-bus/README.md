@@ -1,7 +1,7 @@
 Kafka Message Bus
 =================
 
-In this example, you will learn how to use [Apache Kafka](http://kafka.apache.org) as an inter-container transport for
+In this example, you will learn how to use [Apache Kafka](https://kafka.apache.org) as an inter-container transport for
 Spring XD.
 
 We will begin by demonstrating a very simple configuration based on the single-node mode, and we will follow with a
@@ -13,7 +13,7 @@ Prerequisites
 In order to get started, make sure that you have the following components installed:
 
 * Spring XD 1.1.0.RELEASE or higher ([instructions](https://github.com/spring-projects/spring-xd/wiki/Getting-Started))
-* Kafka 0.8.1.1 - including ZooKeeper ([instructions](http://kafka.apache.org/documentation.html#quickstart))
+* Kafka 0.8.1.1 - including ZooKeeper ([instructions](https://kafka.apache.org/documentation.html#quickstart))
 
 
 Single-node mode

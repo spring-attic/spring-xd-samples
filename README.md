@@ -81,7 +81,7 @@ This sample demonstrates how to create a custom module project, including integr
 
 ### smartgrid-prediction
 
-This sample showcases a fictional use of Spring XD in the context of smart electricity metering and production. It was inspired by the http://www.cse.iitb.ac.in/debs2014/?page_id=42[ACM Distributed Event Based Systems Grand Challenge 2014].
+This sample showcases a fictional use of Spring XD in the context of smart electricity metering and production. It was inspired by the https://www.cse.iitb.ac.in/debs2014/?page_id=42[ACM Distributed Event Based Systems Grand Challenge 2014].
 
 ### syslog
 
@@ -94,9 +94,9 @@ A simple custom processor module project, including integration tests. This one 
 
 
 [Spring XD]: https://github.com/spring-projects/spring-xd
-[Spring Batch]: http://projects.spring.io/spring-batch/
+[Spring Batch]: https://projects.spring.io/spring-batch/
 [Spring Batch word-count sample for Hadoop]: https://github.com/SpringSource/spring-data-book/tree/master/hadoop/batch-wordcount
-[D3 Javascript library]: http://d3js.org/
-[Pivotal HD]: http://www.gopivotal.com/products/pivotal-hd
-[Kafka]: http://kafka.apache.org
+[D3 Javascript library]: https://d3js.org/
+[Pivotal HD]: https://pivotal.io/products/pivotal-hd
+[Kafka]: https://kafka.apache.org
 [Spring Integration Java DSL]: https://github.com/spring-projects/spring-integration-java-dsl

@@ -90,7 +90,7 @@ This time the import will continue with the previously erroneous row and continu
 [xml]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-notifications/src/main/resources/config/spring-module.xml
 [pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-notifications/pom.xml
 [build.gradle]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-notifications/build.gradle
-[Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
-[Spring Boot Gradle Plugin]: http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/build-tool-plugins-gradle-plugin.html
+[Spring Boot Maven Plugin]: https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
+[Spring Boot Gradle Plugin]: https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/build-tool-plugins-gradle-plugin.html
 [propdeps plugin]: https://github.com/spring-projects/gradle-plugins/tree/master/propdeps-plugin
-[Modules]: http://docs.spring.io/spring-xd/docs/current/reference/html/#modules
+[Modules]: https://docs.spring.io/spring-xd/docs/current/reference/html/#modules

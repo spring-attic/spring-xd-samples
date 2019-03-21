@@ -12,7 +12,7 @@ https://network.gopivotal.com/products/pivotal-hd
 ### Step 2: Download Spring XD 1.0 RC1 release
 
 From the Pivotal HD VM download Spring XD 1.0 RC1 release using this link: 
-http://repo.spring.io/simple/libs-milestone-local/org/springframework/xd/spring-xd/1.0.0.RC1/spring-xd-1.0.0.RC1-dist.zip
+https://repo.spring.io/simple/libs-milestone-local/org/springframework/xd/spring-xd/1.0.0.RC1/spring-xd-1.0.0.RC1-dist.zip
 
 ### Step 3: Unzip, configure and start Spring XD 1.0 RC1 release
 

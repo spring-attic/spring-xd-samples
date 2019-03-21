@@ -1,7 +1,7 @@
 // The standard test value.
 {
 	Media = {
-		Uri = "http://javaone.com/keynote.mpg"
+		Uri = "https://www.oracle.com/javaone/index.html"
 		Title = Set: "Javaone Keynote"
 		Width = 640
 		Height = 480
@@ -16,14 +16,14 @@
 
 	Images = [
 		{
-			Uri = "http://javaone.com/keynote_large.jpg"
+			Uri = "https://www.oracle.com/javaone/index.html"
 			Title = Set: "Javaone Keynote"
 			Width = 1024
 			Height = 768
 			Size = Large
 		}
 		{
-			Uri = "http://javaone.com/keynote_small.jpg"
+			Uri = "https://www.oracle.com/javaone/index.html"
 			Title = Set: "Javaone Keynote"
 			Width = 320
 			Height = 240

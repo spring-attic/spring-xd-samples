@@ -7,7 +7,7 @@ This is an example of a custom module that uses RxJava's Observable API.
 
 In order to install the module run it in your Spring XD installation, you will need to have installed:
 
-* Spring XD version 1.1.x ([Instructions](http://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started))
+* Spring XD version 1.1.x ([Instructions](https://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started))
 
 ## Code Tour
 

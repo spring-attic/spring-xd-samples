@@ -7,7 +7,7 @@ This is an example of a custom source module using the Spring Integration feed i
 
 In order to install the module and run it in your Spring XD installation, you will need to have installed:
 
-* Spring XD version 1.1.x ([Instructions](http://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started))
+* Spring XD version 1.1.x ([Instructions](https://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started))
 
 ## Code Tour
 
@@ -76,7 +76,7 @@ You can also get information about the available module options:
 
 Now create and deploy a stream:
 
-	xd:>stream create feedTest --definition "feed --url='http://feeds.bbci.co.uk/news/rss.xml' | log" --deploy
+	xd:>stream create feedTest --definition "feed --url='https://feeds.bbci.co.uk/news/rss.xml' | log" --deploy
 
 
 You should see the stream output in the Spring XD log with each entry rendered as JSON
@@ -84,9 +84,9 @@ You should see the stream output in the Spring XD log with each entry rendered a
 
 [pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/rss-feed-source/pom.xml
 [build.gradle]: https://github.com/spring-projects/spring-xd-samples/blob/master/rss-feed-source/build.gradle
-[Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
-[Spring Boot Gradle Plugin]: http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/build-tool-plugins-gradle-plugin.html
+[Spring Boot Maven Plugin]: https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
+[Spring Boot Gradle Plugin]: https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/build-tool-plugins-gradle-plugin.html
 [propdeps plugin]: https://github.com/spring-projects/gradle-plugins/tree/master/propdeps-plugin
-[Modules]: http://docs.spring.io/spring-xd/docs/current/reference/html/#modules
-[rome]: http://rometools.github.io/rome/
+[Modules]: https://docs.spring.io/spring-xd/docs/current/reference/html/#modules
+[rome]: https://rometools.github.io/rome/
 [SyndEntryJsonTransformer]:  https://github.com/spring-projects/spring-xd-samples/blob/master/rss-feed-source/src/main/java/com/acme/SyndEntryJsonTransformer.java
