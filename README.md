@@ -1,3 +1,5 @@
+# spring-xd-samples is no longer actively maintained by VMware, Inc.
+
 Spring XD Samples
 =================
 
