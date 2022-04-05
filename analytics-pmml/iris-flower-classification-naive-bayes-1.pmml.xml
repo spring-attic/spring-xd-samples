@@ -1,4 +1,4 @@
-<PMML version="4.1" xmlns="http://www.dmg.org/PMML-4_1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_1 http://www.dmg.org/v4-1/pmml-4-1.xsd">
+<PMML version="4.1" xmlns="/PMML-4_1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="/PMML-4_1/ http://dmg.org/v4-1/pmml-4-1.xsd">
 <Header copyright="Copyright (c) 2014 tom" description="NaiveBayes Model">
  <Extension name="user" value="tom" extender="Rattle/PMML"/>
  <Application name="Rattle/PMML" version="1.4"/>
