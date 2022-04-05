@@ -3,7 +3,7 @@
 
 ## Overview
 
-This is a Spring XD implementation of a [Storm Product Analytics Example](https://github.com/storm-book/examples-ch06-real-life-app). This example is documented in [Getting Started with Storm](http://www.amazon.com/Getting-Started-Storm-Jonathan-Leibiusky/dp/1449324010). The example in Chapter 6 uses a node.js application to track user product page hits and uses Redis to store and retrieve results. The Storm topology processes the page hits in real time and produces some statistics cross-referencing product categories associated with other product pages to which the user has also navigated.
+This is a Spring XD implementation of a [Storm Product Analytics Example](https://github.com/storm-book/examples-ch06-real-life-app). This example is documented in [Getting Started with Storm](https://www.amazon.com/Getting-Started-Storm-Jonathan-Leibiusky/dp/1449324010). The example in Chapter 6 uses a node.js application to track user product page hits and uses Redis to store and retrieve results. The Storm topology processes the page hits in real time and produces some statistics cross-referencing product categories associated with other product pages to which the user has also navigated.
 
 This implementation of the example works with the Storm example's original web app and requires that componenent as well as a Redis serve,  Spring XD (single node), and the Spring XD shell to be running.
 
@@ -29,7 +29,7 @@ $git clone https://github.com/storm-book/examples-ch06-real-life-app
 
 * Start the Redis server on localhost:6379 (the default), if necessary
 
-* Download [node.js](http://nodejs.org/download/) if necessary
+* Download [node.js](https://nodejs.org/download/) if necessary
 
 * Start the sample node app from the Storm example project location:
 

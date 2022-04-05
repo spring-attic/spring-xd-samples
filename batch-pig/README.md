@@ -116,5 +116,5 @@ Finally, executing:
 should yield a list of 10 hashtags and their respective counts.
 
 [pom]: https://github.com/spring-projects/spring-xd-samples/blob/master/batch-pig/pom.xml
-[Spring Boot Maven Plugin]: http://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
-[Modules]: http://docs.spring.io/spring-xd/docs/current/reference/html/#modules
+[Spring Boot Maven Plugin]: https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html
+[Modules]: https://docs.spring.io/spring-xd/docs/current/reference/html/#modules

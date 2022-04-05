@@ -7,11 +7,11 @@ This is an example of a custom module that uses Reactor's Stream API.
 
 In order to install the module run it in your Spring XD installation, you will need to have installed:
 
-* Spring XD version 1.1.x ([Instructions](http://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started)). You'll need to build Spring XD with Java 8+ to use this sample (which uses lambda expressions).
+* Spring XD version 1.1.x ([Instructions](https://docs.spring.io/spring-xd/docs/current/reference/html/#getting-started)). You'll need to build Spring XD with Java 8+ to use this sample (which uses lambda expressions).
 
 ## Code Tour
 
-The heart of the sample is the processing module named [MovingAverage.java](src/main/java/com/acme/MovingAverage.java). This uses the Stream API to perform an average over the last 5 values of data. The [Tuple](http://docs.spring.io/spring-xd/docs/current/reference/html/#tuples) data type is used as a generic container for keyed data.
+The heart of the sample is the processing module named [MovingAverage.java](src/main/java/com/acme/MovingAverage.java). This uses the Stream API to perform an average over the last 5 values of data. The [Tuple](https://docs.spring.io/spring-xd/docs/current/reference/html/#tuples) data type is used as a generic container for keyed data.
 
 
 ## Building with Maven
