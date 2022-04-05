@@ -1,0 +1,48 @@
+
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/plugins-snapshot" }
+        maven { url "http://repo.spring.io/release" }
+        jcenter()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
+    }
+    dependencies {
+		classpath("org.springframework.xd:spring-xd-module-plugin:1.1.0.RELEASE")
+    }
+}
+
+ext {
+	springXdVersion = '1.1.0.RELEASE'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-xd-module'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+group = 'com.acme'
+version = '1.1.0.BUILD-SNAPSHOT'
+
+description = "Custom module using Reactor TopN Tweets"
+mainClassName = ''
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    maven { url "http://repo.spring.io/release" }
+    mavenCentral()
+    jcenter()
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" } 
+}
+
+dependencies {
+    compile "org.springframework.xd:spring-xd-reactor:1.1.0.BUILD-SNAPSHOT"
+    compile "io.projectreactor:reactor-core:2.0.0.BUILD-SNAPSHOT"
+}
