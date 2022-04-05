@@ -1,10 +1,10 @@
 
     repositories {
-        maven { url "http://repo.spring.io/plugins-snapshot" }
-        maven { url 'http://repo.spring.io/plugins-release' }
-        maven { url "http://repo.spring.io/release" }
-        maven { url "http://repo.spring.io/milestone" }
-        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/plugins-snapshot" }
+        maven { url 'https://repo.spring.io/plugins-release' }
+        maven { url "https://repo.spring.io/release" }
+        maven { url "https://repo.spring.io/milestone" }
+        maven { url "https://repo.spring.io/snapshot" }
         jcenter()
     }
     dependencies {

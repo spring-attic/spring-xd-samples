@@ -22,11 +22,11 @@
 	<repositories>
 		<repository>
 			<id>spring-io-release</id>
-			<url>http://repo.spring.io/release</url>
+			<url>https://repo.spring.io/release</url>
 		</repository>
 		<repository>
 			<id>jcenter</id>
-			<url>http://jcenter.bintray.com</url>
+			<url>https://jcenter.bintray.com</url>
 		</repository>
 	</repositories>
 </project>
