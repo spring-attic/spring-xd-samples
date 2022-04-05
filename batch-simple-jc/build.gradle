@@ -1,0 +1,16 @@
+/*
+NOTE: This configuration is convenient for maintaining shared configuration across multiple projects in the samples repo. 
+If copying this example, it may be simpler to declare the  
+required configuration inline. 
+*/
+buildscript {
+   apply from: '../sample-modules-parent/buildscript.gradle', 
+   to: buildscript
+}
+apply from: '../sample-modules-parent/build.gradle'
+apply plugin: 'spring-xd-module'
+
+description = "Batch Simple Example using Java Configuration"
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
